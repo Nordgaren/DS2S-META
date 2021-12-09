@@ -23,8 +23,8 @@ namespace DS2_META
             NewGame = 0x68,
             SaveSlot = 0x18A8
         }
-        public const int PlayerBaseOffset = 0xD0;
-        public enum PlayerBase
+        public const int PlayerCtrlOffset = 0xD0;
+        public enum PlayerCtrl
         {
             HP = 0x168,
             HPMin = 0x16C,
@@ -35,13 +35,13 @@ namespace DS2_META
             SpeedModifier = 0x2AB,
         }
 
-        public const int PlayerDataBaseOffset = 0x490;
-        public enum PlayerDataBase
+        public const int PlayerParamOffset = 0x490;
+        public enum PlayerParam
         {
             SoulMemory = 0xF4,
             SoulMemory2 = 0xFC,
             MaxEquipLoad = 0x3C,
-            TotalGetSoul = 0xEC,
+            Souls = 0xEC,
             TotalDeaths = 0x1A4,
             HollowLevel = 0x1AC,
             SinnerLevel = 0x1D6,

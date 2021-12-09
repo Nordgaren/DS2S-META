@@ -225,8 +225,8 @@
     <Compile Include="Util\DS2Assembly.cs" />
     <Compile Include="Util\DS2Hook.cs" />
     <Compile Include="Util\DS2Offsets.cs" />
-    <Compile Include="WPFResources\DS2ViewModel.cs" />
-    <Compile Include="WPFResources\ObservableObject.cs" />
+    <Compile Include="Util\DS2ViewModel.cs" />
+    <Compile Include="Util\ObservableObject.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
