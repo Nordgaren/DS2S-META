@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="DS2_META.TestControl"
+             x:Name="TestCont"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:DS2_META"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="150">
+    <Grid>
+        <StackPanel>
+            <wpfTool:IntegerUpDown Value="{Binding ElementName=TestCont, Path=Vit}" ValueChanged="Nud1_ValueChanged"/>
+            <wpfTool:IntegerUpDown ValueChanged="Nud1_ValueChanged"/>
+            <wpfTool:IntegerUpDown ValueChanged="Nud1_ValueChanged"/>
+            <wpfTool:IntegerUpDown ValueChanged="Nud1_ValueChanged"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
