@@ -50,21 +50,21 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="Vigor" Margin="0,0,10,0" Grid.Column="0" Grid.Row="0" />
-                <wpfTool:IntegerUpDown x:Name="nudVig" Value="{Binding ElementName=StatsCon, Path=Hook.Vigor}" Grid.Column="1" Grid.Row="0"/>
+                <wpfTool:IntegerUpDown x:Name="nudVig" Value="{Binding ElementName=StatsCon, Path=Hook.Vigor}" Grid.Column="1" Grid.Row="0" ClipValueToMinMax="True"/>
                 <Label Content="Endurance" Margin="0,0,10,0" Grid.Column="0" Grid.Row="1" />
-                <wpfTool:IntegerUpDown x:Name="nudEnd" Value="{Binding ElementName=StatsCon, Path=Hook.Endurance}" Grid.Column="1" Grid.Row="1"/>
+                <wpfTool:IntegerUpDown x:Name="nudEnd" Value="{Binding ElementName=StatsCon, Path=Hook.Endurance}" Grid.Column="1" Grid.Row="1" ClipValueToMinMax="True"/>
                 <Label Content="Vitality" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="2" />
-                <wpfTool:IntegerUpDown x:Name="nudVit" Value="{Binding ElementName=StatsCon, Path=Hook.Vitality}" Grid.Column="1" Grid.Row="2"/>
+                <wpfTool:IntegerUpDown x:Name="nudVit" Value="{Binding ElementName=StatsCon, Path=Hook.Vitality}" Grid.Column="1" Grid.Row="2" ClipValueToMinMax="True"/>
                 <Label Content="Attunement" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="3" />
-                <wpfTool:IntegerUpDown x:Name="nudAtt" Value="{Binding ElementName=StatsCon, Path=Hook.Attunement}" Grid.Column="1" Grid.Row="3"/>
+                <wpfTool:IntegerUpDown x:Name="nudAtt" Value="{Binding ElementName=StatsCon, Path=Hook.Attunement}" Grid.Column="1" Grid.Row="3" ClipValueToMinMax="True"/>
                 <Label Content="Strength" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="4" />
-                <wpfTool:IntegerUpDown x:Name="nudStr" Value="{Binding ElementName=StatsCon, Path=Hook.Strength}" Grid.Column="1" Grid.Row="4"/>
+                <wpfTool:IntegerUpDown x:Name="nudStr" Value="{Binding ElementName=StatsCon, Path=Hook.Strength}" Grid.Column="1" Grid.Row="4" ClipValueToMinMax="True"/>
                 <Label Content="Dexterity" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="5" />
-                <wpfTool:IntegerUpDown x:Name="nudDex" Value="{Binding ElementName=StatsCon, Path=Hook.Dexterity}" Grid.Column="1" Grid.Row="5"/>
+                <wpfTool:IntegerUpDown x:Name="nudDex" Value="{Binding ElementName=StatsCon, Path=Hook.Dexterity}" Grid.Column="1" Grid.Row="5" ClipValueToMinMax="True"/>
                 <Label Content="Adaptability" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="6" />
-                <wpfTool:IntegerUpDown x:Name="nudAdp" Value="{Binding ElementName=StatsCon, Path=Hook.Adaptability}" Grid.Column="1" Grid.Row="6"/>
+                <wpfTool:IntegerUpDown x:Name="nudAdp" Value="{Binding ElementName=StatsCon, Path=Hook.Adaptability}" Grid.Column="1" Grid.Row="6" ClipValueToMinMax="True"/>
                 <Label Content="Intelligence" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="7" />
-                <wpfTool:IntegerUpDown x:Name="nudInt" Value="{Binding ElementName=StatsCon, Path=Hook.Intelligence}" Grid.Column="1" Grid.Row="7"/>
+                <wpfTool:IntegerUpDown x:Name="nudInt" Value="{Binding ElementName=StatsCon, Path=Hook.Intelligence}" Grid.Column="1" Grid.Row="7" ClipValueToMinMax="True"/>
                 <Label Content="Faith" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="8" />
                 <wpfTool:IntegerUpDown x:Name="nudFth" Value="{Binding ElementName=StatsCon, Path=Hook.Faith}" Grid.Column="1" Grid.Row="8"/>
 

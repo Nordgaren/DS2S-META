@@ -38,6 +38,11 @@ namespace DS2_META
             get => viewModel.Loaded;
             set => viewModel.Loaded = value;
         }
+        public bool Reading
+        {
+            get => viewModel.Reading;
+            set => viewModel.Reading = value;
+        }
 
         Timer updateTimer = new Timer();
 
@@ -98,28 +103,46 @@ namespace DS2_META
                         {
                             lblLoaded.Content = "Yes";
                             FormLoaded = true;
-                            //Reading = true;
-                            //ReloadAllTabs();
-                            //Reading = false;
+                            Reading = true;
+                            ReloadAllTabs();
+                            Reading = false;
                             //EnableTabs(true);
                         }
                         else
                         {
-                            //Reading = true;
+                            Reading = true;
                             Hook.UpdateProperties();
-                            //Reading = false;
+                            UpdateAllTabs();
+                            Reading = false;
                         }
                     }
                     else if (FormLoaded)
                     {
                         lblLoaded.Content = "No";
+                        Reading = true;
                         Hook.UpdateProperties();
-                        //EnableTabs(false);
+                        EnableTabs(false);
                         FormLoaded = false;
+                        Reading = false;
                     }
                 }
             }));
             
+        }
+
+        private void EnableTabs(bool v)
+        {
+            metaStats.EnableStats(true);
+        }
+
+        private void ReloadAllTabs()
+        {
+            metaStats.Reload();
+        }
+
+        private void UpdateAllTabs()
+        {
+            metaStats.Update();
         }
 
         private void link_RequestNavigate(object sender, RequestNavigateEventArgs e)

@@ -27,8 +27,8 @@
                 
             </StackPanel >
             <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                <Label x:Name="labelCheckVersion" Content="Check Version" />
-                <Label x:Name="llbNewVersion">
+                <Label x:Name="labelCheckVersion" Content="Check Version"/>
+                <Label x:Name="llbNewVersion" Visibility="Hidden">
                     <Hyperlink x:Name="link" Hyperlink.RequestNavigate="link_RequestNavigate">
                         <TextBlock Text="New version available!" />
                     </Hyperlink>
@@ -44,7 +44,7 @@
             </TabItem>
             <TabItem Header="Stats">
                 <Grid Background="LightGray">
-                    <local:StatsControl Hook="{Binding Hook}" Loaded="{Binding Loaded}"/>
+                    <local:StatsControl x:Name="metaStats" Hook="{Binding Hook}" Loaded="{Binding Loaded}"/>
                 </Grid>
             </TabItem>
         </TabControl>

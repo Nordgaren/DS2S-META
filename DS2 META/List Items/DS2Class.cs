@@ -47,10 +47,33 @@ namespace DS2_META
 
         static DS2Class()
         {
-            foreach (string line in Regex.Split(GetTxtResourceClass.GetTxtResource("Resources/Systems/Classes.txt"), "[\r\n]+"))
+            foreach (string line in Regex.Split(Properties.Resources.Classes, "[\r\n]+"))
             {
                 if (GetTxtResourceClass.IsValidTxtResource(line)) //determine if line is a valid resource or not
                     All.Add(new DS2Class(line));
+            }
+        }
+    }
+
+    class DS2Level
+    {
+        private static Regex levelEntryRx = new Regex(@"(?<sl>\S+) (?<cost>\S+)$");
+        public int Level { get; set; }
+        public int Cost { get; set; }
+
+        public DS2Level(string config)
+        {
+            Match classEntry = levelEntryRx.Match(config);
+            Level = Convert.ToInt32(classEntry.Groups["sl"].Value);
+            Cost = Convert.ToInt32(classEntry.Groups["cost"].Value);
+        }
+        public static List<DS2Level> Levels = new List<DS2Level>();
+        static DS2Level()
+        {
+            foreach (string line in Regex.Split(Properties.Resources.Levels, "[\r\n]+"))
+            {
+                if (GetTxtResourceClass.IsValidTxtResource(line)) //determine if line is a valid resource or not
+                    Levels.Add(new DS2Level(line));
             }
         }
     }

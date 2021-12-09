@@ -30,8 +30,6 @@ namespace DS2_META
         public static readonly DependencyProperty HookProperty =
             DependencyProperty.Register("Hook", typeof(DS2Hook), typeof(StatsControl), new PropertyMetadata(default));
 
-
-
         public bool Loaded
         {
             get { return (bool)GetValue(LoadedProperty); }
@@ -42,13 +40,12 @@ namespace DS2_META
         public static readonly DependencyProperty LoadedProperty =
             DependencyProperty.Register("Loaded", typeof(bool), typeof(StatsControl), new PropertyMetadata(default));
 
-
-
         public StatsControl()
         {
             InitializeComponent();
             foreach (DS2Class charClass in DS2Class.All)
                 cmbClass.Items.Add(charClass);
+            cmbClass.SelectedIndex = -1;
         }
 
         private void Name_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
@@ -65,6 +62,7 @@ namespace DS2_META
             DS2Class charClass = cmbClass.SelectedItem as DS2Class;
             if (Hook.Loaded)
             {
+                Hook.Class = charClass.ID;
                 nudVig.Minimum = charClass.Vigor;
                 nudEnd.Minimum = charClass.Endurance;
                 nudVit.Minimum = charClass.Vitality;
@@ -75,6 +73,21 @@ namespace DS2_META
                 nudInt.Minimum = charClass.Intelligence;
                 nudFth.Minimum = charClass.Faith;
             }
+        }
+
+        internal void Update()
+        {
+            
+        }
+
+        internal void Reload()
+        {
+            cmbClass.SelectedItem = cmbClass.Items.Cast<DS2Class>().FirstOrDefault(c => c.ID == Hook.Class);
+        }
+
+        internal void EnableStats(bool v)
+        {
+            cmbClass.SelectedIndex = -1;
         }
     }
 }

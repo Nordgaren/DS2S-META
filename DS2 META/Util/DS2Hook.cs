@@ -21,6 +21,8 @@ namespace DS2_META
         public int ID => Process?.Id ?? -1;
         public string Version { get; private set; }
 
+        public static bool Reading { get; set; }
+
         private PHPointer BaseASetup;
         private PHPointer BaseA;
         private PHPointer PlayerName;
@@ -59,7 +61,7 @@ namespace DS2_META
         {
             BaseA = CreateBasePointer(BaseAPointBaseANoOff());
             PlayerName = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerNameOffset);
-            PlayerBaseMisc = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerBaseMiscOffset);
+            PlayerBaseMisc = CreateChildPointer(PlayerName, (int)DS2Offsets.PlayerBaseMiscOffset);
             PlayerBase = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerBaseOffset);
             PlayerDataBase = CreateChildPointer(PlayerBase, (int)DS2Offsets.PlayerDataBaseOffset);
             UpdateProperties();
@@ -95,60 +97,159 @@ namespace DS2_META
             get => Loaded ? PlayerBaseMisc.ReadByte((int)DS2Offsets.PlayerBaseMisc.Class) : (byte)255;
             set => PlayerBaseMisc.WriteByte((int)DS2Offsets.PlayerBaseMisc.Class, value);
         }
+        public int SoulLevel
+        {
+            get => Loaded ? PlayerDataBase.ReadInt32((int)DS2Offsets.Attributes.SoulLevel) : 0;
+            set => PlayerDataBase.WriteInt32((int)DS2Offsets.Attributes.SoulLevel, value);
+        }
+        public int SoulMemory
+        {
+            get => Loaded ? PlayerDataBase.ReadInt32((int)DS2Offsets.PlayerDataBase.SoulMemory) : 0;
+            set => PlayerDataBase.WriteInt32((int)DS2Offsets.PlayerDataBase.SoulMemory, value);
+        }
+        public int SoulMemory2
+        {
+            get => Loaded ? PlayerDataBase.ReadInt32((int)DS2Offsets.PlayerDataBase.SoulMemory2) : 0;
+            set => PlayerDataBase.WriteInt32((int)DS2Offsets.PlayerDataBase.SoulMemory2, value);
+        }
         private short _vigor;
         public short Vigor
         {
             get => Loaded ? PlayerDataBase.ReadInt16((int)DS2Offsets.Attributes.VGR) : (short)0;
-            set => PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.VGR, value);
+            set
+            {
+                if (Reading) return;
+                PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.VGR, value);
+                UpdateSoulLevel();
+            }
         }
         private short _endurance;
         public short Endurance
         {
             get => Loaded ? PlayerDataBase.ReadInt16((int)DS2Offsets.Attributes.END) : (short)0;
-            set => PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.END, value);
+            set 
+            { 
+                if (Reading) return;
+                PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.END, value);
+                UpdateSoulLevel();
+            }
         }
         private short _vitality;
-        public short Vitality 
+        public short Vitality
         {
             get => Loaded ? PlayerDataBase.ReadInt16((int)DS2Offsets.Attributes.VIT) : (short)0;
-            set => PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.VIT, value);
+            set
+            {
+                if (Reading) return;
+                PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.VIT, value);
+                UpdateSoulLevel();
+            }
         }
         private short _attunement;
         public short Attunement
         {
             get => Loaded ? PlayerDataBase.ReadInt16((int)DS2Offsets.Attributes.ATN) : (short)0;
-            set => PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.ATN, value);
+            set
+            {
+                if (Reading) return;
+                PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.ATN, value);
+                UpdateSoulLevel();
+            }
         }
         private short _strength;
         public short Strength
         {
             get => Loaded ? PlayerDataBase.ReadInt16((int)DS2Offsets.Attributes.STR) : (short)0;
-            set => PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.STR, value);
+            set
+            {
+                if (Reading) return;
+                PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.STR, value);
+                UpdateSoulLevel();
+            }
         }
         private short _dexterity;
         public short Dexterity
         {
             get => Loaded ? PlayerDataBase.ReadInt16((int)DS2Offsets.Attributes.DEX) : (short)0;
-            set => PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.DEX, value);
+            set
+            {
+                if (Reading) return;
+                PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.DEX, value);
+                UpdateSoulLevel();
+            }
         }
         private short _adaptability;
         public short Adaptability
         {
             get => Loaded ? PlayerDataBase.ReadInt16((int)DS2Offsets.Attributes.ADP) : (short)0;
-            set => PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.ADP, value);
+            set
+            {
+                if (Reading) return;
+                PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.ADP, value);
+                UpdateSoulLevel();
+            }
         }
         private short _intelligence;
         public short Intelligence
         {
             get => Loaded ? PlayerDataBase.ReadInt16((int)DS2Offsets.Attributes.INT) : (short)0;
-            set => PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.INT, value);
+            set
+            {
+                if (Reading) return;
+                PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.INT, value);
+                UpdateSoulLevel();
+            }
         }
         private short _faith;
         public short Faith
         {
             get => Loaded ? PlayerDataBase.ReadInt16((int)DS2Offsets.Attributes.FTH) : (short)0;
-            set => PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.FTH, value);
+            set
+            {
+                if (Reading) return;
+                PlayerDataBase.WriteInt16((int)DS2Offsets.Attributes.FTH, value);
+                UpdateSoulLevel();
+            }
         }
+        private void UpdateSoulLevel()
+        {
+            var charClass = DS2Class.All.FirstOrDefault(c => c.ID == Class);
+            if (charClass == null) return;
+
+            var soulLevel = GetSoulLevel(charClass);
+            SoulLevel = soulLevel;
+            var reqSoulMemory = GetRequiredSoulMemory(soulLevel, charClass.SoulLevel);
+            if (reqSoulMemory > SoulMemory)
+            {
+                SoulMemory = reqSoulMemory;
+                SoulMemory2 = reqSoulMemory;
+            }
+        }
+        private int GetSoulLevel(DS2Class charClass)
+        {
+            int sl = charClass.SoulLevel;
+            sl += Vigor - charClass.Vigor;
+            sl += Attunement - charClass.Attunement;
+            sl += Vitality - charClass.Vitality;
+            sl += Endurance - charClass.Endurance;
+            sl += Strength - charClass.Strength;
+            sl += Dexterity - charClass.Dexterity;
+            sl += Adaptability - charClass.Adaptability;
+            sl += Intelligence - charClass.Intelligence;
+            sl += Faith - charClass.Faith;
+            return sl;
+        }
+
+        private int GetRequiredSoulMemory(int SL, int baseSL)
+        {
+            int soulMemory = 0;
+            for (int i = baseSL; i < SL; i++)
+            {
+                soulMemory += DS2Level.Levels[i].Cost;
+            }
+            return soulMemory;
+        }
+
         #endregion
     }
 }

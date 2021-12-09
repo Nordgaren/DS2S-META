@@ -11,6 +11,11 @@ namespace DS2_META
     {
         public DS2Hook Hook { get; private set; }
         public bool Loaded { get; set; }
+        public bool Reading
+        {
+            get => DS2Hook.Reading;
+            set => DS2Hook.Reading = value;
+        }
 
         public DS2ViewModel()
         {
