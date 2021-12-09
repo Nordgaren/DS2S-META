@@ -113,6 +113,7 @@ namespace DS2_META
                     else if (FormLoaded)
                     {
                         lblLoaded.Content = "No";
+                        Hook.UpdateProperties();
                         //EnableTabs(false);
                         FormLoaded = false;
                     }
