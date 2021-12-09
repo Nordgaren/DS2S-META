@@ -7,7 +7,7 @@
              xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:DS2_META"
              mc:Ignorable="d" 
-             d:DesignHeight="575" d:DesignWidth="425">
+             d:DesignHeight="575" d:DesignWidth="425" Background="LightGray" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -17,7 +17,21 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="0" Grid.Row="1">
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="10">
+            <Label Content="Character"/>
+            <StackPanel Margin="15,0,0,0">
+                <Label Content="Name" />
+                <TextBox x:Name="Name" Text="{Binding ElementName=StatsCon, Path=Hook.Name}" LostKeyboardFocus="Name_LostKeyboardFocus"/>
+                <!--<Label Content="Sex" />
+                <ComboBox Name="Sex"/>-->
+                <Label Content="Class" />
+                <ComboBox Name="cmbClass" SelectionChanged="cbmClass_SelectionChanged"/>
+                <!--<Label Content="Physique" />
+                <ComboBox Name="Physique"/>-->
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
+            <Label Content="Stats"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -36,26 +50,26 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="Vigor" Margin="0,0,10,0" Grid.Column="0" Grid.Row="0" />
-                <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.Vigor}" Grid.Column="1" Grid.Row="0" ValueChanged="IntegerUpDown_ValueChanged"/>
+                <wpfTool:IntegerUpDown x:Name="nudVig" Value="{Binding ElementName=StatsCon, Path=Hook.Vigor}" Grid.Column="1" Grid.Row="0"/>
                 <Label Content="Endurance" Margin="0,0,10,0" Grid.Column="0" Grid.Row="1" />
-                <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.Endurance}" Grid.Column="1" Grid.Row="1"/>
+                <wpfTool:IntegerUpDown x:Name="nudEnd" Value="{Binding ElementName=StatsCon, Path=Hook.Endurance}" Grid.Column="1" Grid.Row="1"/>
                 <Label Content="Vitality" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="2" />
-                <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.Vigor}" Grid.Column="1" Grid.Row="2"/>
+                <wpfTool:IntegerUpDown x:Name="nudVit" Value="{Binding ElementName=StatsCon, Path=Hook.Vitality}" Grid.Column="1" Grid.Row="2"/>
                 <Label Content="Attunement" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="3" />
-                <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.Attunement}" Grid.Column="1" Grid.Row="3"/>
+                <wpfTool:IntegerUpDown x:Name="nudAtt" Value="{Binding ElementName=StatsCon, Path=Hook.Attunement}" Grid.Column="1" Grid.Row="3"/>
                 <Label Content="Strength" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="4" />
-                <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.Strength}" Grid.Column="1" Grid.Row="4"/>
+                <wpfTool:IntegerUpDown x:Name="nudStr" Value="{Binding ElementName=StatsCon, Path=Hook.Strength}" Grid.Column="1" Grid.Row="4"/>
                 <Label Content="Dexterity" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="5" />
-                <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.Dexterity}" Grid.Column="1" Grid.Row="5"/>
+                <wpfTool:IntegerUpDown x:Name="nudDex" Value="{Binding ElementName=StatsCon, Path=Hook.Dexterity}" Grid.Column="1" Grid.Row="5"/>
                 <Label Content="Adaptability" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="6" />
-                <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.Adaptability}" Grid.Column="1" Grid.Row="6"/>
+                <wpfTool:IntegerUpDown x:Name="nudAdp" Value="{Binding ElementName=StatsCon, Path=Hook.Adaptability}" Grid.Column="1" Grid.Row="6"/>
                 <Label Content="Intelligence" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="7" />
-                <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.Intelligence}" Grid.Column="1" Grid.Row="7"/>
+                <wpfTool:IntegerUpDown x:Name="nudInt" Value="{Binding ElementName=StatsCon, Path=Hook.Intelligence}" Grid.Column="1" Grid.Row="7"/>
                 <Label Content="Faith" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="8" />
-                <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.Faith}" Grid.Column="1" Grid.Row="8"/>
+                <wpfTool:IntegerUpDown x:Name="nudFth" Value="{Binding ElementName=StatsCon, Path=Hook.Faith}" Grid.Column="1" Grid.Row="8"/>
 
             </Grid>
         </StackPanel>
-                 
+
     </Grid>
 </UserControl>

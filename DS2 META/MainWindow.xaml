@@ -1,4 +1,5 @@
 ﻿<Window x:Class="DS2_META.MainWindow"
+        x:Name="DS2META"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,21 +7,35 @@
         xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:DS2_META"
         mc:Ignorable="d"
-        Title="DS2 Debug Tool" Height="650" Width="450" Background="DarkGray" Loaded="Window_Loaded">
+        Title="DS2 Debug Tool" Height="700" Width="450" Background="DarkGray" Loaded="Window_Loaded" Closing="Window_Closing">
 
     <Window.DataContext>
         <local:DS2ViewModel x:Name="viewModel"/>
     </Window.DataContext>
 
     <Grid>
-        <StackPanel>
-            <Label x:Name="labelCheckVersion" Content="Check Version" />
-            <Label x:Name="llbNewVersion" Width="150" Height="30" Visibility="Hidden">
-                <Hyperlink x:Name="link" Hyperlink.RequestNavigate="link_RequestNavigate">
-                    <TextBlock Text="New version available!" />
-                </Hyperlink>
-            </Label>
-        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Loaded:" />
+                    <Label Name="lblLoaded" Content="No"/>
+                </StackPanel>
+                
+            </StackPanel >
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                <Label x:Name="labelCheckVersion" Content="Check Version" />
+                <Label x:Name="llbNewVersion">
+                    <Hyperlink x:Name="link" Hyperlink.RequestNavigate="link_RequestNavigate">
+                        <TextBlock Text="New version available!" />
+                    </Hyperlink>
+                </Label>
+            </StackPanel>
+        </Grid>
+        
        
         <TabControl Margin="0,75,0,0">
             <TabItem Header="Player">
@@ -29,7 +44,7 @@
             </TabItem>
             <TabItem Header="Stats">
                 <Grid Background="LightGray">
-                    <local:StatsControl Hook="{Binding Hook}"/>
+                    <local:StatsControl Hook="{Binding Hook}" Loaded="{Binding Loaded}"/>
                 </Grid>
             </TabItem>
         </TabControl>

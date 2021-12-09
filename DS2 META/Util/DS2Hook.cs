@@ -23,10 +23,12 @@ namespace DS2_META
 
         private PHPointer BaseASetup;
         private PHPointer BaseA;
+        private PHPointer PlayerName;
+        private PHPointer PlayerBaseMisc;
         private PHPointer PlayerBase;
         private PHPointer PlayerDataBase;
 
-        public bool Loaded = false;
+        public bool Loaded => PlayerBase.Resolve() != IntPtr.Zero;
 
         public DS2Hook(int refreshInterval, int minLifetime) :
             base(refreshInterval, minLifetime, p => p.MainWindowTitle == "DARK SOULS II")
@@ -41,6 +43,7 @@ namespace DS2_META
 
         public void UpdateProperties()
         {
+            OnPropertyChanged(nameof(Name));
             OnPropertyChanged(nameof(Vigor));
             OnPropertyChanged(nameof(Endurance));
             OnPropertyChanged(nameof(Vitality));
@@ -55,14 +58,14 @@ namespace DS2_META
         private void DSHook_OnHooked(object sender, PHEventArgs e)
         {
             BaseA = CreateBasePointer(BaseAPointBaseANoOff());
+            PlayerName = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerNameOffset);
+            PlayerBaseMisc = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerBaseMiscOffset);
             PlayerBase = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerBaseOffset);
             PlayerDataBase = CreateChildPointer(PlayerBase, (int)DS2Offsets.PlayerDataBaseOffset);
-            Loaded = true;
             UpdateProperties();
         }
         private void DSHook_OnUnhooked(object sender, PHEventArgs e)
         {
-            Loaded = false;
         }
         public IntPtr BaseAPointBaseANoOff(PHPointer pointer)
         {
@@ -81,6 +84,17 @@ namespace DS2_META
         }
 
         #region Stats
+        public string Name
+        {
+            get => Loaded ? PlayerName.ReadString((int)DS2Offsets.PlayerName.Name, Encoding.Unicode, 0x22) : "";
+            set => PlayerName.WriteString((int)DS2Offsets.PlayerName.Name, Encoding.Unicode, 0x22, value);
+        }
+
+        public byte Class
+        {
+            get => Loaded ? PlayerBaseMisc.ReadByte((int)DS2Offsets.PlayerBaseMisc.Class) : (byte)255;
+            set => PlayerBaseMisc.WriteByte((int)DS2Offsets.PlayerBaseMisc.Class, value);
+        }
         private short _vigor;
         public short Vigor
         {

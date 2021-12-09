@@ -20,8 +20,6 @@ namespace DS2_META
     /// </summary>
     public partial class StatsControl : UserControl
     {
-
-
         public DS2Hook Hook
         {
             get { return (DS2Hook)GetValue(HookProperty); }
@@ -32,14 +30,51 @@ namespace DS2_META
         public static readonly DependencyProperty HookProperty =
             DependencyProperty.Register("Hook", typeof(DS2Hook), typeof(StatsControl), new PropertyMetadata(default));
 
+
+
+        public bool Loaded
+        {
+            get { return (bool)GetValue(LoadedProperty); }
+            set { SetValue(LoadedProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Loaded.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LoadedProperty =
+            DependencyProperty.Register("Loaded", typeof(bool), typeof(StatsControl), new PropertyMetadata(default));
+
+
+
         public StatsControl()
         {
             InitializeComponent();
+            foreach (DS2Class charClass in DS2Class.All)
+                cmbClass.Items.Add(charClass);
         }
 
-        private void IntegerUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private void Name_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            //var val = (int)e.NewValue;
+            Hook.Name = Name.Text;
+        }
+
+        public void ReloadTab()
+        {
+
+        }
+        private void cbmClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DS2Class charClass = cmbClass.SelectedItem as DS2Class;
+            if (Hook.Loaded)
+            {
+                nudVig.Minimum = charClass.Vigor;
+                nudEnd.Minimum = charClass.Endurance;
+                nudVit.Minimum = charClass.Vitality;
+                nudAtt.Minimum = charClass.Attunement;
+                nudStr.Minimum = charClass.Strength;
+                nudDex.Minimum = charClass.Dexterity;
+                nudAdp.Minimum = charClass.Adaptability;
+                nudInt.Minimum = charClass.Intelligence;
+                nudFth.Minimum = charClass.Faith;
+            }
         }
     }
 }

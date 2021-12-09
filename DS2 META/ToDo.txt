@@ -1,0 +1,1 @@
+﻿PlayerBaseMisc BaseA -> A8 -> C0 - Class, NewGame & SaveSlot

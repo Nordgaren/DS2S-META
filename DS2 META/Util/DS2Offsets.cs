@@ -11,6 +11,18 @@ namespace DS2_META
         public const string BaseAAob = "48 8B 05 ? ? ? ? 48 8B 58 38 48 85 DB 74 ? F6";
         public const int BasePtrOffset1 = 0x3;
         public const int BasePtrOffset2 = 0x7;
+        public const int PlayerNameOffset = 0xA8;
+        public enum PlayerName
+        {
+            Name = 0x114
+        }
+        public const int PlayerBaseMiscOffset = 0xC0;
+        public enum PlayerBaseMisc
+        {
+            Class = 0x64,
+            NewGame = 0x68,
+            SaveSlot = 0x18A8
+        }
         public const int PlayerBaseOffset = 0xD0;
         public enum PlayerBase
         {

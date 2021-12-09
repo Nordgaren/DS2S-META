@@ -33,6 +33,11 @@ namespace DS2_META
         }
 
         DS2Hook Hook => viewModel.Hook;
+        bool FormLoaded
+        {
+            get => viewModel.Loaded;
+            set => viewModel.Loaded = value;
+        }
 
         Timer updateTimer = new Timer();
 
@@ -47,16 +52,10 @@ namespace DS2_META
             //EnableTabs(false);
             //InitAllTabs();
 
-            updateTimer.Interval = 16;
-            updateTimer.Elapsed += UpdateTimer_Elapsed;
-            updateTimer.Enabled = true;
-
-            return;
-
             try
             {
-                GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("DS-Gadget-for-Remastest"));
-                Release release = await gitHubClient.Repository.Release.GetLatest("Nordgaren", "DS-Gadget");
+                GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("DS2-META"));
+                Release release = await gitHubClient.Repository.Release.GetLatest("Nordgaren", "DS2-META");
                 Version gitVersion = Version.Parse(release.TagName.ToLower().Replace("v", ""));
                 Version exeVersion = Version.Parse(version);
                 if (gitVersion > exeVersion) //Compare latest version to current version
@@ -83,19 +82,53 @@ namespace DS2_META
                 labelCheckVersion.Content = "Something is very broke, contact DS Gadget repo owner";
                 MessageBox.Show(ex.Message);
             }
+
+            updateTimer.Interval = 16;
+            updateTimer.Elapsed += UpdateTimer_Elapsed;
+            updateTimer.Enabled = true;
         }
         private void UpdateTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (Hook.Loaded)
-            {
-                Hook.UpdateProperties();
-
-            }
+            Dispatcher.Invoke(new Action(() => {
+                if (Hook.Hooked)
+                {
+                    if (Hook.Loaded)
+                    {
+                        if (!FormLoaded)
+                        {
+                            lblLoaded.Content = "Yes";
+                            FormLoaded = true;
+                            //Reading = true;
+                            //ReloadAllTabs();
+                            //Reading = false;
+                            //EnableTabs(true);
+                        }
+                        else
+                        {
+                            //Reading = true;
+                            Hook.UpdateProperties();
+                            //Reading = false;
+                        }
+                    }
+                    else if (FormLoaded)
+                    {
+                        lblLoaded.Content = "No";
+                        //EnableTabs(false);
+                        FormLoaded = false;
+                    }
+                }
+            }));
+            
         }
 
         private void link_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Process.Start(e.Uri.ToString());
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            updateTimer.Stop();
         }
     }
 }
