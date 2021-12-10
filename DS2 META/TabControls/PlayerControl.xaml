@@ -1,0 +1,106 @@
+﻿<local:METAControl x:Class="DS2_META.PlayerControl"
+                   x:Name="PlayerCon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:DS2_META"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="425" Background="LightGray">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Margin="10">
+                <Label Content="Status"/>
+                <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
+                    <StackPanel Width="100">
+                        <Label Content="Health"/>
+                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.Health}" Maximum="{Binding ElementName=PlayerCon, Path=Hook.ModMaxHealth}" ClipValueToMinMax="True"/>
+                    </StackPanel>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <StackPanel Width="100">
+                        <Label Content="Health Max" />
+                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.MaxHealth}" IsEnabled="False"/>
+                    </StackPanel>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <StackPanel Width="100">
+                        <Label Content="Modified Max" />
+                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.ModMaxHealth}" IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
+                    <StackPanel Width="100">
+                        <Label Content="Stamina"/>
+                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.Stamina}"  Maximum="{Binding ElementName=PlayerCon, Path=Hook.MaxStamina}" ClipValueToMinMax="True" />
+                    </StackPanel>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <StackPanel Width="100">
+                        <Label Content="Stamina Max"/>
+                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.MaxStamina}" IsEnabled="False"/>
+                    </StackPanel>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
+                    <StackPanel Width="100">
+                        <Label Content="Char Type" />
+                        <TextBox  IsEnabled="False"/>
+                    </StackPanel>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <StackPanel Width="100">
+                        <Label Content="Team Type" />
+                        <TextBox  IsEnabled="False"/>
+                    </StackPanel>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <StackPanel Width="100">
+                        <Label Content="Invade Type" />
+                        <TextBox IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Margin="10">
+                <Label Content="Position"/>
+                <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
+                    <StackPanel Width="20" Margin="0,28,0,0">
+                        <Label Content="X" HorizontalAlignment="Center" />
+                        <Label Content="Y" HorizontalAlignment="Center" />
+                        <Label Content="Z" HorizontalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Width="100">
+                        <Label Content="Current"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosX" Value="{Binding ElementName=PlayerCon, Path=Hook.PosX, UpdateSourceTrigger=Explicit}" Margin="0,5,0,0" IsEnabled="False"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosY" Value="{Binding ElementName=PlayerCon, Path=Hook.PosY, UpdateSourceTrigger=Explicit}" Margin="0,5,0,0" IsEnabled="False"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosZ" Value="{Binding ElementName=PlayerCon, Path=Hook.PosZ, UpdateSourceTrigger=Explicit}" Margin="0,5,0,0" IsEnabled="False"/>
+                        <Button Content="Store" x:Name="btnPosStore" Height="25" Margin="0,5,0,0" Click="btnPosStore_Click"/>
+                    </StackPanel>
+                    <StackPanel Width="100" Margin="10,0,10,0">
+                        <Label Content="Stored"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosStoredX" Margin="0,5,0,0" />
+                        <wpfTool:DecimalUpDown x:Name="nudPosStoredY" Margin="0,5,0,0"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosStoredZ" Margin="0,5,0,0"/>
+                        <Button Content="Restore" x:Name="btnPosRestore" Height="25" Margin="0,5,0,0" Click="Button_Click"/>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <StackPanel>
+                <Label Content="Misc"/>
+                <StackPanel  Orientation="Horizontal">
+                    <CheckBox Width="100" Content="Gravity"/>
+                    <CheckBox Width="100" Content="Collision"/>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</local:METAControl>

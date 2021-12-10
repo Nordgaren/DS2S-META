@@ -18,28 +18,8 @@ namespace DS2_META
     /// <summary>
     /// Interaction logic for StatsControl.xaml
     /// </summary>
-    public partial class StatsControl : UserControl
+    public partial class StatsControl : METAControl
     {
-        public DS2Hook Hook
-        {
-            get { return (DS2Hook)GetValue(HookProperty); }
-            set { SetValue(HookProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Hook.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty HookProperty =
-            DependencyProperty.Register("Hook", typeof(DS2Hook), typeof(StatsControl), new PropertyMetadata(default));
-
-        public bool Loaded
-        {
-            get { return (bool)GetValue(LoadedProperty); }
-            set { SetValue(LoadedProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Loaded.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty LoadedProperty =
-            DependencyProperty.Register("Loaded", typeof(bool), typeof(StatsControl), new PropertyMetadata(default));
-
         public StatsControl()
         {
             InitializeComponent();
@@ -50,7 +30,7 @@ namespace DS2_META
 
         private void Name_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            Hook.Name = Name.Text;
+            Hook.Name = txtName.Text;
         }
 
         public void ReloadTab()
@@ -75,19 +55,30 @@ namespace DS2_META
             }
         }
 
-        internal void Update()
+        internal override void UpdateCtrl()
         {
             
         }
 
-        internal void Reload()
+        internal override void ReloadCtrl()
         {
             cmbClass.SelectedItem = cmbClass.Items.Cast<DS2Class>().FirstOrDefault(c => c.ID == Hook.Class);
+            txtName.Text = Hook.Name;
         }
 
-        internal void EnableStats(bool v)
+        internal override void EnableCtrls(bool enable)
         {
-            cmbClass.SelectedIndex = -1;
+            cmbClass.IsEnabled = enable;
+            txtName.IsEnabled = enable;
+
+            if (enable)
+            {
+
+            }
+            else
+            {
+                cmbClass.SelectedIndex = -1;
+            }
         }
     }
 }

@@ -111,7 +111,7 @@ namespace DS2_META
                         else
                         {
                             Reading = true;
-                            Hook.UpdateProperties();
+                            UpdateProperties();
                             UpdateAllTabs();
                             Reading = false;
                         }
@@ -120,7 +120,7 @@ namespace DS2_META
                     {
                         lblLoaded.Content = "No";
                         Reading = true;
-                        Hook.UpdateProperties();
+                        UpdateProperties();
                         EnableTabs(false);
                         FormLoaded = false;
                         Reading = false;
@@ -130,19 +130,28 @@ namespace DS2_META
             
         }
 
-        private void EnableTabs(bool v)
+        private void UpdateProperties()
         {
-            metaStats.EnableStats(true);
+            Hook.UpdateStatsProperties();
+            Hook.UpdatePlayerProperties();
+        }
+
+        private void EnableTabs(bool enable)
+        {
+            metaPlayer.EnableCtrls(enable);
+            metaStats.EnableCtrls(enable);
         }
 
         private void ReloadAllTabs()
         {
-            metaStats.Reload();
+            metaPlayer.ReloadCtrl();
+            metaStats.ReloadCtrl();
         }
 
         private void UpdateAllTabs()
         {
-            metaStats.Update();
+            metaPlayer.UpdateCtrl();
+            metaStats.UpdateCtrl();
         }
 
         private void link_RequestNavigate(object sender, RequestNavigateEventArgs e)

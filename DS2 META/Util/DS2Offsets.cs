@@ -94,6 +94,16 @@ namespace DS2_META
             PilgrimsProgress = 0x1D4
         }
 
+        public const int PlayerPositionOffset1 = 0xF8;
+        public const int PlayerPositionOffset2 = 0xF0;
+
+        public enum PlayerPosition
+        {
+            PosY = 0x20,
+            PosZ = 0x24,
+            PosX = 0x28
+        }
+
         public const int CharacterFlagsOffset = 0x490;
 
     }

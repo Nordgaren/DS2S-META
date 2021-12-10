@@ -14,17 +14,28 @@
     </Window.DataContext>
 
     <Grid>
-        <Grid>
+        <Grid Height="95" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Process:" />
+                    <Label Name="lblProcess" Content="No"/>
+                </StackPanel>
+            </StackPanel >
+            <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Loaded:" />
                     <Label Name="lblLoaded" Content="No"/>
                 </StackPanel>
-                
             </StackPanel >
             <StackPanel Grid.Column="1" HorizontalAlignment="Right">
                 <Label x:Name="labelCheckVersion" Content="Check Version"/>
@@ -35,11 +46,11 @@
                 </Label>
             </StackPanel>
         </Grid>
-        
        
         <TabControl Margin="0,75,0,0">
             <TabItem Header="Player">
                 <Grid Background="LightGray">
+                    <local:PlayerControl x:Name="metaPlayer" Hook="{Binding Hook}" Loaded="{Binding Loaded}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Stats">

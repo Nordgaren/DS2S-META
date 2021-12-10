@@ -211,6 +211,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TabControls\PlayerControl.xaml.cs">
+      <DependentUpon>PlayerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\METAControl.cs" />
     <Compile Include="Util\GetTxtResourceClass.cs" />
     <Compile Include="List Items\DS2Class.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -234,6 +238,10 @@
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabControls\PlayerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TabControls\StatsControl.xaml">
       <Generator>MSBuild:Compile</Generator>

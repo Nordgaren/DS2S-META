@@ -28,9 +28,10 @@ namespace DS2_META
         private PHPointer PlayerName;
         private PHPointer PlayerBaseMisc;
         private PHPointer PlayerCtrl;
+        private PHPointer PlayerPosition;
         private PHPointer PlayerParam;
 
-        public bool Loaded => PlayerCtrl.Resolve() != IntPtr.Zero;
+        public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
 
         public DS2Hook(int refreshInterval, int minLifetime) :
             base(refreshInterval, minLifetime, p => p.MainWindowTitle == "DARK SOULS II")
@@ -42,10 +43,21 @@ namespace DS2_META
             OnHooked += DSHook_OnHooked;
             OnUnhooked += DSHook_OnUnhooked;
         }
-
-        public void UpdateProperties()
+        private void DSHook_OnHooked(object sender, PHEventArgs e)
         {
-            OnPropertyChanged(nameof(Name));
+            BaseA = CreateBasePointer(BaseAPointBaseANoOff());
+            PlayerName = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerNameOffset);
+            PlayerBaseMisc = CreateChildPointer(PlayerName, (int)DS2Offsets.PlayerBaseMiscOffset);
+            PlayerCtrl = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerCtrlOffset);
+            PlayerPosition = CreateChildPointer(PlayerCtrl, (int)DS2Offsets.PlayerPositionOffset1, (int)DS2Offsets.PlayerPositionOffset2);
+            PlayerParam = CreateChildPointer(PlayerCtrl, (int)DS2Offsets.PlayerParamOffset);
+            UpdateStatsProperties();
+        }
+        private void DSHook_OnUnhooked(object sender, PHEventArgs e)
+        {
+        }
+        public void UpdateStatsProperties()
+        {
             OnPropertyChanged(nameof(SoulLevel));
             OnPropertyChanged(nameof(SoulMemory));
             OnPropertyChanged(nameof(SoulMemory2));
@@ -60,17 +72,16 @@ namespace DS2_META
             OnPropertyChanged(nameof(Faith));
         }
 
-        private void DSHook_OnHooked(object sender, PHEventArgs e)
+        public void UpdatePlayerProperties()
         {
-            BaseA = CreateBasePointer(BaseAPointBaseANoOff());
-            PlayerName = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerNameOffset);
-            PlayerBaseMisc = CreateChildPointer(PlayerName, (int)DS2Offsets.PlayerBaseMiscOffset);
-            PlayerCtrl = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerCtrlOffset);
-            PlayerParam = CreateChildPointer(PlayerCtrl, (int)DS2Offsets.PlayerParamOffset);
-            UpdateProperties();
-        }
-        private void DSHook_OnUnhooked(object sender, PHEventArgs e)
-        {
+            OnPropertyChanged(nameof(Health));
+            OnPropertyChanged(nameof(MaxHealth));
+            OnPropertyChanged(nameof(ModMaxHealth));
+            OnPropertyChanged(nameof(Stamina));
+            OnPropertyChanged(nameof(MaxStamina));
+            OnPropertyChanged(nameof(PosX));
+            OnPropertyChanged(nameof(PosY));
+            OnPropertyChanged(nameof(PosZ));
         }
         public IntPtr BaseAPointBaseANoOff(PHPointer pointer)
         {
@@ -88,11 +99,69 @@ namespace DS2_META
             return intPtr;
         }
 
+        #region Player
+        public int Health
+        {
+            get => Loaded ? PlayerCtrl.ReadInt32((int)DS2Offsets.PlayerCtrl.HP) : 0;
+            set 
+            {
+                if (Reading || !Loaded) return;
+                PlayerCtrl.WriteInt32((int)DS2Offsets.PlayerCtrl.HP, value);
+                OnPropertyChanged(nameof(Health));
+            }
+        }
+        public int MaxHealth
+        {
+            get => Loaded ? PlayerCtrl.ReadInt32((int)DS2Offsets.PlayerCtrl.HPMax) : 0;
+            set => PlayerCtrl.WriteInt32((int)DS2Offsets.PlayerCtrl.HPMax, value);
+        }
+        public int ModMaxHealth
+        {
+            get => Loaded ? PlayerCtrl.ReadInt32((int)DS2Offsets.PlayerCtrl.HPCap) : 0;
+            set => PlayerCtrl.WriteInt32((int)DS2Offsets.PlayerCtrl.HPCap, value);
+        }
+        public float Stamina
+        {
+            get => Loaded ? PlayerCtrl.ReadSingle((int)DS2Offsets.PlayerCtrl.SP) : 0;
+            set 
+            { 
+                if (Reading || !Loaded) return;
+                PlayerCtrl.WriteSingle((int)DS2Offsets.PlayerCtrl.SP, value);
+                OnPropertyChanged(nameof(Stamina));
+            }
+        }
+        public float MaxStamina
+        {
+            get => Loaded ? PlayerCtrl.ReadSingle((int)DS2Offsets.PlayerCtrl.SPMax) : 0;
+            set => PlayerCtrl.WriteSingle((int)DS2Offsets.PlayerCtrl.SPMax, value);
+        }
+        public float PosX
+        {
+            get => Loaded ? PlayerPosition.ReadSingle((int)DS2Offsets.PlayerPosition.PosX) : 0;
+            set => PlayerPosition.WriteSingle((int)DS2Offsets.PlayerPosition.PosX, value);
+        }
+        public float PosY
+        {
+            get => Loaded ? PlayerPosition.ReadSingle((int)DS2Offsets.PlayerPosition.PosY) : 0;
+            set => PlayerPosition.WriteSingle((int)DS2Offsets.PlayerPosition.PosY, value);
+        }
+        public float PosZ
+        {
+            get => Loaded ? PlayerPosition.ReadSingle((int)DS2Offsets.PlayerPosition.PosZ) : 0;
+            set => PlayerPosition.WriteSingle((int)DS2Offsets.PlayerPosition.PosZ, value);
+        }
+        #endregion
+
         #region Stats
         public string Name
         {
             get => Loaded ? PlayerName.ReadString((int)DS2Offsets.PlayerName.Name, Encoding.Unicode, 0x22) : "";
-            set => PlayerName.WriteString((int)DS2Offsets.PlayerName.Name, Encoding.Unicode, 0x22, value);
+            set
+            {
+                if (Reading) return;
+                PlayerName.WriteString((int)DS2Offsets.PlayerName.Name, Encoding.Unicode, 0x22, value);
+                OnPropertyChanged(nameof(Name));
+            }
         }
 
         public byte Class
