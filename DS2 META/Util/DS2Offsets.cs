@@ -16,6 +16,8 @@ namespace DS2_META
         {
             Name = 0x114
         }
+        public const int AvailableItemBagOffset = 0x10;
+        public const int ItemGiveWindowPointer = 0x22E0;
         public const int PlayerBaseMiscOffset = 0xC0;
         public enum PlayerBaseMisc
         {
@@ -126,6 +128,8 @@ namespace DS2_META
         }
 
         public const int CharacterFlagsOffset = 0x490;
+
+        public const string GiveSoulsAoB = "48 83 ec 28 48 8b 01 48 85 c0 74 23 48 8b 80 b8 00 00 00";
 
     }
 }

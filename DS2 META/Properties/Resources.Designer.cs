@@ -19,7 +19,7 @@ namespace DS2_META.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,12 +61,15 @@ namespace DS2_META.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to sub rsp, 28
-        ///vortmov(rcx, [[BaseA]+D0]+490)
-        ///mov rdx, [SoulsToAdd]
-        ///call DarkSoulsII.exe+3841E0
-        ///add rsp, 28
-        ///ret.
+        ///   Looks up a localized string similar to 0:  48 83 ec 28             sub    rsp,0x28 
+        ///4:  48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000 ;PlayerParam Pointer
+        ///b:  ff ff ff
+        ///e:  48 c7 c2 f4 01 00 00    mov    rdx,0x1f4 ;number of souls
+        ///15: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000 ;Give Souls func
+        ///1c: ff ff ff
+        ///1f: 41 ff d6                call   r14
+        ///22: 48 83 c4 28             add    rsp,0x28
+        ///26: c3                      ret .
         /// </summary>
         internal static string AddSouls {
             get {
@@ -88,6 +91,26 @@ namespace DS2_META.Properties {
         internal static string Classes {
             get {
                 return ResourceManager.GetString("Classes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0:  48 81 ec e8 01 00 00    sub    rsp,0x1e8
+        ///7:  41 b8 08 00 00 00       mov    r8d,0x8 ;Item Amount
+        ///d:  49 bf 00 00 00 00 ff    movabs r15,0xffffffff00000000 ;Item Struct Address
+        ///14: ff ff ff
+        ///17: 49 8d 17                lea    rdx,[r15]
+        ///1a: 48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000 ;Item bag?
+        ///21: ff ff ff
+        ///24: 45 31 c9                xor    r9d,r9d
+        ///27: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000 ;Call add item function
+        ///2e: ff ff ff
+        ///31: 41 ff d6                call   r14
+        ///34:  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GiveItemWithMenu {
+            get {
+                return ResourceManager.GetString("GiveItemWithMenu", resourceCulture);
             }
         }
         

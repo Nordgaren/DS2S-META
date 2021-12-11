@@ -70,6 +70,8 @@ namespace DS2_META
         {
             cmbClass.IsEnabled = enable;
             txtName.IsEnabled = enable;
+            btnGive.IsEnabled = enable;
+            btnResetSoulMemory.IsEnabled = enable;
 
             if (enable)
             {
@@ -83,7 +85,18 @@ namespace DS2_META
 
         private void GiveSouls_Click(object sender, RoutedEventArgs e)
         {
-            Hook.GiveSouls(100);
+            if (nudGiveSouls.Value.HasValue)
+                Hook.GiveSouls(nudGiveSouls.Value.Value);
+        }
+
+        private void ResetSoulMemory_Click(object sender, RoutedEventArgs e)
+        {
+            Hook.ResetSoulMemory();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Hook.GetItem(1, 60151000);
         }
     }
 }

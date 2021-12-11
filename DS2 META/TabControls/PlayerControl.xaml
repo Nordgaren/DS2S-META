@@ -20,28 +20,28 @@
                 <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
                     <StackPanel Width="100">
                         <Label Content="Health"/>
-                        <wpfTool:IntegerUpDown x:Name="nudHealth" Value="{Binding ElementName=PlayerCon, Path=Hook.Health}" Maximum="{Binding ElementName=PlayerCon, Path=Hook.ModMaxHealth}" ClipValueToMinMax="True" IsEnabled="False"/>
+                        <wpfTool:IntegerUpDown x:Name="nudHealth" Value="{Binding ElementName=PlayerCon, Path=Hook.Health}" Maximum="{Binding ElementName=PlayerCon, Path=Hook.HealthCap}" TextAlignment="Center" ClipValueToMinMax="True" IsEnabled="False"/>
+                    </StackPanel>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <StackPanel Width="100">
+                        <Label Content="Health Cap" />
+                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.HealthCap}" TextAlignment="Center" IsEnabled="False"/>
                     </StackPanel>
                     <Separator Width="20" Visibility="Hidden"/>
                     <StackPanel Width="100">
                         <Label Content="Health Max" />
-                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.MaxHealth}" IsEnabled="False"/>
-                    </StackPanel>
-                    <Separator Width="20" Visibility="Hidden"/>
-                    <StackPanel Width="100">
-                        <Label Content="Modified Max" />
-                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.ModMaxHealth}" IsEnabled="False"/>
+                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.HealthMax}" TextAlignment="Center" IsEnabled="False"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
                     <StackPanel Width="100">
                         <Label Content="Stamina"/>
-                        <wpfTool:IntegerUpDown x:Name="nudStamina" Value="{Binding ElementName=PlayerCon, Path=Hook.Stamina}"  Maximum="{Binding ElementName=PlayerCon, Path=Hook.MaxStamina}" ClipValueToMinMax="True" IsEnabled="False" />
+                        <wpfTool:IntegerUpDown x:Name="nudStamina" Value="{Binding ElementName=PlayerCon, Path=Hook.Stamina}" TextAlignment="Center" Maximum="{Binding ElementName=PlayerCon, Path=Hook.MaxStamina}" ClipValueToMinMax="True" IsEnabled="False" />
                     </StackPanel>
                     <Separator Width="20" Visibility="Hidden"/>
                     <StackPanel Width="100">
                         <Label Content="Stamina Max"/>
-                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.MaxStamina}" IsEnabled="False"/>
+                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.MaxStamina}" TextAlignment="Center" IsEnabled="False"/>
                     </StackPanel>
                     <Separator Width="20" Visibility="Hidden"/>
                     
@@ -75,22 +75,22 @@
                     </StackPanel>
                     <StackPanel Width="100">
                         <Label Content="Current"/>
-                        <wpfTool:DecimalUpDown x:Name="nudPosX" Value="{Binding ElementName=PlayerCon, Path=Hook.PosX, Mode=OneWay}" Margin="0,5,0,0" IsEnabled="False"/>
-                        <wpfTool:DecimalUpDown x:Name="nudPosY" Value="{Binding ElementName=PlayerCon, Path=Hook.PosY, Mode=OneWay}" Margin="0,5,0,0" IsEnabled="False"/>
-                        <wpfTool:DecimalUpDown x:Name="nudPosZ" Value="{Binding ElementName=PlayerCon, Path=Hook.PosZ, Mode=OneWay}" Margin="0,5,0,0" IsEnabled="False"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosX" Value="{Binding ElementName=PlayerCon, Path=Hook.PosX, Mode=OneWay}" TextAlignment="Center" Margin="0,5,0,0" IsEnabled="False"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosY" Value="{Binding ElementName=PlayerCon, Path=Hook.PosY, Mode=OneWay}" TextAlignment="Center" Margin="0,5,0,0" IsEnabled="False"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosZ" Value="{Binding ElementName=PlayerCon, Path=Hook.PosZ, Mode=OneWay}" TextAlignment="Center" Margin="0,5,0,0" IsEnabled="False"/>
                         <Button Content="Store" x:Name="btnPosStore" IsEnabled="False" Height="25" Margin="0,5,0,0" Click="btnStore_Click"/>
                     </StackPanel>
                     <StackPanel Width="100" Margin="10,0,10,0">
                         <Label Content="Stable"/>
-                        <wpfTool:DecimalUpDown IsEnabled="False" Value="{Binding ElementName=PlayerCon, Path=Hook.StableX, Mode=OneWay}" Margin="0,5,0,0" />
-                        <wpfTool:DecimalUpDown IsEnabled="False" Value="{Binding ElementName=PlayerCon, Path=Hook.StableY, Mode=OneWay}" Margin="0,5,0,0"/>
-                        <wpfTool:DecimalUpDown IsEnabled="False" Value="{Binding ElementName=PlayerCon, Path=Hook.StableZ, Mode=OneWay}" Margin="0,5,0,0"/>
+                        <wpfTool:DecimalUpDown IsEnabled="False" Value="{Binding ElementName=PlayerCon, Path=Hook.StableX, Mode=OneWay}" TextAlignment="Center" Margin="0,5,0,0" />
+                        <wpfTool:DecimalUpDown IsEnabled="False" Value="{Binding ElementName=PlayerCon, Path=Hook.StableY, Mode=OneWay}" TextAlignment="Center" Margin="0,5,0,0"/>
+                        <wpfTool:DecimalUpDown IsEnabled="False" Value="{Binding ElementName=PlayerCon, Path=Hook.StableZ, Mode=OneWay}" TextAlignment="Center" Margin="0,5,0,0"/>
                     </StackPanel>
                     <StackPanel Width="100" Margin="0,0,10,0">
                         <Label Content="Stored"/>
-                        <wpfTool:DecimalUpDown x:Name="nudPosStoredX" IsEnabled="False" Margin="0,5,0,0" />
-                        <wpfTool:DecimalUpDown x:Name="nudPosStoredY" IsEnabled="False" Margin="0,5,0,0"/>
-                        <wpfTool:DecimalUpDown x:Name="nudPosStoredZ" IsEnabled="False" Margin="0,5,0,0"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosStoredX" IsEnabled="False" TextAlignment="Center" Margin="0,5,0,0" />
+                        <wpfTool:DecimalUpDown x:Name="nudPosStoredY" IsEnabled="False" TextAlignment="Center" Margin="0,5,0,0"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosStoredZ" IsEnabled="False" TextAlignment="Center" Margin="0,5,0,0"/>
                         <Button Content="Restore" x:Name="btnPosRestore" IsEnabled="False" Height="25" Margin="0,5,0,0" Click="btnRestore_Click"/>
                     </StackPanel>
                 </StackPanel>
@@ -101,11 +101,11 @@
             <StackPanel>
                 <Label Content="Misc"/>
                 <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
-                    <CheckBox  Width="100" IsChecked="{Binding ElementName=PlayerCon, Path=Hook.Gravity}" Content="Gravity" x:Name="cbxGravity" />
+                    <CheckBox  Width="100" IsChecked="{Binding ElementName=PlayerCon, Path=Hook.Gravity}" Content="Gravity" x:Name="cbxGravity" IsEnabled="False"/>
                     <Separator Width="200" Visibility="Hidden"/>
                     <StackPanel>
                         <CheckBox Content="Modify Speed" x:Name="cbxSpeed" IsEnabled="False" Checked="cbxSpeed_Checked" Unchecked="cbxSpeed_Checked"/>
-                        <wpfTool:DecimalUpDown Value="2" IsEnabled="False" FormatString="F2" Increment=".5" Name="nudSpeed" ValueChanged="nudSpeed_ValueChanged"/>
+                        <wpfTool:DecimalUpDown Value="2" IsEnabled="False" FormatString="F2" Increment=".5" TextAlignment="Center" Name="nudSpeed" ValueChanged="nudSpeed_ValueChanged"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
