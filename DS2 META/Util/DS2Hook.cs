@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -25,7 +26,11 @@ namespace DS2_META
         public static bool Reading { get; set; }
 
         private PHPointer BaseASetup;
-        private PHPointer GiveSoulsPtr;
+        private PHPointer GiveSoulsFunc;
+        private PHPointer ItemGiveFunc;
+        private PHPointer ItemStruct2dDisplay;
+        private PHPointer DisplayItem;
+
         private PHPointer BaseA;
         private PHPointer PlayerName;
         private PHPointer AvailableItemBag;
@@ -34,8 +39,9 @@ namespace DS2_META
         private PHPointer PlayerCtrl;
         private PHPointer PlayerPosition;
         private PHPointer PlayerGravity;
-        private PHPointer PlayerMapData;
         private PHPointer PlayerParam;
+        private PHPointer PlayerMapData;
+        private PHPointer ParamLevelUpSouls;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
 
@@ -45,12 +51,15 @@ namespace DS2_META
             Version = "None";
 
             BaseASetup = RegisterAbsoluteAOB(DS2Offsets.BaseAAob);
-            GiveSoulsPtr = RegisterAbsoluteAOB(DS2Offsets.GiveSoulsAoB);
+            GiveSoulsFunc = RegisterAbsoluteAOB(DS2Offsets.GiveSoulsFunc);
+            ItemGiveFunc = RegisterAbsoluteAOB(DS2Offsets.ItemGiveFunc);
+            ItemStruct2dDisplay = RegisterAbsoluteAOB(DS2Offsets.ItemStruct2dDisplay);
+            DisplayItem = RegisterAbsoluteAOB(DS2Offsets.DisplayItem);
 
-            OnHooked += DSHook_OnHooked;
-            OnUnhooked += DSHook_OnUnhooked;
+            OnHooked += DS2Hook_OnHooked;
+            OnUnhooked += DS2Hook_OnUnhooked;
         }
-        private void DSHook_OnHooked(object sender, PHEventArgs e)
+        private void DS2Hook_OnHooked(object sender, PHEventArgs e)
         {
             BaseA = CreateBasePointer(BaseAPointBaseANoOff(BaseASetup));
             PlayerName = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerNameOffset);
@@ -62,10 +71,39 @@ namespace DS2_META
             PlayerGravity = CreateChildPointer(PlayerCtrl, (int)DS2Offsets.PlayerMapDataOffset1);
             PlayerParam = CreateChildPointer(PlayerCtrl, (int)DS2Offsets.PlayerParamOffset);
             PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2Offsets.PlayerMapDataOffset2, (int)DS2Offsets.PlayerMapDataOffset3);
+            ParamLevelUpSouls = CreateChildPointer(BaseA, (int)DS2Offsets.ParamDataOffset1, (int)DS2Offsets.ParamDataOffset2, (int)DS2Offsets.ParamDataOffset3);
+            DS2Level.Levels = GetLevelRequirements();
             UpdateStatsProperties();
-            
         }
-        private void DSHook_OnUnhooked(object sender, PHEventArgs e)
+
+        private List<DS2Level> GetLevelRequirements()
+        {
+            var paramName = ParamLevelUpSouls.ReadString(0x10, Encoding.UTF8, 0x18);
+            if (paramName != "LEVEL_UP_SOULS_PARAM")
+                return null;
+
+            var levels = new List<DS2Level>();
+            var slPositionStart = 0x40;
+            var reqPositionStart = 0x48;
+            var paramOffset = 0x18;
+            var soulLevel = 0;
+
+            while (soulLevel < 999)
+            {
+                soulLevel = ParamLevelUpSouls.ReadInt32(slPositionStart);
+                var soulReqOffset = ParamLevelUpSouls.ReadInt32(reqPositionStart);
+                var soulReq = ParamLevelUpSouls.ReadInt32(soulReqOffset + 0x8);
+                levels.Add(new DS2Level(soulLevel, soulReq));
+
+                slPositionStart += paramOffset;
+                reqPositionStart += paramOffset;
+            }
+
+            return levels;
+        }
+
+
+        private void DS2Hook_OnUnhooked(object sender, PHEventArgs e)
         {
         }
         public void UpdateStatsProperties()
@@ -156,6 +194,21 @@ namespace DS2_META
         public float PosZ
         {
             get => Loaded ? PlayerPosition.ReadSingle((int)DS2Offsets.PlayerPosition.PosZ) : 0;
+        }
+        public float AngX
+        {
+            get => Loaded ? PlayerPosition.ReadSingle((int)DS2Offsets.PlayerPosition.AngX) : 0;
+            set => PlayerPosition.WriteSingle((int)DS2Offsets.PlayerPosition.AngX, value);
+        }
+        public float AngY
+        {
+            get => Loaded ? PlayerPosition.ReadSingle((int)DS2Offsets.PlayerPosition.AngY) : 0;
+            set => PlayerPosition.WriteSingle((int)DS2Offsets.PlayerPosition.AngY, value);
+        }
+        public float AngZ
+        {
+            get => Loaded ? PlayerPosition.ReadSingle((int)DS2Offsets.PlayerPosition.AngZ) : 0;
+            set => PlayerPosition.WriteSingle((int)DS2Offsets.PlayerPosition.AngZ, value);
         }
         public float StableX
         {
@@ -349,7 +402,7 @@ namespace DS2_META
             Array.Copy(bytes, 0, asm, 0x6, 8);
             bytes = BitConverter.GetBytes(souls);
             Array.Copy(bytes, 0, asm, 0x11, 4);
-            bytes = BitConverter.GetBytes(GiveSoulsPtr.Resolve().ToInt64());
+            bytes = BitConverter.GetBytes(GiveSoulsFunc.Resolve().ToInt64());
             Array.Copy(bytes, 0, asm, 0x17, 8);
             Execute(asm);
         }
@@ -408,31 +461,28 @@ namespace DS2_META
         {
             var itemStruct = Allocate(0x8A);
             Kernel32.WriteBytes(Handle, itemStruct + 0x4, BitConverter.GetBytes(item));
-            Kernel32.WriteBytes(Handle, itemStruct + 128, BitConverter.GetBytes(amount));
+            Kernel32.WriteBytes(Handle, itemStruct + 0xC, BitConverter.GetBytes(amount));
 
             var asm = (byte[])DS2Assembly.GetItem.Clone();
 
-            var bytes = BitConverter.GetBytes(amount);
+            var bytes = BitConverter.GetBytes(0x1);
             Array.Copy(bytes, 0, asm, 0x9, 4);
             bytes = BitConverter.GetBytes(itemStruct.ToInt64());
             Array.Copy(bytes, 0, asm, 0xF, 8);
-            var lol = AvailableItemBag.Resolve();
             bytes = BitConverter.GetBytes(AvailableItemBag.Resolve().ToInt64());
             Array.Copy(bytes, 0, asm, 0x1C, 8);
-            bytes = BitConverter.GetBytes(BaseAddress.ToInt64() + 0x1A8C67);
+            bytes = BitConverter.GetBytes(ItemGiveFunc.Resolve().ToInt64());
             Array.Copy(bytes, 0, asm, 0x29, 8);
-            bytes = BitConverter.GetBytes(amount);
+            bytes = BitConverter.GetBytes(0x1);
             Array.Copy(bytes, 0, asm, 0x36, 4);
             bytes = BitConverter.GetBytes(itemStruct.ToInt64());
             Array.Copy(bytes, 0, asm, 0x3C, 8);
-            bytes = BitConverter.GetBytes(BaseAddress.ToInt64() + 0x5D8C0);
+            bytes = BitConverter.GetBytes(ItemStruct2dDisplay.Resolve().ToInt64());
             Array.Copy(bytes, 0, asm, 0x54, 8);
             bytes = BitConverter.GetBytes(ItemGiveWindow.Resolve().ToInt64());
             Array.Copy(bytes, 0, asm, 0x66, 8);
-            bytes = BitConverter.GetBytes(BaseAddress.ToInt64() + 0x4F9E70);
+            bytes = BitConverter.GetBytes(DisplayItem.Resolve().ToInt64());
             Array.Copy(bytes, 0, asm, 0x70, 8);
-
-            Debug.WriteLine(string.Join(" ", asm));
 
             Execute(asm);
             Free(itemStruct);

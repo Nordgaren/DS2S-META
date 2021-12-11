@@ -24,21 +24,28 @@ namespace DS2_META
         {
             InitializeComponent();
         }
-
+        float AngX = 0;
+        float AngY = 0;
+        float AngZ = 0;
         public void StorePosition()
         {
             if (btnPosStore.IsEnabled)
             {
+                AngX = Hook.AngX;
+                AngY = Hook.AngY;
+                AngZ = Hook.AngZ;
                 nudPosStoredX.Value = nudPosX.Value;
                 nudPosStoredY.Value = nudPosY.Value;
                 nudPosStoredZ.Value = nudPosZ.Value;
             }
-
         }
         public void RestorePosition()
         {
             if (btnPosRestore.IsEnabled)
             {
+                Hook.AngX = AngX;
+                Hook.AngY = AngY;
+                Hook.AngZ = AngZ;
                 Hook.PosWarp((float)nudPosStoredX.Value, (float)nudPosStoredY.Value, (float)nudPosStoredZ.Value);
             }
         }

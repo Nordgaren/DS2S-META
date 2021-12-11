@@ -16,8 +16,13 @@ namespace DS2_META
         {
             Name = 0x114
         }
+
+        public const string ItemGiveFunc = "48 89 5c 24 18 56 57 41 56 48 83 ec 30";
         public const int AvailableItemBagOffset = 0x10;
         public const int ItemGiveWindowPointer = 0x22E0;
+        public const string ItemStruct2dDisplay = "40 53 48 83 ec 20 45 33 d2 45 8b d8 48 8b d9 44 89 11";
+        public const string DisplayItem = "48 8b 89 d8 00 00 00 48 85 c9 0f 85 40 5e 00 00";
+
         public const int PlayerBaseMiscOffset = 0xC0;
         public enum PlayerBaseMisc
         {
@@ -103,7 +108,10 @@ namespace DS2_META
         {
             PosY = 0x20,
             PosZ = 0x24,
-            PosX = 0x28
+            PosX = 0x28,
+            AngY = 0x34,
+            AngZ = 0x38,
+            AngX = 0x3C
         }
 
         public const int PlayerMapDataOffset1 = 0x100;
@@ -129,7 +137,10 @@ namespace DS2_META
 
         public const int CharacterFlagsOffset = 0x490;
 
-        public const string GiveSoulsAoB = "48 83 ec 28 48 8b 01 48 85 c0 74 23 48 8b 80 b8 00 00 00";
+        public const string GiveSoulsFunc = "48 83 ec 28 48 8b 01 48 85 c0 74 23 48 8b 80 b8 00 00 00";
 
+        public const int ParamDataOffset1 = 0x18;
+        public const int ParamDataOffset2 = 0x580;
+        public const int ParamDataOffset3 = 0xD8;
     }
 }

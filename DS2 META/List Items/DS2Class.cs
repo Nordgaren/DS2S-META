@@ -67,13 +67,20 @@ namespace DS2_META
             Level = Convert.ToInt32(classEntry.Groups["sl"].Value);
             Cost = Convert.ToInt32(classEntry.Groups["cost"].Value);
         }
+
+        public DS2Level(int level, int cost)
+        {
+            Level = level;
+            Cost = cost;
+        }
         public static List<DS2Level> Levels = new List<DS2Level>();
+        public static List<DS2Level> LevelsPreBuilt = new List<DS2Level>();
         static DS2Level()
         {
             foreach (string line in Regex.Split(Properties.Resources.Levels, "[\r\n]+"))
             {
                 if (GetTxtResourceClass.IsValidTxtResource(line)) //determine if line is a valid resource or not
-                    Levels.Add(new DS2Level(line));
+                    LevelsPreBuilt.Add(new DS2Level(line));
             }
         }
     }
