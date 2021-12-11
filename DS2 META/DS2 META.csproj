@@ -279,9 +279,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Assembly\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\PropertyHook\PropertyHook\PropertyHook.csproj">
       <Project>{18eff8d2-c4d5-4e18-9a31-38e106ba1cf7}</Project>
@@ -309,6 +307,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Systems\Levels.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Assembly\AddSouls.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

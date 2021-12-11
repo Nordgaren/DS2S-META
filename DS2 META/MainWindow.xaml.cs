@@ -106,7 +106,7 @@ namespace DS2_META
                             Reading = true;
                             ReloadAllTabs();
                             Reading = false;
-                            //EnableTabs(true);
+                            EnableTabs(true);
                         }
                         else
                         {

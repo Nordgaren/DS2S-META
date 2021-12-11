@@ -32,7 +32,7 @@ namespace DS2_META
             HPCap = 0x174,
             SP = 0x1AC,
             SPMax = 0x1B4,
-            SpeedModifier = 0x2AB,
+            SpeedModifier = 0x2A8,
         }
 
         public const int PlayerParamOffset = 0x490;
@@ -102,6 +102,27 @@ namespace DS2_META
             PosY = 0x20,
             PosZ = 0x24,
             PosX = 0x28
+        }
+
+        public const int PlayerMapDataOffset1 = 0x100;
+        public enum Gravity
+        {
+            Gravity = 0x134
+        }
+        public const int PlayerMapDataOffset2 = 0x320;
+        public const int PlayerMapDataOffset3 = 0x20;
+        public enum PlayerMapData
+        {
+            WarpBase = 0x1A0,
+            WarpYA = 0x1A0,
+            WarpZA = 0x1A4,
+            WarpXA = 0x1A8,
+            WarpYB = 0x1B0,
+            WarpZB = 0x1B4,
+            WarpXB = 0x1B8,
+            WarpYC = 0x1C0,
+            WarpZC = 0x1C4,
+            WarpXC = 0x1C8
         }
 
         public const int CharacterFlagsOffset = 0x490;

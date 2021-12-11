@@ -19,6 +19,7 @@ namespace DS2_META
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         public int ID => Process?.Id ?? -1;
+        public IntPtr BaseAddress => Process?.MainModule.BaseAddress ?? IntPtr.Zero;
         public string Version { get; private set; }
 
         public static bool Reading { get; set; }
@@ -29,6 +30,8 @@ namespace DS2_META
         private PHPointer PlayerBaseMisc;
         private PHPointer PlayerCtrl;
         private PHPointer PlayerPosition;
+        private PHPointer PlayerGravity;
+        private PHPointer PlayerMapData;
         private PHPointer PlayerParam;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
@@ -50,8 +53,12 @@ namespace DS2_META
             PlayerBaseMisc = CreateChildPointer(PlayerName, (int)DS2Offsets.PlayerBaseMiscOffset);
             PlayerCtrl = CreateChildPointer(BaseA, (int)DS2Offsets.PlayerCtrlOffset);
             PlayerPosition = CreateChildPointer(PlayerCtrl, (int)DS2Offsets.PlayerPositionOffset1, (int)DS2Offsets.PlayerPositionOffset2);
+            PlayerGravity = CreateChildPointer(PlayerCtrl, (int)DS2Offsets.PlayerMapDataOffset1);
             PlayerParam = CreateChildPointer(PlayerCtrl, (int)DS2Offsets.PlayerParamOffset);
+            PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2Offsets.PlayerMapDataOffset2, (int)DS2Offsets.PlayerMapDataOffset3);
             UpdateStatsProperties();
+            var lol = PlayerCtrl.ReadIntPtr(0x490);
+            var pp = PlayerParam.Resolve();
         }
         private void DSHook_OnUnhooked(object sender, PHEventArgs e)
         {
@@ -82,6 +89,10 @@ namespace DS2_META
             OnPropertyChanged(nameof(PosX));
             OnPropertyChanged(nameof(PosY));
             OnPropertyChanged(nameof(PosZ));
+            OnPropertyChanged(nameof(StableX));
+            OnPropertyChanged(nameof(StableY));
+            OnPropertyChanged(nameof(StableZ));
+            OnPropertyChanged(nameof(Gravity));
         }
         public IntPtr BaseAPointBaseANoOff(PHPointer pointer)
         {
@@ -138,17 +149,54 @@ namespace DS2_META
         public float PosX
         {
             get => Loaded ? PlayerPosition.ReadSingle((int)DS2Offsets.PlayerPosition.PosX) : 0;
-            set => PlayerPosition.WriteSingle((int)DS2Offsets.PlayerPosition.PosX, value);
         }
         public float PosY
         {
             get => Loaded ? PlayerPosition.ReadSingle((int)DS2Offsets.PlayerPosition.PosY) : 0;
-            set => PlayerPosition.WriteSingle((int)DS2Offsets.PlayerPosition.PosY, value);
         }
         public float PosZ
         {
             get => Loaded ? PlayerPosition.ReadSingle((int)DS2Offsets.PlayerPosition.PosZ) : 0;
-            set => PlayerPosition.WriteSingle((int)DS2Offsets.PlayerPosition.PosZ, value);
+        }
+        public float StableX
+        {
+            get => Loaded ? PlayerMapData.ReadSingle((int)DS2Offsets.PlayerMapData.WarpXA) : 0;
+        }
+        public float StableY
+        {
+            get => Loaded ? PlayerMapData.ReadSingle((int)DS2Offsets.PlayerMapData.WarpYA) : 0;
+        }
+        public float StableZ
+        {
+            get => Loaded ? PlayerMapData.ReadSingle((int)DS2Offsets.PlayerMapData.WarpZA) : 0;
+        }
+        public float Speed
+        {
+            set 
+            {
+                if (Reading || !Loaded) return;
+                PlayerCtrl.WriteSingle((int)DS2Offsets.PlayerCtrl.SpeedModifier, value); 
+            }
+        }
+        public bool Gravity
+        {
+            get => Loaded ? PlayerGravity.ReadBoolean((int)DS2Offsets.Gravity.Gravity) : false;
+            set => PlayerGravity.WriteBoolean((int)DS2Offsets.Gravity.Gravity, value);
+        }
+
+        public void PosWarp(float x, float y, float z)
+        {
+            PlayerMapData.WriteSingle((int)DS2Offsets.PlayerMapData.WarpXA, x);
+            PlayerMapData.WriteSingle((int)DS2Offsets.PlayerMapData.WarpYA, y);
+            PlayerMapData.WriteSingle((int)DS2Offsets.PlayerMapData.WarpZA, z);
+
+            PlayerMapData.WriteSingle((int)DS2Offsets.PlayerMapData.WarpXB, x);
+            PlayerMapData.WriteSingle((int)DS2Offsets.PlayerMapData.WarpYB, y);
+            PlayerMapData.WriteSingle((int)DS2Offsets.PlayerMapData.WarpZB, z);
+
+            PlayerMapData.WriteSingle((int)DS2Offsets.PlayerMapData.WarpXC, x);
+            PlayerMapData.WriteSingle((int)DS2Offsets.PlayerMapData.WarpYC, y);
+            PlayerMapData.WriteSingle((int)DS2Offsets.PlayerMapData.WarpZC, z);
         }
         #endregion
 
@@ -158,7 +206,7 @@ namespace DS2_META
             get => Loaded ? PlayerName.ReadString((int)DS2Offsets.PlayerName.Name, Encoding.Unicode, 0x22) : "";
             set
             {
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 PlayerName.WriteString((int)DS2Offsets.PlayerName.Name, Encoding.Unicode, 0x22, value);
                 OnPropertyChanged(nameof(Name));
             }
@@ -189,7 +237,7 @@ namespace DS2_META
             get => Loaded ? PlayerParam.ReadInt32((int)DS2Offsets.PlayerParam.Souls) : 0;
             set
             {
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 var diff = value - Souls;
                 if (diff < 0)
                     diff = 0;
@@ -204,7 +252,7 @@ namespace DS2_META
             get => Loaded ? PlayerParam.ReadInt16((int)DS2Offsets.Attributes.VGR) : (short)0;
             set
             {
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 PlayerParam.WriteInt16((int)DS2Offsets.Attributes.VGR, value);
                 UpdateSoulLevel();
             }
@@ -215,7 +263,7 @@ namespace DS2_META
             get => Loaded ? PlayerParam.ReadInt16((int)DS2Offsets.Attributes.END) : (short)0;
             set 
             { 
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 PlayerParam.WriteInt16((int)DS2Offsets.Attributes.END, value);
                 UpdateSoulLevel();
             }
@@ -226,7 +274,7 @@ namespace DS2_META
             get => Loaded ? PlayerParam.ReadInt16((int)DS2Offsets.Attributes.VIT) : (short)0;
             set
             {
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 PlayerParam.WriteInt16((int)DS2Offsets.Attributes.VIT, value);
                 UpdateSoulLevel();
             }
@@ -237,7 +285,7 @@ namespace DS2_META
             get => Loaded ? PlayerParam.ReadInt16((int)DS2Offsets.Attributes.ATN) : (short)0;
             set
             {
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 PlayerParam.WriteInt16((int)DS2Offsets.Attributes.ATN, value);
                 UpdateSoulLevel();
             }
@@ -248,7 +296,7 @@ namespace DS2_META
             get => Loaded ? PlayerParam.ReadInt16((int)DS2Offsets.Attributes.STR) : (short)0;
             set
             {
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 PlayerParam.WriteInt16((int)DS2Offsets.Attributes.STR, value);
                 UpdateSoulLevel();
             }
@@ -259,7 +307,7 @@ namespace DS2_META
             get => Loaded ? PlayerParam.ReadInt16((int)DS2Offsets.Attributes.DEX) : (short)0;
             set
             {
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 PlayerParam.WriteInt16((int)DS2Offsets.Attributes.DEX, value);
                 UpdateSoulLevel();
             }
@@ -270,7 +318,7 @@ namespace DS2_META
             get => Loaded ? PlayerParam.ReadInt16((int)DS2Offsets.Attributes.ADP) : (short)0;
             set
             {
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 PlayerParam.WriteInt16((int)DS2Offsets.Attributes.ADP, value);
                 UpdateSoulLevel();
             }
@@ -281,7 +329,7 @@ namespace DS2_META
             get => Loaded ? PlayerParam.ReadInt16((int)DS2Offsets.Attributes.INT) : (short)0;
             set
             {
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 PlayerParam.WriteInt16((int)DS2Offsets.Attributes.INT, value);
                 UpdateSoulLevel();
             }
@@ -292,7 +340,7 @@ namespace DS2_META
             get => Loaded ? PlayerParam.ReadInt16((int)DS2Offsets.Attributes.FTH) : (short)0;
             set
             {
-                if (Reading) return;
+                if (Reading || !Loaded) return;
                 PlayerParam.WriteInt16((int)DS2Offsets.Attributes.FTH, value);
                 UpdateSoulLevel();
             }

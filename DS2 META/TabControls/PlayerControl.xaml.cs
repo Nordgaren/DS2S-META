@@ -39,13 +39,11 @@ namespace DS2_META
         {
             if (btnPosRestore.IsEnabled)
             {
-                Hook.PosX = (float)nudPosStoredX.Value;
-                Hook.PosY = (float)nudPosStoredY.Value;
-                Hook.PosZ = (float)nudPosStoredZ.Value;
+                Hook.PosWarp((float)nudPosStoredX.Value, (float)nudPosStoredY.Value, (float)nudPosStoredZ.Value);
             }
         }
         internal override void UpdateCtrl() 
-        { 
+        {
         }
         internal override void ReloadCtrl() 
         { 
@@ -53,16 +51,36 @@ namespace DS2_META
         internal override void EnableCtrls(bool enable)
         {
             btnPosStore.IsEnabled = enable;
+            btnPosRestore.IsEnabled = enable;
+            nudPosStoredX.IsEnabled = enable;
+            nudPosStoredY.IsEnabled = enable;
+            nudPosStoredZ.IsEnabled = enable;
+            nudHealth.IsEnabled = enable;
+            nudStamina.IsEnabled = enable;
+            cbxSpeed.IsEnabled = enable;
+            cbxGravity.IsEnabled = enable;
         }
 
-        private void btnPosStore_Click(object sender, RoutedEventArgs e)
+        private void btnStore_Click(object sender, RoutedEventArgs e)
         {
             StorePosition();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnRestore_Click(object sender, RoutedEventArgs e)
         {
             RestorePosition();
+        }
+
+        private void cbxSpeed_Checked(object sender, RoutedEventArgs e)
+        {
+            nudSpeed.IsEnabled = cbxSpeed.IsChecked.Value;
+            Hook.Speed = cbxSpeed.IsChecked.Value ? (float)nudSpeed.Value : 1;
+        }
+
+        private void nudSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Loaded)
+                Hook.Speed = (float)nudSpeed.Value;
         }
     }
 }

@@ -20,7 +20,7 @@
                 <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
                     <StackPanel Width="100">
                         <Label Content="Health"/>
-                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.Health}" Maximum="{Binding ElementName=PlayerCon, Path=Hook.ModMaxHealth}" ClipValueToMinMax="True"/>
+                        <wpfTool:IntegerUpDown x:Name="nudHealth" Value="{Binding ElementName=PlayerCon, Path=Hook.Health}" Maximum="{Binding ElementName=PlayerCon, Path=Hook.ModMaxHealth}" ClipValueToMinMax="True" IsEnabled="False"/>
                     </StackPanel>
                     <Separator Width="20" Visibility="Hidden"/>
                     <StackPanel Width="100">
@@ -36,7 +36,7 @@
                 <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
                     <StackPanel Width="100">
                         <Label Content="Stamina"/>
-                        <wpfTool:IntegerUpDown Value="{Binding ElementName=PlayerCon, Path=Hook.Stamina}"  Maximum="{Binding ElementName=PlayerCon, Path=Hook.MaxStamina}" ClipValueToMinMax="True" />
+                        <wpfTool:IntegerUpDown x:Name="nudStamina" Value="{Binding ElementName=PlayerCon, Path=Hook.Stamina}"  Maximum="{Binding ElementName=PlayerCon, Path=Hook.MaxStamina}" ClipValueToMinMax="True" IsEnabled="False" />
                     </StackPanel>
                     <Separator Width="20" Visibility="Hidden"/>
                     <StackPanel Width="100">
@@ -67,7 +67,7 @@
         <Grid Grid.Row="1">
             <StackPanel Margin="10">
                 <Label Content="Position"/>
-                <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
                     <StackPanel Width="20" Margin="0,28,0,0">
                         <Label Content="X" HorizontalAlignment="Center" />
                         <Label Content="Y" HorizontalAlignment="Center" />
@@ -75,17 +75,23 @@
                     </StackPanel>
                     <StackPanel Width="100">
                         <Label Content="Current"/>
-                        <wpfTool:DecimalUpDown x:Name="nudPosX" Value="{Binding ElementName=PlayerCon, Path=Hook.PosX, UpdateSourceTrigger=Explicit}" Margin="0,5,0,0" IsEnabled="False"/>
-                        <wpfTool:DecimalUpDown x:Name="nudPosY" Value="{Binding ElementName=PlayerCon, Path=Hook.PosY, UpdateSourceTrigger=Explicit}" Margin="0,5,0,0" IsEnabled="False"/>
-                        <wpfTool:DecimalUpDown x:Name="nudPosZ" Value="{Binding ElementName=PlayerCon, Path=Hook.PosZ, UpdateSourceTrigger=Explicit}" Margin="0,5,0,0" IsEnabled="False"/>
-                        <Button Content="Store" x:Name="btnPosStore" Height="25" Margin="0,5,0,0" Click="btnPosStore_Click"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosX" Value="{Binding ElementName=PlayerCon, Path=Hook.PosX, Mode=OneWay}" Margin="0,5,0,0" IsEnabled="False"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosY" Value="{Binding ElementName=PlayerCon, Path=Hook.PosY, Mode=OneWay}" Margin="0,5,0,0" IsEnabled="False"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosZ" Value="{Binding ElementName=PlayerCon, Path=Hook.PosZ, Mode=OneWay}" Margin="0,5,0,0" IsEnabled="False"/>
+                        <Button Content="Store" x:Name="btnPosStore" IsEnabled="False" Height="25" Margin="0,5,0,0" Click="btnStore_Click"/>
                     </StackPanel>
                     <StackPanel Width="100" Margin="10,0,10,0">
+                        <Label Content="Stable"/>
+                        <wpfTool:DecimalUpDown IsEnabled="False" Value="{Binding ElementName=PlayerCon, Path=Hook.StableX, Mode=OneWay}" Margin="0,5,0,0" />
+                        <wpfTool:DecimalUpDown IsEnabled="False" Value="{Binding ElementName=PlayerCon, Path=Hook.StableY, Mode=OneWay}" Margin="0,5,0,0"/>
+                        <wpfTool:DecimalUpDown IsEnabled="False" Value="{Binding ElementName=PlayerCon, Path=Hook.StableZ, Mode=OneWay}" Margin="0,5,0,0"/>
+                    </StackPanel>
+                    <StackPanel Width="100" Margin="0,0,10,0">
                         <Label Content="Stored"/>
-                        <wpfTool:DecimalUpDown x:Name="nudPosStoredX" Margin="0,5,0,0" />
-                        <wpfTool:DecimalUpDown x:Name="nudPosStoredY" Margin="0,5,0,0"/>
-                        <wpfTool:DecimalUpDown x:Name="nudPosStoredZ" Margin="0,5,0,0"/>
-                        <Button Content="Restore" x:Name="btnPosRestore" Height="25" Margin="0,5,0,0" Click="Button_Click"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosStoredX" IsEnabled="False" Margin="0,5,0,0" />
+                        <wpfTool:DecimalUpDown x:Name="nudPosStoredY" IsEnabled="False" Margin="0,5,0,0"/>
+                        <wpfTool:DecimalUpDown x:Name="nudPosStoredZ" IsEnabled="False" Margin="0,5,0,0"/>
+                        <Button Content="Restore" x:Name="btnPosRestore" IsEnabled="False" Height="25" Margin="0,5,0,0" Click="btnRestore_Click"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -94,9 +100,13 @@
         <Grid Grid.Row="2">
             <StackPanel>
                 <Label Content="Misc"/>
-                <StackPanel  Orientation="Horizontal">
-                    <CheckBox Width="100" Content="Gravity"/>
-                    <CheckBox Width="100" Content="Collision"/>
+                <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                    <CheckBox  Width="100" IsChecked="{Binding ElementName=PlayerCon, Path=Hook.Gravity}" Content="Gravity" x:Name="cbxGravity" />
+                    <Separator Width="200" Visibility="Hidden"/>
+                    <StackPanel>
+                        <CheckBox Content="Modify Speed" x:Name="cbxSpeed" IsEnabled="False" Checked="cbxSpeed_Checked" Unchecked="cbxSpeed_Checked"/>
+                        <wpfTool:DecimalUpDown Value="2" IsEnabled="False" FormatString="F2" Increment=".5" Name="nudSpeed" ValueChanged="nudSpeed_ValueChanged"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
 

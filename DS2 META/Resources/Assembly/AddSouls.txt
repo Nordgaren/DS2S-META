@@ -1,0 +1,6 @@
+﻿sub rsp, 28
+vortmov(rcx, [[BaseA]+D0]+490)
+mov rdx, [SoulsToAdd]
+call DarkSoulsII.exe+3841E0
+add rsp, 28
+ret
