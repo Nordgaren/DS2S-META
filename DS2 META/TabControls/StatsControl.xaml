@@ -49,7 +49,8 @@
                 <Label Content="SoulMemory2" Grid.Row="2" Grid.Column="0"/>
                 <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.SoulMemory2}" TextAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" IsEnabled="False" Width="100" LostKeyboardFocus="Name_LostKeyboardFocus"/>
             </Grid>
-           </StackPanel>
+            <Button Content="Give Souls" Click="GiveSouls_Click"/>
+        </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="1" Margin="10,10,10,0">
             <Label Content="Stats"/>
             <Grid Margin="5,5,0,0">

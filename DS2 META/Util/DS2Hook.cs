@@ -57,7 +57,6 @@ namespace DS2_META
             PlayerParam = CreateChildPointer(PlayerCtrl, (int)DS2Offsets.PlayerParamOffset);
             PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2Offsets.PlayerMapDataOffset2, (int)DS2Offsets.PlayerMapDataOffset3);
             UpdateStatsProperties();
-            var lol = PlayerCtrl.ReadIntPtr(0x490);
             var pp = PlayerParam.Resolve();
         }
         private void DSHook_OnUnhooked(object sender, PHEventArgs e)
@@ -344,6 +343,23 @@ namespace DS2_META
                 PlayerParam.WriteInt16((int)DS2Offsets.Attributes.FTH, value);
                 UpdateSoulLevel();
             }
+        }
+        public void GiveSouls(int souls)
+        {
+            IntPtr numSouls = Allocate(sizeof(int));
+
+            Kernel32.WriteBytes(Handle, numSouls, BitConverter.GetBytes(souls));
+
+            byte[] asm = (byte[])DS2Assembly.AddSouls.Clone();
+
+            var bytes = BitConverter.GetBytes(PlayerParam.Resolve().ToInt64());
+            Array.Copy(bytes, 0, asm, 0x6, 8);
+            bytes = BitConverter.GetBytes(souls);
+            Array.Copy(bytes, 0, asm, 0x11, 4);
+            bytes = BitConverter.GetBytes(BaseAddress.ToInt64() + 0x3841E0);
+            Array.Copy(bytes, 0, asm, 0x17, 8);
+            Execute(asm);
+            Free(numSouls);
         }
         private void UpdateSoulLevel()
         {

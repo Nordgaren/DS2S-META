@@ -26,7 +26,7 @@ namespace DS2_META
             return bytes.ToArray();
         }
 
-        //public static byte[] BonfireWarp = loadDefuseOutput(Properties.Resources.BonfireWarp);
+        public static byte[] AddSouls = loadDefuseOutput(Properties.Resources.AddSouls);
         //public static byte[] GetItem = loadDefuseOutput(Properties.Resources.GetItem);
         //public static byte[] LevelUp = loadDefuseOutput(Properties.Resources.LevelUp);
         //public static byte[] LeaveSession = loadDefuseOutput(Properties.Resources.LeaveSession);

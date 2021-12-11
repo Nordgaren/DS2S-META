@@ -80,5 +80,10 @@ namespace DS2_META
                 cmbClass.SelectedIndex = -1;
             }
         }
+
+        private void GiveSouls_Click(object sender, RoutedEventArgs e)
+        {
+            Hook.GiveSouls(100);
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace DS2_META.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,6 +61,20 @@ namespace DS2_META.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sub rsp, 28
+        ///vortmov(rcx, [[BaseA]+D0]+490)
+        ///mov rdx, [SoulsToAdd]
+        ///call DarkSoulsII.exe+3841E0
+        ///add rsp, 28
+        ///ret.
+        /// </summary>
+        internal static string AddSouls {
+            get {
+                return ResourceManager.GetString("AddSouls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to //Format: ID; SL VRG END VIT ATN STR DEX ADP INT FTH; Name [arbitrary]
         ///01 12 07 06 06 05 15 11 05 05 05 Warrior
         ///02 13 12 06 07 04 11 08 09 03 06 Knight
@@ -78,19 +92,65 @@ namespace DS2_META.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using System;
-        ///using System.Collections.Generic;
-        ///using System.Linq;
-        ///using System.Text;
-        ///using System.Threading.Tasks;
-        ///
-        ///namespace DS2_META.Resources.Systems
-        ///{
-        ///    class Levels
-        ///    {
-        ///    }
-        ///}
-        ///.
+        ///   Looks up a localized string similar to //ID Level Up Cost
+        ///0 0
+        ///1 500
+        ///2 528
+        ///3 557
+        ///4 587
+        ///5 619
+        ///6 653
+        ///7 689
+        ///8 727
+        ///9 767
+        ///10 810
+        ///11 854
+        ///12 901
+        ///13 948
+        ///14 997
+        ///15 1049
+        ///16 1104
+        ///17 1159
+        ///18 1217
+        ///19 1278
+        ///20 1341
+        ///21 1408
+        ///22 1479
+        ///23 1553
+        ///24 1631
+        ///25 1699
+        ///26 1770
+        ///27 1845
+        ///28 1922
+        ///29 2003
+        ///30 2087
+        ///31 2175
+        ///32 2266
+        ///33 2361
+        ///34 2460
+        ///35 2564
+        ///36 2671
+        ///37 2784
+        ///38 2900
+        ///39 3022
+        ///40 3149
+        ///41 3256
+        ///42 3367
+        ///43 3482
+        ///44 3600
+        ///45 3722
+        ///46 3849
+        ///47 3980
+        ///48 4115
+        ///49 4255
+        ///50 4400
+        ///51 4549
+        ///52 4704
+        ///53 4864
+        ///54 5029
+        ///55 5200
+        ///56 5330
+        ///57 546 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Levels {
             get {
