@@ -57,17 +57,8 @@ namespace DS2_META
 
     class DS2Level
     {
-        private static Regex levelEntryRx = new Regex(@"(?<sl>\S+) (?<cost>\S+)$");
         public int Level { get; set; }
         public int Cost { get; set; }
-
-        public DS2Level(string config)
-        {
-            Match classEntry = levelEntryRx.Match(config);
-            Level = Convert.ToInt32(classEntry.Groups["sl"].Value);
-            Cost = Convert.ToInt32(classEntry.Groups["cost"].Value);
-        }
-
         public DS2Level(int level, int cost)
         {
             Level = level;
@@ -75,13 +66,5 @@ namespace DS2_META
         }
         public static List<DS2Level> Levels = new List<DS2Level>();
         public static List<DS2Level> LevelsPreBuilt = new List<DS2Level>();
-        static DS2Level()
-        {
-            foreach (string line in Regex.Split(Properties.Resources.Levels, "[\r\n]+"))
-            {
-                if (GetTxtResourceClass.IsValidTxtResource(line)) //determine if line is a valid resource or not
-                    LevelsPreBuilt.Add(new DS2Level(line));
-            }
-        }
     }
 }
