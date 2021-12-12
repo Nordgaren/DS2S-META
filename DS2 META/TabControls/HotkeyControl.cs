@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DS2_META
+namespace DS2S_META
 {
     public partial class MainWindow : Window
     {
@@ -26,6 +26,11 @@ namespace DS2_META
             Hotkeys.Add(new METAHotkey("RestorePosition", hkeyRestorePosition.tbxHotkey, tabHotkeys, () =>
             {
                 metaPlayer.RestorePosition();
+            }));
+
+            Hotkeys.Add(new METAHotkey("ToggleGravity", hkeyGravity.tbxHotkey, tabHotkeys, () =>
+            {
+                metaPlayer.ToggleGravity();
             }));
 
             KeyboardHook.KeyDownOrUp += GlobalKeyboardHook_KeyDownOrUp;

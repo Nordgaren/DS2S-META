@@ -5,21 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DS2_META
+namespace DS2S_META
 {
-    internal class DS2ViewModel : ObservableObject
+    internal class DS2SViewModel : ObservableObject
     {
-        public DS2Hook Hook { get; private set; }
+        public DS2SHook Hook { get; private set; }
         public bool GameLoaded { get; set; }
         public bool Reading
         {
-            get => DS2Hook.Reading;
-            set => DS2Hook.Reading = value;
+            get => DS2SHook.Reading;
+            set => DS2SHook.Reading = value;
         }
 
-        public DS2ViewModel()
+        public DS2SViewModel()
         {
-            Hook = new DS2Hook(5000, 5000);
+            Hook = new DS2SHook(5000, 5000);
             Hook.OnHooked += Hook_OnHooked;
             Hook.OnUnhooked += Hook_OnUnhooked;
             Hook.Start();

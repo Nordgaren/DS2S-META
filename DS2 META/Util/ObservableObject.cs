@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DS2_META
+namespace DS2S_META
 {
     public class ObservableObject : INotifyPropertyChanged
     {

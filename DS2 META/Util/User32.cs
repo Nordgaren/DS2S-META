@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DS2_META
+namespace DS2S_META
 {
     internal static class User32
     {

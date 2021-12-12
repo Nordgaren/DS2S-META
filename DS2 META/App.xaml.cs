@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DS2_META
+namespace DS2S_META
 {
     /// <summary>
     /// Interaction logic for App.xaml

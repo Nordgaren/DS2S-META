@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DS2_META
+namespace DS2S_META
 {
     /// <summary>
     /// Interaction logic for StatsControl.xaml
@@ -23,7 +23,7 @@ namespace DS2_META
         public StatsControl()
         {
             InitializeComponent();
-            foreach (DS2Class charClass in DS2Class.All)
+            foreach (DS2SClass charClass in DS2SClass.All)
                 cmbClass.Items.Add(charClass);
             cmbClass.SelectedIndex = -1;
         }
@@ -33,7 +33,7 @@ namespace DS2_META
         }
         private void cbmClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DS2Class charClass = cmbClass.SelectedItem as DS2Class;
+            DS2SClass charClass = cmbClass.SelectedItem as DS2SClass;
             if (Hook.Loaded)
             {
                 Hook.Class = charClass.ID;
@@ -56,7 +56,7 @@ namespace DS2_META
 
         internal override void ReloadCtrl()
         {
-            cmbClass.SelectedItem = cmbClass.Items.Cast<DS2Class>().FirstOrDefault(c => c.ID == Hook.Class);
+            cmbClass.SelectedItem = cmbClass.Items.Cast<DS2SClass>().FirstOrDefault(c => c.ID == Hook.Class);
             txtName.Text = Hook.Name;
         }
 

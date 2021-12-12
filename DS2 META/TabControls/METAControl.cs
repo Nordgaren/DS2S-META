@@ -1,19 +1,19 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace DS2_META
+namespace DS2S_META
 {
     public class METAControl : UserControl
     {
-        public DS2Hook Hook
+        public DS2SHook Hook
         {
-            get { return (DS2Hook)GetValue(HookProperty); }
+            get { return (DS2SHook)GetValue(HookProperty); }
             set { SetValue(HookProperty, value); }
         }
         
         // Using a DependencyProperty as the backing store for Hook.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HookProperty =
-            DependencyProperty.Register("Hook", typeof(DS2Hook), typeof(METAControl), new PropertyMetadata(default));
+            DependencyProperty.Register("Hook", typeof(DS2SHook), typeof(METAControl), new PropertyMetadata(default));
 
         public bool GameLoaded
         {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DS2_META
+namespace DS2S_META
 {
-    internal class DS2Offsets
+    internal class DS2SOffsets
     {
         public const string BaseAAob = "48 8B 05 ? ? ? ? 48 8B 58 38 48 85 DB 74 ? F6";
         public const int BasePtrOffset1 = 0x3;

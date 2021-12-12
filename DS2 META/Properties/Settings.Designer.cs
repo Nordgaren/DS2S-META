@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DS2_META.Properties {
+namespace DS2S_META.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -68,6 +68,18 @@ namespace DS2_META.Properties {
             }
             set {
                 this["RestorePosition"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public int ToggleGravity {
+            get {
+                return ((int)(this["ToggleGravity"]));
+            }
+            set {
+                this["ToggleGravity"] = value;
             }
         }
     }

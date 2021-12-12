@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DS2_META
+namespace DS2S_META
 {
     /// <summary>
     /// Interaction logic for PlayerControl.xaml
@@ -31,22 +31,24 @@ namespace DS2_META
         {
             if (btnPosStore.IsEnabled)
             {
-                AngX = Hook.AngX;
-                AngY = Hook.AngY;
-                AngZ = Hook.AngZ;
                 nudPosStoredX.Value = nudPosX.Value;
                 nudPosStoredY.Value = nudPosY.Value;
                 nudPosStoredZ.Value = nudPosZ.Value;
+                AngX = Hook.AngX;
+                AngY = Hook.AngY;
+                AngZ = Hook.AngZ;
             }
         }
         public void RestorePosition()
         {
             if (btnPosRestore.IsEnabled)
             {
+                Hook.StableX = (float)nudPosStoredX.Value;
+                Hook.StableY = (float)nudPosStoredY.Value;
+                Hook.StableZ = (float)nudPosStoredZ.Value;
                 Hook.AngX = AngX;
                 Hook.AngY = AngY;
                 Hook.AngZ = AngZ;
-                Hook.PosWarp((float)nudPosStoredX.Value, (float)nudPosStoredY.Value, (float)nudPosStoredZ.Value);
             }
         }
         internal override void UpdateCtrl() 
@@ -66,6 +68,10 @@ namespace DS2_META
             nudStamina.IsEnabled = enable;
             cbxSpeed.IsEnabled = enable;
             cbxGravity.IsEnabled = enable;
+        }
+        public void ToggleGravity()
+        {
+            cbxGravity.IsChecked = !cbxGravity.IsChecked;
         }
 
         private void btnStore_Click(object sender, RoutedEventArgs e)

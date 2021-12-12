@@ -1,0 +1,106 @@
+ 31010000  0 0 Soul Arrow
+ 31020000  0 0 Great Soul Arrow
+ 31030000  0 0 Heavy Soul Arrow
+ 31040000  0 0 Great Heavy Soul Arrow
+ 31050000  0 0 Homing Soul Arrow
+ 31060000  0 0 Heavy Homing Soul Arrow
+ 31070000  0 0 Homing Soulmass
+ 31080000  0 0 Homing Crystal Soulmass
+ 31090000  0 0 Soul Spear
+ 31100000  0 0 Crystal Soul Spear
+ 31110000  0 0 Shockwave
+ 31120000  0 0 Soul Spear Barrage
+ 31130000  0 0 Soul Shower
+ 31140000  0 0 Soul Greatsword
+ 31150000  0 0 Soul Vortex
+ 31160000  0 0 Soul Bolt
+ 31170000  0 0 Soul Geyser
+ 31180000  0 0 Magic Weapon
+ 31190000  0 0 Great Magic Weapon
+ 31200000  0 0 Crystal Magic Weapon
+ 31210000  0 0 Strong Magic Shield
+ 31220000  0 0 Yearn
+ 31230000  0 0 Hush
+ 31240000  0 0 Fall Control
+ 31250000  0 0 Hidden Weapon
+ 31260000  0 0 Repair
+ 31270000  0 0 Cast Light
+ 31280000  0 0 Chameleon
+ 31290000  0 0 Unleash Magic
+ 31300000  0 0 Soul Flash
+ 31310000  0 0 Focus Souls
+ 32010000  0 0 Heal
+ 32020000  0 0 Med Heal
+ 32030000  0 0 Great Heal Excerpt
+ 32040000  0 0 Great Heal
+ 32050000  0 0 Soothing Sunlight
+ 32060000  0 0 Replenishment
+ 32070000  0 0 Resplendent Life
+ 32080000  0 0 Bountiful Sunlight
+ 32090000  0 0 Caressing Prayer
+ 32100000  0 0 Force
+ 32110000  0 0 Wrath of the Gods
+ 32120000  0 0 Emit Force
+ 32130000  0 0 Heavenly Thunder
+ 32140000  0 0 Lightning Spear
+ 32150000  0 0 Great Lightning Spear
+ 32160000  0 0 Sunlight Spear
+ 32170000  0 0 Soul Appease
+ 32180000  0 0 Blinding Bolt
+ 32190000  0 0 Magic Barrier
+ 32200000  0 0 Great Magic Barrier
+ 32210000  0 0 Homeward
+ 32220000  0 0 Guidance
+ 32230000  0 0 Sacred Oath
+ 32240000  0 0 Unveil
+ 32250000  0 0 Perseverance
+ 32260000  0 0 Sunlight Blade
+ 32300000  0 0 Denial
+ 32310000  0 0 Splintering Lightning Spear
+ 33010000  0 0 Fireball
+ 33020000  0 0 Fire Orb
+ 33030000  0 0 Great Fireball
+ 33040000  0 0 Great Chaos Fireball
+ 33050000  0 0 Firestorm
+ 33060000  0 0 Fire Tempest
+ 33070000  0 0 Chaos Storm
+ 33080000  0 0 Combustion
+ 33090000  0 0 Great Combustion
+ 33100000  0 0 Fire Whip
+ 33110000  0 0 Poison Mist
+ 33120000  0 0 Toxic Mist
+ 33130000  0 0 Acid Surge
+ 33140000  0 0 Lingering Flame
+ 33150000  0 0 Flame Swathe
+ 33160000  0 0 Forbidden Sun
+ 33170000  0 0 Flame Weapon
+ 33180000  0 0 Flash Sweat
+ 33190000  0 0 Iron Flesh
+ 33200000  0 0 Warmth
+ 33210000  0 0 Immolation
+ 33300000  0 0 Fire Snake
+ 33310000  0 0 Dance of Fire
+ 33320000  0 0 Outcry
+ 34010000  0 0 Dark Orb
+ 34020000  0 0 Dark Hail
+ 34030000  0 0 Dark Fog
+ 34040000  0 0 Affinity
+ 34050000  0 0 Dead Again
+ 34060000  0 0 Dark Weapon
+ 34070000  0 0 Whisper of Despair
+ 34080000  0 0 Repel
+ 34090000  0 0 Twisted Barricade
+ 34100000  0 0 Numbness
+ 34300000  0 0 Dark Greatsword
+ 34310000  0 0 Recollection
+ 35010000  0 0 Scraps of Life
+ 35020000  0 0 Darkstorm
+ 35030000  0 0 Resonant Soul
+ 35040000  0 0 Great Resonant Soul
+ 35050000  0 0 Climax
+ 35060000  0 0 Resonant Flesh
+ 35070000  0 0 Resonant Weapon
+ 35080000  0 0 Lifedrain Patch
+ 35090000  0 0 Profound Still
+ 35300000  0 0 Promised Walk of Peace
+ 35310000  0 0 Dark Dance

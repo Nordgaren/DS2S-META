@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text.RegularExpressions;
 
-namespace DS2_META
+namespace DS2S_META
 {
     class GetTxtResourceClass
     {

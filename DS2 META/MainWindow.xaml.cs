@@ -21,7 +21,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-namespace DS2_META
+namespace DS2S_META
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -38,7 +38,7 @@ namespace DS2_META
             InitializeComponent();
         }
 
-        DS2Hook Hook => viewModel.Hook;
+        DS2SHook Hook => viewModel.Hook;
         bool FormLoaded
         {
             get => viewModel.GameLoaded;
@@ -54,8 +54,6 @@ namespace DS2_META
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //Top = Settings.WindowTop;
-            //Left = Settings.WindowLeft;
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             var version= fileVersionInfo.ProductVersion;
@@ -104,19 +102,6 @@ namespace DS2_META
         {
             updateTimer.Stop();
             SaveAllTabs();
-
-            if (WindowState == WindowState.Normal)
-            {
-                Settings.WindowTop = Top;
-                Settings.WindowLeft = Top;
-
-            }
-            else
-            {
-                Settings.WindowTop = RestoreBounds.Top;
-                Settings.WindowLeft = RestoreBounds.Left;
-
-            }
 
             Settings.Save();
             //ResetAllTabs();

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace DS2_META
+namespace DS2S_META
 {
     class METAHotkey
     {

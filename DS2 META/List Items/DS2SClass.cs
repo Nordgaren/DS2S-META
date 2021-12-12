@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace DS2_META
+namespace DS2S_META
 {
-    class DS2Class
+    class DS2SClass
     {
         private static Regex classEntryRx = new Regex(@"^(?<id>\S+) (?<sl>\S+) (?<vig>\S+) (?<end>\S+) (?<vit>\S+) (?<att>\S+) (?<str>\S+) (?<dex>\S+) (?<adp>\S+) (?<int>\S+) (?<fth>\S+) (?<name>.+)$");
 
@@ -21,7 +21,7 @@ namespace DS2_META
         public short Intelligence;
         public short Faith;
 
-        private DS2Class(string config)
+        private DS2SClass(string config)
         {
             Match classEntry = classEntryRx.Match(config);
             Name = classEntry.Groups["name"].Value;
@@ -43,28 +43,15 @@ namespace DS2_META
             return Name;
         }
 
-        public static List<DS2Class> All = new List<DS2Class>();
+        public static List<DS2SClass> All = new List<DS2SClass>();
 
-        static DS2Class()
+        static DS2SClass()
         {
-            foreach (string line in Regex.Split(Properties.Resources.Classes, "[\r\n]+"))
+            foreach (string line in Regex.Split(GetTxtResourceClass.GetTxtResource(@"Resources\Systems\Classes.txt"), "[\r\n]+"))
             {
                 if (GetTxtResourceClass.IsValidTxtResource(line)) //determine if line is a valid resource or not
-                    All.Add(new DS2Class(line));
+                    All.Add(new DS2SClass(line));
             }
         }
-    }
-
-    class DS2Level
-    {
-        public int Level { get; set; }
-        public int Cost { get; set; }
-        public DS2Level(int level, int cost)
-        {
-            Level = level;
-            Cost = cost;
-        }
-        public static List<DS2Level> Levels = new List<DS2Level>();
-        public static List<DS2Level> LevelsPreBuilt = new List<DS2Level>();
     }
 }

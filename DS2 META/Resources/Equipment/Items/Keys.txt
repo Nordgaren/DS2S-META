@@ -1,0 +1,37 @@
+ 50600000  0 0 Soldier Key
+ 50610000  0 0 Key to King's Passage
+ 50800000  0 0 Bastille Key
+ 50810000  0 0 Iron Key
+ 50820000  0 0 Forgotten Key
+ 50830000  0 0 Brightstone Key
+ 50840000  0 0 Antiquated Key
+ 50850000  0 0 Fang Key
+ 50860000  0 0 House Key
+ 50870000  0 0 Lenigrast's Key
+ 50880000  0 0 Smooth & Silky Stone
+ 50885000  0 0 Small Smooth & Silky Stone
+ 50890000  0 0 Rotunda Lockstone
+ 50900000  0 0 Giant's Kinship
+ 50910000  0 0 Ashen Mist Heart
+ 50920000  0 0 Soul of a Giant
+ 50930000  0 0 Tseldora Den Key
+ 50940000  0 0 Champion's Tablet
+ 50950000  0 0 Ladder Miniature
+ 50960000  0 0 Soul Vessel
+ 50970000  0 0 Undead Lockaway Key
+ 50990000  0 0 Dull Ember
+ 51000000  0 0 Crushed Eye Orb
+ 51010000  0 0 Simpleton's Spice
+ 51020000  0 0 Skeptic's Spice
+ 51030000  0 0 Aldia Key
+ 52000000  0 0 Dragon Talon
+ 52100000  0 0 Heavy Iron Key
+ 52200000  0 0 Frozen Flower
+ 52300000  0 0 Eternal Sanctum Key
+ 52400000  0 0 Tower Key
+ 52500000  0 0 Garrison Ward Key
+ 52650000  0 0 Dragon Stone
+ 53100000  0 0 Scorching Iron Scepter
+ 53200000  0 0 Smelter Wedge
+ 53300000  0 0 Soul of Nadalia, Bride of Ash
+ 53600000  0 0 Eye of the Priestess

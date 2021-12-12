@@ -1,0 +1,74 @@
+ 11000000  0 0 Buckler
+ 11005000  0 0 Benhart's Parma
+ 11010000  0 0 Small Leather Shield
+ 11020000  0 0 Iron Parma
+ 11030000  0 0 Foot Soldier Shield
+ 11040000  0 0 Target Shield
+ 11050000  0 0 Golden Falcon Shield
+ 11070000  0 0 Manikin Shield
+ 11080000  0 0 Llewellyn Shield
+ 11091000  0 0 Crimson Parma
+ 11110000  0 0 Cleric's Parma
+ 11120000  0 0 Cleric's Small Shield
+ 11130000  0 0 Magic Shield
+ 11140000  0 0 Cursed Bone Shield
+ 11150000  0 0 Sanctum Shield
+ 11160000  0 0 Varangian Shield
+ 11185000  0 0 Watcher's Shield
+ 11200000  0 0 Large Leather Shield
+ 11210000  0 0 Blue Wooden Shield
+ 11220000  0 0 Silver Eagle Kite Shield
+ 11230000  0 0 Drangleic Shield
+ 11240000  0 0 Lion Clan Shield
+ 11250000  0 0 Archdrake Shield
+ 11260000  0 0 King's Shield
+ 11270000  0 0 Mirrah Shield
+ 11280000  0 0 Old Knight's Shield
+ 11290000  0 0 Loyce Shield
+ 11295000  0 0 Charred Loyce Shield
+ 11300000  0 0 Spirit Tree Shield
+ 11310000  0 0 Golden Wing Shield
+ 11320000  0 0 Vessel Shield
+ 11330000  0 0 Shield of the Insolent
+ 11350000  0 0 Silverblack Shield
+ 11360000  0 0 Stone Parma
+ 11370000  0 0 Grand Spirit Tree Shield
+ 11380000  0 0 Moon Butterfly Shield
+ 11390000  0 0 Slumbering Dragon Shield
+ 11395000  0 0 Chaos Shield
+ 11400000  0 0 Wooden Shield
+ 11420000  0 0 Hollow Soldier Shield
+ 11430000  0 0 Royal Kite Shield
+ 11450000  0 0 Red Rust Shield
+ 11455000  0 0 Rampart Golem Shield
+ 11470000  0 0 Bell Keeper Shield
+ 11475000  0 0 Defender's Shield
+ 11480000  0 0 Black Dragon Shield
+ 11485000  0 0 Drakekeeper's Shield
+ 11490000  0 0 Porcine Shield
+ 11495000  0 0 Bone Shield
+ 11500000  0 0 Twin Dragon Greatshield
+ 11510000  0 0 Tower Shield
+ 11530000  0 0 Orma's Greatshield
+ 11540000  0 0 Reeve's Greatshield
+ 11550000  0 0 King's Mirror
+ 11560000  0 0 Dragonrider Greatshield
+ 11570000  0 0 Mastodon Greatshield
+ 11590000  0 0 Havel's Greatshield
+ 11600000  0 0 Gyrm Greatshield
+ 11610000  0 0 Pursuer's Greatshield
+ 11620000  0 0 Pate's Shield
+ 11630000  0 0 Old Knight Greatshield
+ 11640000  0 0 Drakekeeper's Greatshield
+ 11650000  0 0 Greatshield of Glory
+ 11700000  0 0 Phoenix Parma
+ 11710000  0 0 Sunlight Parma
+ 11720000  0 0 Watchdragon Parma
+ 11730000  0 0 Blossom Kite Shield
+ 11740000  0 0 Rebel's Greatshield
+ 11750000  0 0 Wicked Eye Greatshield
+ 11800000  0 0 Black Flamestone Parma
+ 11810000  0 0 Yellow Quartz Shield
+ 11820000  0 0 Bound Wooden Shield
+ 11830000  0 0 Homunculus Wooden Shield
+ 11840000  0 0 Transgressor's Leather Shield

@@ -5,12 +5,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace DS2_META
+namespace DS2S_META
 {
     // Taken from DSR Gadget because TK code is better than anything I could write.
     // Parses output from https://defuse.ca/online-x86-assembler.htm
     // I like to keep the whole thing for quick reference to line numbers and so on
-    static class DS2Assembly
+    static class DS2SAssembly
     {
         private static Regex asmLineRx = new Regex(@"^[\w\d]+:\s+((?:[\w\d][\w\d] ?)+)");
 

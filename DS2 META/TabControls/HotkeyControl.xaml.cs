@@ -13,15 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DS2_META
+namespace DS2S_META
 {
     /// <summary>
     /// Interaction logic for metaHotkey.xaml
     /// </summary>
     public partial class HotkeyControl : UserControl
     {
-
-
         public string HotkeyName
         {
             get { return (string)GetValue(HotkeyNameProperty); }
@@ -31,7 +29,6 @@ namespace DS2_META
         // Using a DependencyProperty as the backing store for HotkeyName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HotkeyNameProperty =
             DependencyProperty.Register("HotkeyName", typeof(string), typeof(HotkeyControl), new PropertyMetadata(default));
-
 
         public HotkeyControl()
         {
