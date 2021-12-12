@@ -15,7 +15,7 @@ You can also try adding DS2S META as an exception to your antivirus
 
 ## Thank You
 **[TKGP](https://github.com/JKAnderson/)** Author of [DS Gadget](https://github.com/JKAnderson/DS-Gadget) and [Property Hook](https://github.com/JKAnderson/PropertyHook)  
-**[Radai](https://github.com/JKAnderson/)** Author of DS2S META
+**[Radai](https://github.com/JKAnderson/)** Author of the CE table used for this tool and good mentor  
 
 # Change Log  
 ### Beta 0.0.0.1
