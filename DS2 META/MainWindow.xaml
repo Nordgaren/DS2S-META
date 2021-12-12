@@ -58,6 +58,11 @@
                     <local:StatsControl x:Name="metaStats" Hook="{Binding Hook}" GameLoaded="{Binding Loaded}"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Items">
+                <Grid Background="LightGray">
+                    <local:ItemControl x:Name="metaItems" Hook="{Binding Hook}" GameLoaded="{Binding Loaded}"/>
+                </Grid>
+            </TabItem>
             <TabItem x:Name="tabSettings" Header="Settings">
                 <Grid Background="LightGray">
                     <TabControl >

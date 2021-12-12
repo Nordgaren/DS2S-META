@@ -1,18 +1,19 @@
- 4200000  0 0 Short Bow
- 4210000  0 0 Long Bow
- 4220000  0 0 Composite Bow
- 4230000  0 0 Sea Bow
- 4240000  0 0 Dragonrider Bow
- 4270000  0 0 Bell Keeper Bow
- 4280000  0 0 Bow of Want
- 4290000  0 0 Hunter's Blackbow
- 4400000  0 0 Alonne Greatbow
- 4420000  0 0 Dragonslayer Greatbow
- 4430000  0 0 Possessed Armor Greatbow
- 4440000  0 0 Twin-headed Greatbow
- 4600000  0 0 Light Crossbow
- 4610000  0 0 Heavy Crossbow
- 4630000  0 0 Shield Crossbow
- 4660000  0 0 Avelyn
- 4670000  0 0 Sanctum Crossbow
- 4680000  0 0 Sanctum Repeating Crossbow
+//Format: Item ID; Stack Limit; Reinforce Type; Name [arbitrary]
+ 4200000  1 0 Short Bow
+ 4210000  1 0 Long Bow
+ 4220000  1 0 Composite Bow
+ 4230000  1 0 Sea Bow
+ 4240000  1 0 Dragonrider Bow
+ 4270000  1 0 Bell Keeper Bow
+ 4280000  1 0 Bow of Want
+ 4290000  1 0 Hunter's Blackbow
+ 4400000  1 0 Alonne Greatbow
+ 4420000  1 0 Dragonslayer Greatbow
+ 4430000  1 0 Possessed Armor Greatbow
+ 4440000  1 0 Twin-headed Greatbow
+ 4600000  1 0 Light Crossbow
+ 4610000  1 0 Heavy Crossbow
+ 4630000  1 0 Shield Crossbow
+ 4660000  1 0 Avelyn
+ 4670000  1 0 Sanctum Crossbow
+ 4680000  1 0 Sanctum Repeating Crossbow

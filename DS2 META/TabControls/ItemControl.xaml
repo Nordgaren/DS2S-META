@@ -1,0 +1,48 @@
+﻿<local:METAControl x:Class="DS2S_META.ItemControl"
+                   x:Name="ItemCon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:DS2S_META"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="425" Background="LightGray">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="225"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="135"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Margin="5">
+            <Label Content="Category"/>
+            <ComboBox x:Name="cmbCategory" SelectionChanged="cmbCategory_SelectionChanged"/>
+            <Label Content="Infusion"/>
+            <ComboBox x:Name="cmbInfusion" />
+            <Grid>
+                <TextBox x:Name="txtSearch" Height="20" TextChanged="txtSearch_TextChanged" PreviewKeyDown="KeyPressed" GotKeyboardFocus="txtSearch_GotKeyboardFocus" />
+                <Label x:Name="lblSearch" Foreground="LightSlateGray" Content="Search..." IsEnabled="False" Margin="5,0,0,0" IsHitTestVisible="False"/>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="5">
+            <Label Content="Quantity" />
+            <wpfTool:IntegerUpDown x:Name="nudQuantity" Minimum="1" Value="1"/>
+            <Label Content="Upgrade" />
+            <wpfTool:IntegerUpDown x:Name="nudUpgrade" />
+            <CheckBox x:Name="SearchAllCheckbox" Content="Search All" Margin="0,5,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Margin="5">
+            <Separator Height="25" Visibility="Hidden"/>
+            <CheckBox Content="Restrict" IsChecked="True" x:Name="cbxQuantityRestrict"/>
+            <Separator Height="25" Visibility="Hidden"/>
+            <CheckBox x:Name="cbxMaxUpgrade" IsChecked="True" Content="Max"/>
+            <Separator Height="5" Visibility="Hidden"/>
+            <Button x:Name="btnCreate" Content="Create" Click="btnCreate_Click" />
+        </StackPanel>
+        <ListBox x:Name="lbxItems" Grid.Row="1" ScrollViewer.IsDeferredScrollingEnabled="True" Grid.ColumnSpan="3" Margin="5" SelectionChanged="lbxItems_SelectionChanged" />
+    </Grid>
+</local:METAControl>

@@ -28,6 +28,8 @@ namespace DS2S_META
         internal virtual void UpdateCtrl() { }
         internal virtual void ReloadCtrl() { }
         internal virtual void EnableCtrls(bool v) { }
-        
+        public virtual void InitTab() { }
+
+
     }
 }

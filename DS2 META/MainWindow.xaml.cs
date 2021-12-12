@@ -34,7 +34,6 @@ namespace DS2S_META
             PortableSettingsProvider.SettingsFileName = "DS2 Meta.config";
             PortableSettingsProvider.ApplyProvider(Properties.Settings.Default);
             Settings = Properties.Settings.Default;
-
             InitializeComponent();
         }
 
@@ -109,6 +108,7 @@ namespace DS2S_META
 
         private void InitAllTabs()
         {
+            metaItems.InitTab();
             InitHotkeys();
         }
 

@@ -461,10 +461,11 @@ namespace DS2S_META
         #endregion
 
         #region Items
-        public void GetItem(int amount, uint item)
+        public void GetItem(int item, int amount)
         {
             var itemStruct = Allocate(0x8A);
             Kernel32.WriteBytes(Handle, itemStruct + 0x4, BitConverter.GetBytes(item));
+            Kernel32.WriteBytes(Handle, itemStruct + 0x8, BitConverter.GetBytes(float.MaxValue));
             Kernel32.WriteBytes(Handle, itemStruct + 0xC, BitConverter.GetBytes(amount));
 
             var asm = (byte[])DS2SAssembly.GetItem.Clone();

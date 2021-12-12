@@ -1,124 +1,125 @@
- 40010000  0 0 Life Ring
- 40010001  0 0 Life Ring+1
- 40010002  0 0 Life Ring+2
- 40010003  0 0 Life Ring+3
- 40020000  0 0 Chloranthy Ring
- 40020001  0 0 Chloranthy Ring+1
- 40020002  0 0 Chloranthy Ring+2
- 40030000  0 0 Royal Soldier's Ring
- 40030001  0 0 Royal Soldier's Ring+1
- 40030002  0 0 Royal Soldier's Ring+2
- 40040000  0 0 First Dragon Ring
- 40040001  0 0 Second Dragon Ring
- 40040002  0 0 Third Dragon Ring
- 40050000  0 0 Ring of Steel Protection
- 40050001  0 0 Ring of Steel Protection+1
- 40050002  0 0 Ring of Steel Protection+2
- 40060000  0 0 Spell Quartz Ring
- 40060001  0 0 Spell Quartz Ring+1
- 40060002  0 0 Spell Quartz Ring+2
- 40060003  0 0 Spell Quartz Ring+3
- 40070000  0 0 Flame Quartz Ring
- 40070001  0 0 Flame Quartz Ring+1
- 40070002  0 0 Flame Quartz Ring+2
- 40070003  0 0 Flame Quartz Ring+3
- 40080000  0 0 Thunder Quartz Ring
- 40080001  0 0 Thunder Quartz Ring+1
- 40080002  0 0 Thunder Quartz Ring+2
- 40080003  0 0 Thunder Quartz Ring+3
- 40090000  0 0 Dark Quartz Ring
- 40090001  0 0 Dark Quartz Ring+1
- 40090002  0 0 Dark Quartz Ring+2
- 40090003  0 0 Dark Quartz Ring+3
- 40100000  0 0 Poisonbite Ring
- 40100001  0 0 Poisonbite Ring+1
- 40110000  0 0 Bloodbite Ring
- 40110001  0 0 Bloodbite Ring+1
- 40120000  0 0 Bracing Knuckle Ring
- 40120001  0 0 Bracing Knuckle Ring+1
- 40120002  0 0 Bracing Knuckle Ring+2
- 40130000  0 0 Cursebite Ring
- 40135000  0 0 Ash Knuckle Ring
- 40140000  0 0 Dispelling Ring
- 40140001  0 0 Dispelling Ring+1
- 40150000  0 0 Ring of Resistance
- 40150001  0 0 Ring of Resistance+1
- 40160000  0 0 Ring of Blades
- 40160001  0 0 Ring of Blades+1
- 40160002  0 0 Ring of Blades+2
- 40210000  0 0 Ring of Knowledge
- 40220000  0 0 Ring of Prayer
- 40230000  0 0 Stone Ring
- 40260000  0 0 Red Tearstone Ring
- 40280000  0 0 Blue Tearstone Ring
- 40290000  0 0 Ring of Giants
- 40290001  0 0 Ring of Giants+1
- 40290002  0 0 Ring of Giants+2
- 40295000  0 0 Old Leo Ring
- 40300000  0 0 Ring of Soul Protection
- 40310000  0 0 Ring of Life Protection
- 40320000  0 0 Lingering Dragoncrest Ring
- 40320001  0 0 Lingering Dragoncrest Ring+1
- 40320002  0 0 Lingering Dragoncrest Ring+2
- 40330000  0 0 Clear Bluestone Ring
- 40330001  0 0 Clear Bluestone Ring+1
- 40330002  0 0 Clear Bluestone Ring+2
- 40340000  0 0 Northern Ritual Band
- 40340001  0 0 Northern Ritual Band+1
- 40340002  0 0 Northern Ritual Band+2
- 40350000  0 0 Southern Ritual Band
- 40350001  0 0 Southern Ritual Band+1
- 40350002  0 0 Southern Ritual Band+2
- 40360000  0 0 Covetous Gold Serpent Ring
- 40360001  0 0 Covetous Gold Serpent Ring+1
- 40360002  0 0 Covetous Gold Serpent Ring+2
- 40370000  0 0 Covetous Silver Serpent Ring
- 40370001  0 0 Covetous Silver Serpent Ring+1
- 40370002  0 0 Covetous Silver Serpent Ring+2
- 40390000  0 0 Ring of the Evil Eye
- 40390001  0 0 Ring of the Evil Eye+1
- 40390002  0 0 Ring of the Evil Eye+2
- 40400000  0 0 Ring of Restoration
- 40410000  0 0 Ring of Binding
- 40420000  0 0 Silvercat Ring
- 40430000  0 0 Redeye Ring
- 40440000  0 0 Gower's Ring of Protection
- 40450000  0 0 Name-engraved Ring
- 40460000  0 0 Slumbering Dragoncrest Ring
- 40470000  0 0 Hawk Ring
- 40480000  0 0 Old Sun Ring
- 40500000  0 0 Illusory Ring of a Conqueror
- 40510000  0 0 King's Ring
- 40520000  0 0 Ring of the Dead
- 40530000  0 0 Ring of Thorns
- 40530001  0 0 Ring of Thorns+1
- 40530002  0 0 Ring of Thorns+2
- 40540000  0 0 Delicate String
- 40550000  0 0 White Ring
- 40560000  0 0 Illusory Ring of the Vengeful
- 40570000  0 0 Illusory Ring of the Guilty
- 40610000  0 0 Ring of Whispers
- 40620000  0 0 Illusory Ring of the Exalted
- 40700000  0 0 Crest of the Rat
- 40710000  0 0 Bell Keeper's Seal
- 40720000  0 0 Guardian's Seal
- 40730000  0 0 Crest of Blood
- 40740000  0 0 Blue Seal
- 40750000  0 0 Abyss Seal
- 40760000  0 0 Vanquisher's Seal
- 40770000  0 0 Sun Seal
- 40780000  0 0 Ancient Dragon Seal
- 41000000  0 0 Simpleton's Ring
- 41010000  0 0 Strength Ring
- 41020000  0 0 Dexterity Ring
- 41030000  0 0 Ivory Warrior Ring
- 41040000  0 0 Sorcery Clutch Ring
- 41050000  0 0 Lightning Clutch Ring
- 41060000  0 0 Fire Clutch Ring
- 41070000  0 0 Dark Clutch Ring
- 41090000  0 0 Baneful Bird Ring
- 41100000  0 0 Flynn's Ring
- 41110000  0 0 Ring of the Embedded
- 41120000  0 0 Ring of the Living
- 41130000  0 0 Yorgh's Ring
- 42000000  0 0 Agape Ring
+//Format: Item ID; Stack Limit; Reinforce Type; Name [arbitrary]
+ 40010000  1 0 Life Ring
+ 40010001  1 0 Life Ring+1
+ 40010002  1 0 Life Ring+2
+ 40010003  1 0 Life Ring+3
+ 40020000  1 0 Chloranthy Ring
+ 40020001  1 0 Chloranthy Ring+1
+ 40020002  1 0 Chloranthy Ring+2
+ 40030000  1 0 Royal Soldier's Ring
+ 40030001  1 0 Royal Soldier's Ring+1
+ 40030002  1 0 Royal Soldier's Ring+2
+ 40040000  1 0 First Dragon Ring
+ 40040001  1 0 Second Dragon Ring
+ 40040002  1 0 Third Dragon Ring
+ 40050000  1 0 Ring of Steel Protection
+ 40050001  1 0 Ring of Steel Protection+1
+ 40050002  1 0 Ring of Steel Protection+2
+ 40060000  1 0 Spell Quartz Ring
+ 40060001  1 0 Spell Quartz Ring+1
+ 40060002  1 0 Spell Quartz Ring+2
+ 40060003  1 0 Spell Quartz Ring+3
+ 40070000  1 0 Flame Quartz Ring
+ 40070001  1 0 Flame Quartz Ring+1
+ 40070002  1 0 Flame Quartz Ring+2
+ 40070003  1 0 Flame Quartz Ring+3
+ 40080000  1 0 Thunder Quartz Ring
+ 40080001  1 0 Thunder Quartz Ring+1
+ 40080002  1 0 Thunder Quartz Ring+2
+ 40080003  1 0 Thunder Quartz Ring+3
+ 40090000  1 0 Dark Quartz Ring
+ 40090001  1 0 Dark Quartz Ring+1
+ 40090002  1 0 Dark Quartz Ring+2
+ 40090003  1 0 Dark Quartz Ring+3
+ 40100000  1 0 Poisonbite Ring
+ 40100001  1 0 Poisonbite Ring+1
+ 40110000  1 0 Bloodbite Ring
+ 40110001  1 0 Bloodbite Ring+1
+ 40120000  1 0 Bracing Knuckle Ring
+ 40120001  1 0 Bracing Knuckle Ring+1
+ 40120002  1 0 Bracing Knuckle Ring+2
+ 40130000  1 0 Cursebite Ring
+ 40135000  1 0 Ash Knuckle Ring
+ 40140000  1 0 Dispelling Ring
+ 40140001  1 0 Dispelling Ring+1
+ 40150000  1 0 Ring of Resistance
+ 40150001  1 0 Ring of Resistance+1
+ 40160000  1 0 Ring of Blades
+ 40160001  1 0 Ring of Blades+1
+ 40160002  1 0 Ring of Blades+2
+ 40210000  1 0 Ring of Knowledge
+ 40220000  1 0 Ring of Prayer
+ 40230000  1 0 Stone Ring
+ 40260000  1 0 Red Tearstone Ring
+ 40280000  1 0 Blue Tearstone Ring
+ 40290000  1 0 Ring of Giants
+ 40290001  1 0 Ring of Giants+1
+ 40290002  1 0 Ring of Giants+2
+ 40295000  1 0 Old Leo Ring
+ 40300000  1 0 Ring of Soul Protection
+ 40310000  1 0 Ring of Life Protection
+ 40320000  1 0 Lingering Dragoncrest Ring
+ 40320001  1 0 Lingering Dragoncrest Ring+1
+ 40320002  1 0 Lingering Dragoncrest Ring+2
+ 40330000  1 0 Clear Bluestone Ring
+ 40330001  1 0 Clear Bluestone Ring+1
+ 40330002  1 0 Clear Bluestone Ring+2
+ 40340000  1 0 Northern Ritual Band
+ 40340001  1 0 Northern Ritual Band+1
+ 40340002  1 0 Northern Ritual Band+2
+ 40350000  1 0 Southern Ritual Band
+ 40350001  1 0 Southern Ritual Band+1
+ 40350002  1 0 Southern Ritual Band+2
+ 40360000  1 0 Covetous Gold Serpent Ring
+ 40360001  1 0 Covetous Gold Serpent Ring+1
+ 40360002  1 0 Covetous Gold Serpent Ring+2
+ 40370000  1 0 Covetous Silver Serpent Ring
+ 40370001  1 0 Covetous Silver Serpent Ring+1
+ 40370002  1 0 Covetous Silver Serpent Ring+2
+ 40390000  1 0 Ring of the Evil Eye
+ 40390001  1 0 Ring of the Evil Eye+1
+ 40390002  1 0 Ring of the Evil Eye+2
+ 40400000  1 0 Ring of Restoration
+ 40410000  1 0 Ring of Binding
+ 40420000  1 0 Silvercat Ring
+ 40430000  1 0 Redeye Ring
+ 40440000  1 0 Gower's Ring of Protection
+ 40450000  1 0 Name-engraved Ring
+ 40460000  1 0 Slumbering Dragoncrest Ring
+ 40470000  1 0 Hawk Ring
+ 40480000  1 0 Old Sun Ring
+ 40500000  1 0 Illusory Ring of a Conqueror
+ 40510000  1 0 King's Ring
+ 40520000  1 0 Ring of the Dead
+ 40530000  1 0 Ring of Thorns
+ 40530001  1 0 Ring of Thorns+1
+ 40530002  1 0 Ring of Thorns+2
+ 40540000  1 0 Delicate String
+ 40550000  1 0 White Ring
+ 40560000  1 0 Illusory Ring of the Vengeful
+ 40570000  1 0 Illusory Ring of the Guilty
+ 40610000  1 0 Ring of Whispers
+ 40620000  1 0 Illusory Ring of the Exalted
+ 40700000  1 0 Crest of the Rat
+ 40710000  1 0 Bell Keeper's Seal
+ 40720000  1 0 Guardian's Seal
+ 40730000  1 0 Crest of Blood
+ 40740000  1 0 Blue Seal
+ 40750000  1 0 Abyss Seal
+ 40760000  1 0 Vanquisher's Seal
+ 40770000  1 0 Sun Seal
+ 40780000  1 0 Ancient Dragon Seal
+ 41000000  1 0 Simpleton's Ring
+ 41010000  1 0 Strength Ring
+ 41020000  1 0 Dexterity Ring
+ 41030000  1 0 Ivory Warrior Ring
+ 41040000  1 0 Sorcery Clutch Ring
+ 41050000  1 0 Lightning Clutch Ring
+ 41060000  1 0 Fire Clutch Ring
+ 41070000  1 0 Dark Clutch Ring
+ 41090000  1 0 Baneful Bird Ring
+ 41100000  1 0 Flynn's Ring
+ 41110000  1 0 Ring of the Embedded
+ 41120000  1 0 Ring of the Living
+ 41130000  1 0 Yorgh's Ring
+ 42000000  1 0 Agape Ring

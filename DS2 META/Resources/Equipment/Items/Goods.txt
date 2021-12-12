@@ -1,237 +1,181 @@
- 50600000  0 0 Soldier Key
- 50610000  0 0 Key to King's Passage
- 50800000  0 0 Bastille Key
- 50810000  0 0 Iron Key
- 50820000  0 0 Forgotten Key
- 50830000  0 0 Brightstone Key
- 50840000  0 0 Antiquated Key
- 50850000  0 0 Fang Key
- 50860000  0 0 House Key
- 50870000  0 0 Lenigrast's Key
- 50880000  0 0 Smooth & Silky Stone
- 50885000  0 0 Small Smooth & Silky Stone
- 50890000  0 0 Rotunda Lockstone
- 50900000  0 0 Giant's Kinship
- 50910000  0 0 Ashen Mist Heart
- 50920000  0 0 Soul of a Giant
- 50930000  0 0 Tseldora Den Key
- 50940000  0 0 Champion's Tablet
- 50950000  0 0 Ladder Miniature
- 50960000  0 0 Soul Vessel
- 50970000  0 0 Undead Lockaway Key
- 50990000  0 0 Dull Ember
- 51000000  0 0 Crushed Eye Orb
- 51010000  0 0 Simpleton's Spice
- 51020000  0 0 Skeptic's Spice
- 51030000  0 0 Aldia Key
- 52000000  0 0 Dragon Talon
- 52100000  0 0 Heavy Iron Key
- 52200000  0 0 Frozen Flower
- 52300000  0 0 Eternal Sanctum Key
- 52400000  0 0 Tower Key
- 52500000  0 0 Garrison Ward Key
- 52650000  0 0 Dragon Stone
- 53100000  0 0 Scorching Iron Scepter
- 53200000  0 0 Smelter Wedge
- 53300000  0 0 Soul of Nadalia, Bride of Ash
- 53600000  0 0 Eye of the Priestess
- 60010000  0 0 Lifegem
- 60020000  0 0 Radiant Lifegem
- 60030000  0 0 Old Radiant Lifegem
- 60035000  0 0 Elizabeth Mushroom
- 60036000  0 0 Dried Root
- 60040000  0 0 Amber Herb
- 60050000  0 0 Twilight Herb
- 60060000  0 0 Wilted Dusk Herb
- 60070000  0 0 Poison Moss
- 60090000  0 0 Monastery Charm
- 60100000  0 0 Dragon Charm
- 60105000  0 0 Divine Blessing
- 60110000  0 0 Rouge Water
- 60120000  0 0 Crimson Water
- 60151000  0 0 Human Effigy
- 60155000  0 0 Estus Flask
- 60160000  0 0 Small Blue Burr
- 60170000  0 0 Small Yellow Burr
- 60180000  0 0 Small Orange Burr
- 60190000  0 0 Dark Troches
- 60200000  0 0 Common Fruit
- 60210000  0 0 Red Leech Troches
- 60230000  0 0 Triclops Snake Troches
- 60235000  0 0 Old Growth Balm
- 60236000  0 0 Vine Balm
- 60237000  0 0 Blackweed Balm
- 60238000  0 0 Goldenfruit Balm
- 60239000  0 0 Brightbug
- 60240000  0 0 Aromatic Ooze
- 60250000  0 0 Gold Pine Resin
- 60260000  0 0 Charcoal Pine Resin
- 60270000  0 0 Dark Pine Resin
- 60280000  0 0 Rotten Pine Resin
- 60290000  0 0 Bleeding Serum
- 60310000  0 0 Green Blossom
- 60320000  0 0 Rusted Coin
- 60350000  0 0 Homeward Bone
- 60355000  0 0 Aged Feather
- 60360000  0 0 Darksign
- 60370000  0 0 Silver Talisman
- 60405000  0 0 Dragon Head Stone
- 60405010  0 0 Dragon Head Stone
- 60406000  0 0 Dragon Torso Stone
- 60406010  0 0 Dragon Torso Stone
- 60410000  0 0 Repair Powder
- 60420000  0 0 Torch
- 60430000  0 0 Flame Butterfly
- 60450000  0 0 Prism Stone
- 60470000  0 0 Hello Carving
- 60480000  0 0 Thank You Carving
- 60490000  0 0 I'm Sorry Carving
- 60500000  0 0 Very Good! Carving
- 60510000  0 0 Rubbish
- 60511000  0 0 Petrified Something
- 60525000  0 0 Estus Flask Shard
- 60526000  0 0 Sublime Bone Dust
- 60527000  0 0 Bonfire Ascetic
- 60530000  0 0 Alluring Skull
- 60531000  0 0 Lloyd's Talisman
- 60536000  0 0 Pharros' Lockstone
- 60537000  0 0 Fragrant Branch of Yore
- 60538000  0 0 Fire Seed
- 60540000  0 0 Throwing Knife
- 60550000  0 0 Witching Urn
- 60560000  0 0 Lightning Urn
- 60570000  0 0 Firebomb
- 60575000  0 0 Black Firebomb
- 60580000  0 0 Hexing Urn
- 60590000  0 0 Poison Throwing Knife
- 60595000  0 0 Dung Pie
- 60600000  0 0 Lacerating Knife
- 60610000  0 0 Corrosive Urn
- 60620000  0 0 Holy Water Urn
- 60625000  0 0 Fading Soul
- 60630000  0 0 Soul of a Lost Undead
- 60640000  0 0 Large Soul of a Lost Undead
- 60650000  0 0 Soul of a Nameless Soldier
- 60660000  0 0 Large Soul of a Nameless Soldier
- 60670000  0 0 Soul of a Proud Knight
- 60680000  0 0 Large Soul of a Proud Knight
- 60690000  0 0 Soul of a Brave Warrior
- 60700000  0 0 Large Soul of a Brave Warrior
- 60710000  0 0 Soul of a Hero
- 60720000  0 0 Soul of a Great Hero
- 60760000  0 0 Wood Arrow
- 60770000  0 0 Iron Arrow
- 60780000  0 0 Magic Arrow
- 60790000  0 0 Lightning Arrow
- 60800000  0 0 Fire Arrow
- 60810000  0 0 Dark Arrow
- 60820000  0 0 Poison Arrow
- 60830000  0 0 Lacerating Arrow
- 60850000  0 0 Iron Greatarrow
- 60870000  0 0 Lightning Greatarrow
- 60880000  0 0 Fire Greatarrow
- 60900000  0 0 Destructive Greatarrow
- 60910000  0 0 Wood Bolt
- 60920000  0 0 Heavy Bolt
- 60930000  0 0 Magic Bolt
- 60940000  0 0 Lightning Bolt
- 60950000  0 0 Fire Bolt
- 60960000  0 0 Dark Bolt
- 60970000  0 0 Titanite Shard
- 60975000  0 0 Large Titanite Shard
- 60980000  0 0 Titanite Chunk
- 60990000  0 0 Titanite Slab
- 61000000  0 0 Twinkling Titanite
- 61030000  0 0 Petrified Dragon Bone
- 61060000  0 0 Faintstone
- 61070000  0 0 Boltstone
- 61080000  0 0 Firedrake Stone
- 61090000  0 0 Darknight Stone
- 61100000  0 0 Poison Stone
- 61110000  0 0 Bleed Stone
- 61130000  0 0 Raw Stone
- 61140000  0 0 Magic Stone
- 61150000  0 0 Old Mundane Stone
- 61160000  0 0 Palestone
- 62000000  0 0 Dried Fingers
- 62020000  0 0 Bone of Order
- 62030000  0 0 White Sign Soapstone
- 62040000  0 0 Small White Sign Soapstone
- 62045000  0 0 Red Sign Soapstone
- 62050000  0 0 Cracked Blue Eye Orb
- 62060000  0 0 Cracked Red Eye Orb
- 62070000  0 0 Dragon Eye
- 62100000  0 0 Token of Fidelity
- 62110000  0 0 Token of Spite
- 62120000  0 0 Sunlight Medal
- 62130000  0 0 Dragon Scale
- 62140000  0 0 Rat Tail
- 62150000  0 0 Awestone
- 62160000  0 0 Black Separation Crystal
- 62170000  0 0 Seed of a Tree of Giants
- 62190000  0 0 Petrified Egg
- 63000000  0 0 "Point" Gesture
- 63001000  0 0 "I won't bite" Gesture
- 63003000  0 0 "Bow" Gesture
- 63004000  0 0 "Welcome" Gesture
- 63005000  0 0 "Duel bow" Gesture
- 63006000  0 0 "Wave" Gesture
- 63007000  0 0 "Pumped up" Gesture
- 63008000  0 0 "Joy" Gesture
- 63009000  0 0 "Warcry" Gesture
- 63010000  0 0 "Warmup" Gesture
- 63011000  0 0 "Hurrah!" Gesture
- 63012000  0 0 "Righty-ho!" Gesture
- 63013000  0 0 "No way" Gesture
- 63014000  0 0 "This one's me" Gesture
- 63015000  0 0 "Have mercy!" Gesture
- 63016000  0 0 "Prostration" Gesture
- 63017000  0 0 "Decapitate" Gesture
- 63018000  0 0 "Fist pump" Gesture
- 63019000  0 0 "Mock" Gesture
- 63021000  0 0 "Praise the Sun" Gesture
- 64000000  0 0 Soul of the Pursuer
- 64010000  0 0 Soul of the Last Giant
- 64020000  0 0 Dragonrider Soul
- 64030000  0 0 Old Dragonslayer Soul
- 64040000  0 0 Flexile Sentry Soul
- 64050000  0 0 Ruin Sentinel Soul
- 64060000  0 0 Soul of the Lost Sinner
- 64070000  0 0 Executioner's Chariot Soul
- 64080000  0 0 Skeleton Lord's Soul
- 64090000  0 0 Covetous Demon Soul
- 64100000  0 0 Mytha, the Baneful Queen Soul
- 64110000  0 0 Smelter Demon Soul
- 64120000  0 0 Old Iron King Soul
- 64130000  0 0 Royal Rat Vanguard Soul
- 64140000  0 0 Soul of the Rotten
- 64150000  0 0 Scorpioness Najka Soul
- 64160000  0 0 Royal Rat Authority Soul
- 64170000  0 0 Soul of the Duke's Dear Freja
- 64180000  0 0 Looking Glass Knight Soul
- 64190000  0 0 Demon of Song Soul
- 64200000  0 0 Soul of Velstadt
- 64210000  0 0 Soul of the King
- 64220000  0 0 Guardian Dragon Soul
- 64230000  0 0 Ancient Dragon Soul
- 64240000  0 0 Giant Lord Soul
- 64250000  0 0 Soul of Nashandra
- 64260000  0 0 Throne Defender Soul
- 64270000  0 0 Throne Watcher Soul
- 64280000  0 0 Darklurker Soul
- 64290000  0 0 Belfry Gargoyle Soul
- 64300000  0 0 Old Witch Soul
- 64310000  0 0 Old King Soul
- 64320000  0 0 Old Dead One Soul
- 64330000  0 0 Old Paledrake Soul
- 64500000  0 0 Soul of Sinh, the Slumbering Dragon
- 64510000  0 0 Soul of the Fume Knight
- 64520000  0 0 Soul of Aava, the King's Pet
- 64530000  0 0 Soul of Elana, Squalid Queen
- 64540000  0 0 Soul of Nadalia, Bride of Ash
- 64550000  0 0 Soul of Alsanna, Silent Oracle
- 64560000  0 0 Soul of Sir Alonne
- 64580000  0 0 Soul of the Ivory King
- 64590000  0 0 Soul of Zallen, the King's Pet
- 64600000  0 0 Loyce Soul
- 64610000  0 0 Soul of Lud, the King's Pet
+ //Format: Item ID; Stack Limit; Reinforce Type; Name [arbitrary]
+ 60010000  1 0 Lifegem
+ 60020000  1 0 Radiant Lifegem
+ 60030000  1 0 Old Radiant Lifegem
+ 60035000  1 0 Elizabeth Mushroom
+ 60036000  1 0 Dried Root
+ 60040000  1 0 Amber Herb
+ 60050000  1 0 Twilight Herb
+ 60060000  1 0 Wilted Dusk Herb
+ 60070000  1 0 Poison Moss
+ 60090000  1 0 Monastery Charm
+ 60100000  1 0 Dragon Charm
+ 60105000  1 0 Divine Blessing
+ 60110000  1 0 Rouge Water
+ 60120000  1 0 Crimson Water
+ 60151000  1 0 Human Effigy
+ 60155000  1 0 Estus Flask
+ 60160000  1 0 Small Blue Burr
+ 60170000  1 0 Small Yellow Burr
+ 60180000  1 0 Small Orange Burr
+ 60190000  1 0 Dark Troches
+ 60200000  1 0 Common Fruit
+ 60210000  1 0 Red Leech Troches
+ 60230000  1 0 Triclops Snake Troches
+ 60235000  1 0 Old Growth Balm
+ 60236000  1 0 Vine Balm
+ 60237000  1 0 Blackweed Balm
+ 60238000  1 0 Goldenfruit Balm
+ 60239000  1 0 Brightbug
+ 60240000  1 0 Aromatic Ooze
+ 60250000  1 0 Gold Pine Resin
+ 60260000  1 0 Charcoal Pine Resin
+ 60270000  1 0 Dark Pine Resin
+ 60280000  1 0 Rotten Pine Resin
+ 60290000  1 0 Bleeding Serum
+ 60310000  1 0 Green Blossom
+ 60320000  1 0 Rusted Coin
+ 60350000  1 0 Homeward Bone
+ 60355000  1 0 Aged Feather
+ 60360000  1 0 Darksign
+ 60370000  1 0 Silver Talisman
+ 60405000  1 0 Dragon Head Stone
+ 60405010  1 0 Dragon Head Stone
+ 60406000  1 0 Dragon Torso Stone
+ 60406010  1 0 Dragon Torso Stone
+ 60410000  1 0 Repair Powder
+ 60420000  1 0 Torch
+ 60430000  1 0 Flame Butterfly
+ 60450000  1 0 Prism Stone
+ 60470000  1 0 Hello Carving
+ 60480000  1 0 Thank You Carving
+ 60490000  1 0 I'm Sorry Carving
+ 60500000  1 0 Very Good! Carving
+ 60510000  1 0 Rubbish
+ 60511000  1 0 Petrified Something
+ 60525000  1 0 Estus Flask Shard
+ 60526000  1 0 Sublime Bone Dust
+ 60527000  1 0 Bonfire Ascetic
+ 60530000  1 0 Alluring Skull
+ 60531000  1 0 Lloyd's Talisman
+ 60536000  1 0 Pharros' Lockstone
+ 60537000  1 0 Fragrant Branch of Yore
+ 60538000  1 0 Fire Seed
+ 60540000  1 0 Throwing Knife
+ 60550000  1 0 Witching Urn
+ 60560000  1 0 Lightning Urn
+ 60570000  1 0 Firebomb
+ 60575000  1 0 Black Firebomb
+ 60580000  1 0 Hexing Urn
+ 60590000  1 0 Poison Throwing Knife
+ 60595000  1 0 Dung Pie
+ 60600000  1 0 Lacerating Knife
+ 60610000  1 0 Corrosive Urn
+ 60620000  1 0 Holy Water Urn
+ 60625000  1 0 Fading Soul
+ 60630000  1 0 Soul of a Lost Undead
+ 60640000  1 0 Large Soul of a Lost Undead
+ 60650000  1 0 Soul of a Nameless Soldier
+ 60660000  1 0 Large Soul of a Nameless Soldier
+ 60670000  1 0 Soul of a Proud Knight
+ 60680000  1 0 Large Soul of a Proud Knight
+ 60690000  1 0 Soul of a Brave Warrior
+ 60700000  1 0 Large Soul of a Brave Warrior
+ 60710000  1 0 Soul of a Hero
+ 60720000  1 0 Soul of a Great Hero
+ 60760000  1 0 Wood Arrow
+ 60770000  1 0 Iron Arrow
+ 60780000  1 0 Magic Arrow
+ 60790000  1 0 Lightning Arrow
+ 60800000  1 0 Fire Arrow
+ 60810000  1 0 Dark Arrow
+ 60820000  1 0 Poison Arrow
+ 60830000  1 0 Lacerating Arrow
+ 60850000  1 0 Iron Greatarrow
+ 60870000  1 0 Lightning Greatarrow
+ 60880000  1 0 Fire Greatarrow
+ 60900000  1 0 Destructive Greatarrow
+ 60910000  1 0 Wood Bolt
+ 60920000  1 0 Heavy Bolt
+ 60930000  1 0 Magic Bolt
+ 60940000  1 0 Lightning Bolt
+ 60950000  1 0 Fire Bolt
+ 60960000  1 0 Dark Bolt
+ 60970000  1 0 Titanite Shard
+ 60975000  1 0 Large Titanite Shard
+ 60980000  1 0 Titanite Chunk
+ 60990000  1 0 Titanite Slab
+ 61000000  1 0 Twinkling Titanite
+ 61030000  1 0 Petrified Dragon Bone
+ 61060000  1 0 Faintstone
+ 61070000  1 0 Boltstone
+ 61080000  1 0 Firedrake Stone
+ 61090000  1 0 Darknight Stone
+ 61100000  1 0 Poison Stone
+ 61110000  1 0 Bleed Stone
+ 61130000  1 0 Raw Stone
+ 61140000  1 0 Magic Stone
+ 61150000  1 0 Old Mundane Stone
+ 61160000  1 0 Palestone
+ 62000000  1 0 Dried Fingers
+ 62020000  1 0 Bone of Order
+ 62030000  1 0 White Sign Soapstone
+ 62040000  1 0 Small White Sign Soapstone
+ 62045000  1 0 Red Sign Soapstone
+ 62050000  1 0 Cracked Blue Eye Orb
+ 62060000  1 0 Cracked Red Eye Orb
+ 62070000  1 0 Dragon Eye
+ 62100000  1 0 Token of Fidelity
+ 62110000  1 0 Token of Spite
+ 62120000  1 0 Sunlight Medal
+ 62130000  1 0 Dragon Scale
+ 62140000  1 0 Rat Tail
+ 62150000  1 0 Awestone
+ 62160000  1 0 Black Separation Crystal
+ 62170000  1 0 Seed of a Tree of Giants
+ 62190000  1 0 Petrified Egg
+ 64000000  1 0 Soul of the Pursuer
+ 64010000  1 0 Soul of the Last Giant
+ 64020000  1 0 Dragonrider Soul
+ 64030000  1 0 Old Dragonslayer Soul
+ 64040000  1 0 Flexile Sentry Soul
+ 64050000  1 0 Ruin Sentinel Soul
+ 64060000  1 0 Soul of the Lost Sinner
+ 64070000  1 0 Executioner's Chariot Soul
+ 64080000  1 0 Skeleton Lord's Soul
+ 64090000  1 0 Covetous Demon Soul
+ 64100000  1 0 Mytha, the Baneful Queen Soul
+ 64110000  1 0 Smelter Demon Soul
+ 64120000  1 0 Old Iron King Soul
+ 64130000  1 0 Royal Rat Vanguard Soul
+ 64140000  1 0 Soul of the Rotten
+ 64150000  1 0 Scorpioness Najka Soul
+ 64160000  1 0 Royal Rat Authority Soul
+ 64170000  1 0 Soul of the Duke's Dear Freja
+ 64180000  1 0 Looking Glass Knight Soul
+ 64190000  1 0 Demon of Song Soul
+ 64200000  1 0 Soul of Velstadt
+ 64210000  1 0 Soul of the King
+ 64220000  1 0 Guardian Dragon Soul
+ 64230000  1 0 Ancient Dragon Soul
+ 64240000  1 0 Giant Lord Soul
+ 64250000  1 0 Soul of Nashandra
+ 64260000  1 0 Throne Defender Soul
+ 64270000  1 0 Throne Watcher Soul
+ 64280000  1 0 Darklurker Soul
+ 64290000  1 0 Belfry Gargoyle Soul
+ 64300000  1 0 Old Witch Soul
+ 64310000  1 0 Old King Soul
+ 64320000  1 0 Old Dead One Soul
+ 64330000  1 0 Old Paledrake Soul
+ 64500000  1 0 Soul of Sinh, the Slumbering Dragon
+ 64510000  1 0 Soul of the Fume Knight
+ 64520000  1 0 Soul of Aava, the King's Pet
+ 64530000  1 0 Soul of Elana, Squalid Queen
+ 64540000  1 0 Soul of Nadalia, Bride of Ash
+ 64550000  1 0 Soul of Alsanna, Silent Oracle
+ 64560000  1 0 Soul of Sir Alonne
+ 64580000  1 0 Soul of the Ivory King
+ 64590000  1 0 Soul of Zallen, the King's Pet
+ 64600000  1 0 Loyce Soul
+ 64610000  1 0 Soul of Lud, the King's Pet

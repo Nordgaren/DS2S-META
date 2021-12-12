@@ -1,0 +1,11 @@
+﻿//Format: Name, /Relative/File/Path/Category.txt, Show ID boolean
+Armor, Resources/Equipment/Armor/Armor.txt, false
+Goods, Resources/Equipment/Items/Goods.txt, false
+Gestures, Resources/Equipment/Items/Gestures.txt, false
+Key Items, Resources/Equipment/Items/KeyItems.txt, false
+Melee Weapons, Resources/Equipment/Weapons/MeleeWeapons.txt, false
+Ranged Weapons, Resources/Equipment/Weapons/RangedWeapons.txt, false
+Rings, Resources/Equipment/Rings/Rings.txt, false
+Shields, Resources/Equipment/Weapons/Shields.txt, false
+Spells, Resources/Equipment/Items/Spells.txt, false
+Spell Tools, Resources/Equipment/Weapons/SpellTools.txt, false

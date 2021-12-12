@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{765D15F8-3523-4115-8114-049F9CFAFD5F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DS2_META</RootNamespace>
-    <AssemblyName>DS2 META</AssemblyName>
+    <RootNamespace>DS2S_META</RootNamespace>
+    <AssemblyName>DS2S META</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -221,7 +221,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="List Items\DS2Level.cs" />
+    <Compile Include="List Items\DS2SInfusion.cs" />
+    <Compile Include="TabControls\ItemControl.xaml.cs">
+      <DependentUpon>ItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="List Items\DS2SItemCategory.cs" />
+    <Compile Include="List Items\DS2SItem.cs" />
     <Compile Include="TabControls\HotkeyControl.xaml.cs">
       <DependentUpon>HotkeyControl.xaml</DependentUpon>
     </Compile>
@@ -234,50 +239,60 @@
     </Compile>
     <Compile Include="TabControls\METAControl.cs" />
     <Compile Include="Util\GetTxtResourceClass.cs" />
-    <Compile Include="List Items\DS2Class.cs" />
+    <Compile Include="List Items\DS2SClass.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TabControls\StatsControl.xaml.cs">
       <DependentUpon>StatsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Util\DS2Assembly.cs" />
-    <Compile Include="Util\DS2Hook.cs" />
-    <Compile Include="Util\DS2Offsets.cs" />
-    <Compile Include="Util\DS2ViewModel.cs" />
+    <Compile Include="Util\DS2SAssembly.cs" />
+    <Compile Include="Util\DS2SHook.cs" />
+    <Compile Include="Util\DS2SOffsets.cs" />
+    <Compile Include="Util\DS2SViewModel.cs" />
     <Compile Include="Util\ObservableObject.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Resource Include="Resources\Equipment\Items\Keys.txt">
+    <None Include="Resources\Equipment\DS2SItemCategories.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment\Weapons\SpellTools.txt">
+    </None>
+    <None Include="Resources\Equipment\Items\Gestures.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment\Weapons\RangedWeapons.txt">
+    </None>
+    <None Include="Resources\Equipment\Items\KeyItems.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment\Weapons\Shields.txt">
+    </None>
+    <None Include="Resources\Equipment\Weapons\SpellTools.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment\Items\Goods.txt">
+    </None>
+    <None Include="Resources\Equipment\Weapons\RangedWeapons.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment\Spells\Magic.txt">
+    </None>
+    <None Include="Resources\Equipment\Weapons\Shields.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment\Rings\Rings.txt">
+    </None>
+    <None Include="Resources\Equipment\Items\Goods.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment\Weapons\Weapons.txt">
+    </None>
+    <None Include="Resources\Equipment\Items\Spells.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment\Armor\Armor.txt">
+    </None>
+    <None Include="Resources\Equipment\Rings\Rings.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Equipment\Weapons\MeleeWeapons.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Equipment\Armor\Armor.txt">
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </None>
+    <Page Include="TabControls\ItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -330,19 +345,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Systems\Other\Sexes.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\Systems\Other\Sexes.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Systems\Other\Physiques.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\Systems\Other\Physiques.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Systems\Classes.txt">
+    <None Include="Resources\Systems\Classes.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ToDo.txt" />
