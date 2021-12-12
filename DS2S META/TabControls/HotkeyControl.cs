@@ -36,8 +36,6 @@ namespace DS2S_META
             KeyboardHook.KeyDownOrUp += GlobalKeyboardHook_KeyDownOrUp;
         }
 
-        private void ResetHotkeys() { }
-
         private void SaveHotkeys()
         {
             Settings.EnableHotkeys = cbxEnableHotkeys.IsChecked.Value;
@@ -46,9 +44,6 @@ namespace DS2S_META
                 hotkey.Save();
             KeyboardHook.Dispose();
         }
-
-        private void ReloadHotkeys() { }
-        private void UpdateHotkeys() { }
 
         private void GlobalKeyboardHook_KeyDownOrUp(object sender, GlobalKeyboardHookEventArgs e)
         {

@@ -24,6 +24,14 @@ namespace DS2S_META
         {
             InitializeComponent();
         }
+        public override void InitTab()
+        {
+            foreach (var bonfire in DS2SBonfire.All)
+                cbxBonfire.Items.Add(bonfire);
+            LastSetBonfire = new DS2SBonfire(-1, "Last Set: None"); //last set bonfire (default values)
+            cbxBonfire.Items.Add(LastSetBonfire); //add to end of filter
+        }
+
         float AngX = 0;
         float AngY = 0;
         float AngZ = 0;
@@ -43,6 +51,9 @@ namespace DS2S_META
         {
             if (btnPosRestore.IsEnabled)
             {
+                if (!nudPosStoredX.Value.HasValue || !nudPosStoredY.Value.HasValue || !nudPosStoredZ.Value.HasValue)
+                    return;
+
                 Hook.StableX = (float)nudPosStoredX.Value;
                 Hook.StableY = (float)nudPosStoredY.Value;
                 Hook.StableZ = (float)nudPosStoredZ.Value;
@@ -51,8 +62,59 @@ namespace DS2S_META
                 Hook.AngZ = AngZ;
             }
         }
+        private DS2SBonfire LastSetBonfire;
         internal override void UpdateCtrl() 
         {
+            //manage unknown warps and current warps that are not in filter
+            int bonfireID = Hook.LastBonfire;
+
+            if (LastSetBonfire.ID != bonfireID) // lastSetBonfire does not match game LastBonfire
+            {
+                //target warp is not in filter
+                var result = DS2SBonfire.All.FirstOrDefault(b => b.ID == bonfireID); //check if warp is in bonfire resource
+                if (result == null)
+                {
+                    //bonfire not in filter. Add to filter as unknown
+                    result = new DS2SBonfire(bonfireID, $"Unknown {bonfireID}");
+                    DS2SBonfire.All.Add(result);
+                    FilterBonfires();
+                }
+
+                //manage lastSetBonfire
+                cbxBonfire.Items.Remove(LastSetBonfire); //remove from filter (if there)
+
+                LastSetBonfire.ID = result.ID;
+                LastSetBonfire.Name = "Last Set: " + result.Name;
+
+                cbxBonfire.Items.Add(LastSetBonfire); //add to end of filter
+                cbxBonfire.SelectedItem = LastSetBonfire;
+                //AddLastSetBonfire();
+            }
+        }
+        private void FilterBonfires()
+        {
+            //warp filter management
+
+            cbxBonfire.Items.Clear();
+            cbxBonfire.SelectedItem = null;
+
+            //go through bonfire resource and add to filter
+            foreach (var bonfire in DS2SBonfire.All)
+            {
+                if (bonfire.ToString().ToLower().Contains(txtSearch.Text.ToLower()))
+                {
+                    cbxBonfire.Items.Add(bonfire);
+                }
+            }
+
+            cbxBonfire.Items.Add(LastSetBonfire); //add lastSetBonfire to end of filter
+
+            cbxBonfire.SelectedIndex = 0;
+
+            if (txtSearch.Text == "")
+                lblSearch.Visibility = Visibility.Visible;
+            else
+                lblSearch.Visibility = Visibility.Hidden;
         }
         internal override void ReloadCtrl() 
         { 
@@ -68,6 +130,9 @@ namespace DS2S_META
             nudStamina.IsEnabled = enable;
             cbxSpeed.IsEnabled = enable;
             cbxGravity.IsEnabled = enable;
+
+            if (enable)
+                cbxBonfire.SelectedIndex = cbxBonfire.Items.Count - 1;
         }
         public void ToggleGravity()
         {
@@ -94,6 +159,12 @@ namespace DS2S_META
         {
             if (GameLoaded)
                 Hook.Speed = (float)nudSpeed.Value;
+        }
+
+        private void cbxBonfire_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (Hook.Loaded && cbxQuickSelectBonfire.Checked)
+            //    Hook.LastBonfire = ((DS2SBonfire)cbxBonfire.SelectedItem).ID;
         }
     }
 }

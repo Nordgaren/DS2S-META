@@ -106,11 +106,7 @@ namespace DS2S_META
             //ResetAllTabs();
         }
 
-        private void InitAllTabs()
-        {
-            metaItems.InitTab();
-            InitHotkeys();
-        }
+        
 
         private void UpdateTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
@@ -149,25 +145,27 @@ namespace DS2S_META
             }));
             
         }
-
+        private void InitAllTabs()
+        {
+            metaItems.InitTab();
+            metaPlayer.InitTab();
+            InitHotkeys();
+        }
         private void UpdateProperties()
         {
             Hook.UpdateStatsProperties();
             Hook.UpdatePlayerProperties();
         }
-
         private void EnableTabs(bool enable)
         {
             metaPlayer.EnableCtrls(enable);
             metaStats.EnableCtrls(enable);
         }
-
         private void ReloadAllTabs()
         {
             metaPlayer.ReloadCtrl();
             metaStats.ReloadCtrl();
         }
-
         private void UpdateAllTabs()
         {
             metaPlayer.UpdateCtrl();

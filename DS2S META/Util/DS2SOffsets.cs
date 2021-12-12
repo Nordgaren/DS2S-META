@@ -142,5 +142,11 @@ namespace DS2S_META
         public const int ParamDataOffset1 = 0x18;
         public const int ParamDataOffset2 = 0x580;
         public const int ParamDataOffset3 = 0xD8;
+
+        public const int BonfireOffset = 0x70;
+        public enum Bonfire
+        {
+            LastSetBonfire = 0x16C
+        }
     }
 }

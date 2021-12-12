@@ -221,6 +221,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="List Items\DS2SBonfire.cs" />
     <Compile Include="List Items\DS2SInfusion.cs" />
     <Compile Include="TabControls\ItemControl.xaml.cs">
       <DependentUpon>ItemControl.xaml</DependentUpon>
@@ -231,6 +232,9 @@
       <DependentUpon>HotkeyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\User32.cs" />
+    <None Include="Resources\Systems\Bonfires.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="Resources\Assembly\GiveItemWithoutMenu.txt" />
     <Content Include="Resources\Assembly\GiveItemWithMenu.txt" />
     <Compile Include="TabControls\HotkeyControl.cs" />

@@ -20,5 +20,8 @@
     <Setting Name="SilentItemGive" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="SpeedValue" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2.0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -67,11 +67,22 @@
             <TabItem x:Name="tabSettings" Header="Settings">
                 <Grid Background="LightGray">
                     <TabControl >
+                        
                         <TabItem Header="General">
-                            <CheckBox Content="Give Items Silently" IsChecked="{Binding SilentItemGive, 
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" >
+                                    <Separator Visibility="Hidden" Height="10"/>
+                                    <CheckBox Content="Give Items Silently" IsChecked="{Binding SilentItemGive, 
                 Mode=TwoWay, 
                 Source={x:Static p:Settings.Default}, 
                 UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                            </Grid>
+                            
                         </TabItem>
                         <TabItem x:Name="tabHotkeys" Header="Hotkeys">
                             <Grid>

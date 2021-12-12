@@ -42,6 +42,7 @@ namespace DS2S_META
         private PHPointer PlayerParam;
         private PHPointer PlayerMapData;
         private PHPointer ParamLevelUpSouls;
+        private PHPointer Bonfire;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
 
@@ -74,6 +75,7 @@ namespace DS2S_META
             PlayerParam = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerParamOffset);
             PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2SOffsets.PlayerMapDataOffset2, (int)DS2SOffsets.PlayerMapDataOffset3);
             ParamLevelUpSouls = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.ParamDataOffset2, (int)DS2SOffsets.ParamDataOffset3);
+            Bonfire = CreateChildPointer(BaseA, (int)DS2SOffsets.BonfireOffset);
             GetLevelRequirements();
             UpdateStatsProperties();
         }
@@ -252,6 +254,11 @@ namespace DS2S_META
         {
             get => Loaded ? PlayerGravity.ReadBoolean((int)DS2SOffsets.Gravity.Gravity) : false;
             set => PlayerGravity.WriteBoolean((int)DS2SOffsets.Gravity.Gravity, value);
+        }
+        public int LastBonfire
+        {
+            get => Loaded ? Bonfire.ReadInt32((int)DS2SOffsets.Bonfire.LastSetBonfire) : 0;
+            set => Bonfire.WriteInt32((int)DS2SOffsets.Bonfire.LastSetBonfire, value);
         }
         #endregion
 

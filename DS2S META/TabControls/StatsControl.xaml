@@ -54,7 +54,6 @@
             <wpfTool:IntegerUpDown x:Name="nudGiveSouls" TextAlignment="Center" VerticalContentAlignment="Center" Width="100" LostKeyboardFocus="Name_LostKeyboardFocus" Minimum="0" Value="0" ClipValueToMinMax="True"/>
             <Separator Visibility="Hidden"/>
             <Button x:Name="btnGive" Content="Give" Width="100" Click="GiveSouls_Click" IsEnabled="False" />
-            <Button Content="Item Gib" Click="Button_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="1" Margin="10,10,10,0">
             <Label Content="Stats"/>

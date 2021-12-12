@@ -76,23 +76,15 @@ namespace DS2S_META
                 cmbClass.SelectedIndex = -1;
             }
         }
-
         private void GiveSouls_Click(object sender, RoutedEventArgs e)
         {
             if (nudGiveSouls.Value.HasValue)
                 Hook.GiveSouls(nudGiveSouls.Value.Value);
         }
-
         private void ResetSoulMemory_Click(object sender, RoutedEventArgs e)
         {
             Hook.ResetSoulMemory();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Hook.GetItem(1, 60151000, Properties.Settings.Default.SilentItemGive);
-        }
-
         private void Name_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             Hook.Name = txtName.Text;

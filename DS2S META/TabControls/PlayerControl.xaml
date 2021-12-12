@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:p="clr-namespace:DS2S_META.Properties"
              xmlns:local="clr-namespace:DS2S_META"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="425" Background="LightGray">
@@ -105,8 +106,19 @@
                     <Separator Width="200" Visibility="Hidden"/>
                     <StackPanel>
                         <CheckBox Content="Modify Speed" x:Name="cbxSpeed" IsEnabled="False" Checked="cbxSpeed_Checked" Unchecked="cbxSpeed_Checked"/>
-                        <wpfTool:DecimalUpDown Value="2" IsEnabled="False" FormatString="F2" Increment=".5" TextAlignment="Center" Name="nudSpeed" ValueChanged="nudSpeed_ValueChanged"/>
+                        <wpfTool:DecimalUpDown Value="{Binding SpeedValue, 
+                Mode=TwoWay, 
+                Source={x:Static p:Settings.Default}, 
+                UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" FormatString="F2" Increment=".5" TextAlignment="Center" Name="nudSpeed" ValueChanged="nudSpeed_ValueChanged"/>
                     </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Bonfire"/>
+                    <ComboBox x:Name="cbxBonfire" SelectionChanged="cbxBonfire_SelectionChanged" IsEnabled="False" Width="350"/>
+                    <Grid Visibility="Hidden">
+                        <TextBox x:Name="txtSearch" Width="350"/>
+                        <Label Content="Search" x:Name="lblSearch" Margin="45,0,0,0"/>
+                    </Grid>
                 </StackPanel>
             </StackPanel>
 
