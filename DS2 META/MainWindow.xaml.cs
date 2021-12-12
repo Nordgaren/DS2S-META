@@ -27,6 +27,7 @@ namespace DS2_META
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static Properties.Settings Settings = Properties.Settings.Default;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,8 +36,8 @@ namespace DS2_META
         DS2Hook Hook => viewModel.Hook;
         bool FormLoaded
         {
-            get => viewModel.Loaded;
-            set => viewModel.Loaded = value;
+            get => viewModel.GameLoaded;
+            set => viewModel.GameLoaded = value;
         }
         public bool Reading
         {
@@ -54,8 +55,8 @@ namespace DS2_META
             var version= fileVersionInfo.ProductVersion;
 
             Title = "DS2 META " + version;
-            //EnableTabs(false);
-            //InitAllTabs();
+            EnableTabs(false);
+            InitAllTabs();
 
             try
             {
@@ -92,6 +93,12 @@ namespace DS2_META
             updateTimer.Elapsed += UpdateTimer_Elapsed;
             updateTimer.Enabled = true;
         }
+
+        private void InitAllTabs()
+        {
+            InitHotkeys();
+        }
+
         private void UpdateTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             Dispatcher.Invoke(new Action(() => {

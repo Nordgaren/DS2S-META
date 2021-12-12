@@ -46,6 +46,9 @@
     <Reference Include="Costura, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.5.7.0\lib\netstandard1.0\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="LowLevelHooking, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LowLevelHooking.1.0.1\lib\net20\LowLevelHooking.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
       <Private>True</Private>
@@ -214,7 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Util\User32.cs" />
     <Content Include="Resources\Assembly\GiveItemWithMenu.txt" />
+    <Compile Include="TabControls\HotkeyControl.cs" />
+    <Compile Include="Util\METAHotkey.cs" />
     <Compile Include="TabControls\PlayerControl.xaml.cs">
       <DependentUpon>PlayerControl.xaml</DependentUpon>
     </Compile>
@@ -226,9 +232,6 @@
     </Compile>
     <Compile Include="TabControls\StatsControl.xaml.cs">
       <DependentUpon>StatsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TabControls\TestControl.xaml.cs">
-      <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\DS2Assembly.cs" />
     <Compile Include="Util\DS2Hook.cs" />
@@ -248,10 +251,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TabControls\StatsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="TabControls\TestControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -308,9 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Systems\Levels.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Assembly\AddSouls.txt" />

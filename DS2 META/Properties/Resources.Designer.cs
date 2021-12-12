@@ -19,7 +19,7 @@ namespace DS2_META.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -96,88 +96,20 @@ namespace DS2_META.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 0:  48 81 ec e8 01 00 00    sub    rsp,0x1e8
-        ///7:  41 b8 08 00 00 00       mov    r8d,0x8 ;Item Amount
+        ///7:  41 b8 08 00 00 00       mov    r8d,0x8 ;item amount
         ///d:  49 bf 00 00 00 00 ff    movabs r15,0xffffffff00000000 ;Item Struct Address
         ///14: ff ff ff
         ///17: 49 8d 17                lea    rdx,[r15]
         ///1a: 48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000 ;Item bag?
         ///21: ff ff ff
         ///24: 45 31 c9                xor    r9d,r9d
-        ///27: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000 ;Call add item function
+        ///27: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000 ;Call add item function DarkSoulsII.exe+1A8C67
         ///2e: ff ff ff
-        ///31: 41 ff d6                call   r14
-        ///34:  [rest of string was truncated]&quot;;.
+        ///31: 41 ff d6          [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GiveItemWithMenu {
             get {
                 return ResourceManager.GetString("GiveItemWithMenu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to //ID Level Up Cost
-        ///0 0
-        ///1 500
-        ///2 528
-        ///3 557
-        ///4 587
-        ///5 619
-        ///6 653
-        ///7 689
-        ///8 727
-        ///9 767
-        ///10 810
-        ///11 854
-        ///12 901
-        ///13 948
-        ///14 997
-        ///15 1049
-        ///16 1104
-        ///17 1159
-        ///18 1217
-        ///19 1278
-        ///20 1341
-        ///21 1408
-        ///22 1479
-        ///23 1553
-        ///24 1631
-        ///25 1699
-        ///26 1770
-        ///27 1845
-        ///28 1922
-        ///29 2003
-        ///30 2087
-        ///31 2175
-        ///32 2266
-        ///33 2361
-        ///34 2460
-        ///35 2564
-        ///36 2671
-        ///37 2784
-        ///38 2900
-        ///39 3022
-        ///40 3149
-        ///41 3256
-        ///42 3367
-        ///43 3482
-        ///44 3600
-        ///45 3722
-        ///46 3849
-        ///47 3980
-        ///48 4115
-        ///49 4255
-        ///50 4400
-        ///51 4549
-        ///52 4704
-        ///53 4864
-        ///54 5029
-        ///55 5200
-        ///56 5330
-        ///57 546 [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Levels {
-            get {
-                return ResourceManager.GetString("Levels", resourceCulture);
             }
         }
     }

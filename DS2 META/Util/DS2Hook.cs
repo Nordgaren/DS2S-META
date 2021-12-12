@@ -45,6 +45,8 @@ namespace DS2_META
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
 
+        public bool Focused => Hooked && User32.GetForegroundProcessID() == Process.Id;
+
         public DS2Hook(int refreshInterval, int minLifetime) :
             base(refreshInterval, minLifetime, p => p.MainWindowTitle == "DARK SOULS II")
         {

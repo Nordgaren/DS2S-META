@@ -27,12 +27,6 @@ namespace DS2_META
                 cmbClass.Items.Add(charClass);
             cmbClass.SelectedIndex = -1;
         }
-
-        private void Name_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            Hook.Name = txtName.Text;
-        }
-
         public void ReloadTab()
         {
 
@@ -98,5 +92,11 @@ namespace DS2_META
         {
             Hook.GetItem(1, 60151000);
         }
+
+        private void Name_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            Hook.Name = txtName.Text;
+        }
+
     }
 }

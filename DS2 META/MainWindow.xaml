@@ -50,12 +50,37 @@
         <TabControl Margin="0,75,0,0">
             <TabItem Header="Player">
                 <Grid Background="LightGray">
-                    <local:PlayerControl x:Name="metaPlayer" Hook="{Binding Hook}" Loaded="{Binding Loaded}"/>
+                    <local:PlayerControl x:Name="metaPlayer" Hook="{Binding Hook}" GameLoaded="{Binding Loaded}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Stats">
                 <Grid Background="LightGray">
-                    <local:StatsControl x:Name="metaStats" Hook="{Binding Hook}" Loaded="{Binding Loaded}"/>
+                    <local:StatsControl x:Name="metaStats" Hook="{Binding Hook}" GameLoaded="{Binding Loaded}"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabSettings" Header="Settings">
+                <Grid Background="LightGray">
+                    <TabControl >
+                        <TabItem Header="Ganeral">
+                        </TabItem>
+                        <TabItem x:Name="tabHotkeys" Header="Hotkeys">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <Separator Visibility="Hidden"/>
+                                    <CheckBox Content="Enable Hotkeys" x:Name="cbxEnableHotkeys"/>
+                                    <Separator Visibility="Hidden"/>
+                                    <StackPanel>
+                                        <Label Content="Test"/>
+                                        <TextBox x:Name="hkeyTest" Text="none" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
                 </Grid>
             </TabItem>
         </TabControl>

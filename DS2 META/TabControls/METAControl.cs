@@ -15,15 +15,15 @@ namespace DS2_META
         public static readonly DependencyProperty HookProperty =
             DependencyProperty.Register("Hook", typeof(DS2Hook), typeof(METAControl), new PropertyMetadata(default));
 
-        public bool Loaded
+        public bool GameLoaded
         {
-            get { return (bool)GetValue(LoadedProperty); }
-            set { SetValue(LoadedProperty, value); }
+            get { return (bool)GetValue(GameLoadedProperty); }
+            set { SetValue(GameLoadedProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Loaded.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty LoadedProperty =
-            DependencyProperty.Register("Loaded", typeof(bool), typeof(METAControl), new PropertyMetadata(default));
+        public static readonly DependencyProperty GameLoadedProperty =
+            DependencyProperty.Register("GameLoaded", typeof(bool), typeof(METAControl), new PropertyMetadata(default));
 
         internal virtual void UpdateCtrl() { }
         internal virtual void ReloadCtrl() { }

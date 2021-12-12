@@ -86,7 +86,7 @@ namespace DS2_META
 
         private void nudSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Loaded)
+            if (GameLoaded)
                 Hook.Speed = (float)nudSpeed.Value;
         }
     }

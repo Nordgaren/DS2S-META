@@ -10,7 +10,7 @@ namespace DS2_META
     internal class DS2ViewModel : ObservableObject
     {
         public DS2Hook Hook { get; private set; }
-        public bool Loaded { get; set; }
+        public bool GameLoaded { get; set; }
         public bool Reading
         {
             get => DS2Hook.Reading;
