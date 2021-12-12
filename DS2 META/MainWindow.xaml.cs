@@ -1,4 +1,5 @@
-﻿using Octokit;
+﻿using Bluegrams.Application;
+using Octokit;
 using PropertyHook;
 using System;
 using System.Collections.Generic;
@@ -27,9 +28,13 @@ namespace DS2_META
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Properties.Settings Settings = Properties.Settings.Default;
+        private static Properties.Settings Settings;
         public MainWindow()
         {
+            PortableSettingsProvider.SettingsFileName = "DS2 Meta.config";
+            PortableSettingsProvider.ApplyProvider(Properties.Settings.Default);
+            Settings = Properties.Settings.Default;
+
             InitializeComponent();
         }
 
@@ -49,7 +54,8 @@ namespace DS2_META
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //Location = settings.WindowLocation;
+            //Top = Settings.WindowTop;
+            //Left = Settings.WindowLeft;
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             var version= fileVersionInfo.ProductVersion;
@@ -85,13 +91,35 @@ namespace DS2_META
             }
             catch (Exception ex)
             {
-                labelCheckVersion.Content = "Something is very broke, contact DS Gadget repo owner";
+                labelCheckVersion.Content = "Something is very broke, contact DS2 META repo owner";
                 MessageBox.Show(ex.Message);
             }
 
             updateTimer.Interval = 16;
             updateTimer.Elapsed += UpdateTimer_Elapsed;
             updateTimer.Enabled = true;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            updateTimer.Stop();
+            SaveAllTabs();
+
+            if (WindowState == WindowState.Normal)
+            {
+                Settings.WindowTop = Top;
+                Settings.WindowLeft = Top;
+
+            }
+            else
+            {
+                Settings.WindowTop = RestoreBounds.Top;
+                Settings.WindowLeft = RestoreBounds.Left;
+
+            }
+
+            Settings.Save();
+            //ResetAllTabs();
         }
 
         private void InitAllTabs()
@@ -166,9 +194,11 @@ namespace DS2_META
             Process.Start(e.Uri.ToString());
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        
+
+        private void SaveAllTabs()
         {
-            updateTimer.Stop();
+            SaveHotkeys();
         }
     }
 }

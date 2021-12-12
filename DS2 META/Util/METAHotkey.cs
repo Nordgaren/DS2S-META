@@ -41,10 +41,9 @@ namespace DS2_META
             var parse = Enum.TryParse(e.Key.ToString(), out LowLevelHooking.VirtualKey virtualKey);
             if (!parse)
             {
-                HotkeyTextBox.Text = "Unbound";
+                HotkeyTextBox.Text = "Error";
                 return;
             }
-
             Key = virtualKey;
             if (Key == VirtualKey.Escape)
                 HotkeyTextBox.Text = "Unbound";

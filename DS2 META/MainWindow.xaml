@@ -64,19 +64,21 @@
                         <TabItem Header="Ganeral">
                         </TabItem>
                         <TabItem x:Name="tabHotkeys" Header="Hotkeys">
+                            
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <StackPanel>
+                                <StackPanel Grid.Row="1">
                                     <Separator Visibility="Hidden"/>
                                     <CheckBox Content="Enable Hotkeys" x:Name="cbxEnableHotkeys"/>
                                     <Separator Visibility="Hidden"/>
-                                    <StackPanel>
-                                        <Label Content="Test"/>
-                                        <TextBox x:Name="hkeyTest" Text="none" HorizontalAlignment="Center"/>
-                                    </StackPanel>
+                                    <CheckBox Content="Handle Hotkeys" x:Name="cbxHandleHotkeys"/>
+                                    <Separator Visibility="Hidden"/>
+                                    <Separator Margin="0,10,0,10"/>
+                                    <local:HotkeyControl x:Name="hkeyStorePosition" HotkeyName="Store Position" />
+                                    <local:HotkeyControl x:Name="hkeyRestorePosition" HotkeyName="Restore Position" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>

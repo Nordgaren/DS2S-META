@@ -18,9 +18,14 @@ namespace DS2_META
             cbxEnableHotkeys.IsChecked = Settings.EnableHotkeys;
             cbxHandleHotkeys.IsChecked = Settings.HandleHotkeys;
 
-            Hotkeys.Add(new METAHotkey("HotKeyTest1", hkeyTest, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("StorePosition", hkeyStorePosition.tbxHotkey, tabHotkeys, () =>
             {
-                Hook.GiveSouls(500);
+                metaPlayer.StorePosition();
+            }));
+
+            Hotkeys.Add(new METAHotkey("RestorePosition", hkeyRestorePosition.tbxHotkey, tabHotkeys, () =>
+            {
+                metaPlayer.RestorePosition();
             }));
 
             KeyboardHook.KeyDownOrUp += GlobalKeyboardHook_KeyDownOrUp;

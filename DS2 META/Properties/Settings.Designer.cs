@@ -26,12 +26,12 @@ namespace DS2_META.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("27")]
-        public int HotKeyTest1 {
+        public int StorePosition {
             get {
-                return ((int)(this["HotKeyTest1"]));
+                return ((int)(this["StorePosition"]));
             }
             set {
-                this["HotKeyTest1"] = value;
+                this["StorePosition"] = value;
             }
         }
         
@@ -56,6 +56,18 @@ namespace DS2_META.Properties {
             }
             set {
                 this["HandleHotkeys"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public int RestorePosition {
+            get {
+                return ((int)(this["RestorePosition"]));
+            }
+            set {
+                this["RestorePosition"] = value;
             }
         }
     }
