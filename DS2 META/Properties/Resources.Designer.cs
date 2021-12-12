@@ -112,5 +112,24 @@ namespace DS2S_META.Properties {
                 return ResourceManager.GetString("GiveItemWithMenu", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0:  48 81 ec e8 01 00 00    sub    rsp,0x1e8
+        ///7:  41 b8 08 00 00 00       mov    r8d,0x8 ;item amount
+        ///d:  49 bf 00 00 00 00 ff    movabs r15,0xffffffff00000000 ;Item Struct Address
+        ///14: ff ff ff
+        ///17: 49 8d 17                lea    rdx,[r15]
+        ///1a: 48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000 ;Item bag?
+        ///21: ff ff ff
+        ///24: 45 31 c9                xor    r9d,r9d
+        ///27: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000 ;Call add item function DarkSoulsII.exe+1A8C67
+        ///2e: ff ff ff
+        ///31: 41 ff d6          [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GiveItemWithoutMenu {
+            get {
+                return ResourceManager.GetString("GiveItemWithoutMenu", resourceCulture);
+            }
+        }
     }
 }

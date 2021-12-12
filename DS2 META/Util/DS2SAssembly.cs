@@ -29,6 +29,7 @@ namespace DS2S_META
 
         public static byte[] AddSouls = loadDefuseOutput(Properties.Resources.AddSouls);
         public static byte[] GetItem = loadDefuseOutput(Properties.Resources.GiveItemWithMenu);
+        public static byte[] GetItemNoMenu = loadDefuseOutput(Properties.Resources.GiveItemWithoutMenu);
         //public static byte[] LeaveSession = loadDefuseOutput(Properties.Resources.LeaveSession);
         //public static byte[] KickPlayer = loadDefuseOutput(Properties.Resources.KickPlayer);
         //public static byte[] TargetedEntity = loadDefuseOutput(Properties.Resources.TargetedEntity);

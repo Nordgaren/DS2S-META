@@ -90,7 +90,7 @@ namespace DS2S_META
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Hook.GetItem(1, 60151000);
+            Hook.GetItem(1, 60151000, Properties.Settings.Default.SilentItemGive);
         }
 
         private void Name_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)

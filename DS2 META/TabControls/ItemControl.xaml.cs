@@ -110,8 +110,11 @@ namespace DS2S_META
 
         }
 
-        private void cbxQuantityRestrict_CheckedChanged(object sender, EventArgs e)
+        private void cbxQuantityRestrict_Checked(object sender, RoutedEventArgs e)
         {
+            if (lbxItems == null)
+                return;
+
             if (!cbxQuantityRestrict.IsChecked.Value)
             {
                 nudQuantity.IsEnabled = true;
@@ -143,7 +146,7 @@ namespace DS2S_META
 
             if (cbxQuantityRestrict.IsChecked.Value)
             {
-                if (item.StackLimit == 1)
+                if (item.StackLimit <= 1)
                     nudQuantity.IsEnabled = false;
                 else
                     nudQuantity.IsEnabled = true;
@@ -237,7 +240,7 @@ namespace DS2S_META
         }
 
         //I think this is for safety so you don't spawn two items (not my code) - Nord
-        private void lbxItems_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void lbxItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             _ = ChangeColor(Brushes.DarkGray);
             CreateItem();
@@ -264,15 +267,8 @@ namespace DS2S_META
                 //    var infusion = cmbInfusion.SelectedItem as DS2SInfusion;
                 //    id += infusion.Value;
                 //}
-                Hook.GetItem(id, (int)nudQuantity.Value);
+                Hook.GetItem(id, (int)nudQuantity.Value, Properties.Settings.Default.SilentItemGive);
             }
-        }
-
-        //Give focus and select all
-        private void txtSearch_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            txtSearch.SelectAll();
-            txtSearch.Focus();
         }
 
         //handles up and down scrolling
@@ -388,7 +384,7 @@ namespace DS2S_META
                 FilterItems();
         }
 
-        private void cbxMaxUpgrade_CheckedChanged(object sender, EventArgs e)
+        private void cbxMaxUpgrade_Checked(object sender, RoutedEventArgs e)
         {
             //HandleMaxItemCheckbox()
             if (cbxMaxUpgrade.IsChecked.Value)
@@ -422,6 +418,12 @@ namespace DS2S_META
                 CreateItem();
                 return;
             }
+        }
+        //Select all text in search box
+        private void txtSearch_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            txtSearch.SelectAll();
+            txtSearch.Focus();
         }
     }
 }

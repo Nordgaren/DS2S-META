@@ -24,7 +24,7 @@
             <Label Content="Infusion"/>
             <ComboBox x:Name="cmbInfusion" />
             <Grid>
-                <TextBox x:Name="txtSearch" Height="20" TextChanged="txtSearch_TextChanged" PreviewKeyDown="KeyPressed" GotKeyboardFocus="txtSearch_GotKeyboardFocus" />
+                <TextBox x:Name="txtSearch" Height="20" TextChanged="txtSearch_TextChanged" PreviewKeyDown="KeyPressed" PreviewMouseLeftButtonDown="txtSearch_PreviewMouseLeftButtonDown"/>
                 <Label x:Name="lblSearch" Foreground="LightSlateGray" Content="Search..." IsEnabled="False" Margin="5,0,0,0" IsHitTestVisible="False"/>
             </Grid>
         </StackPanel>
@@ -37,12 +37,12 @@
         </StackPanel>
         <StackPanel Grid.Column="2" Margin="5">
             <Separator Height="25" Visibility="Hidden"/>
-            <CheckBox Content="Restrict" IsChecked="True" x:Name="cbxQuantityRestrict"/>
+            <CheckBox Content="Restrict" IsChecked="True" x:Name="cbxQuantityRestrict" Checked="cbxQuantityRestrict_Checked"/>
             <Separator Height="25" Visibility="Hidden"/>
-            <CheckBox x:Name="cbxMaxUpgrade" IsChecked="True" Content="Max"/>
+            <CheckBox x:Name="cbxMaxUpgrade" Content="Max" IsChecked="True" Checked="cbxMaxUpgrade_Checked" Unchecked="cbxMaxUpgrade_Checked" />
             <Separator Height="5" Visibility="Hidden"/>
-            <Button x:Name="btnCreate" Content="Create" Click="btnCreate_Click" />
+            <Button x:Name="btnCreate" Content="Create" Click="btnCreate_Click" PreviewKeyDown="KeyPressed"/>
         </StackPanel>
-        <ListBox x:Name="lbxItems" Grid.Row="1" ScrollViewer.IsDeferredScrollingEnabled="True" Grid.ColumnSpan="3" Margin="5" SelectionChanged="lbxItems_SelectionChanged" />
+        <ListBox x:Name="lbxItems" Grid.Row="1" ScrollViewer.IsDeferredScrollingEnabled="True" Grid.ColumnSpan="3" Margin="5" SelectionChanged="lbxItems_SelectionChanged" MouseDoubleClick="lbxItems_MouseDoubleClick" PreviewKeyDown="KeyPressed" />
     </Grid>
 </local:METAControl>

@@ -461,7 +461,15 @@ namespace DS2S_META
         #endregion
 
         #region Items
-        public void GetItem(int item, int amount)
+        public void GetItem(int item, int amount, bool silent)
+        {
+            if (silent)
+                GiveItemSilently(item, amount);
+            else
+                GiveItem(item, amount);
+        }
+
+        private void GiveItem(int item, int amount)
         {
             var itemStruct = Allocate(0x8A);
             Kernel32.WriteBytes(Handle, itemStruct + 0x4, BitConverter.GetBytes(item));
@@ -488,6 +496,28 @@ namespace DS2S_META
             Array.Copy(bytes, 0, asm, 0x66, 8);
             bytes = BitConverter.GetBytes(DisplayItem.Resolve().ToInt64());
             Array.Copy(bytes, 0, asm, 0x70, 8);
+
+            Execute(asm);
+            Free(itemStruct);
+        }
+
+        private void GiveItemSilently(int item, int amount)
+        {
+            var itemStruct = Allocate(0x8A);
+            Kernel32.WriteBytes(Handle, itemStruct + 0x4, BitConverter.GetBytes(item));
+            Kernel32.WriteBytes(Handle, itemStruct + 0x8, BitConverter.GetBytes(float.MaxValue));
+            Kernel32.WriteBytes(Handle, itemStruct + 0xC, BitConverter.GetBytes(amount));
+
+            var asm = (byte[])DS2SAssembly.GetItemNoMenu.Clone();
+
+            var bytes = BitConverter.GetBytes(0x1);
+            Array.Copy(bytes, 0, asm, 0x6, 4);
+            bytes = BitConverter.GetBytes(itemStruct.ToInt64());
+            Array.Copy(bytes, 0, asm, 0xC, 8);
+            bytes = BitConverter.GetBytes(AvailableItemBag.Resolve().ToInt64());
+            Array.Copy(bytes, 0, asm, 0x19, 8);
+            bytes = BitConverter.GetBytes(ItemGiveFunc.Resolve().ToInt64());
+            Array.Copy(bytes, 0, asm, 0x26, 8);
 
             Execute(asm);
             Free(itemStruct);

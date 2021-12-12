@@ -28,7 +28,7 @@ namespace DS2S_META
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Properties.Settings Settings;
+        private Properties.Settings Settings;
         public MainWindow()
         {
             PortableSettingsProvider.SettingsFileName = "DS2 Meta.config";

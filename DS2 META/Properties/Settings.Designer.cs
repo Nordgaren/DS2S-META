@@ -82,5 +82,17 @@ namespace DS2S_META.Properties {
                 this["ToggleGravity"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SilentItemGive {
+            get {
+                return ((bool)(this["SilentItemGive"]));
+            }
+            set {
+                this["SilentItemGive"] = value;
+            }
+        }
     }
 }

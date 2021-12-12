@@ -231,6 +231,7 @@
       <DependentUpon>HotkeyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\User32.cs" />
+    <Resource Include="Resources\Assembly\GiveItemWithoutMenu.txt" />
     <Content Include="Resources\Assembly\GiveItemWithMenu.txt" />
     <Compile Include="TabControls\HotkeyControl.cs" />
     <Compile Include="Util\METAHotkey.cs" />

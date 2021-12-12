@@ -1,8 +1,8 @@
  //Format: Item ID; Stack Limit; Reinforce Type; Name [arbitrary]
- 60010000  1 0 Lifegem
+ 60010000  99 0 Lifegem
  60020000  1 0 Radiant Lifegem
  60030000  1 0 Old Radiant Lifegem
- 60035000  1 0 Elizabeth Mushroom
+ 60035000  99 0 Elizabeth Mushroom
  60036000  1 0 Dried Root
  60040000  1 0 Amber Herb
  60050000  1 0 Twilight Herb
