@@ -66,7 +66,7 @@ namespace DS2S_META
         internal override void UpdateCtrl() 
         {
             //manage unknown warps and current warps that are not in filter
-            int bonfireID = Hook.LastBonfire;
+            int bonfireID = Hook.LastBonfireID;
 
             if (LastSetBonfire.ID != bonfireID) // lastSetBonfire does not match game LastBonfire
             {
