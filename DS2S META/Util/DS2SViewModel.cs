@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace DS2S_META
 {
@@ -23,6 +24,67 @@ namespace DS2S_META
             Hook.OnHooked += Hook_OnHooked;
             Hook.OnUnhooked += Hook_OnUnhooked;
             Hook.Start();
+        }
+
+        public Brush ForegroundID
+        {
+            get
+            {
+                if (Hook.ID > -1)
+                    return Brushes.GreenYellow;
+                return Brushes.MediumVioletRed;
+            }
+        }
+        public string ContentLoaded
+        {
+            get
+            {
+                if (Hook.Loaded)
+                    return "Yes";
+                return "No";
+            }
+        }
+        public Brush ForegroundLoaded
+        {
+            get
+            {
+                if (Hook.Loaded)
+                    return Brushes.GreenYellow;
+                return Brushes.MediumVioletRed;
+            }
+        }
+        public string ContentOnline
+        {
+            get
+            {
+                if (!Hook.Hooked)
+                    return null;
+
+                if (Hook.Online)
+                    return "Yes";
+                return "No";
+            }
+        }
+        public Brush ForegroundOnline
+        {
+            get
+            {
+                if (!Hook.Hooked)
+                    return null; 
+
+                if (Hook.Online)
+                    return Brushes.GreenYellow;
+                return Brushes.MediumVioletRed;
+            }
+        }
+
+        public void UpdateMainProperties()
+        {
+            OnPropertyChanged(nameof(ForegroundID));
+            OnPropertyChanged(nameof(ContentLoaded));
+            OnPropertyChanged(nameof(ForegroundLoaded));
+            OnPropertyChanged(nameof(ContentOnline));
+            OnPropertyChanged(nameof(ForegroundOnline));
         }
 
         private void Hook_OnHooked(object sender, PHEventArgs e)

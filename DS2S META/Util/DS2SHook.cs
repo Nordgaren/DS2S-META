@@ -44,6 +44,10 @@ namespace DS2S_META
         private PHPointer ParamLevelUpSouls;
         private PHPointer Bonfire;
 
+        private PHPointer BaseBSetup;
+        private PHPointer BaseB;
+        private PHPointer Connection;
+
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
 
         public bool Focused => Hooked && User32.GetForegroundProcessID() == Process.Id;
@@ -58,6 +62,9 @@ namespace DS2S_META
             ItemGiveFunc = RegisterAbsoluteAOB(DS2SOffsets.ItemGiveFunc);
             ItemStruct2dDisplay = RegisterAbsoluteAOB(DS2SOffsets.ItemStruct2dDisplay);
             DisplayItem = RegisterAbsoluteAOB(DS2SOffsets.DisplayItem);
+
+            BaseBSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseBAoB);
+
 
             OnHooked += DS2Hook_OnHooked;
             OnUnhooked += DS2Hook_OnUnhooked;
@@ -76,6 +83,10 @@ namespace DS2S_META
             PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2SOffsets.PlayerMapDataOffset2, (int)DS2SOffsets.PlayerMapDataOffset3);
             ParamLevelUpSouls = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.ParamDataOffset2, (int)DS2SOffsets.ParamDataOffset3);
             Bonfire = CreateChildPointer(BaseA, (int)DS2SOffsets.BonfireOffset);
+
+            BaseB = CreateBasePointer(BaseAPointBaseANoOff(BaseBSetup));
+            Connection = CreateChildPointer(BaseB, (int)DS2SOffsets.ConnectionOffset);
+
             GetLevelRequirements();
             UpdateStatsProperties();
         }
@@ -107,6 +118,12 @@ namespace DS2S_META
 
         private void DS2Hook_OnUnhooked(object sender, PHEventArgs e)
         {
+        }
+
+        public void UpdateMainProperties()
+        {
+            OnPropertyChanged(nameof(ID));
+            OnPropertyChanged(nameof(Online));
         }
         public void UpdateStatsProperties()
         {
@@ -259,6 +276,11 @@ namespace DS2S_META
         {
             get => Loaded ? Bonfire.ReadInt32((int)DS2SOffsets.Bonfire.LastSetBonfire) : 0;
             set => Bonfire.WriteInt32((int)DS2SOffsets.Bonfire.LastSetBonfire, value);
+        }
+
+        public bool Online
+        {
+            get => Hooked ? Connection.ReadInt32((int)DS2SOffsets.Connection.Online) > 0 : false;
         }
         #endregion
 

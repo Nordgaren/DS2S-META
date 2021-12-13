@@ -8,6 +8,8 @@ namespace DS2S_META
 {
     internal class DS2SOffsets
     {
+        #region BaseA
+
         public const string BaseAAob = "48 8B 05 ? ? ? ? 48 8B 58 38 48 85 DB 74 ? F6";
         public const int BasePtrOffset1 = 0x3;
         public const int BasePtrOffset2 = 0x7;
@@ -148,5 +150,16 @@ namespace DS2S_META
         {
             LastSetBonfire = 0x16C
         }
+        #endregion
+
+        #region BaseB
+        public const string BaseBAoB = "48 8B 0D ? ? ? ? 48 85 C9 74 ? 48 8B 49 18 E8";
+        public const int ConnectionOffset = 0x38;
+        public enum Connection
+        {
+            Online = 0x8
+        }
+
+        #endregion
     }
 }

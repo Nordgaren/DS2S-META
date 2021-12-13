@@ -11,7 +11,7 @@
         Title="DS2 Debug Tool" Height="755" Width="450" Background="DarkGray" Loaded="Window_Loaded" Closing="Window_Closing" Icon="Ladder.ico" ResizeMode="NoResize">
 
     <Window.DataContext>
-        <local:DS2SViewModel x:Name="viewModel"/>
+        <local:DS2SViewModel x:Name="ViewModel"/>
     </Window.DataContext>
 
     <Grid>
@@ -29,13 +29,20 @@
             <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Process:" />
-                    <Label Name="lblProcess" Content="No"/>
+                    <!--<wpfTool:IntegerUpDown Value="{Binding ElementName=DS2META, Path=Hook.ID, Mode=OneWay}" />-->
+                    <Label Content="{Binding Hook.ID}" Foreground="{Binding ForegroundID}"/>
                 </StackPanel>
             </StackPanel >
             <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Loaded:" />
-                    <Label Name="lblLoaded" Content="No"/>
+                    <Label Name="lblLoaded" Content="{Binding ContentLoaded}" Margin="1,0,0,0" Foreground="{Binding ForegroundLoaded}"/>
+                </StackPanel>
+            </StackPanel >
+            <StackPanel Grid.Row="2" Grid.Column="0"  HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Online:" />
+                    <Label Content="{Binding ContentOnline}" Margin="5,0,0,0" Foreground="{Binding ForegroundOnline}"/>
                 </StackPanel>
             </StackPanel >
             <StackPanel Grid.Column="1" HorizontalAlignment="Right">
@@ -74,13 +81,25 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" >
-                                    <Separator Visibility="Hidden" Height="10"/>
-                                    <CheckBox Content="Give Items Silently" IsChecked="{Binding SilentItemGive, 
+                                <StackPanel>
+                                    <StackPanel Grid.Column="0" >
+                                        <Separator Visibility="Hidden" Height="10"/>
+                                        <Label Content="General"/>
+                                        <CheckBox Margin="10,0,0,0" Content="Warning message on startup" IsChecked="{Binding ShowWarning, 
                 Mode=TwoWay, 
                 Source={x:Static p:Settings.Default}, 
                 UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="0" >
+                                        <Separator Visibility="Hidden" Height="10"/>
+                                        <Label Content="Item Tab"/>
+                                        <CheckBox Margin="10,0,0,0" Content="Give Items Silently" IsChecked="{Binding SilentItemGive, 
+                Mode=TwoWay, 
+                Source={x:Static p:Settings.Default}, 
+                UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
                                 </StackPanel>
+                                
                             </Grid>
                             
                         </TabItem>

@@ -106,5 +106,17 @@ namespace DS2S_META.Properties {
                 this["SpeedValue"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowWarning {
+            get {
+                return ((bool)(this["ShowWarning"]));
+            }
+            set {
+                this["ShowWarning"] = value;
+            }
+        }
     }
 }

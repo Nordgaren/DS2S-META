@@ -1,4 +1,5 @@
-﻿0 None
+﻿//Format: Bonfire Entity ID; Name [arbitrary]
+0 None
 2650 Fire Keepers' Dwelling
 4650 The Far Fire
 10670 The Crestfallen's Retreat

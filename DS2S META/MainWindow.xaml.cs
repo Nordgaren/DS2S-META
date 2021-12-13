@@ -35,18 +35,29 @@ namespace DS2S_META
             PortableSettingsProvider.ApplyProvider(Properties.Settings.Default);
             Settings = Properties.Settings.Default;
             InitializeComponent();
+            if (Settings.ShowWarning)
+            {
+                var warning = new METAWarning()
+                {
+                    Title = "Online Warning",
+                    Width = 350,
+                    Height = 240
+                };
+                warning.ShowDialog();
+            }
+                
         }
 
-        DS2SHook Hook => viewModel.Hook;
+        DS2SHook Hook => ViewModel.Hook;
         bool FormLoaded
         {
-            get => viewModel.GameLoaded;
-            set => viewModel.GameLoaded = value;
+            get => ViewModel.GameLoaded;
+            set => ViewModel.GameLoaded = value;
         }
         public bool Reading
         {
-            get => viewModel.Reading;
-            set => viewModel.Reading = value;
+            get => ViewModel.Reading;
+            set => ViewModel.Reading = value;
         }
 
         Timer updateTimer = new Timer();
@@ -110,14 +121,15 @@ namespace DS2S_META
 
         private void UpdateTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Dispatcher.Invoke(new Action(() => {
+            Dispatcher.Invoke(new Action(() =>
+            {
+                UpdateMainProperties();
                 if (Hook.Hooked)
                 {
                     if (Hook.Loaded)
                     {
                         if (!FormLoaded)
                         {
-                            lblLoaded.Content = "Yes";
                             FormLoaded = true;
                             Reading = true;
                             ReloadAllTabs();
@@ -134,7 +146,6 @@ namespace DS2S_META
                     }
                     else if (FormLoaded)
                     {
-                        lblLoaded.Content = "No";
                         Reading = true;
                         UpdateProperties();
                         EnableTabs(false);
@@ -145,6 +156,13 @@ namespace DS2S_META
             }));
             
         }
+
+        private void UpdateMainProperties()
+        {
+            Hook.UpdateMainProperties();
+            ViewModel.UpdateMainProperties();
+        }
+
         private void InitAllTabs()
         {
             metaItems.InitTab();
