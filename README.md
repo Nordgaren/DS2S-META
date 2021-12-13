@@ -1,8 +1,14 @@
-# DS2-META
+# DS2 META
  Dark Souls 2 testing/debugging/practice tool  
  Based on a CE table by [Lord Radai](https://github.com/LordRadai)  
  
  Inspired by [DS-Gadget 3.0](https://github.com/JKAnderson/DS-Gadget) and uses [Property Hook](https://github.com/JKAnderson/PropertyHook) by [TKGP](https://github.com/JKAnderson/).  
+ 
+ META stands for:  
+M  
+E  
+T  
+A  
  
 # WARNING  
  There has been absolutely NO testing on this tool and online use. For offline use only. Use online at your own risk.  
