@@ -24,5 +24,11 @@ You can also try adding DS2S META as an exception to your antivirus
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 
 # Change Log  
+### Beta 0.0.0.2  
+
+* Added Online notification and text colors.  
+
+* Implimented Stored Positions start. These positions will end up changing later, most likely, so they will break eventually.  
+
 ### Beta 0.0.0.1  
 * Initial beta release. Player, Stats and Item tab  
