@@ -80,7 +80,7 @@ namespace DS2S_META
                 Version exeVersion = Version.Parse(version);
                 if (gitVersion > exeVersion) //Compare latest version to current version
                 {
-                    labelCheckVersion.Visibility= Visibility.Hidden;
+                    labelCheckVersion.Content = "App out of date";
                     link.NavigateUri = new Uri(release.HtmlUrl);
                     llbNewVersion.Visibility = Visibility.Visible;
                 }
@@ -102,7 +102,6 @@ namespace DS2S_META
                 labelCheckVersion.Content = "Something is very broke, contact DS2 META repo owner";
                 MessageBox.Show(ex.Message);
             }
-
             updateTimer.Interval = 16;
             updateTimer.Elapsed += UpdateTimer_Elapsed;
             updateTimer.Enabled = true;
@@ -194,8 +193,6 @@ namespace DS2S_META
         {
             Process.Start(e.Uri.ToString());
         }
-
-        
 
         private void SaveAllTabs()
         {

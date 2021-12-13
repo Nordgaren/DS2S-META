@@ -24,6 +24,10 @@ You can also try adding DS2S META as an exception to your antivirus
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 
 # Change Log  
+### Beta 0.0.0.3   
+
+* Fixed Update Message meme  
+
 ### Beta 0.0.0.2  
 
 * Added Online notification and text colors.  

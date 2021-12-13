@@ -45,13 +45,17 @@
                     <Label Content="{Binding ContentOnline}" Margin="5,0,0,0" Foreground="{Binding ForegroundOnline}"/>
                 </StackPanel>
             </StackPanel >
-            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                <Label x:Name="labelCheckVersion" Content="Check Version"/>
-                <Label x:Name="llbNewVersion" Visibility="Hidden">
-                    <Hyperlink x:Name="link" Hyperlink.RequestNavigate="link_RequestNavigate">
-                        <TextBlock Text="New version available!" />
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right" Grid.ColumnSpan="3">
+                <Label x:Name="labelCheckVersion" Content="Check Version" />
+               
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+                <Label x:Name="llbNewVersion" Visibility="Hidden" >
+                    <Hyperlink x:Name="link" RequestNavigate="link_RequestNavigate" >
+                        New version available!
                     </Hyperlink>
                 </Label>
+
             </StackPanel>
         </Grid>
        
