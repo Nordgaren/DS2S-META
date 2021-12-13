@@ -12,7 +12,7 @@
              ResizeMode="NoResize"
              WindowStyle="SingleBorderWindow"
              WindowStartupLocation="CenterScreen"
-             d:DesignHeight="220" d:DesignWidth="350" Background="LightGray">
+             d:DesignHeight="220" d:DesignWidth="350" Background="LightGray" Closing="Window_Closing">
     <Grid>
         <StackPanel Margin="25,0,25,0">
             <Label Content="Warning:" HorizontalAlignment="Center" FontSize="25" FontWeight="Black"/>
@@ -26,10 +26,7 @@
                 Delete any characters made with this tool before going online.
             </TextBlock>
             <Separator Visibility="Hidden" Height="5" />
-            <CheckBox HorizontalAlignment="Center" Margin="0,0,0,0" Content="Do not show again" IsChecked="{Binding ShowWarning, 
-                Mode=TwoWay, 
-                Source={x:Static p:Settings.Default}, 
-                UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox x:Name="cbxDoNotShow" HorizontalAlignment="Center" Content="Do not show again"/>
             <Separator Visibility="Hidden" Height="5"/>
             <Button Content="Okay" IsCancel="True" Width="75"/>
         </StackPanel>

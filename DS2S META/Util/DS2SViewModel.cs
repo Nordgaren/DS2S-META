@@ -25,12 +25,11 @@ namespace DS2S_META
             Hook.OnUnhooked += Hook_OnUnhooked;
             Hook.Start();
         }
-
         public Brush ForegroundID
         {
             get
             {
-                if (Hook.ID > -1)
+                if (Hook.ID != "Not Hooked")
                     return Brushes.GreenYellow;
                 return Brushes.MediumVioletRed;
             }

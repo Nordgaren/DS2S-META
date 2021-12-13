@@ -24,5 +24,10 @@ namespace DS2S_META
         {
             InitializeComponent();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Properties.Settings.Default.ShowWarning = !cbxDoNotShow.IsChecked.Value;
+        }
     }
 }

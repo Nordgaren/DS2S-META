@@ -19,7 +19,7 @@ namespace DS2S_META
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-        public int ID => Process?.Id ?? -1;
+        public string ID => Process?.Id.ToString() ?? "Not Hooked";
         public IntPtr BaseAddress => Process?.MainModule.BaseAddress ?? IntPtr.Zero;
         public string Version { get; private set; }
 
@@ -159,6 +159,7 @@ namespace DS2S_META
             OnPropertyChanged(nameof(StableY));
             OnPropertyChanged(nameof(StableZ));
             OnPropertyChanged(nameof(Gravity));
+            OnPropertyChanged(nameof(LastBonfireObj));
         }
         public IntPtr BaseAPointBaseANoOff(PHPointer pointer)
         {
@@ -272,10 +273,22 @@ namespace DS2S_META
             get => Loaded ? PlayerGravity.ReadBoolean((int)DS2SOffsets.Gravity.Gravity) : false;
             set => PlayerGravity.WriteBoolean((int)DS2SOffsets.Gravity.Gravity, value);
         }
-        public int LastBonfire
+        public int LastBonfireID
         {
-            get => Loaded ? Bonfire.ReadInt32((int)DS2SOffsets.Bonfire.LastSetBonfire) : 0;
+            get => Loaded ? Bonfire.ReadInt32((int)DS2SOffsets.Bonfire.LastSetBonfire) : -1;
             set => Bonfire.WriteInt32((int)DS2SOffsets.Bonfire.LastSetBonfire, value);
+        }
+        public DS2SBonfire LastBonfireObj
+        {
+            get 
+            {
+                if (!Loaded) return new DS2SBonfire(-1, "Last Set: None");
+                var lastBonfire = DS2SBonfire.All.FirstOrDefault(b => b.ID == LastBonfireID);
+                if (lastBonfire == null)
+                    lastBonfire = new DS2SBonfire(-1, "Last Set: None");
+                return lastBonfire;
+            }
+            //set => Bonfire.WriteInt32((int)DS2SOffsets.Bonfire.LastSetBonfire, value.ID);
         }
 
         public bool Online
