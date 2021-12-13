@@ -73,7 +73,7 @@
             </TabItem>
             <TabItem x:Name="tabSettings" Header="Settings">
                 <Grid Background="LightGray">
-                    <TabControl >
+                    <TabControl Background="LightGray" >
                         
                         <TabItem Header="General">
                             <Grid>
@@ -85,18 +85,30 @@
                                     <StackPanel Grid.Column="0" >
                                         <Separator Visibility="Hidden" Height="10"/>
                                         <Label Content="General"/>
-                                        <CheckBox Margin="10,0,0,0" Content="Warning message on startup" IsChecked="{Binding ShowWarning, 
+                                        <Border BorderBrush="Gray" BorderThickness="1" >
+                                            <StackPanel Margin="0,5,0,5">
+                                                <CheckBox Margin="10,5,0,0" Content="Show Warning on Startup" IsChecked="{Binding ShowWarning, 
                 Mode=TwoWay, 
                 Source={x:Static p:Settings.Default}, 
                 UpdateSourceTrigger=PropertyChanged}"/>
+                                            </StackPanel>
+
+                                        </Border>
                                     </StackPanel>
+                                    
                                     <StackPanel Grid.Column="0" >
                                         <Separator Visibility="Hidden" Height="10"/>
                                         <Label Content="Item Tab"/>
-                                        <CheckBox Margin="10,0,0,0" Content="Give Items Silently" IsChecked="{Binding SilentItemGive, 
+                                        <Border BorderBrush="Gray" BorderThickness="1" >
+                                            <StackPanel Margin="0,5,0,5">
+                                                <CheckBox Margin="10,5,0,0" Content="Give Items Silently" IsChecked="{Binding SilentItemGive, 
                 Mode=TwoWay, 
                 Source={x:Static p:Settings.Default}, 
                 UpdateSourceTrigger=PropertyChanged}"/>
+                                            </StackPanel>
+                                            
+                                        </Border>
+                                       
                                     </StackPanel>
                                 </StackPanel>
                                 
@@ -116,9 +128,16 @@
                                     <CheckBox Content="Handle Hotkeys" x:Name="cbxHandleHotkeys"/>
                                     <Separator Visibility="Hidden"/>
                                     <Separator Margin="0,10,0,10"/>
-                                    <local:HotkeyControl x:Name="hkeyStorePosition" HotkeyName="Store Position" />
-                                    <local:HotkeyControl x:Name="hkeyRestorePosition" HotkeyName="Restore Position" />
-                                    <local:HotkeyControl x:Name="hkeyGravity" HotkeyName="Toggle Gravity" />
+                                    <Label Content="Player Tab"/>
+                                    <Border BorderBrush="Gray" BorderThickness="1" >
+                                        <StackPanel Margin="5,0,5,5" >
+                                        <local:HotkeyControl x:Name="hkeyStorePosition" HotkeyName="Store Position" Margin="0,5,0,0" />
+                                            <local:HotkeyControl x:Name="hkeyRestorePosition" HotkeyName="Restore Position" Margin="0,5,0,0" />
+                                            <local:HotkeyControl x:Name="hkeyGravity" HotkeyName="Toggle Gravity" Margin="0,5,0,0"/>
+                                </StackPanel> 
+                                    </Border>
+                                    
+                                    
                                 </StackPanel>
                             </Grid>
                         </TabItem>

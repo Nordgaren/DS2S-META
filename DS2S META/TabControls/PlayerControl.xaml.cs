@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -24,28 +25,91 @@ namespace DS2S_META
         {
             InitializeComponent();
         }
+
+        private State.PlayerState PlayerState;
+
+        private List<SavedPos> Positions = new List<SavedPos>();
         public override void InitTab()
         {
+            PlayerState.Set = false;
             foreach (var bonfire in DS2SBonfire.All)
                 cbxBonfire.Items.Add(bonfire);
             LastSetBonfire = new DS2SBonfire(-1, "Last Set: None"); //last set bonfire (default values)
             cbxBonfire.Items.Add(LastSetBonfire); //add to end of filter
+            Positions = SavedPos.GetSavedPositions();
+            UpdatePositions();
         }
-
-        float AngX = 0;
-        float AngY = 0;
-        float AngZ = 0;
         public void StorePosition()
         {
             if (btnPosStore.IsEnabled)
             {
-                nudPosStoredX.Value = nudPosX.Value;
-                nudPosStoredY.Value = nudPosY.Value;
-                nudPosStoredZ.Value = nudPosZ.Value;
-                AngX = Hook.AngX;
-                AngY = Hook.AngY;
-                AngZ = Hook.AngZ;
+                var pos = new SavedPos();
+                pos.Name = storedPositions.Text;
+                nudPosStoredX.Value = (decimal)Hook.PosX;
+                nudPosStoredY.Value = (decimal)Hook.PosY;
+                nudPosStoredZ.Value = (decimal)Hook.PosZ;
+                PlayerState.AngX = Hook.AngX;
+                PlayerState.AngY = Hook.AngY;
+                PlayerState.AngZ = Hook.AngZ;
+                PlayerState.HP = (int)nudHealth.Value;
+                PlayerState.Stamina = (int)nudStamina.Value;
+                //PlayerState.FollowCam = Hook.DumpFollowCam();
+                PlayerState.Set = true;
+                pos.X = Hook.PosX;
+                pos.Y = Hook.PosY;
+                pos.Z = Hook.PosZ;
+                pos.PlayerState = PlayerState;
+                ProcessSavedPos(pos);
+                UpdatePositions();
+                SavedPos.Save(Positions);
+                
+                txtAngX.Text = PlayerState.AngX.ToString("N2");
+                txtAngY.Text = PlayerState.AngY.ToString("N2");
+                txtAngZ.Text = PlayerState.AngZ.ToString("N2");
             }
+        }
+        public void ProcessSavedPos(SavedPos pos)
+        {
+            if (!string.IsNullOrWhiteSpace(storedPositions.Text))
+            {
+                if (Positions.Any(n => n.Name == storedPositions.Text))
+                {
+                    var old = Positions.Single(n => n.Name == storedPositions.Text);
+                    Positions.Remove(old);
+                    Positions.Add(pos);
+                    return;
+                }
+
+                Positions.Add(pos);
+            }
+
+        }
+        private void storedPositions_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                StorePosition();
+            }
+
+            var shift = (Keyboard.IsKeyDown(Key.RightShift) || Keyboard.IsKeyDown(Key.LeftShift));
+
+            if (e.Key == Key.Delete && shift)
+            {
+                deleteButton_Click(sender, e);
+            }
+        }
+        private void UpdatePositions()
+        {
+            if (storedPositions.SelectedItem != new SavedPos())
+            {
+                storedPositions.Items.Clear();
+                storedPositions.Items.Add(new SavedPos());
+                foreach (var item in Positions)
+                {
+                    storedPositions.Items.Add(item);
+                }
+            }
+
         }
         public void RestorePosition()
         {
@@ -57,10 +121,27 @@ namespace DS2S_META
                 Hook.StableX = (float)nudPosStoredX.Value;
                 Hook.StableY = (float)nudPosStoredY.Value;
                 Hook.StableZ = (float)nudPosStoredZ.Value;
-                Hook.AngX = AngX;
-                Hook.AngY = AngY;
-                Hook.AngZ = AngZ;
+                Hook.AngX = PlayerState.AngX;
+                Hook.AngY = PlayerState.AngY;
+                Hook.AngZ = PlayerState.AngZ;
             }
+        }
+
+        public void RemoveSavedPos()
+        {
+            if (Positions.Any(n => n.Name == storedPositions.Text))
+            {
+                if (System.Windows.Forms.MessageBox.Show("Are you sure you want to delete this positon?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    var old = Positions.Single(n => n.Name == storedPositions.Text);
+                    Positions.Remove(old);
+                    storedPositions.SelectedIndex = 0;
+                    UpdatePositions();
+                    SavedPos.Save(Positions);
+                }
+
+            }
+
         }
         private DS2SBonfire LastSetBonfire;
         internal override void UpdateCtrl() 
@@ -165,6 +246,26 @@ namespace DS2S_META
         {
             //if (Hook.Loaded && cbxQuickSelectBonfire.Checked)
             //    Hook.LastBonfire = ((DS2SBonfire)cbxBonfire.SelectedItem).ID;
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveSavedPos();
+        }
+
+        private void storedPositions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var savedPos = storedPositions.SelectedItem as SavedPos;
+            if (savedPos == null)
+                return;
+
+            nudPosStoredX.Value = (decimal)savedPos.X;
+            nudPosStoredY.Value = (decimal)savedPos.Y;
+            nudPosStoredZ.Value = (decimal)savedPos.Z;
+            PlayerState = savedPos.PlayerState;
+            txtAngX.Text = PlayerState.AngX.ToString("N2");
+            txtAngY.Text = PlayerState.AngY.ToString("N2");
+            txtAngZ.Text = PlayerState.AngZ.ToString("N2");
         }
     }
 }

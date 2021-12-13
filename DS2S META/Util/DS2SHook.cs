@@ -48,6 +48,8 @@ namespace DS2S_META
         private PHPointer BaseB;
         private PHPointer Connection;
 
+        private PHPointer FCData;
+
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
 
         public bool Focused => Hooked && User32.GetForegroundProcessID() == Process.Id;
@@ -65,6 +67,7 @@ namespace DS2S_META
 
             BaseBSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseBAoB);
 
+            FCData = RegisterAbsoluteAOB(DS2SOffsets.FCAoB);
 
             OnHooked += DS2Hook_OnHooked;
             OnUnhooked += DS2Hook_OnUnhooked;
@@ -89,6 +92,10 @@ namespace DS2S_META
 
             GetLevelRequirements();
             UpdateStatsProperties();
+
+            var x = CamX;
+            var y = CamY;
+            var z = CamZ;
         }
 
         public static List<int> Levels = new List<int>();
@@ -156,6 +163,9 @@ namespace DS2S_META
             OnPropertyChanged(nameof(PosX));
             OnPropertyChanged(nameof(PosY));
             OnPropertyChanged(nameof(PosZ));
+            OnPropertyChanged(nameof(AngX));
+            OnPropertyChanged(nameof(AngY));
+            OnPropertyChanged(nameof(AngZ));
             OnPropertyChanged(nameof(StableX));
             OnPropertyChanged(nameof(StableY));
             OnPropertyChanged(nameof(StableZ));
@@ -259,6 +269,26 @@ namespace DS2S_META
                 PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpZB, value);
                 PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpZC, value);
             }
+        }
+        public byte[] CamerData
+        {
+            get => FCData.ReadBytes((int)DS2SOffsets.CameraAngle.CamStart, 0xC);
+            set => FCData.WriteBytes((int)DS2SOffsets.CameraAngle.CamStart, value);
+        }
+        public float CamX
+        {
+            get => FCData.ReadSingle((int)DS2SOffsets.CameraAngle.CamX);
+            set => FCData.WriteSingle((int)DS2SOffsets.CameraAngle.CamX, value);
+        }
+        public float CamY
+        {
+            get => FCData.ReadSingle((int)DS2SOffsets.CameraAngle.CamY);
+            set => FCData.WriteSingle((int)DS2SOffsets.CameraAngle.CamY, value);
+        }
+        public float CamZ
+        {
+            get => FCData.ReadSingle((int)DS2SOffsets.CameraAngle.CamZ);
+            set => FCData.WriteSingle((int)DS2SOffsets.CameraAngle.CamZ, value);
         }
         public float Speed
         {
