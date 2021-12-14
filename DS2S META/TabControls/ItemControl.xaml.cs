@@ -28,6 +28,7 @@ namespace DS2S_META
         public override void InitTab()
         {
             DS2SItemCategory.GetItemCategories();
+            DS2SInfusion.BuildInfusionDicts();
             foreach (DS2SItemCategory category in DS2SItemCategory.All)
                 cmbCategory.Items.Add(category);
             cmbCategory.SelectedIndex = 0;
@@ -152,56 +153,63 @@ namespace DS2S_META
                     nudQuantity.IsEnabled = true;
                 nudQuantity.Maximum = item.StackLimit;
             }
-            switch (item.UpgradeType)
-            {
-                case DS2SItem.Upgrade.None:
-                    cmbInfusion.IsEnabled = false;
-                    cmbInfusion.Items.Clear();
-                    nudUpgrade.IsEnabled = false;
-                    nudUpgrade.Maximum = 0;
-                    break;
-                case DS2SItem.Upgrade.Unique:
-                    cmbInfusion.IsEnabled = false;
-                    cmbInfusion.Items.Clear();
-                    nudUpgrade.Maximum = 5;
-                    nudUpgrade.IsEnabled = true;
-                    break;
-                case DS2SItem.Upgrade.Armor:
-                    cmbInfusion.IsEnabled = false;
-                    cmbInfusion.Items.Clear();
-                    nudUpgrade.Maximum = 10;
-                    nudUpgrade.IsEnabled = true;
-                    break;
-                case DS2SItem.Upgrade.Infusable:
-                    cmbInfusion.Items.Clear();
-                    foreach (var infusion in DS2SInfusion.All)
-                        cmbInfusion.Items.Add(infusion);
-                    cmbInfusion.SelectedIndex = 0;
-                    cmbInfusion.IsEnabled = true;
-                    nudUpgrade.IsEnabled = true;
-                    break;
-                case DS2SItem.Upgrade.InfusableRestricted:
-                    cmbInfusion.Items.Clear();
-                    foreach (var infusion in DS2SInfusion.All)
-                        if (!infusion.Restricted)
-                            cmbInfusion.Items.Add(infusion);
-                    cmbInfusion.SelectedIndex = 0;
-                    cmbInfusion.IsEnabled = true;
-                    nudUpgrade.IsEnabled = true;
-                    break;
-                case DS2SItem.Upgrade.PyroFlame:
-                    cmbInfusion.IsEnabled = false;
-                    cmbInfusion.Items.Clear();
-                    nudUpgrade.Maximum = 15;
-                    nudUpgrade.IsEnabled = true;
-                    break;
-                case DS2SItem.Upgrade.PyroFlameAscended:
-                    cmbInfusion.IsEnabled = false;
-                    cmbInfusion.Items.Clear();
-                    nudUpgrade.Maximum = 5;
-                    nudUpgrade.IsEnabled = true;
-                    break;
-            }
+
+            cmbInfusion.Items.Clear();
+            foreach (var infusion in DS2SInfusion.InfusionDict[item.Infusion])
+                cmbInfusion.Items.Add(infusion);
+            cmbInfusion.IsEnabled = cmbInfusion.Items.Count > 1;
+
+            nudUpgrade.Maximum = item.MaxUpgrade;
+            nudUpgrade.IsEnabled = item.MaxUpgrade > 0;
+
+            //switch (item.UpgradeType)
+            //{
+            //    case DS2SItem.Upgrade.None:
+            //        cmbInfusion.Items.Clear();
+            //        cmbInfusion.IsEnabled = false;
+            //        nudUpgrade.IsEnabled = false;
+            //        nudUpgrade.Maximum = 0;
+            //        break;
+            //    case DS2SItem.Upgrade.Armor:
+            //        cmbInfusion.Items.Clear();
+            //        cmbInfusion.IsEnabled = false;
+            //        nudUpgrade.Maximum = 10;
+            //        nudUpgrade.IsEnabled = true;
+            //        break;
+            //    case DS2SItem.Upgrade.InfusableFive:
+            //        cmbInfusion.Items.Clear();
+            //        nudUpgrade.Maximum = 5;
+            //        foreach (var infusion in DS2SInfusion.All)
+            //            cmbInfusion.Items.Add(infusion);
+            //        cmbInfusion.SelectedIndex = 0;
+            //        cmbInfusion.IsEnabled = true;
+            //        nudUpgrade.IsEnabled = true;
+            //        break;
+            //    case DS2SItem.Upgrade.InfusableTen:
+            //        cmbInfusion.Items.Clear();
+            //        nudUpgrade.Maximum = 10;
+            //        foreach (var infusion in DS2SInfusion.All)
+            //            cmbInfusion.Items.Add(infusion);
+            //        cmbInfusion.IsEnabled = true;
+            //        nudUpgrade.IsEnabled = true;
+            //        break;
+            //    case DS2SItem.Upgrade.Shield:
+            //        cmbInfusion.Items.Clear();
+            //        nudUpgrade.Maximum = 10;
+            //        foreach (var infusion in DS2SInfusion.All)
+            //            if (infusion.Shield)
+            //                cmbInfusion.Items.Add(infusion);
+            //        cmbInfusion.SelectedIndex = 0;
+            //        cmbInfusion.IsEnabled = true;
+            //        nudUpgrade.IsEnabled = true;
+            //        break;
+            //    case DS2SItem.Upgrade.PyroFlame:
+            //        cmbInfusion.IsEnabled = false;
+            //        cmbInfusion.Items.Clear();
+            //        nudUpgrade.Maximum = 10;
+            //        nudUpgrade.IsEnabled = true;
+            //        break;
+            //}
 
             HandleMaxItemCheckbox();
         }
@@ -256,18 +264,17 @@ namespace DS2S_META
                 _ = ChangeColor(Brushes.DarkGray);
                 DS2SItem item = lbxItems.SelectedItem as DS2SItem;
 
-                int id = item.ID;
+                var id = item.ID;
 
-                //if (item.UpgradeType == DS2SItem.Upgrade.PyroFlame || item.UpgradeType == DS2SItem.Upgrade.PyroFlameAscended)
-                //    id += (int)nudUpgrade.Value * 100;
-                //else
-                //    id += (int)nudUpgrade.Value;
-                //if (item.UpgradeType == DS2SItem.Upgrade.Infusable || item.UpgradeType == DS2SItem.Upgrade.InfusableRestricted)
-                //{
-                //    var infusion = cmbInfusion.SelectedItem as DS2SInfusion;
-                //    id += infusion.Value;
-                //}
-                Hook.GetItem(id, (int)nudQuantity.Value, Properties.Settings.Default.SilentItemGive);
+                var infusion = cmbInfusion.SelectedItem as DS2SInfusion;
+
+                byte infusionID = 0;
+
+                if (infusion != null)
+                    infusionID = (byte)infusion.ID;
+
+                
+                Hook.GetItem(id, (short)nudQuantity.Value, (byte)nudUpgrade.Value, infusionID, Properties.Settings.Default.SilentItemGive);
             }
         }
 

@@ -1,107 +1,107 @@
-//Format: Item ID; Stack Limit; Reinforce Type; Name [arbitrary]
- 31010000  1 0 Soul Arrow
- 31020000  1 0 Great Soul Arrow
- 31030000  1 0 Heavy Soul Arrow
- 31040000  1 0 Great Heavy Soul Arrow
- 31050000  1 0 Homing Soul Arrow
- 31060000  1 0 Heavy Homing Soul Arrow
- 31070000  1 0 Homing Soulmass
- 31080000  1 0 Homing Crystal Soulmass
- 31090000  1 0 Soul Spear
- 31100000  1 0 Crystal Soul Spear
- 31110000  1 0 Shockwave
- 31120000  1 0 Soul Spear Barrage
- 31130000  1 0 Soul Shower
- 31140000  1 0 Soul Greatsword
- 31150000  1 0 Soul Vortex
- 31160000  1 0 Soul Bolt
- 31170000  1 0 Soul Geyser
- 31180000  1 0 Magic Weapon
- 31190000  1 0 Great Magic Weapon
- 31200000  1 0 Crystal Magic Weapon
- 31210000  1 0 Strong Magic Shield
- 31220000  1 0 Yearn
- 31230000  1 0 Hush
- 31240000  1 0 Fall Control
- 31250000  1 0 Hidden Weapon
- 31260000  1 0 Repair
- 31270000  1 0 Cast Light
- 31280000  1 0 Chameleon
- 31290000  1 0 Unleash Magic
- 31300000  1 0 Soul Flash
- 31310000  1 0 Focus Souls
- 32010000  1 0 Heal
- 32020000  1 0 Med Heal
- 32030000  1 0 Great Heal Excerpt
- 32040000  1 0 Great Heal
- 32050000  1 0 Soothing Sunlight
- 32060000  1 0 Replenishment
- 32070000  1 0 Resplendent Life
- 32080000  1 0 Bountiful Sunlight
- 32090000  1 0 Caressing Prayer
- 32100000  1 0 Force
- 32110000  1 0 Wrath of the Gods
- 32120000  1 0 Emit Force
- 32130000  1 0 Heavenly Thunder
- 32140000  1 0 Lightning Spear
- 32150000  1 0 Great Lightning Spear
- 32160000  1 0 Sunlight Spear
- 32170000  1 0 Soul Appease
- 32180000  1 0 Blinding Bolt
- 32190000  1 0 Magic Barrier
- 32200000  1 0 Great Magic Barrier
- 32210000  1 0 Homeward
- 32220000  1 0 Guidance
- 32230000  1 0 Sacred Oath
- 32240000  1 0 Unveil
- 32250000  1 0 Perseverance
- 32260000  1 0 Sunlight Blade
- 32300000  1 0 Denial
- 32310000  1 0 Splintering Lightning Spear
- 33010000  1 0 Fireball
- 33020000  1 0 Fire Orb
- 33030000  1 0 Great Fireball
- 33040000  1 0 Great Chaos Fireball
- 33050000  1 0 Firestorm
- 33060000  1 0 Fire Tempest
- 33070000  1 0 Chaos Storm
- 33080000  1 0 Combustion
- 33090000  1 0 Great Combustion
- 33100000  1 0 Fire Whip
- 33110000  1 0 Poison Mist
- 33120000  1 0 Toxic Mist
- 33130000  1 0 Acid Surge
- 33140000  1 0 Lingering Flame
- 33150000  1 0 Flame Swathe
- 33160000  1 0 Forbidden Sun
- 33170000  1 0 Flame Weapon
- 33180000  1 0 Flash Sweat
- 33190000  1 0 Iron Flesh
- 33200000  1 0 Warmth
- 33210000  1 0 Immolation
- 33300000  1 0 Fire Snake
- 33310000  1 0 Dance of Fire
- 33320000  1 0 Outcry
- 34010000  1 0 Dark Orb
- 34020000  1 0 Dark Hail
- 34030000  1 0 Dark Fog
- 34040000  1 0 Affinity
- 34050000  1 0 Dead Again
- 34060000  1 0 Dark Weapon
- 34070000  1 0 Whisper of Despair
- 34080000  1 0 Repel
- 34090000  1 0 Twisted Barricade
- 34100000  1 0 Numbness
- 34300000  1 0 Dark Greatsword
- 34310000  1 0 Recollection
- 35010000  1 0 Scraps of Life
- 35020000  1 0 Darkstorm
- 35030000  1 0 Resonant Soul
- 35040000  1 0 Great Resonant Soul
- 35050000  1 0 Climax
- 35060000  1 0 Resonant Flesh
- 35070000  1 0 Resonant Weapon
- 35080000  1 0 Lifedrain Patch
- 35090000  1 0 Profound Still
- 35300000  1 0 Promised Walk of Peace
- 35310000  1 0 Dark Dance
+//Format: Item ID; Stack Limit; Reinforce Type; Max Upgrade; Name [arbitrary]
+ 31010000  01 0 00 Soul Arrow
+ 31020000  01 0 00 Great Soul Arrow
+ 31030000  01 0 00 Heavy Soul Arrow
+ 31040000  01 0 00 Great Heavy Soul Arrow
+ 31050000  01 0 00 Homing Soul Arrow
+ 31060000  01 0 00 Heavy Homing Soul Arrow
+ 31070000  01 0 00 Homing Soulmass
+ 31080000  01 0 00 Homing Crystal Soulmass
+ 31090000  01 0 00 Soul Spear
+ 31100000  01 0 00 Crystal Soul Spear
+ 31110000  01 0 00 Shockwave
+ 31120000  01 0 00 Soul Spear Barrage
+ 31130000  01 0 00 Soul Shower
+ 31140000  01 0 00 Soul Greatsword
+ 31150000  01 0 00 Soul Vortex
+ 31160000  01 0 00 Soul Bolt
+ 31170000  01 0 00 Soul Geyser
+ 31180000  01 0 00 Magic Weapon
+ 31190000  01 0 00 Great Magic Weapon
+ 31200000  01 0 00 Crystal Magic Weapon
+ 31210000  01 0 00 Strong Magic Shield
+ 31220000  01 0 00 Yearn
+ 31230000  01 0 00 Hush
+ 31240000  01 0 00 Fall Control
+ 31250000  01 0 00 Hidden Weapon
+ 31260000  01 0 00 Repair
+ 31270000  01 0 00 Cast Light
+ 31280000  01 0 00 Chameleon
+ 31290000  01 0 00 Unleash Magic
+ 31300000  01 0 00 Soul Flash
+ 31310000  01 0 00 Focus Souls
+ 32010000  01 0 00 Heal
+ 32020000  01 0 00 Med Heal
+ 32030000  01 0 00 Great Heal Excerpt
+ 32040000  01 0 00 Great Heal
+ 32050000  01 0 00 Soothing Sunlight
+ 32060000  01 0 00 Replenishment
+ 32070000  01 0 00 Resplendent Life
+ 32080000  01 0 00 Bountiful Sunlight
+ 32090000  01 0 00 Caressing Prayer
+ 32100000  01 0 00 Force
+ 32110000  01 0 00 Wrath of the Gods
+ 32120000  01 0 00 Emit Force
+ 32130000  01 0 00 Heavenly Thunder
+ 32140000  01 0 00 Lightning Spear
+ 32150000  01 0 00 Great Lightning Spear
+ 32160000  01 0 00 Sunlight Spear
+ 32170000  01 0 00 Soul Appease
+ 32180000  01 0 00 Blinding Bolt
+ 32190000  01 0 00 Magic Barrier
+ 32200000  01 0 00 Great Magic Barrier
+ 32210000  01 0 00 Homeward
+ 32220000  01 0 00 Guidance
+ 32230000  01 0 00 Sacred Oath
+ 32240000  01 0 00 Unveil
+ 32250000  01 0 00 Perseverance
+ 32260000  01 0 00 Sunlight Blade
+ 32300000  01 0 00 Denial
+ 32310000  01 0 00 Splintering Lightning Spear
+ 33010000  01 0 00 Fireball
+ 33020000  01 0 00 Fire Orb
+ 33030000  01 0 00 Great Fireball
+ 33040000  01 0 00 Great Chaos Fireball
+ 33050000  01 0 00 Firestorm
+ 33060000  01 0 00 Fire Tempest
+ 33070000  01 0 00 Chaos Storm
+ 33080000  01 0 00 Combustion
+ 33090000  01 0 00 Great Combustion
+ 33100000  01 0 00 Fire Whip
+ 33110000  01 0 00 Poison Mist
+ 33120000  01 0 00 Toxic Mist
+ 33130000  01 0 00 Acid Surge
+ 33140000  01 0 00 Lingering Flame
+ 33150000  01 0 00 Flame Swathe
+ 33160000  01 0 00 Forbidden Sun
+ 33170000  01 0 00 Flame Weapon
+ 33180000  01 0 00 Flash Sweat
+ 33190000  01 0 00 Iron Flesh
+ 33200000  01 0 00 Warmth
+ 33210000  01 0 00 Immolation
+ 33300000  01 0 00 Fire Snake
+ 33310000  01 0 00 Dance of Fire
+ 33320000  01 0 00 Outcry
+ 34010000  01 0 00 Dark Orb
+ 34020000  01 0 00 Dark Hail
+ 34030000  01 0 00 Dark Fog
+ 34040000  01 0 00 Affinity
+ 34050000  01 0 00 Dead Again
+ 34060000  01 0 00 Dark Weapon
+ 34070000  01 0 00 Whisper of Despair
+ 34080000  01 0 00 Repel
+ 34090000  01 0 00 Twisted Barricade
+ 34100000  01 0 00 Numbness
+ 34300000  01 0 00 Dark Greatsword
+ 34310000  01 0 00 Recollection
+ 35010000  01 0 00 Scraps of Life
+ 35020000  01 0 00 Darkstorm
+ 35030000  01 0 00 Resonant Soul
+ 35040000  01 0 00 Great Resonant Soul
+ 35050000  01 0 00 Climax
+ 35060000  01 0 00 Resonant Flesh
+ 35070000  01 0 00 Resonant Weapon
+ 35080000  01 0 00 Lifedrain Patch
+ 35090000  01 0 00 Profound Still
+ 35300000  01 0 00 Promised Walk of Peace
+ 35310000  01 0 00 Dark Dance

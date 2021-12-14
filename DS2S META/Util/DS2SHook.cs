@@ -327,6 +327,7 @@ namespace DS2S_META
             set
             {
                 if (Reading || !Loaded) return;
+                if (Name == value) return;
                 PlayerName.WriteString((int)DS2SOffsets.PlayerName.Name, Encoding.Unicode, 0x22, value);
                 OnPropertyChanged(nameof(Name));
             }
@@ -335,7 +336,11 @@ namespace DS2S_META
         public byte Class
         {
             get => Loaded ? PlayerBaseMisc.ReadByte((int)DS2SOffsets.PlayerBaseMisc.Class) : (byte)255;
-            set => PlayerBaseMisc.WriteByte((int)DS2SOffsets.PlayerBaseMisc.Class, value);
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerBaseMisc.WriteByte((int)DS2SOffsets.PlayerBaseMisc.Class, value);
+            }
         }
         public int SoulLevel
         {
@@ -526,20 +531,22 @@ namespace DS2S_META
         #endregion
 
         #region Items
-        public void GetItem(int item, int amount, bool silent)
+        public void GetItem(int item, short amount, byte upgrade, byte infusion, bool silent)
         {
             if (silent)
-                GiveItemSilently(item, amount);
+                GiveItemSilently(item, amount, upgrade, infusion);
             else
-                GiveItem(item, amount);
+                GiveItem(item, amount, upgrade, infusion);
         }
 
-        private void GiveItem(int item, int amount)
+        private void GiveItem(int item, short amount, byte upgrade, byte infusion)
         {
             var itemStruct = Allocate(0x8A);
             Kernel32.WriteBytes(Handle, itemStruct + 0x4, BitConverter.GetBytes(item));
             Kernel32.WriteBytes(Handle, itemStruct + 0x8, BitConverter.GetBytes(float.MaxValue));
             Kernel32.WriteBytes(Handle, itemStruct + 0xC, BitConverter.GetBytes(amount));
+            Kernel32.WriteByte(Handle, itemStruct + 0xE, upgrade);
+            Kernel32.WriteByte(Handle, itemStruct + 0xF, infusion);
 
             var asm = (byte[])DS2SAssembly.GetItem.Clone();
 
@@ -566,12 +573,14 @@ namespace DS2S_META
             Free(itemStruct);
         }
 
-        private void GiveItemSilently(int item, int amount)
+        private void GiveItemSilently(int item, short amount, byte upgrade, byte infusion)
         {
             var itemStruct = Allocate(0x8A);
             Kernel32.WriteBytes(Handle, itemStruct + 0x4, BitConverter.GetBytes(item));
             Kernel32.WriteBytes(Handle, itemStruct + 0x8, BitConverter.GetBytes(float.MaxValue));
             Kernel32.WriteBytes(Handle, itemStruct + 0xC, BitConverter.GetBytes(amount));
+            Kernel32.WriteByte(Handle, itemStruct + 0xE, upgrade);
+            Kernel32.WriteByte(Handle, itemStruct + 0xF, infusion);
 
             var asm = (byte[])DS2SAssembly.GetItemNoMenu.Clone();
 

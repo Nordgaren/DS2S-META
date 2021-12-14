@@ -1,438 +1,438 @@
-//Format: Item ID; Stack Limit; Reinforce Type; Name [arbitrary]
- 21010100  1 0 Pate's Helm
- 21010101  1 0 Pate's Armor
- 21010102  1 0 Pate's Gloves
- 21010103  1 0 Pate's Trousers
- 21020100  1 0 Thief Mask
- 21020101  1 0 Black Leather Armor
- 21020102  1 0 Black Leather Gloves
- 21020103  1 0 Black Leather Boots
- 21030100  1 0 Wanderer Hood
- 21030101  1 0 Wanderer Coat
- 21030102  1 0 Wanderer Manchettes
- 21030103  1 0 Wanderer Boots
- 21040100  1 0 Hunter's Hat
- 21040101  1 0 Leather Armor
- 21040102  1 0 Leather Gloves
- 21040103  1 0 Leather Boots
- 21041100  1 0 Hunter's Hat
- 21050100  1 0 Knight Helm
- 21050101  1 0 Knight Armor
- 21050102  1 0 Knight Gauntlets
- 21050103  1 0 Knight Leggings
- 21060100  1 0 Elite Knight Helm
- 21060101  1 0 Elite Knight Armor
- 21060102  1 0 Elite Knight Gloves
- 21060103  1 0 Elite Knight Leggings
- 21070100  1 0 Tattered Cloth Hood
- 21070101  1 0 Tattered Cloth Robe
- 21070102  1 0 Tattered Cloth Manchettes
- 21070103  1 0 Heavy Boots
- 21080100  1 0 Brigand Hood
- 21080101  1 0 Brigand Armor
- 21080102  1 0 Brigand Gauntlets
- 21080103  1 0 Brigand Trousers
- 21100100  1 0 Imported Hood
- 21100101  1 0 Imported Tunic
- 21100102  1 0 Imported Manchettes
- 21100103  1 0 Imported Trousers
- 21140100  1 0 Traveling Merchant Hat
- 21140101  1 0 Traveling Merchant Coat
- 21140102  1 0 Traveling Merchant Gloves
- 21140103  1 0 Traveling Merchant Boots
- 21160100  1 0 Havel's Helm
- 21160101  1 0 Havel's Armor
- 21160102  1 0 Havel's Gauntlets
- 21160103  1 0 Havel's Leggings
- 21210100  1 0 Jester's Cap
- 21210101  1 0 Jester's Robes
- 21210102  1 0 Jester's Gloves
- 21210103  1 0 Jester's Tights
- 21230100  1 0 Moon Hat
- 21230101  1 0 Astrologist's Robe
- 21230102  1 0 Astrologist's Gauntlets
- 21230103  1 0 Astrologist's Bottoms
- 21320100  1 0 Faraam Helm
- 21320101  1 0 Faraam Armor
- 21320102  1 0 Faraam Gauntlets
- 21320103  1 0 Faraam Boots
- 21330100  1 0 Black Dragon Helm
- 21330101  1 0 Black Dragon Armor
- 21330102  1 0 Black Dragon Gauntlets
- 21330103  1 0 Black Dragon Leggings
- 21340100  1 0 Xanthous Crown
- 21340101  1 0 Xanthous Overcoat
- 21340102  1 0 Xanthous Gloves
- 21340103  1 0 Xanthous Waistcloth
- 21350100  1 0 Mask of Judgment
- 21350101  1 0 Robe of Judgment
- 21350102  1 0 Manchettes of Judgment
- 21350103  1 0 Tights of Judgment
- 21360100  1 0 Helm of Aurous
- 21360101  1 0 Armor of Aurous
- 21360102  1 0 Gauntlets of Aurous
- 21360103  1 0 Leggings of Aurous
- 21361100  1 0 Helm of Aurous
- 21361101  1 0 Armor of Aurous
- 21361102  1 0 Gauntlets of Aurous
- 21361103  1 0 Leggings of Aurous
- 21370100  1 0 Monastery Headcloth
- 21370101  1 0 Monastery Longshirt
- 21370102  1 0 Monastery Long Gloves
- 21370103  1 0 Monastery Skirt
- 21390100  1 0 Dingy Hood
- 21390101  1 0 Dingy Robe
- 21390102  1 0 Dingy Cuffs
- 21390103  1 0 Blood-Stained Skirt
- 21430100  1 0 Durgo's Hat
- 21440102  1 0 Engraved Gauntlets
- 21460103  1 0 Flying Feline Boots
- 21470100  1 0 Moon Butterfly Hat
- 21470101  1 0 Moon Butterfly Wings
- 21470102  1 0 Moon Butterfly Cuffs
- 21470103  1 0 Moon Butterfly Skirt
- 21480100  1 0 Catarina Helm
- 21480101  1 0 Catarina Armor
- 21480102  1 0 Catarina Gauntlets
- 21480103  1 0 Catarina Leggings
- 21490100  1 0 Alva Helm
- 21490101  1 0 Alva Armor
- 21490102  1 0 Alva Gauntlets
- 21490103  1 0 Alva Leggings
- 21500100  1 0 Black Witch Veil
- 21500101  1 0 Black Witch Robe
- 21500102  1 0 Black Witch Gloves
- 21500103  1 0 Black Witch Trousers
- 21501100  1 0 Black Witch Hat
- 21502100  1 0 Black Witch Domino Mask
- 21600100  1 0 Drakeblood Helm
- 21600101  1 0 Drakeblood Armor
- 21600102  1 0 Drakeblood Gauntlets
- 21600103  1 0 Drakeblood Leggings
- 21610100  1 0 Northwarder Hood
- 21610101  1 0 Northwarder Robe
- 21610102  1 0 Northwarder Manchettes
- 21610103  1 0 Northwarder Trousers
- 21630100  1 0 Crown of the Old Iron King
- 21640100  1 0 Crown of the Ivory King
- 21650100  1 0 Crown of the Sunken King
- 21660100  1 0 Old Bell Helm
- 21670100  1 0 Hollow Skin
- 21680100  1 0 Pharros Mask
- 21690103  1 0 Flower Skirt
- 21700100  1 0 Minotaur Helm
- 21710100  1 0 Symbol of Avarice
- 22020100  1 0 Hollow Soldier Helm
- 22020101  1 0 Hollow Soldier Armor
- 22020102  1 0 Hollow Soldier Gauntlets
- 22020103  1 0 Hollow Soldier Leggings
- 22021100  1 0 Royal Soldier Helm
- 22021101  1 0 Royal Soldier Armor
- 22021102  1 0 Royal Soldier Gauntlets
- 22021103  1 0 Royal Soldier Leggings
- 22030100  1 0 Hollow Infantry Helm
- 22030101  1 0 Hollow Infantry Armor
- 22030102  1 0 Hollow Infantry Gloves
- 22030103  1 0 Hollow Infantry Boots
- 22031100  1 0 Infantry Helm
- 22031101  1 0 Infantry Armor
- 22031102  1 0 Infantry Gloves
- 22031103  1 0 Infantry Boots
- 22060100  1 0 White Priest Headpiece
- 22060101  1 0 White Priest Robe
- 22060102  1 0 White Priest Gloves
- 22060103  1 0 White Priest Skirt
- 22062100  1 0 Priestess Headpiece
- 22062101  1 0 Priestess Robe
- 22062102  1 0 Priestess Gloves
- 22062103  1 0 Priestess Skirt
- 22080100  1 0 Rogue Hood
- 22080101  1 0 Rogue Armor
- 22080102  1 0 Rogue Gauntlets
- 22080103  1 0 Rogue Leggings
- 22110100  1 0 Spiked Bandit Helm
- 22110101  1 0 Bandit Armor
- 22110102  1 0 Bandit Gauntlets
- 22110103  1 0 Bandit Boots
- 22130100  1 0 Varangian Helm
- 22130101  1 0 Varangian Armor
- 22130102  1 0 Varangian Cuffs
- 22130103  1 0 Varangian Leggings
- 22180100  1 0 Black Hollow Mage Hood
- 22180101  1 0 Black Hollow Mage Robe
- 22182100  1 0 White Hollow Mage Hood
- 22182101  1 0 White Hollow Mage Robe
- 22190101  1 0 Lion Mage Robe
- 22190102  1 0 Lion Mage Cuffs
- 22190103  1 0 Lion Mage Skirt
- 22220100  1 0 Steel Helm
- 22220101  1 0 Steel Armor
- 22220102  1 0 Steel Gauntlets
- 22220103  1 0 Steel Leggings
- 22230100  1 0 Shadow Mask
- 22230101  1 0 Shadow Top
- 22230102  1 0 Shadow Gauntlets
- 22230103  1 0 Shadow Leggings
- 22240100  1 0 Manikin Mask
- 22240101  1 0 Manikin Top
- 22240102  1 0 Manikin Gloves
- 22240103  1 0 Manikin Boots
- 22270100  1 0 Prisoner's Hood
- 22270101  1 0 Prisoner's Tatters
- 22270102  1 0 Prisoner's Gloves
- 22270103  1 0 Prisoner's Waistcloth
- 22271100  1 0 Prisoner's Hood
- 22271101  1 0 Prisoner's Tatters
- 22310100  1 0 Archdrake Helm
- 22310101  1 0 Archdrake Robes
- 22310102  1 0 Archdrake Gloves
- 22310103  1 0 Archdrake Boots
- 22340100  1 0 Gyrm Helm
- 22340101  1 0 Gyrm Armor
- 22340102  1 0 Gyrm Gloves
- 22340103  1 0 Gyrm Boots
- 22350100  1 0 Gyrm Warrior Helm
- 22350101  1 0 Gyrm Warrior Armor
- 22350102  1 0 Gyrm Warrior Gloves
- 22350103  1 0 Gyrm Warrior Boots
- 22351100  1 0 Gyrm Warrior Greathelm
- 22360100  1 0 Dark Mask
- 22360101  1 0 Dark Armor
- 22360102  1 0 Dark Gauntlets
- 22360103  1 0 Dark Leggings
- 22370100  1 0 Warlock Mask
- 22460100  1 0 Tseldora Cap
- 22460101  1 0 Tseldora Robe
- 22460102  1 0 Tseldora Manchettes
- 22460103  1 0 Tseldora Trousers
- 22480100  1 0 Peasant Hat
- 22480101  1 0 Peasant Attire
- 22480102  1 0 Peasant Long Gloves
- 22480103  1 0 Peasant Trousers
- 22510100  1 0 Ironclad Helm
- 22510101  1 0 Ironclad Armor
- 22510102  1 0 Ironclad Gauntlets
- 22510103  1 0 Ironclad Leggings
- 22512100  1 0 Old Ironclad Helm
- 22512101  1 0 Old Ironclad Armor
- 22512102  1 0 Old Ironclad Gauntlets
- 22512103  1 0 Old Ironclad Leggings
- 22520100  1 0 Royal Swordsman Helm
- 22520101  1 0 Royal Swordsman Armor
- 22520102  1 0 Royal Swordsman Gloves
- 22520103  1 0 Royal Swordsman Leggings
- 22530100  1 0 Syan's Helm
- 22530101  1 0 Syan's Armor
- 22530102  1 0 Syan's Gauntlets
- 22530103  1 0 Syan's Leggings
- 22540100  1 0 Bone Crown
- 22540101  1 0 Bone King Robe
- 22540102  1 0 Bone King Cuffs
- 22540103  1 0 Bone King Skirt
- 23010100  1 0 Heide Knight Greathelm
- 23010101  1 0 Heide Knight Chainmail
- 23010102  1 0 Heide Knight Gauntlets
- 23010103  1 0 Heide Knight Leggings
- 23011100  1 0 Heide Knight Iron Mask
- 23040101  1 0 Singer's Dress
- 23050100  1 0 Smelter Demon Helm
- 23050101  1 0 Smelter Demon Armor
- 23050102  1 0 Smelter Demon Gauntlets
- 23050103  1 0 Smelter Demon Leggings
- 23060100  1 0 Alonne Captain Helm
- 23060101  1 0 Alonne Captain Armor
- 23061100  1 0 Alonne Knight Helm
- 23061101  1 0 Alonne Knight Armor
- 23061102  1 0 Alonne Knight Gauntlets
- 23061103  1 0 Alonne Knight Leggings
- 23070100  1 0 Vengarl's Helm
- 23070101  1 0 Vengarl's Armor
- 23070102  1 0 Vengarl's Gloves
- 23070103  1 0 Vengarl's Boots
- 23080101  1 0 Lion Warrior Cape
- 23080102  1 0 Lion Warrior Cuffs
- 23080103  1 0 Lion Warrior Skirt
- 23081100  1 0 Lion Warrior Helm
- 23081101  1 0 Red Lion Warrior Cape
- 23120100  1 0 Grave Warden Mask
- 23120101  1 0 Grave Warden Top
- 23120102  1 0 Grave Warden Cuffs
- 23120103  1 0 Grave Warden Bottoms
- 23130100  1 0 Falconer Helm
- 23130101  1 0 Falconer Armor
- 23130102  1 0 Falconer Gloves
- 23130103  1 0 Falconer Boots
- 23140100  1 0 Rusted Mastodon Helm
- 23140101  1 0 Rusted Mastodon Armor
- 23140102  1 0 Rusted Mastodon Gauntlets
- 23140103  1 0 Rusted Mastodon Leggings
- 23150100  1 0 Mastodon Helm
- 23150101  1 0 Mastodon Armor
- 23150102  1 0 Mastodon Gauntlets
- 23150103  1 0 Mastodon Leggings
- 23160100  1 0 Desert Sorceress Hood
- 23160101  1 0 Desert Sorceress Top
- 23160102  1 0 Desert Sorceress Gloves
- 23160103  1 0 Desert Sorceress Skirt
- 23170100  1 0 Dragon Acolyte Mask
- 23170101  1 0 Dragon Acolyte Robe
- 23170102  1 0 Dragon Acolyte Gloves
- 23170103  1 0 Dragon Acolyte Boots
- 23171100  1 0 Dragon Sage Hood
- 23250100  1 0 Ruin Helm
- 23250101  1 0 Ruin Armor
- 23250102  1 0 Ruin Gauntlets
- 23250103  1 0 Ruin Leggings
- 23300100  1 0 Old Knight Helm
- 23300101  1 0 Old Knight Armor
- 23300102  1 0 Old Knight Gauntlets
- 23300103  1 0 Old Knight Leggings
- 23310100  1 0 Drakekeeper Helm
- 23310101  1 0 Drakekeeper Armor
- 23310102  1 0 Drakekeeper Gauntlets
- 23310103  1 0 Drakekeeper Boots
- 23320100  1 0 Throne Defender Helm
- 23320101  1 0 Throne Defender Armor
- 23320102  1 0 Throne Defender Gauntlets
- 23320103  1 0 Throne Defender Leggings
- 23330100  1 0 Velstadt's Helm
- 23330101  1 0 Velstadt's Armor
- 23330102  1 0 Velstadt's Gauntlets
- 23330103  1 0 Velstadt's Leggings
- 23340100  1 0 Throne Watcher Helm
- 23340101  1 0 Throne Watcher Armor
- 23340102  1 0 Throne Watcher Gauntlets
- 23340103  1 0 Throne Watcher Leggings
- 25040100  1 0 Looking Glass Mask
- 25040101  1 0 Looking Glass Armor
- 25040102  1 0 Looking Glass Gauntlets
- 25040103  1 0 Looking Glass Leggings
- 25060101  1 0 Agdayne's Black Robe
- 25060102  1 0 Agdayne's Cuffs
- 25060103  1 0 Agdayne's Kilt
- 25090100  1 0 Leydia Black Hood
- 25090101  1 0 Leydia Black Robe
- 25100100  1 0 Insolent Helm
- 25100101  1 0 Insolent Armor
- 25100102  1 0 Insolent Gloves
- 25100103  1 0 Insolent Boots
- 25110100  1 0 Imperious Helm
- 25110101  1 0 Imperious Armor
- 25110102  1 0 Imperious Gloves
- 25110103  1 0 Imperious Leggings
- 25120100  1 0 Leydia White Hood
- 25120101  1 0 Leydia White Robe
- 25120102  1 0 Leydia Gauntlets
- 25130100  1 0 King's Crown
- 25130101  1 0 King's Armor
- 25130102  1 0 King's Gauntlets
- 25130103  1 0 King's Leggings
- 26100100  1 0 Dragonrider Helm
- 26100101  1 0 Dragonrider Armor
- 26100102  1 0 Dragonrider Gauntlets
- 26100103  1 0 Dragonrider Leggings
- 26180100  1 0 Executioner Helm
- 26180101  1 0 Executioner Armor
- 26180102  1 0 Executioner Gauntlets
- 26180103  1 0 Executioner Leggings
- 26260100  1 0 Penal Mask
- 26260101  1 0 Penal Straightjacket
- 26260102  1 0 Penal Handcuffs
- 26260103  1 0 Penal Skirt
- 26510100  1 0 Fume Sorcerer Mask
- 26510101  1 0 Fume Sorcerer Robes
- 26510102  1 0 Fume Sorcerer Gloves
- 26510103  1 0 Fume Sorcerer Boots
- 26590100  1 0 Rampart Golem Helm
- 26590101  1 0 Rampart Golem Armor
- 26590102  1 0 Rampart Golem Gauntlets
- 26590103  1 0 Rampart Golem Leggings
- 26650100  1 0 Sanctum Knight Helm
- 26650101  1 0 Sanctum Knight Armor
- 26650102  1 0 Sanctum Knight Gauntlets
- 26650103  1 0 Sanctum Knight Leggings
- 26660102  1 0 Sanctum Soldier Gauntlet
- 26700100  1 0 Sanctum Priestess Tiara
- 26750100  1 0 Raime's Helm
- 26750101  1 0 Raime's Armor
- 26750102  1 0 Raime's Gauntlets
- 26750103  1 0 Raime's Leggings
- 26770101  1 0 Retainer Robe
- 26800100  1 0 Alonne's Helm
- 26800101  1 0 Alonne's Armor
- 26800102  1 0 Alonne's Gauntlets
- 26800103  1 0 Alonne's Leggings
- 26880100  1 0 Loyce Helm
- 26880101  1 0 Loyce Armor
- 26880102  1 0 Loyce Gauntlets
- 26880103  1 0 Loyce Leggings
- 26890100  1 0 Charred Loyce Helm
- 26890101  1 0 Charred Loyce Armor
- 26890102  1 0 Charred Loyce Gauntlets
- 26890103  1 0 Charred Loyce Leggings
- 26900100  1 0 Ivory King Helm
- 26900101  1 0 Ivory King Armor
- 26900102  1 0 Ivory King Gauntlets
- 26900103  1 0 Ivory King Leggings
- 26940100  1 0 Hood of the Forlorn
- 26940101  1 0 Armor of the Forlorn
- 26940102  1 0 Gauntlets of the Forlorn
- 26940103  1 0 Leggings of the Forlorn
- 27210101  1 0 Llewellyn Armor
- 27210102  1 0 Llewellyn Gloves
- 27210103  1 0 Llewellyn Shoes
- 27240100  1 0 Drangleic Helm
- 27240101  1 0 Drangleic Mail
- 27240102  1 0 Drangleic Gauntlets
- 27240103  1 0 Drangleic Leggings
- 27420100  1 0 Creighton's Steel Mask
- 27420101  1 0 Creighton's Chainmail
- 27420102  1 0 Creighton's Chain Gloves
- 27420103  1 0 Creighton's Chain Leggings
- 27430100  1 0 Benhart's Knight Helm
- 27430101  1 0 Benhart's Armor
- 27430102  1 0 Benhart's Gauntlets
- 27430103  1 0 Benhart's Boots
- 27440100  1 0 Standard Helm
- 27440101  1 0 Hard Leather Armor
- 27440102  1 0 Hard Leather Gauntlets
- 27440103  1 0 Hard Leather Boots
- 27510100  1 0 Cale's Helm
- 27510101  1 0 Cale's Leather Armor
- 27510103  1 0 Cale's Shoes
- 27520100  1 0 Lucatiel's Mask
- 27520101  1 0 Lucatiel's Vest
- 27520102  1 0 Lucatiel's Gloves
- 27520103  1 0 Lucatiel's Trousers
- 27521100  1 0 Mirrah Hat
- 27530100  1 0 Bell Keeper Helmet
- 27530101  1 0 Bell Keeper Bellyband
- 27530102  1 0 Bell Keeper Cuffs
- 27530103  1 0 Bell Keeper Trousers
- 27550100  1 0 Mad Warrior Mask
- 27550101  1 0 Mad Warrior Armor
- 27550102  1 0 Mad Warrior Gauntlets
- 27550103  1 0 Mad Warrior Leggings
- 27630101  1 0 Rosabeth's Dress
- 27680100  1 0 Black Hood
- 27680101  1 0 Black Robes
- 27680102  1 0 Black Gloves
- 27680103  1 0 Black Boots
- 27690100  1 0 Saint's Hood
- 27690101  1 0 Saint's Dress
- 27690102  1 0 Saint's Long Gloves
- 27690103  1 0 Saint's Trousers
- 27700100  1 0 Hexer's Hood
- 27700101  1 0 Hexer's Robes
- 27700102  1 0 Hexer's Gloves
- 27700103  1 0 Hexer's Boots
- 27710100  1 0 Chaos Hood
- 27710101  1 0 Chaos Robe
- 27710102  1 0 Chaos Gloves
- 27710103  1 0 Chaos Boots
- 27830100  1 0 Nahr Alma Hood
- 27830101  1 0 Nahr Alma Robes
- 27950100  1 0 Targray's Helm
- 27950101  1 0 Targray's Armor
- 27950102  1 0 Targray's Manifers
- 27950103  1 0 Targray's Leggings
+//Format: Item ID; Stack Limit; Reinforce Type; Max Upgrade; Name [arbitrary]
+ 21010100  01 0 10 Pate's Helm
+ 21010101  01 0 10 Pate's Armor
+ 21010102  01 0 10 Pate's Gloves
+ 21010103  01 0 10 Pate's Trousers
+ 21020100  01 0 10 Thief Mask
+ 21020101  01 0 10 Black Leather Armor
+ 21020102  01 0 10 Black Leather Gloves
+ 21020103  01 0 10 Black Leather Boots
+ 21030100  01 0 10 Wanderer Hood
+ 21030101  01 0 10 Wanderer Coat
+ 21030102  01 0 10 Wanderer Manchettes
+ 21030103  01 0 10 Wanderer Boots
+ 21040100  01 0 10 Hunter's Hat
+ 21040101  01 0 10 Leather Armor
+ 21040102  01 0 10 Leather Gloves
+ 21040103  01 0 10 Leather Boots
+ 21041100  01 0 10 Hunter's Hat
+ 21050100  01 0 10 Knight Helm
+ 21050101  01 0 10 Knight Armor
+ 21050102  01 0 10 Knight Gauntlets
+ 21050103  01 0 10 Knight Leggings
+ 21060100  01 0 10 Elite Knight Helm
+ 21060101  01 0 10 Elite Knight Armor
+ 21060102  01 0 10 Elite Knight Gloves
+ 21060103  01 0 10 Elite Knight Leggings
+ 21070100  01 0 10 Tattered Cloth Hood
+ 21070101  01 0 10 Tattered Cloth Robe
+ 21070102  01 0 10 Tattered Cloth Manchettes
+ 21070103  01 0 10 Heavy Boots
+ 21080100  01 0 10 Brigand Hood
+ 21080101  01 0 10 Brigand Armor
+ 21080102  01 0 10 Brigand Gauntlets
+ 21080103  01 0 10 Brigand Trousers
+ 21100100  01 0 10 Imported Hood
+ 21100101  01 0 10 Imported Tunic
+ 21100102  01 0 10 Imported Manchettes
+ 21100103  01 0 10 Imported Trousers
+ 21140100  01 0 10 Traveling Merchant Hat
+ 21140101  01 0 10 Traveling Merchant Coat
+ 21140102  01 0 10 Traveling Merchant Gloves
+ 21140103  01 0 10 Traveling Merchant Boots
+ 21160100  01 0 10 Havel's Helm
+ 21160101  01 0 10 Havel's Armor
+ 21160102  01 0 10 Havel's Gauntlets
+ 21160103  01 0 10 Havel's Leggings
+ 21210100  01 0 10 Jester's Cap
+ 21210101  01 0 10 Jester's Robes
+ 21210102  01 0 10 Jester's Gloves
+ 21210103  01 0 10 Jester's Tights
+ 21230100  01 0 10 Moon Hat
+ 21230101  01 0 10 Astrologist's Robe
+ 21230102  01 0 10 Astrologist's Gauntlets
+ 21230103  01 0 10 Astrologist's Bottoms
+ 21320100  01 0 10 Faraam Helm
+ 21320101  01 0 10 Faraam Armor
+ 21320102  01 0 10 Faraam Gauntlets
+ 21320103  01 0 10 Faraam Boots
+ 21330100  01 0 10 Black Dragon Helm
+ 21330101  01 0 10 Black Dragon Armor
+ 21330102  01 0 10 Black Dragon Gauntlets
+ 21330103  01 0 10 Black Dragon Leggings
+ 21340100  01 0 10 Xanthous Crown
+ 21340101  01 0 10 Xanthous Overcoat
+ 21340102  01 0 10 Xanthous Gloves
+ 21340103  01 0 10 Xanthous Waistcloth
+ 21350100  01 0 10 Mask of Judgment
+ 21350101  01 0 10 Robe of Judgment
+ 21350102  01 0 10 Manchettes of Judgment
+ 21350103  01 0 10 Tights of Judgment
+ 21360100  01 0 10 Helm of Aurous
+ 21360101  01 0 10 Armor of Aurous
+ 21360102  01 0 10 Gauntlets of Aurous
+ 21360103  01 0 10 Leggings of Aurous
+ 21361100  01 0 10 Helm of Aurous
+ 21361101  01 0 10 Armor of Aurous
+ 21361102  01 0 10 Gauntlets of Aurous
+ 21361103  01 0 10 Leggings of Aurous
+ 21370100  01 0 10 Monastery Headcloth
+ 21370101  01 0 10 Monastery Longshirt
+ 21370102  01 0 10 Monastery Long Gloves
+ 21370103  01 0 10 Monastery Skirt
+ 21390100  01 0 10 Dingy Hood
+ 21390101  01 0 10 Dingy Robe
+ 21390102  01 0 10 Dingy Cuffs
+ 21390103  01 0 10 Blood-Stained Skirt
+ 21430100  01 0 10 Durgo's Hat
+ 21440102  01 0 10 Engraved Gauntlets
+ 21460103  01 0 10 Flying Feline Boots
+ 21470100  01 0 10 Moon Butterfly Hat
+ 21470101  01 0 10 Moon Butterfly Wings
+ 21470102  01 0 10 Moon Butterfly Cuffs
+ 21470103  01 0 10 Moon Butterfly Skirt
+ 21480100  01 0 10 Catarina Helm
+ 21480101  01 0 10 Catarina Armor
+ 21480102  01 0 10 Catarina Gauntlets
+ 21480103  01 0 10 Catarina Leggings
+ 21490100  01 0 10 Alva Helm
+ 21490101  01 0 10 Alva Armor
+ 21490102  01 0 10 Alva Gauntlets
+ 21490103  01 0 10 Alva Leggings
+ 21500100  01 0 10 Black Witch Veil
+ 21500101  01 0 10 Black Witch Robe
+ 21500102  01 0 10 Black Witch Gloves
+ 21500103  01 0 10 Black Witch Trousers
+ 21501100  01 0 10 Black Witch Hat
+ 21502100  01 0 10 Black Witch Domino Mask
+ 21600100  01 0 10 Drakeblood Helm
+ 21600101  01 0 10 Drakeblood Armor
+ 21600102  01 0 10 Drakeblood Gauntlets
+ 21600103  01 0 10 Drakeblood Leggings
+ 21610100  01 0 10 Northwarder Hood
+ 21610101  01 0 10 Northwarder Robe
+ 21610102  01 0 10 Northwarder Manchettes
+ 21610103  01 0 10 Northwarder Trousers
+ 21630100  01 0 10 Crown of the Old Iron King
+ 21640100  01 0 10 Crown of the Ivory King
+ 21650100  01 0 10 Crown of the Sunken King
+ 21660100  01 0 10 Old Bell Helm
+ 21670100  01 0 10 Hollow Skin
+ 21680100  01 0 10 Pharros Mask
+ 21690103  01 0 10 Flower Skirt
+ 21700100  01 0 10 Minotaur Helm
+ 21710100  01 0 10 Symbol of Avarice
+ 22020100  01 0 10 Hollow Soldier Helm
+ 22020101  01 0 10 Hollow Soldier Armor
+ 22020102  01 0 10 Hollow Soldier Gauntlets
+ 22020103  01 0 10 Hollow Soldier Leggings
+ 22021100  01 0 10 Royal Soldier Helm
+ 22021101  01 0 10 Royal Soldier Armor
+ 22021102  01 0 10 Royal Soldier Gauntlets
+ 22021103  01 0 10 Royal Soldier Leggings
+ 22030100  01 0 10 Hollow Infantry Helm
+ 22030101  01 0 10 Hollow Infantry Armor
+ 22030102  01 0 10 Hollow Infantry Gloves
+ 22030103  01 0 10 Hollow Infantry Boots
+ 22031100  01 0 10 Infantry Helm
+ 22031101  01 0 10 Infantry Armor
+ 22031102  01 0 10 Infantry Gloves
+ 22031103  01 0 10 Infantry Boots
+ 22060100  01 0 10 White Priest Headpiece
+ 22060101  01 0 10 White Priest Robe
+ 22060102  01 0 10 White Priest Gloves
+ 22060103  01 0 10 White Priest Skirt
+ 22062100  01 0 10 Priestess Headpiece
+ 22062101  01 0 10 Priestess Robe
+ 22062102  01 0 10 Priestess Gloves
+ 22062103  01 0 10 Priestess Skirt
+ 22080100  01 0 10 Rogue Hood
+ 22080101  01 0 10 Rogue Armor
+ 22080102  01 0 10 Rogue Gauntlets
+ 22080103  01 0 10 Rogue Leggings
+ 22110100  01 0 10 Spiked Bandit Helm
+ 22110101  01 0 10 Bandit Armor
+ 22110102  01 0 10 Bandit Gauntlets
+ 22110103  01 0 10 Bandit Boots
+ 22130100  01 0 10 Varangian Helm
+ 22130101  01 0 10 Varangian Armor
+ 22130102  01 0 10 Varangian Cuffs
+ 22130103  01 0 10 Varangian Leggings
+ 22180100  01 0 10 Black Hollow Mage Hood
+ 22180101  01 0 10 Black Hollow Mage Robe
+ 22182100  01 0 10 White Hollow Mage Hood
+ 22182101  01 0 10 White Hollow Mage Robe
+ 22190101  01 0 10 Lion Mage Robe
+ 22190102  01 0 10 Lion Mage Cuffs
+ 22190103  01 0 10 Lion Mage Skirt
+ 22220100  01 0 10 Steel Helm
+ 22220101  01 0 10 Steel Armor
+ 22220102  01 0 10 Steel Gauntlets
+ 22220103  01 0 10 Steel Leggings
+ 22230100  01 0 10 Shadow Mask
+ 22230101  01 0 10 Shadow Top
+ 22230102  01 0 10 Shadow Gauntlets
+ 22230103  01 0 10 Shadow Leggings
+ 22240100  01 0 10 Manikin Mask
+ 22240101  01 0 10 Manikin Top
+ 22240102  01 0 10 Manikin Gloves
+ 22240103  01 0 10 Manikin Boots
+ 22270100  01 0 10 Prisoner's Hood
+ 22270101  01 0 10 Prisoner's Tatters
+ 22270102  01 0 10 Prisoner's Gloves
+ 22270103  01 0 10 Prisoner's Waistcloth
+ 22271100  01 0 10 Prisoner's Hood
+ 22271101  01 0 10 Prisoner's Tatters
+ 22310100  01 0 10 Archdrake Helm
+ 22310101  01 0 10 Archdrake Robes
+ 22310102  01 0 10 Archdrake Gloves
+ 22310103  01 0 10 Archdrake Boots
+ 22340100  01 0 10 Gyrm Helm
+ 22340101  01 0 10 Gyrm Armor
+ 22340102  01 0 10 Gyrm Gloves
+ 22340103  01 0 10 Gyrm Boots
+ 22350100  01 0 10 Gyrm Warrior Helm
+ 22350101  01 0 10 Gyrm Warrior Armor
+ 22350102  01 0 10 Gyrm Warrior Gloves
+ 22350103  01 0 10 Gyrm Warrior Boots
+ 22351100  01 0 10 Gyrm Warrior Greathelm
+ 22360100  01 0 10 Dark Mask
+ 22360101  01 0 10 Dark Armor
+ 22360102  01 0 10 Dark Gauntlets
+ 22360103  01 0 10 Dark Leggings
+ 22370100  01 0 10 Warlock Mask
+ 22460100  01 0 10 Tseldora Cap
+ 22460101  01 0 10 Tseldora Robe
+ 22460102  01 0 10 Tseldora Manchettes
+ 22460103  01 0 10 Tseldora Trousers
+ 22480100  01 0 10 Peasant Hat
+ 22480101  01 0 10 Peasant Attire
+ 22480102  01 0 10 Peasant Long Gloves
+ 22480103  01 0 10 Peasant Trousers
+ 22510100  01 0 10 Ironclad Helm
+ 22510101  01 0 10 Ironclad Armor
+ 22510102  01 0 10 Ironclad Gauntlets
+ 22510103  01 0 10 Ironclad Leggings
+ 22512100  01 0 10 Old Ironclad Helm
+ 22512101  01 0 10 Old Ironclad Armor
+ 22512102  01 0 10 Old Ironclad Gauntlets
+ 22512103  01 0 10 Old Ironclad Leggings
+ 22520100  01 0 10 Royal Swordsman Helm
+ 22520101  01 0 10 Royal Swordsman Armor
+ 22520102  01 0 10 Royal Swordsman Gloves
+ 22520103  01 0 10 Royal Swordsman Leggings
+ 22530100  01 0 10 Syan's Helm
+ 22530101  01 0 10 Syan's Armor
+ 22530102  01 0 10 Syan's Gauntlets
+ 22530103  01 0 10 Syan's Leggings
+ 22540100  01 0 10 Bone Crown
+ 22540101  01 0 10 Bone King Robe
+ 22540102  01 0 10 Bone King Cuffs
+ 22540103  01 0 10 Bone King Skirt
+ 23010100  01 0 10 Heide Knight Greathelm
+ 23010101  01 0 10 Heide Knight Chainmail
+ 23010102  01 0 10 Heide Knight Gauntlets
+ 23010103  01 0 10 Heide Knight Leggings
+ 23011100  01 0 10 Heide Knight Iron Mask
+ 23040101  01 0 10 Singer's Dress
+ 23050100  01 0 10 Smelter Demon Helm
+ 23050101  01 0 10 Smelter Demon Armor
+ 23050102  01 0 10 Smelter Demon Gauntlets
+ 23050103  01 0 10 Smelter Demon Leggings
+ 23060100  01 0 10 Alonne Captain Helm
+ 23060101  01 0 10 Alonne Captain Armor
+ 23061100  01 0 10 Alonne Knight Helm
+ 23061101  01 0 10 Alonne Knight Armor
+ 23061102  01 0 10 Alonne Knight Gauntlets
+ 23061103  01 0 10 Alonne Knight Leggings
+ 23070100  01 0 10 Vengarl's Helm
+ 23070101  01 0 10 Vengarl's Armor
+ 23070102  01 0 10 Vengarl's Gloves
+ 23070103  01 0 10 Vengarl's Boots
+ 23080101  01 0 10 Lion Warrior Cape
+ 23080102  01 0 10 Lion Warrior Cuffs
+ 23080103  01 0 10 Lion Warrior Skirt
+ 23081100  01 0 10 Lion Warrior Helm
+ 23081101  01 0 10 Red Lion Warrior Cape
+ 23120100  01 0 10 Grave Warden Mask
+ 23120101  01 0 10 Grave Warden Top
+ 23120102  01 0 10 Grave Warden Cuffs
+ 23120103  01 0 10 Grave Warden Bottoms
+ 23130100  01 0 10 Falconer Helm
+ 23130101  01 0 10 Falconer Armor
+ 23130102  01 0 10 Falconer Gloves
+ 23130103  01 0 10 Falconer Boots
+ 23140100  01 0 10 Rusted Mastodon Helm
+ 23140101  01 0 10 Rusted Mastodon Armor
+ 23140102  01 0 10 Rusted Mastodon Gauntlets
+ 23140103  01 0 10 Rusted Mastodon Leggings
+ 23150100  01 0 10 Mastodon Helm
+ 23150101  01 0 10 Mastodon Armor
+ 23150102  01 0 10 Mastodon Gauntlets
+ 23150103  01 0 10 Mastodon Leggings
+ 23160100  01 0 10 Desert Sorceress Hood
+ 23160101  01 0 10 Desert Sorceress Top
+ 23160102  01 0 10 Desert Sorceress Gloves
+ 23160103  01 0 10 Desert Sorceress Skirt
+ 23170100  01 0 10 Dragon Acolyte Mask
+ 23170101  01 0 10 Dragon Acolyte Robe
+ 23170102  01 0 10 Dragon Acolyte Gloves
+ 23170103  01 0 10 Dragon Acolyte Boots
+ 23171100  01 0 10 Dragon Sage Hood
+ 23250100  01 0 10 Ruin Helm
+ 23250101  01 0 10 Ruin Armor
+ 23250102  01 0 10 Ruin Gauntlets
+ 23250103  01 0 10 Ruin Leggings
+ 23300100  01 0 10 Old Knight Helm
+ 23300101  01 0 10 Old Knight Armor
+ 23300102  01 0 10 Old Knight Gauntlets
+ 23300103  01 0 10 Old Knight Leggings
+ 23310100  01 0 10 Drakekeeper Helm
+ 23310101  01 0 10 Drakekeeper Armor
+ 23310102  01 0 10 Drakekeeper Gauntlets
+ 23310103  01 0 10 Drakekeeper Boots
+ 23320100  01 0 10 Throne Defender Helm
+ 23320101  01 0 10 Throne Defender Armor
+ 23320102  01 0 10 Throne Defender Gauntlets
+ 23320103  01 0 10 Throne Defender Leggings
+ 23330100  01 0 10 Velstadt's Helm
+ 23330101  01 0 10 Velstadt's Armor
+ 23330102  01 0 10 Velstadt's Gauntlets
+ 23330103  01 0 10 Velstadt's Leggings
+ 23340100  01 0 10 Throne Watcher Helm
+ 23340101  01 0 10 Throne Watcher Armor
+ 23340102  01 0 10 Throne Watcher Gauntlets
+ 23340103  01 0 10 Throne Watcher Leggings
+ 25040100  01 0 10 Looking Glass Mask
+ 25040101  01 0 10 Looking Glass Armor
+ 25040102  01 0 10 Looking Glass Gauntlets
+ 25040103  01 0 10 Looking Glass Leggings
+ 25060101  01 0 10 Agdayne's Black Robe
+ 25060102  01 0 10 Agdayne's Cuffs
+ 25060103  01 0 10 Agdayne's Kilt
+ 25090100  01 0 10 Leydia Black Hood
+ 25090101  01 0 10 Leydia Black Robe
+ 25100100  01 0 10 Insolent Helm
+ 25100101  01 0 10 Insolent Armor
+ 25100102  01 0 10 Insolent Gloves
+ 25100103  01 0 10 Insolent Boots
+ 25110100  01 0 10 Imperious Helm
+ 25110101  01 0 10 Imperious Armor
+ 25110102  01 0 10 Imperious Gloves
+ 25110103  01 0 10 Imperious Leggings
+ 25120100  01 0 10 Leydia White Hood
+ 25120101  01 0 10 Leydia White Robe
+ 25120102  01 0 10 Leydia Gauntlets
+ 25130100  01 0 10 King's Crown
+ 25130101  01 0 10 King's Armor
+ 25130102  01 0 10 King's Gauntlets
+ 25130103  01 0 10 King's Leggings
+ 26100100  01 0 10 Dragonrider Helm
+ 26100101  01 0 10 Dragonrider Armor
+ 26100102  01 0 10 Dragonrider Gauntlets
+ 26100103  01 0 10 Dragonrider Leggings
+ 26180100  01 0 10 Executioner Helm
+ 26180101  01 0 10 Executioner Armor
+ 26180102  01 0 10 Executioner Gauntlets
+ 26180103  01 0 10 Executioner Leggings
+ 26260100  01 0 10 Penal Mask
+ 26260101  01 0 10 Penal Straightjacket
+ 26260102  01 0 10 Penal Handcuffs
+ 26260103  01 0 10 Penal Skirt
+ 26510100  01 0 10 Fume Sorcerer Mask
+ 26510101  01 0 10 Fume Sorcerer Robes
+ 26510102  01 0 10 Fume Sorcerer Gloves
+ 26510103  01 0 10 Fume Sorcerer Boots
+ 26590100  01 0 10 Rampart Golem Helm
+ 26590101  01 0 10 Rampart Golem Armor
+ 26590102  01 0 10 Rampart Golem Gauntlets
+ 26590103  01 0 10 Rampart Golem Leggings
+ 26650100  01 0 10 Sanctum Knight Helm
+ 26650101  01 0 10 Sanctum Knight Armor
+ 26650102  01 0 10 Sanctum Knight Gauntlets
+ 26650103  01 0 10 Sanctum Knight Leggings
+ 26660102  01 0 10 Sanctum Soldier Gauntlet
+ 26700100  01 0 10 Sanctum Priestess Tiara
+ 26750100  01 0 10 Raime's Helm
+ 26750101  01 0 10 Raime's Armor
+ 26750102  01 0 10 Raime's Gauntlets
+ 26750103  01 0 10 Raime's Leggings
+ 26770101  01 0 10 Retainer Robe
+ 26800100  01 0 10 Alonne's Helm
+ 26800101  01 0 10 Alonne's Armor
+ 26800102  01 0 10 Alonne's Gauntlets
+ 26800103  01 0 10 Alonne's Leggings
+ 26880100  01 0 10 Loyce Helm
+ 26880101  01 0 10 Loyce Armor
+ 26880102  01 0 10 Loyce Gauntlets
+ 26880103  01 0 10 Loyce Leggings
+ 26890100  01 0 10 Charred Loyce Helm
+ 26890101  01 0 10 Charred Loyce Armor
+ 26890102  01 0 10 Charred Loyce Gauntlets
+ 26890103  01 0 10 Charred Loyce Leggings
+ 26900100  01 0 10 Ivory King Helm
+ 26900101  01 0 10 Ivory King Armor
+ 26900102  01 0 10 Ivory King Gauntlets
+ 26900103  01 0 10 Ivory King Leggings
+ 26940100  01 0 10 Hood of the Forlorn
+ 26940101  01 0 10 Armor of the Forlorn
+ 26940102  01 0 10 Gauntlets of the Forlorn
+ 26940103  01 0 10 Leggings of the Forlorn
+ 27210101  01 0 10 Llewellyn Armor
+ 27210102  01 0 10 Llewellyn Gloves
+ 27210103  01 0 10 Llewellyn Shoes
+ 27240100  01 0 10 Drangleic Helm
+ 27240101  01 0 10 Drangleic Mail
+ 27240102  01 0 10 Drangleic Gauntlets
+ 27240103  01 0 10 Drangleic Leggings
+ 27420100  01 0 10 Creighton's Steel Mask
+ 27420101  01 0 10 Creighton's Chainmail
+ 27420102  01 0 10 Creighton's Chain Gloves
+ 27420103  01 0 10 Creighton's Chain Leggings
+ 27430100  01 0 10 Benhart's Knight Helm
+ 27430101  01 0 10 Benhart's Armor
+ 27430102  01 0 10 Benhart's Gauntlets
+ 27430103  01 0 10 Benhart's Boots
+ 27440100  01 0 10 Standard Helm
+ 27440101  01 0 10 Hard Leather Armor
+ 27440102  01 0 10 Hard Leather Gauntlets
+ 27440103  01 0 10 Hard Leather Boots
+ 27510100  01 0 10 Cale's Helm
+ 27510101  01 0 10 Cale's Leather Armor
+ 27510103  01 0 10 Cale's Shoes
+ 27520100  01 0 10 Lucatiel's Mask
+ 27520101  01 0 10 Lucatiel's Vest
+ 27520102  01 0 10 Lucatiel's Gloves
+ 27520103  01 0 10 Lucatiel's Trousers
+ 27521100  01 0 10 Mirrah Hat
+ 27530100  01 0 10 Bell Keeper Helmet
+ 27530101  01 0 10 Bell Keeper Bellyband
+ 27530102  01 0 10 Bell Keeper Cuffs
+ 27530103  01 0 10 Bell Keeper Trousers
+ 27550100  01 0 10 Mad Warrior Mask
+ 27550101  01 0 10 Mad Warrior Armor
+ 27550102  01 0 10 Mad Warrior Gauntlets
+ 27550103  01 0 10 Mad Warrior Leggings
+ 27630101  01 0 10 Rosabeth's Dress
+ 27680100  01 0 10 Black Hood
+ 27680101  01 0 10 Black Robes
+ 27680102  01 0 10 Black Gloves
+ 27680103  01 0 10 Black Boots
+ 27690100  01 0 10 Saint's Hood
+ 27690101  01 0 10 Saint's Dress
+ 27690102  01 0 10 Saint's Long Gloves
+ 27690103  01 0 10 Saint's Trousers
+ 27700100  01 0 10 Hexer's Hood
+ 27700101  01 0 10 Hexer's Robes
+ 27700102  01 0 10 Hexer's Gloves
+ 27700103  01 0 10 Hexer's Boots
+ 27710100  01 0 10 Chaos Hood
+ 27710101  01 0 10 Chaos Robe
+ 27710102  01 0 10 Chaos Gloves
+ 27710103  01 0 10 Chaos Boots
+ 27830100  01 0 10 Nahr Alma Hood
+ 27830101  01 0 10 Nahr Alma Robes
+ 27950100  01 0 10 Targray's Helm
+ 27950101  01 0 10 Targray's Armor
+ 27950102  01 0 10 Targray's Manifers
+ 27950103  01 0 10 Targray's Leggings

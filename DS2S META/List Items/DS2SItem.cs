@@ -6,32 +6,24 @@ namespace DS2S_META
 {
     class DS2SItem : IComparable<DS2SItem>
     {
-        public enum Upgrade
-        {
-            None = 0,
-            Unique = 1,
-            Armor = 2,
-            Infusable = 3,
-            InfusableRestricted = 4,
-            PyroFlame = 5,
-            PyroFlameAscended = 6,
-        }
-
-        private static Regex itemEntryRx = new Regex(@"^\s*(?<id>\S+)\s+(?<limit>\S+)\s+(?<upgrade>\S+)\s+(?<name>.+)$");
+       
+        private static Regex itemEntryRx = new Regex(@"^\s*(?<id>\S+)\s+(?<limit>\S+)\s+(?<upgrade>\S+)\s+(?<max>\S+)\s+(?<name>.+)$");
 
         private bool ShowID;
 
         public string Name;
         public int ID;
         public int StackLimit;
-        public Upgrade UpgradeType;
+        public DS2SInfusion.InfusionType Infusion;
+        public int MaxUpgrade;
 
         public DS2SItem(string config, bool showID)
         {
             Match itemEntry = itemEntryRx.Match(config);
             ID = Convert.ToInt32(itemEntry.Groups["id"].Value);
             StackLimit = Convert.ToInt32(itemEntry.Groups["limit"].Value);
-            UpgradeType = (Upgrade)Convert.ToInt32(itemEntry.Groups["upgrade"].Value);
+            Infusion = (DS2SInfusion.InfusionType)Convert.ToInt32(itemEntry.Groups["upgrade"].Value);
+            MaxUpgrade = Convert.ToInt32(itemEntry.Groups["max"].Value);
             ShowID = showID;
             if (showID)
                 Name = ID.ToString() + ": " + itemEntry.Groups["name"].Value;
