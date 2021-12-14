@@ -1,4 +1,4 @@
-//Format: Item ID; Stack Limit; Reinforce Type; Name [arbitrary]
+//Format: Item ID; Stack Limit; Infusion Type; Name [arbitrary]
  11000000  01 0 00 Buckler
  11005000  01 0 00 Benhart's Parma
  11010000  01 0 00 Small Leather Shield
@@ -55,21 +55,21 @@
  11550000  01 0 00 King's Mirror
  11560000  01 0 00 Dragonrider Greatshield
  11570000  01 0 00 Mastodon Greatshield
- 11590000  01 0 00 Havel's Greatshield
- 11600000  01 0 00 Gyrm Greatshield
- 11610000  01 0 00 Pursuer's Greatshield
- 11620000  01 0 00 Pate's Shield
- 11630000  01 0 00 Old Knight Greatshield
- 11640000  01 0 00 Drakekeeper's Greatshield
- 11650000  01 0 00 Greatshield of Glory
- 11700000  01 0 00 Phoenix Parma
- 11710000  01 0 00 Sunlight Parma
- 11720000  01 0 00 Watchdragon Parma
- 11730000  01 0 00 Blossom Kite Shield
- 11740000  01 0 00 Rebel's Greatshield
- 11750000  01 0 00 Wicked Eye Greatshield
- 11800000  01 0 00 Black Flamestone Parma
- 11810000  01 0 00 Yellow Quartz Shield
- 11820000  01 0 00 Bound Wooden Shield
- 11830000  01 0 00 Homunculus Wooden Shield
- 11840000  01 0 00 Transgressor's Leather Shield
+ 11590000  01 3 00 Havel's Greatshield
+ 11600000  01 3 00 Gyrm Greatshield
+ 11610000  01 3 00 Pursuer's Greatshield
+ 11620000  01 3 00 Pate's Shield
+ 11630000  01 3 00 Old Knight Greatshield
+ 11640000  01 3 00 Drakekeeper's Greatshield
+ 11650000  01 3 00 Greatshield of Glory
+ 11700000  01 3 00 Phoenix Parma
+ 11710000  01 3 00 Sunlight Parma
+ 11720000  01 3 00 Watchdragon Parma
+ 11730000  01 3 00 Blossom Kite Shield
+ 11740000  01 3 00 Rebel's Greatshield
+ 11750000  01 3 00 Wicked Eye Greatshield
+ 11800000  01 3 00 Black Flamestone Parma
+ 11810000  01 3 00 Yellow Quartz Shield
+ 11820000  01 3 00 Bound Wooden Shield
+ 11830000  01 3 00 Homunculus Wooden Shield
+ 11840000  01 3 00 Transgressor's Leather Shield

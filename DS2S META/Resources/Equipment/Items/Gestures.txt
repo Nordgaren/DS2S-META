@@ -1,4 +1,4 @@
-//Format: Item ID; Stack Limit; Reinforce Type; Max Upgrade; Name [arbitrary]
+//Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
  63000000  01 0 00 "Point" Gesture
  63001000  01 0 00 "I won't bite" Gesture
  63003000  01 0 00 "Bow" Gesture

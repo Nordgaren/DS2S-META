@@ -1,4 +1,4 @@
- //Format: Item ID; Stack Limit; Reinforce Type; Name [arbitrary]
+ //Format: Item ID; Stack Limit; Infusion Type; Name [arbitrary]
  60010000  99 0 00 Lifegem
  60020000  01 0 00 Radiant Lifegem
  60030000  01 0 00 Old Radiant Lifegem

@@ -1,4 +1,4 @@
-//Format: Item ID; Stack Limit; Reinforce Type; Name [arbitrary]
+//Format: Item ID; Stack Limit; Infusion Type; Name [arbitrary]
  40010000  01 0 00 Life Ring
  40010001  01 0 00 Life Ring+1
  40010002  01 0 00 Life Ring+2

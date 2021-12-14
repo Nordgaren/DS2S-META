@@ -1,4 +1,4 @@
-//Format: Item ID; Stack Limit; Reinforce Type; Max Upgrade; Name [arbitrary]
+//Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
  31010000  01 0 00 Soul Arrow
  31020000  01 0 00 Great Soul Arrow
  31030000  01 0 00 Heavy Soul Arrow
