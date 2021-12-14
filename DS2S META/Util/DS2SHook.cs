@@ -49,6 +49,7 @@ namespace DS2S_META
         private PHPointer Connection;
 
         private PHPointer FCData;
+        private PHPointer FCDataPointer;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
 
@@ -63,7 +64,7 @@ namespace DS2S_META
             GiveSoulsFunc = RegisterAbsoluteAOB(DS2SOffsets.GiveSoulsFunc);
             ItemGiveFunc = RegisterAbsoluteAOB(DS2SOffsets.ItemGiveFunc);
             ItemStruct2dDisplay = RegisterAbsoluteAOB(DS2SOffsets.ItemStruct2dDisplay);
-            DisplayItem = RegisterAbsoluteAOB(DS2SOffsets.DisplayItem);
+            DisplayItem = RegisterAbsoluteAOB(DS2SOffsets.DisplayItem); 
 
             BaseBSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseBAoB);
 
@@ -74,7 +75,7 @@ namespace DS2S_META
         }
         private void DS2Hook_OnHooked(object sender, PHEventArgs e)
         {
-            BaseA = CreateBasePointer(BaseAPointBaseANoOff(BaseASetup));
+            BaseA = CreateBasePointer(BasePointerFromSetupPointer(BaseASetup));
             PlayerName = CreateChildPointer(BaseA, (int)DS2SOffsets.PlayerNameOffset);
             AvailableItemBag = CreateChildPointer(PlayerName, (int)DS2SOffsets.AvailableItemBagOffset, (int)DS2SOffsets.AvailableItemBagOffset);
             ItemGiveWindow = CreateChildPointer(BaseA, (int)DS2SOffsets.ItemGiveWindowPointer);
@@ -87,15 +88,13 @@ namespace DS2S_META
             ParamLevelUpSouls = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.ParamDataOffset2, (int)DS2SOffsets.ParamDataOffset3);
             Bonfire = CreateChildPointer(BaseA, (int)DS2SOffsets.BonfireOffset);
 
-            BaseB = CreateBasePointer(BaseAPointBaseANoOff(BaseBSetup));
+            BaseB = CreateBasePointer(BasePointerFromSetupPointer(BaseBSetup));
             Connection = CreateChildPointer(BaseB, (int)DS2SOffsets.ConnectionOffset);
+
+            FCDataPointer = CreateChildPointer(FCData);
 
             GetLevelRequirements();
             UpdateStatsProperties();
-
-            var x = CamX;
-            var y = CamY;
-            var z = CamZ;
         }
 
         public static List<int> Levels = new List<int>();
@@ -171,7 +170,7 @@ namespace DS2S_META
             OnPropertyChanged(nameof(StableZ));
             OnPropertyChanged(nameof(Gravity));
         }
-        public IntPtr BaseAPointBaseANoOff(PHPointer pointer)
+        public IntPtr BasePointerFromSetupPointer(PHPointer pointer)
         {
             var readInt = pointer.ReadInt32(DS2SOffsets.BasePtrOffset1);
             return pointer.ReadIntPtr(readInt + DS2SOffsets.BasePtrOffset2);

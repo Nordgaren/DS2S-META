@@ -7,7 +7,7 @@ namespace DS2S_META
     class DS2SItem : IComparable<DS2SItem>
     {
        
-        private static Regex itemEntryRx = new Regex(@"^\s*(?<id>\S+)\s+(?<limit>\S+)\s+(?<upgrade>\S+)\s+(?<max>\S+)\s+(?<name>.+)$");
+        private static Regex itemEntryRx = new Regex(@"^\s*(?<id>\S+)\s+(?<limit>\S+)\s+(?<infusion>\S+)\s+(?<max>\S+)\s+(?<name>.+)$");
 
         private bool ShowID;
 
@@ -22,7 +22,7 @@ namespace DS2S_META
             Match itemEntry = itemEntryRx.Match(config);
             ID = Convert.ToInt32(itemEntry.Groups["id"].Value);
             StackLimit = Convert.ToInt32(itemEntry.Groups["limit"].Value);
-            Infusion = (DS2SInfusion.InfusionType)Convert.ToInt32(itemEntry.Groups["upgrade"].Value);
+            Infusion = (DS2SInfusion.InfusionType)Convert.ToInt32(itemEntry.Groups["infusion"].Value);
             MaxUpgrade = Convert.ToInt32(itemEntry.Groups["max"].Value);
             ShowID = showID;
             if (showID)

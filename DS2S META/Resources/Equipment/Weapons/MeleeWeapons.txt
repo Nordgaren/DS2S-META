@@ -206,7 +206,6 @@
  5510000  01 1 10 Yellow Quartz Longsword
  5520000  01 1 10 Bound Hand Axe
  5530000  01 1 10 Homunculus Mace
- 5540000  01 1 10 Transgressor's Staff
  5600000  01 1 10 Longsword
  5610000  01 1 10 Murakumo
  5620000  01 1 10 Blacksteel Katana

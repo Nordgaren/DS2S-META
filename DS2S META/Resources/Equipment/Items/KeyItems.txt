@@ -1,4 +1,4 @@
-//Format: Item ID; Stack Limit; Infusion Type;  Max Upgrade; Name [arbitrary]
+//Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
  50600000  01 0 00 Soldier Key
  50610000  01 0 00 Key to King's Passage
  50800000  01 0 00 Bastille Key

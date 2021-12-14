@@ -1,19 +1,19 @@
-//Format: Item ID; Stack Limit; Infusion Type; Name [arbitrary]
- 4200000  01 2 00 Short Bow
- 4210000  01 2 00 Long Bow
- 4220000  01 2 00 Composite Bow
- 4230000  01 2 00 Sea Bow
- 4240000  01 2 00 Dragonrider Bow
- 4270000  01 2 00 Bell Keeper Bow
- 4280000  01 2 00 Bow of Want
- 4290000  01 2 00 Hunter's Blackbow
- 4400000  01 2 00 Alonne Greatbow
- 4420000  01 2 00 Dragonslayer Greatbow
- 4430000  01 2 00 Possessed Armor Greatbow
- 4440000  01 2 00 Twin-headed Greatbow
- 4600000  01 2 00 Light Crossbow
- 4610000  01 2 00 Heavy Crossbow
- 4630000  01 2 00 Shield Crossbow
- 4660000  01 2 00 Avelyn
- 4670000  01 2 00 Sanctum Crossbow
- 4680000  01 2 00 Sanctum Repeating Crossbow
+//Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
+ 4200000  01 2 10 Short Bow
+ 4210000  01 2 10 Long Bow
+ 4220000  01 2 10 Composite Bow
+ 4230000  01 2 10 Sea Bow
+ 4240000  01 2 05 Dragonrider Bow
+ 4270000  01 2 10 Bell Keeper Bow
+ 4280000  01 2 05 Bow of Want
+ 4290000  01 2 10 Hunter's Blackbow
+ 4400000  01 2 10 Alonne Greatbow
+ 4420000  01 2 05 Dragonslayer Greatbow
+ 4430000  01 2 10 Possessed Armor Greatbow
+ 4440000  01 2 05 Twin-headed Greatbow
+ 4600000  01 2 10 Light Crossbow
+ 4610000  01 2 10 Heavy Crossbow
+ 4630000  01 2 05 Shield Crossbow
+ 4660000  01 2 10 Avelyn
+ 4670000  01 2 10 Sanctum Crossbow
+ 4680000  01 2 10 Sanctum Repeating Crossbow

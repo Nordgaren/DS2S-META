@@ -157,59 +157,11 @@ namespace DS2S_META
             cmbInfusion.Items.Clear();
             foreach (var infusion in DS2SInfusion.InfusionDict[item.Infusion])
                 cmbInfusion.Items.Add(infusion);
+            cmbInfusion.SelectedIndex = 0;
             cmbInfusion.IsEnabled = cmbInfusion.Items.Count > 1;
 
             nudUpgrade.Maximum = item.MaxUpgrade;
             nudUpgrade.IsEnabled = item.MaxUpgrade > 0;
-
-            //switch (item.UpgradeType)
-            //{
-            //    case DS2SItem.Upgrade.None:
-            //        cmbInfusion.Items.Clear();
-            //        cmbInfusion.IsEnabled = false;
-            //        nudUpgrade.IsEnabled = false;
-            //        nudUpgrade.Maximum = 0;
-            //        break;
-            //    case DS2SItem.Upgrade.Armor:
-            //        cmbInfusion.Items.Clear();
-            //        cmbInfusion.IsEnabled = false;
-            //        nudUpgrade.Maximum = 10;
-            //        nudUpgrade.IsEnabled = true;
-            //        break;
-            //    case DS2SItem.Upgrade.InfusableFive:
-            //        cmbInfusion.Items.Clear();
-            //        nudUpgrade.Maximum = 5;
-            //        foreach (var infusion in DS2SInfusion.All)
-            //            cmbInfusion.Items.Add(infusion);
-            //        cmbInfusion.SelectedIndex = 0;
-            //        cmbInfusion.IsEnabled = true;
-            //        nudUpgrade.IsEnabled = true;
-            //        break;
-            //    case DS2SItem.Upgrade.InfusableTen:
-            //        cmbInfusion.Items.Clear();
-            //        nudUpgrade.Maximum = 10;
-            //        foreach (var infusion in DS2SInfusion.All)
-            //            cmbInfusion.Items.Add(infusion);
-            //        cmbInfusion.IsEnabled = true;
-            //        nudUpgrade.IsEnabled = true;
-            //        break;
-            //    case DS2SItem.Upgrade.Shield:
-            //        cmbInfusion.Items.Clear();
-            //        nudUpgrade.Maximum = 10;
-            //        foreach (var infusion in DS2SInfusion.All)
-            //            if (infusion.Shield)
-            //                cmbInfusion.Items.Add(infusion);
-            //        cmbInfusion.SelectedIndex = 0;
-            //        cmbInfusion.IsEnabled = true;
-            //        nudUpgrade.IsEnabled = true;
-            //        break;
-            //    case DS2SItem.Upgrade.PyroFlame:
-            //        cmbInfusion.IsEnabled = false;
-            //        cmbInfusion.Items.Clear();
-            //        nudUpgrade.Maximum = 10;
-            //        nudUpgrade.IsEnabled = true;
-            //        break;
-            //}
 
             HandleMaxItemCheckbox();
         }
@@ -223,28 +175,6 @@ namespace DS2S_META
         {
             _ = ChangeColor(Brushes.DarkGray);
             CreateItem();
-
-            //Mule Meme
-            //foreach (DS2SItemCategory category in cmbCategory.Items)
-            //{
-            //    cmbCategory.SelectedItem = category;
-
-            //    foreach (DS2SItem item in category.Items)
-            //    {
-            //        lbxItems.SelectedItem = item;
-            //        int id = item.ID;
-            //        if (item.UpgradeType == DS2SItem.Upgrade.PyroFlame || item.UpgradeType == DS2SItem.Upgrade.PyroFlameAscended)
-            //            id += (int)nudUpgrade.Value * 100;
-            //        else
-            //            id += (int)nudUpgrade.Value;
-            //        if (item.UpgradeType == DS2SItem.Upgrade.Infusable || item.UpgradeType == DS2SItem.Upgrade.InfusableRestricted)
-            //        {
-            //            DSInfusion infusion = cmbInfusion.SelectedItem as DSInfusion;
-            //            id += infusion.Value;
-            //        }
-            //        Hook.GetItem(item.CategoryID, id, (int)nudQuantity.Value);
-            //    }
-            //}
         }
 
         //I think this is for safety so you don't spawn two items (not my code) - Nord
@@ -268,13 +198,7 @@ namespace DS2S_META
 
                 var infusion = cmbInfusion.SelectedItem as DS2SInfusion;
 
-                byte infusionID = 0;
-
-                if (infusion != null)
-                    infusionID = (byte)infusion.ID;
-
-                
-                Hook.GetItem(id, (short)nudQuantity.Value, (byte)nudUpgrade.Value, infusionID, Properties.Settings.Default.SilentItemGive);
+                Hook.GetItem(id, (short)nudQuantity.Value, (byte)nudUpgrade.Value, (byte)infusion.ID, Properties.Settings.Default.SilentItemGive);
             }
         }
 
@@ -285,50 +209,22 @@ namespace DS2S_META
             if (e.Key == Key.Up)
             {
                 e.Handled = true;//Do not pass keypress along
-                //Check is there's still items to go through
-                if (lbxItems.SelectedIndex > 0)
-                {
-                    lbxItems.SelectedIndex -= 1;
-                    lbxItems.ScrollIntoView(lbxItems.SelectedItem);
-                    return;
-                }
-
-                //Check if last item or "over" for safety
-                if (lbxItems.SelectedIndex <= 0)
-                {
-                    lbxItems.SelectedIndex = lbxItems.Items.Count - 1; //-1 because Selected Index is 0 based and Count isn't
-                    lbxItems.ScrollIntoView(lbxItems.SelectedItem);
-                    return;
-                }
 
                 //One liner meme that does the exact same thing as the code above
-                //lbxItems.SelectedIndex = ((lbxItems.SelectedIndex - 1) + lbxItems.Items.Count) % lbxItems.Items.Count;
-                //return;
+                lbxItems.SelectedIndex = ((lbxItems.SelectedIndex - 1) + lbxItems.Items.Count) % lbxItems.Items.Count;
+                lbxItems.ScrollIntoView(lbxItems.SelectedItem);
+                return;
             }
 
             //Scroll down through Items listbox and go back to top at end
             if (e.Key == Key.Down)
             {
                 e.Handled = true;//Do not pass keypress along
-                //Check is there's still items to go through
-                if (lbxItems.SelectedIndex < lbxItems.Items.Count - 1) //-1 because Selected Index is 0 based and Count isn't
-                {
-                    lbxItems.SelectedIndex += 1;
-                    lbxItems.ScrollIntoView(lbxItems.SelectedItem);
-                    return;
-                }
-
-                //Check if last item or "over" for safety
-                if (lbxItems.SelectedIndex >= lbxItems.Items.Count - 1) //-1 because Selected Index is 0 based and Count isn't
-                {
-                    lbxItems.SelectedIndex = 0;
-                    lbxItems.ScrollIntoView(lbxItems.SelectedItem);
-                    return;
-                }
 
                 //One liner meme that does the exact same thing as the code above
-                //lbxItems.SelectedIndex = (lbxItems.SelectedIndex + 1) % lbxItems.Items.Count;
-                //return;
+                lbxItems.SelectedIndex = (lbxItems.SelectedIndex + 1) % lbxItems.Items.Count;
+                lbxItems.ScrollIntoView(lbxItems.SelectedItem);
+                return;
 
             }
 
@@ -432,5 +328,6 @@ namespace DS2S_META
             txtSearch.SelectAll();
             txtSearch.Focus();
         }
+
     }
 }

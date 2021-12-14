@@ -10,8 +10,6 @@ namespace DS2S_META
     {
         public string Name;
         public int ID;
-        public int MaxUpgrade;
-        public bool Shield;
 
         public enum InfusionType
         {
@@ -23,11 +21,10 @@ namespace DS2S_META
             Staves = 5
         }
 
-        private DS2SInfusion(string name, int value, int maxUpgrade, params InfusionType[] infusions)
+        private DS2SInfusion(string name, int value, params InfusionType[] infusions)
         {
             Name = name;
             ID = value;
-            MaxUpgrade = maxUpgrade;
 
             foreach (var infusion in infusions)
             {
@@ -52,16 +49,16 @@ namespace DS2S_META
 
         public static void BuildInfusionDicts()
         {
-            new DS2SInfusion("Normal", 0, 15, InfusionType.None, InfusionType.Melee, InfusionType.Ranged, InfusionType.Chimes, InfusionType.Staves, InfusionType.Shield);
-            new DS2SInfusion("Bleed", 6, 5, InfusionType.Melee, InfusionType.Shield);
-            new DS2SInfusion("Dark", 4, 5, InfusionType.Melee, InfusionType.Ranged, InfusionType.Chimes, InfusionType.Staves, InfusionType.Shield);
-            new DS2SInfusion("Enchanted", 8, 5, InfusionType.Melee, InfusionType.Ranged);
-            new DS2SInfusion("Fire", 1, 10, InfusionType.Melee, InfusionType.Ranged, InfusionType.Shield);
-            new DS2SInfusion("Lightning", 3, 5, InfusionType.Melee, InfusionType.Ranged, InfusionType.Chimes, InfusionType.Shield);
-            new DS2SInfusion("Magic", 2, 10, InfusionType.Melee, InfusionType.Ranged, InfusionType.Staves, InfusionType.Shield);
-            new DS2SInfusion("Mundane", 9, 10, InfusionType.Melee, InfusionType.Ranged);
-            new DS2SInfusion("Poison", 5, 5, InfusionType.Melee, InfusionType.Shield);
-            new DS2SInfusion("Raw", 7, 5, InfusionType.Melee, InfusionType.Ranged);
+            new DS2SInfusion("Normal", 0, InfusionType.None, InfusionType.Melee, InfusionType.Ranged, InfusionType.Chimes, InfusionType.Staves, InfusionType.Shield);
+            new DS2SInfusion("Bleed", 6, InfusionType.Melee, InfusionType.Shield);
+            new DS2SInfusion("Dark", 4, InfusionType.Melee, InfusionType.Ranged, InfusionType.Chimes, InfusionType.Staves, InfusionType.Shield);
+            new DS2SInfusion("Enchanted", 8, InfusionType.Melee, InfusionType.Ranged);
+            new DS2SInfusion("Fire", 1,  InfusionType.Melee, InfusionType.Ranged, InfusionType.Shield);
+            new DS2SInfusion("Lightning", 3, InfusionType.Melee, InfusionType.Ranged, InfusionType.Chimes, InfusionType.Shield);
+            new DS2SInfusion("Magic", 2, InfusionType.Melee, InfusionType.Ranged, InfusionType.Staves, InfusionType.Shield);
+            new DS2SInfusion("Mundane", 9, InfusionType.Melee, InfusionType.Ranged);
+            new DS2SInfusion("Poison", 5, InfusionType.Melee, InfusionType.Shield);
+            new DS2SInfusion("Raw", 7, InfusionType.Melee, InfusionType.Ranged);
         }
     }
 }

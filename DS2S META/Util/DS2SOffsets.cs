@@ -163,7 +163,7 @@ namespace DS2S_META
         #endregion
 
         #region FCData
-        public const string FCAoB = "0F 28 47 10 66 0F 7F 4B 20";
+        public const string FCAoB = "66 0F 7F 49 30 C3 CC CC CC CC CC CC CC CC CC CC CC CC CC 48";
         public enum CameraAngle
         {
             CamStart = 0x30,

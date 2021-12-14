@@ -238,6 +238,15 @@
       <DependentUpon>HotkeyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\User32.cs" />
+    <None Include="Resources\Equipment\Weapons\Ammo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Equipment\Items\UpgradeMaterials.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Equipment\Items\UseableItems.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Systems\Bonfires.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -284,7 +293,7 @@
     <None Include="Resources\Equipment\Weapons\Shields.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Equipment\Items\Goods.txt">
+    <None Include="Resources\Equipment\Items\Consumeables.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Equipment\Items\Spells.txt">

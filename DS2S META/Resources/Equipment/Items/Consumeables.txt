@@ -1,4 +1,4 @@
- //Format: Item ID; Stack Limit; Infusion Type; Name [arbitrary]
+ //Format: Item ID; Stack Limit; Reinforce Type; Name [arbitrary]
  60010000  99 0 00 Lifegem
  60020000  01 0 00 Radiant Lifegem
  60030000  01 0 00 Old Radiant Lifegem
@@ -37,12 +37,7 @@
  60320000  01 0 00 Rusted Coin
  60350000  01 0 00 Homeward Bone
  60355000  01 0 00 Aged Feather
- 60360000  01 0 00 Darksign
  60370000  01 0 00 Silver Talisman
- 60405000  01 0 00 Dragon Head Stone
- 60405010  01 0 00 Dragon Head Stone
- 60406000  01 0 00 Dragon Torso Stone
- 60406010  01 0 00 Dragon Torso Stone
  60410000  01 0 00 Repair Powder
  60420000  01 0 00 Torch
  60430000  01 0 00 Flame Butterfly
@@ -60,7 +55,6 @@
  60531000  01 0 00 Lloyd's Talisman
  60536000  01 0 00 Pharros' Lockstone
  60537000  01 0 00 Fragrant Branch of Yore
- 60538000  01 0 00 Fire Seed
  60540000  01 0 00 Throwing Knife
  60550000  01 0 00 Witching Urn
  60560000  01 0 00 Lightning Urn
@@ -83,24 +77,6 @@
  60700000  01 0 00 Large Soul of a Brave Warrior
  60710000  01 0 00 Soul of a Hero
  60720000  01 0 00 Soul of a Great Hero
- 60760000  01 0 00 Wood Arrow
- 60770000  01 0 00 Iron Arrow
- 60780000  01 0 00 Magic Arrow
- 60790000  01 0 00 Lightning Arrow
- 60800000  01 0 00 Fire Arrow
- 60810000  01 0 00 Dark Arrow
- 60820000  01 0 00 Poison Arrow
- 60830000  01 0 00 Lacerating Arrow
- 60850000  01 0 00 Iron Greatarrow
- 60870000  01 0 00 Lightning Greatarrow
- 60880000  01 0 00 Fire Greatarrow
- 60900000  01 0 00 Destructive Greatarrow
- 60910000  01 0 00 Wood Bolt
- 60920000  01 0 00 Heavy Bolt
- 60930000  01 0 00 Magic Bolt
- 60940000  01 0 00 Lightning Bolt
- 60950000  01 0 00 Fire Bolt
- 60960000  01 0 00 Dark Bolt
  60970000  01 0 00 Titanite Shard
  60975000  01 0 00 Large Titanite Shard
  60980000  01 0 00 Titanite Chunk
@@ -117,21 +93,14 @@
  61140000  01 0 00 Magic Stone
  61150000  01 0 00 Old Mundane Stone
  61160000  01 0 00 Palestone
- 62000000  01 0 00 Dried Fingers
- 62020000  01 0 00 Bone of Order
- 62030000  01 0 00 White Sign Soapstone
- 62040000  01 0 00 Small White Sign Soapstone
- 62045000  01 0 00 Red Sign Soapstone
  62050000  01 0 00 Cracked Blue Eye Orb
  62060000  01 0 00 Cracked Red Eye Orb
- 62070000  01 0 00 Dragon Eye
  62100000  01 0 00 Token of Fidelity
  62110000  01 0 00 Token of Spite
  62120000  01 0 00 Sunlight Medal
  62130000  01 0 00 Dragon Scale
  62140000  01 0 00 Rat Tail
  62150000  01 0 00 Awestone
- 62160000  01 0 00 Black Separation Crystal
  62170000  01 0 00 Seed of a Tree of Giants
  62190000  01 0 00 Petrified Egg
  64000000  01 0 00 Soul of the Pursuer
