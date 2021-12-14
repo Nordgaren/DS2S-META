@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -66,15 +67,21 @@ namespace DS2S_META
             txtName.IsEnabled = enable;
             btnGive.IsEnabled = enable;
             btnResetSoulMemory.IsEnabled = enable;
+            nudGiveSouls.IsEnabled = enable;
+            nudVig.IsEnabled = enable;
+            nudEnd.IsEnabled = enable;
+            nudVit.IsEnabled = enable;
+            nudAtt.IsEnabled = enable;
+            nudStr.IsEnabled = enable;
+            nudDex.IsEnabled = enable;
+            nudAdp.IsEnabled = enable;
+            nudInt.IsEnabled = enable;
+            nudFth.IsEnabled = enable;
 
-            if (enable)
-            {
+            var lol = StatsCon.LogicalChildren;
 
-            }
-            else
-            {
+            if (!enable)
                 cmbClass.SelectedIndex = -1;
-            }
         }
         private void GiveSouls_Click(object sender, RoutedEventArgs e)
         {
@@ -90,5 +97,24 @@ namespace DS2S_META
             Hook.Name = txtName.Text;
         }
 
+        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
+        }
     }
 }

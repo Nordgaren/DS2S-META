@@ -38,15 +38,6 @@ namespace DS2S_META
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FilterItems();
-            /*
-            lbxItems.Items.Clear();
-            DS2SItemCategory category = cmbCategory.SelectedItem as DS2SItemCategory;
-            foreach (DS2SItem item in category.Items)
-                lbxItems.Items.Add(item);
-            lbxItems.SelectedIndex = 0;
-            txtSearch.Text = "";
-            lblSearch.Visible = true;
-            */
         }
 
         //Clear items and add the ones that match text in search box
@@ -76,19 +67,6 @@ namespace DS2S_META
                         lbxItems.Items.Add(item);
                 }
             }
-
-
-            /*
-            //original code
-            DS2SItemCategory category = cmbCategory.SelectedItem as DS2SItemCategory;
-            foreach (DS2SItem item in category.Items)
-            {
-                if (item.ToString().ToLower().Contains(txtSearch.Text.ToLower()))
-                {
-                    lbxItems.Items.Add(item);
-                }
-            }
-            */
 
             if (lbxItems.Items.Count > 0)
                 lbxItems.SelectedIndex = 0;
@@ -133,7 +111,6 @@ namespace DS2S_META
         private void cmbInfusion_SelectedIndexChanged(object sender, EventArgs e)
         {
             var infusion = cmbInfusion.SelectedItem as DS2SInfusion;
-            nudUpgrade.Maximum = infusion.MaxUpgrade;
             //Checks if cbxMaxUpgrade is checked and sets the value to max value
             HandleMaxItemCheckbox();
 
@@ -187,7 +164,6 @@ namespace DS2S_META
         //Apply hair to currently loaded character
         public void CreateItem()
         {
-
             //Check if the button is enabled and the selected item isn't null
             if (btnCreate.IsEnabled && lbxItems.SelectedItem != null)
             {
@@ -225,10 +201,7 @@ namespace DS2S_META
                 lbxItems.SelectedIndex = (lbxItems.SelectedIndex + 1) % lbxItems.Items.Count;
                 lbxItems.ScrollIntoView(lbxItems.SelectedItem);
                 return;
-
             }
-
-
         }
 
         //Changes the color of the Apply button

@@ -30,6 +30,12 @@ You can also try adding DS2S META as an exception to your antivirus
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 
 # Change Log  
+### Beta 0.0.0.$   
+
+* Mostly working item infusion/upgrade menu. Everything should be accurate except melee weapons categories. Report if any are wrong.  
+
+* Split goods into consumables, ammo, upgrade materials and useable items.  
+
 ### Beta 0.0.0.3   
 
 * Fixed Update Message meme  
