@@ -52,15 +52,15 @@
                         <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
                             <StackPanel Width="100">
                                 <Label Content="Char Type" />
-                                <TextBox  IsEnabled="False"/>
+                                <TextBox Text="{Binding ElementName=PlayerCon, Path=Hook.CharType, Mode=OneWay}" TextAlignment="Center" IsEnabled="False"/>
                             </StackPanel>
                             <Separator Width="20" Visibility="Hidden"/>
                             <StackPanel Width="100">
                                 <Label Content="Team Type" />
-                                <TextBox  IsEnabled="False"/>
+                                <TextBox Text="{Binding ElementName=PlayerCon, Path=Hook.TeamType, Mode=OneWay}" TextAlignment="Center" IsEnabled="False"/>
                             </StackPanel>
                             <Separator Width="20" Visibility="Hidden"/>
-                            <StackPanel Width="100">
+                            <StackPanel Width="100" Visibility="Hidden">
                                 <Label Content="Invade Type" />
                                 <TextBox IsEnabled="False"/>
                             </StackPanel>
@@ -71,11 +71,11 @@
                 
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.RowSpan="2">
             <StackPanel Margin="10,00,10,0">
                 
                 <Label Content="Position"/>
-                <Border BorderBrush="Gray" BorderThickness="1" Height="235" >
+                <Border BorderBrush="Gray" BorderThickness="1" Height="252" >
                     <StackPanel>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -150,6 +150,13 @@
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Separator Width="260" Visibility="Hidden"/>
+                            <CheckBox Content="Restore State" x:Name="cbxRestoreState" IsChecked="{Binding RestoreState, 
+                Mode=TwoWay, 
+                Source={x:Static p:Settings.Default}, 
+                UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>

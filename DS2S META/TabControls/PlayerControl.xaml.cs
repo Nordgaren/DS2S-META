@@ -134,22 +134,11 @@ namespace DS2S_META
                 //Hook.CamX = CamX;
                 //Hook.CamY = CamY;
                 //Hook.CamZ = CamZ;
-                //System.Threading.Thread.Sleep(1000 / 15);
-                //Hook.CameraData = PlayerState.FollowCam;
-                //if (PlayerState.Set)
-                //{
-                //    // Two frames for safety, wait until after warp
-                //    System.Threading.Thread.Sleep(1000 / 15);
-                    
-
-                //    //if (cbxStoreState.Checked)
-                //    //{
-                //    //    nudHealth.Value = playerState.HP;
-                //    //    nudStamina.Value = playerState.Stamina;
-                //    //    cbxDeathCam.Checked = playerState.DeathCam;
-                //    //}
-                //}
-               
+                if (cbxRestoreState.IsChecked.Value)
+                {
+                    nudHealth.Value = PlayerState.HP;
+                    nudStamina.Value = PlayerState.Stamina;
+                }
             }
         }
 

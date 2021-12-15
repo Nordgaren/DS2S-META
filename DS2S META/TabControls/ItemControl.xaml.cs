@@ -101,11 +101,9 @@ namespace DS2S_META
             }
             else if (lbxItems.SelectedIndex != -1)
             {
-                // Must Fix
-                //DS2SItem item = lbxItems.SelectedItem as DS2SItem;
-                //nudQuantity.Maximum = item.StackLimit;
-                //if (item.StackLimit == 1)
-                //    nudQuantity.IsEnabled = false;
+                DS2SItem item = lbxItems.SelectedItem as DS2SItem;
+                nudQuantity.Maximum = Hook.GetMaxQuantity(item);
+                nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
             }
         }
 
@@ -155,7 +153,7 @@ namespace DS2S_META
             HandleMaxItemCheckbox();
         }
 
-        internal void ReloadCtrl() 
+        internal override void ReloadCtrl() 
         {
             lbxItems.SelectedIndex = -1;
             lbxItems.SelectedIndex = 0;

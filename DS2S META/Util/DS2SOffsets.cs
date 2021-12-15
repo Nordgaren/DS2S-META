@@ -11,8 +11,16 @@ namespace DS2S_META
         #region BaseA
 
         public const string BaseAAob = "48 8B 05 ? ? ? ? 48 8B 58 38 48 85 DB 74 ? F6";
+        public const string BaseABabyJumpAoB = "49 BA ? ? ? ? ? ? ? ? 41 FF E2 90 74 ? F6";
         public const int BasePtrOffset1 = 0x3;
         public const int BasePtrOffset2 = 0x7;
+        public const int PlayerTypeOffset = 0xB0;
+        public enum PlayerType
+        {
+            ChrNetworkPhantomId = 0x3C,
+            TeamType = 0x3D,
+            CharType = 0x48
+        }
         public const int PlayerNameOffset = 0xA8;
         public enum PlayerName
         {

@@ -111,7 +111,7 @@
 
             </Border>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
             <Label Content="Misc"/>
             <Border BorderBrush="Gray" BorderThickness="1"  >
                 <Grid Margin="15,15,15,15">
@@ -120,16 +120,16 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
+                        <RowDefinition />
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label Content="Hollow Level" Grid.Row="0" Grid.Column="0"/>
-                    <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.HollowLevel}" IsEnabled="False" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Width="100" LostKeyboardFocus="Name_LostKeyboardFocus"/>
+                    <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.HollowLevel}" x:Name="nudHollowLevel" Maximum="32" IsEnabled="False" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Width="85"/>
                     <Label Content="Sinner Level" Grid.Row="1" Grid.Column="0" />
-                    <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.SinnerLevel}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" IsEnabled="False" Width="100" LostKeyboardFocus="Name_LostKeyboardFocus"/>
+                    <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.SinnerLevel}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" IsEnabled="False" Width="68" LostKeyboardFocus="Name_LostKeyboardFocus"/>
                     <Label Content="Sinner Points" Grid.Row="2" Grid.Column="0"/>
-                    <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.SinnerPoints}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" IsEnabled="False" Width="100" LostKeyboardFocus="Name_LostKeyboardFocus"/>
+                    <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.SinnerPoints}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" IsEnabled="False" Width="68" LostKeyboardFocus="Name_LostKeyboardFocus"/>
                 </Grid>
 
             </Border>

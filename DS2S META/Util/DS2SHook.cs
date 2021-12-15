@@ -26,6 +26,7 @@ namespace DS2S_META
         public static bool Reading { get; set; }
 
         private PHPointer BaseASetup;
+        private PHPointer BaseASetup2;
         private PHPointer GiveSoulsFunc;
         private PHPointer ItemGiveFunc;
         private PHPointer ItemStruct2dDisplay;
@@ -40,6 +41,7 @@ namespace DS2S_META
         private PHPointer PlayerPosition;
         private PHPointer PlayerGravity;
         private PHPointer PlayerParam;
+        private PHPointer PlayerType;
         private PHPointer PlayerMapData;
         private PHPointer Bonfire;
 
@@ -55,7 +57,6 @@ namespace DS2S_META
         private PHPointer BaseB;
         private PHPointer Connection;
 
-        private PHPointer CameraSetup;
         private PHPointer Camera;
         private PHPointer Camera2;
 
@@ -76,13 +77,14 @@ namespace DS2S_META
 
             BaseBSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseBAoB);
 
-            CameraSetup = RegisterAbsoluteAOB(DS2SOffsets.CameraAoB);
-
             OnHooked += DS2Hook_OnHooked;
             OnUnhooked += DS2Hook_OnUnhooked;
         }
         private void DS2Hook_OnHooked(object sender, PHEventArgs e)
         {
+            if (BaseASetup.Resolve() == IntPtr.Zero)
+                BaseASetup2 = RegisterAbsoluteAOB(DS2SOffsets.BaseABabyJumpAoB);
+
             BaseA = CreateBasePointer(BasePointerFromSetupPointer(BaseASetup));
             PlayerName = CreateChildPointer(BaseA, (int)DS2SOffsets.PlayerNameOffset);
             AvailableItemBag = CreateChildPointer(PlayerName, (int)DS2SOffsets.AvailableItemBagOffset, (int)DS2SOffsets.AvailableItemBagOffset);
@@ -92,6 +94,7 @@ namespace DS2S_META
             PlayerPosition = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerPositionOffset1, (int)DS2SOffsets.PlayerPositionOffset2);
             PlayerGravity = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerMapDataOffset1);
             PlayerParam = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerParamOffset);
+            PlayerType = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerTypeOffset);
             PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2SOffsets.PlayerMapDataOffset2, (int)DS2SOffsets.PlayerMapDataOffset3);
             Bonfire = CreateChildPointer(BaseA, (int)DS2SOffsets.BonfireOffset);
 
@@ -160,6 +163,8 @@ namespace DS2S_META
             OnPropertyChanged(nameof(HealthCap));
             OnPropertyChanged(nameof(Stamina));
             OnPropertyChanged(nameof(MaxStamina));
+            OnPropertyChanged(nameof(TeamType));
+            OnPropertyChanged(nameof(CharType));
             OnPropertyChanged(nameof(PosX));
             OnPropertyChanged(nameof(PosY));
             OnPropertyChanged(nameof(PosZ));
@@ -195,7 +200,12 @@ namespace DS2S_META
         }
         public int HealthCap
         {
-            get => Loaded ? PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerCtrl.HPCap) : 0;
+            get 
+            {
+                if (Reading || !Loaded) return 0;
+                var cap = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerCtrl.HPCap);
+                return cap < HealthMax ? cap : HealthMax;
+            }
             set => PlayerCtrl.WriteInt32((int)DS2SOffsets.PlayerCtrl.HPCap, value);
         }
         public float Stamina
@@ -212,6 +222,21 @@ namespace DS2S_META
         {
             get => Loaded ? PlayerCtrl.ReadSingle((int)DS2SOffsets.PlayerCtrl.SPMax) : 0;
             set => PlayerCtrl.WriteSingle((int)DS2SOffsets.PlayerCtrl.SPMax, value);
+        }
+        public byte NetworkPhantomID
+        {
+            get => Loaded ? PlayerType.ReadByte((int)DS2SOffsets.PlayerType.ChrNetworkPhantomId) : (byte)0;
+            set => PlayerType.WriteByte((int)DS2SOffsets.PlayerType.ChrNetworkPhantomId, value);
+        }
+        public byte TeamType
+        {
+            get => Loaded ? PlayerType.ReadByte((int)DS2SOffsets.PlayerType.TeamType) : (byte)0;
+            //set => PlayerType.WriteByte((int)DS2SOffsets.PlayerType.TeamType, value);
+        }
+        public byte CharType
+        {
+            get => Loaded ? PlayerType.ReadByte((int)DS2SOffsets.PlayerType.CharType) : (byte)0;
+            //set => PlayerType.WriteByte((int)DS2SOffsets.PlayerType.CharType, value);
         }
         public float PosX
         {
@@ -277,18 +302,18 @@ namespace DS2S_META
         }
         public float CamX
         {
-            get => CameraSetup.ReadSingle((int)DS2SOffsets.Camera.CamX);
-            set => CameraSetup.WriteSingle((int)DS2SOffsets.Camera.CamX, value);
+            get => Camera2.ReadSingle((int)DS2SOffsets.Camera.CamX);
+            set => Camera2.WriteSingle((int)DS2SOffsets.Camera.CamX, value);
         }
         public float CamY
         {
-            get => CameraSetup.ReadSingle((int)DS2SOffsets.Camera.CamY);
-            set => CameraSetup.WriteSingle((int)DS2SOffsets.Camera.CamY, value);
+            get => Camera2.ReadSingle((int)DS2SOffsets.Camera.CamY);
+            set => Camera2.WriteSingle((int)DS2SOffsets.Camera.CamY, value);
         }
         public float CamZ
         {
-            get => CameraSetup.ReadSingle((int)DS2SOffsets.Camera.CamZ);
-            set => CameraSetup.WriteSingle((int)DS2SOffsets.Camera.CamZ, value);
+            get => Camera2.ReadSingle((int)DS2SOffsets.Camera.CamZ);
+            set => Camera2.WriteSingle((int)DS2SOffsets.Camera.CamZ, value);
         }
         public float Speed
         {

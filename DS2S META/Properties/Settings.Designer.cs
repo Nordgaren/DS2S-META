@@ -118,5 +118,17 @@ namespace DS2S_META.Properties {
                 this["ShowWarning"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool RestoreState {
+            get {
+                return ((bool)(this["RestoreState"]));
+            }
+            set {
+                this["RestoreState"] = value;
+            }
+        }
     }
 }
