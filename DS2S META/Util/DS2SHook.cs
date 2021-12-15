@@ -21,6 +21,8 @@ namespace DS2S_META
         }
         public string ID => Process?.Id.ToString() ?? "Not Hooked";
         public IntPtr BaseAddress => Process?.MainModule.BaseAddress ?? IntPtr.Zero;
+
+        
         public string Version { get; private set; }
 
         public static bool Reading { get; set; }
@@ -44,6 +46,7 @@ namespace DS2S_META
         private PHPointer PlayerType;
         private PHPointer PlayerMapData;
         private PHPointer Bonfire;
+        private PHPointer BonfireLevels;
 
         private PHPointer LevelUpSoulsParam;
         private PHPointer WeaponParam;
@@ -97,6 +100,7 @@ namespace DS2S_META
             PlayerType = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerTypeOffset);
             PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2SOffsets.PlayerMapDataOffset2, (int)DS2SOffsets.PlayerMapDataOffset3);
             Bonfire = CreateChildPointer(BaseA, (int)DS2SOffsets.BonfireOffset);
+            BonfireLevels = CreateChildPointer(Bonfire, (int)DS2SOffsets.BonfireLevelsOffset1, (int)DS2SOffsets.BonfireLevelsOffset2);
 
             LevelUpSoulsParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.LevelUpSoulsParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             WeaponParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponParamOffset, (int)DS2SOffsets.ParamDataOffset2);
@@ -176,11 +180,20 @@ namespace DS2S_META
             OnPropertyChanged(nameof(StableZ));
             OnPropertyChanged(nameof(Gravity));
         }
+
+        internal void UpdateBonfireProperties()
+        {
+            OnPropertyChanged(nameof(FireKeepersDwelling));
+
+        }
+
         public IntPtr BasePointerFromSetupPointer(PHPointer pointer)
         {
             var readInt = pointer.ReadInt32(DS2SOffsets.BasePtrOffset1);
             return pointer.ReadIntPtr(readInt + DS2SOffsets.BasePtrOffset2);
         }
+
+        
 
         #region Player
         public int Health
@@ -202,7 +215,7 @@ namespace DS2S_META
         {
             get 
             {
-                if (Reading || !Loaded) return 0;
+                if (!Loaded) return 0;
                 var cap = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerCtrl.HPCap);
                 return cap < HealthMax ? cap : HealthMax;
             }
@@ -765,6 +778,409 @@ namespace DS2S_META
                 infusions.Add(DS2SInfusion.Mundane);
 
             return infusions;
+        }
+
+        #endregion
+
+        #region Bonfires
+        public byte FireKeepersDwelling
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.FireKeepersDwelling) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.FireKeepersDwelling, value);
+        }
+        public byte Majula
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.Majula) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.Majula, value);
+        }
+        public byte CrestfallensRetreat
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.CrestfallensRetreat) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.CrestfallensRetreat, value);
+        }
+        public byte CardinalTower
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.CardinalTower) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.CardinalTower, value);
+        }
+        public byte SoldiersRest
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.SoldiersRest) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.SoldiersRest, value);
+        }
+        public byte ThePlaceUnbeknownst
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.ThePlaceUnbeknownst) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.ThePlaceUnbeknownst, value);
+        }
+        public byte HeidesRuin
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.HeidesRuin) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.HeidesRuin, value);
+        }
+        public byte TowerofFlame
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.TowerofFlame) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.TowerofFlame, value);
+        }
+        public byte TheBlueCathedral
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.TheBlueCathedral) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.TheBlueCathedral, value);
+        }
+        public byte UnseenPathtoHeide
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UnseenPathtoHeide) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UnseenPathtoHeide, value);
+        }
+        public byte ExileHoldingCells
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.ExileHoldingCells) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.ExileHoldingCells, value);
+        }
+        public byte McDuffsWorkshop
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.McDuffsWorkshop) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.McDuffsWorkshop, value);
+        }
+        public byte ServantsQuarters
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.ServantsQuarters) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.ServantsQuarters, value);
+        }
+        public byte StraidsCell
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.StraidsCell) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.StraidsCell, value);
+        }
+        public byte TheTowerApart
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.TheTowerApart) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.TheTowerApart, value);
+        }
+        public byte TheSaltfort
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.TheSaltfort) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.TheSaltfort, value);
+        }
+        public byte UpperRamparts
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UpperRamparts) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UpperRamparts, value);
+        }
+        public byte UndeadRefuge
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UndeadRefuge) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UndeadRefuge, value);
+        }
+        public byte BridgeApproach
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.BridgeApproach) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.BridgeApproach, value);
+        }
+        public byte UndeadLockaway
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UndeadLockaway) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UndeadLockaway, value);
+        }
+        public byte UndeadPurgatory
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UndeadPurgatory) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UndeadPurgatory, value);
+        }
+        public byte PoisonPool
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.PoisonPool) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.PoisonPool, value);
+        }
+        public byte TheMines
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.TheMines) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.TheMines, value);
+        }
+        public byte LowerEarthenPeak
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.LowerEarthenPeak) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.LowerEarthenPeak, value);
+        }
+        public byte CentralEarthenPeak
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.CentralEarthenPeak) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.CentralEarthenPeak, value);
+        }
+        public byte UpperEarthenPeak
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UpperEarthenPeak) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UpperEarthenPeak, value);
+        }
+        public byte ThresholdBridge
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.ThresholdBridge) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.ThresholdBridge, value);
+        }
+        public byte IronhearthHall
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.IronhearthHall) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.IronhearthHall, value);
+        }
+        public byte EygilsIdol
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.EygilsIdol) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.EygilsIdol, value);
+        }
+        public byte BelfrySolApproach
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.BelfrySolApproach) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.BelfrySolApproach, value);
+        }
+        public byte OldAkelarre
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.OldAkelarre) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.OldAkelarre, value);
+        }
+        public byte RuinedForkRoad
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.RuinedForkRoad) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.RuinedForkRoad, value);
+        }
+        public byte ShadedRuins
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.ShadedRuins) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.ShadedRuins, value);
+        }
+        public byte GyrmsRespite
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.GyrmsRespite) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.GyrmsRespite, value);
+        }
+        public byte OrdealsEnd
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.OrdealsEnd) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.OrdealsEnd, value);
+        }
+        public byte RoyalArmyCampsite
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.RoyalArmyCampsite) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.RoyalArmyCampsite, value);
+        }
+        public byte ChapelThreshold
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.ChapelThreshold) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.ChapelThreshold, value);
+        }
+        public byte LowerBrightstoneCove
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.LowerBrightstoneCove) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.LowerBrightstoneCove, value);
+        }
+        public byte HarvalsRestingPlace
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.HarvalsRestingPlace) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.HarvalsRestingPlace, value);
+        }
+        public byte GraveEntrance
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.GraveEntrance) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.GraveEntrance, value);
+        }
+        public byte UpperGutter
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UpperGutter) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UpperGutter, value);
+        }
+        public byte CentralGutter
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.CentralGutter) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.CentralGutter, value);
+        }
+        public byte HiddenChamber
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.HiddenChamber) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.HiddenChamber, value);
+        }
+        public byte BlackGulchMouth
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.BlackGulchMouth) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.BlackGulchMouth, value);
+        }
+        public byte KingsGate
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.KingsGate) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.KingsGate, value);
+        }
+        public byte UnderCastleDrangleic
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UnderCastleDrangleic) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UnderCastleDrangleic, value);
+        }
+        public byte ForgottenChamber
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.ForgottenChamber) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.ForgottenChamber, value);
+        }
+        public byte CentralCastleDrangleic
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.CentralCastleDrangleic) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.CentralCastleDrangleic, value);
+        }
+        public byte TowerofPrayer
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.TowerofPrayer) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.TowerofPrayer, value);
+        }
+        public byte CrumbledRuins
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.CrumbledRuins) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.CrumbledRuins, value);
+        }
+        public byte RhoysRestingPlace
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.RhoysRestingPlace) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.RhoysRestingPlace, value);
+        }
+        public byte RiseoftheDead
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.RiseoftheDead) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.RiseoftheDead, value);
+        }
+        public byte UndeadCryptEntrance
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UndeadCryptEntrance) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UndeadCryptEntrance, value);
+        }
+        public byte UndeadDitch
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UndeadDitch) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UndeadDitch, value);
+        }
+        public byte Foregarden
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.Foregarden) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.Foregarden, value);
+        }
+        public byte RitualSite
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.RitualSite) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.RitualSite, value);
+        }
+        public byte DragonAerie
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.DragonAerie) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.DragonAerie, value);
+        }
+        public byte ShrineEntrance
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.ShrineEntrance) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.ShrineEntrance, value);
+        }
+        public byte SanctumWalk
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.SanctumWalk) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.SanctumWalk, value);
+        }
+        public byte PriestessChamber
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.PriestessChamber) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.PriestessChamber, value);
+        }
+        public byte HiddenSanctumChamber
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.HiddenSanctumChamber) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.HiddenSanctumChamber, value);
+        }
+        public byte LairoftheImperfect
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.LairoftheImperfect) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.LairoftheImperfect, value);
+        }
+        public byte SanctumInterior
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.SanctumInterior) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.SanctumInterior, value);
+        }
+        public byte TowerofPrayerDLC
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.TowerofPrayerDLC) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.TowerofPrayerDLC, value);
+        }
+        public byte SanctumNadir
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.SanctumNadir) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.SanctumNadir, value);
+        }
+        public byte ThroneFloor
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.ThroneFloor) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.ThroneFloor, value);
+        }
+        public byte UpperFloor
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.UpperFloor) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.UpperFloor, value);
+        }
+        public byte Foyer
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.Foyer) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.Foyer, value);
+        }
+        public byte LowermostFloor
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.LowermostFloor) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.LowermostFloor, value);
+        }
+        public byte TheSmelterThrone
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.TheSmelterThrone) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.TheSmelterThrone, value);
+        }
+        public byte IronHallwayEntrance
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.IronHallwayEntrance) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.IronHallwayEntrance, value);
+        }
+        public byte OuterWall
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.OuterWall) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.OuterWall, value);
+        }
+        public byte AbandonedDwelling
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.AbandonedDwelling) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.AbandonedDwelling, value);
+        }
+        public byte ExpulsionChamber
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.ExpulsionChamber) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.ExpulsionChamber, value);
+        }
+        public byte InnerWall
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.InnerWall) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.InnerWall, value);
+        }
+        public byte LowerGarrison
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.LowerGarrison) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.LowerGarrison, value);
+        }
+        public byte GrandCathedral
+        {
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.GrandCathedral) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.GrandCathedral, value);
+        }
+
+        public void UnlockBonfires()
+        {
+            foreach (DS2SOffsets.BonfireLevels bonfire in Enum.GetValues(typeof(DS2SOffsets.BonfireLevels)))
+            {
+
+                var currentLevel = BonfireLevels.ReadByte((int)bonfire);
+
+                if (currentLevel == 0)
+                    BonfireLevels.WriteByte((int)bonfire, 1);
+
+
+            }
         }
 
         #endregion

@@ -75,6 +75,12 @@
                     <local:ItemControl x:Name="metaItems" Hook="{Binding Hook}" GameLoaded="{Binding Loaded}"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Bonfires">
+                <Grid Background="LightGray">
+                    <local:BonfireMainControl x:Name="metaBonfire" Hook="{Binding Hook}" GameLoaded="{Binding Loaded}"/>
+                    <!--< x:Name="metaBonfires" Hook="{Binding Hook}" GameLoaded="{Binding Loaded}"/>-->
+                </Grid>
+            </TabItem>
             <TabItem x:Name="tabSettings" Header="Settings">
                 <Grid Background="LightGray">
                     <TabControl Background="LightGray" >

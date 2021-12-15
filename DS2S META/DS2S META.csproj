@@ -222,6 +222,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TabControls\BonfireControl.xaml.cs">
+      <DependentUpon>BonfireControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\BonfireMainControl.xaml.cs">
+      <DependentUpon>BonfireMainControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="List Items\DS2SBonfire.cs" />
     <Compile Include="List Items\DS2SInfusion.cs" />
     <Compile Include="Util\SavedPos.cs" />
@@ -352,6 +358,14 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Include="TabControls\BonfireControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabControls\BonfireMainControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowControls\METAWarning.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

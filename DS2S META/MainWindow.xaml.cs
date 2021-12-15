@@ -177,6 +177,7 @@ namespace DS2S_META
         {
             metaPlayer.EnableCtrls(enable);
             metaStats.EnableCtrls(enable);
+            metaBonfire.EnableCtrls(enable);
         }
         private void ReloadAllTabs()
         {
@@ -188,6 +189,7 @@ namespace DS2S_META
         {
             metaPlayer.UpdateCtrl();
             metaStats.UpdateCtrl();
+            metaBonfire.UpdateCtrl();
         }
 
         private void link_RequestNavigate(object sender, RequestNavigateEventArgs e)
