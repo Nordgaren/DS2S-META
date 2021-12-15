@@ -29,8 +29,19 @@ You can also try adding DS2S META as an exception to your antivirus
 **[TKGP](https://github.com/JKAnderson/)** Author of [DS Gadget](https://github.com/JKAnderson/DS-Gadget) and [Property Hook](https://github.com/JKAnderson/PropertyHook)  
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 
-# Change Log  
-### Beta 0.0.0.$   
+# Change Log 
+### Beta 0.0.0.5  
+
+* Item Quantity, Infusion and Max level read from params  
+
+* Unlock All Bonfires  
+
+* Edit hollow level   
+
+* Fixed max HP bug  
+
+
+### Beta 0.0.0.4   
 
 * Mostly working item infusion/upgrade menu. Everything should be accurate except melee weapons categories. Report if any are wrong.  
 
