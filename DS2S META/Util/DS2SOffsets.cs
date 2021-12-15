@@ -182,22 +182,40 @@ namespace DS2S_META
         }
 
         public const int ParamDataOffset1 = 0x18;
-        public const int ParamDataOffset3 = 0xD8;
+        public const int ParamDataOffset2 = 0xD8;
+        public const int ParamDataOffset3 = 0xA8;
 
-        public const int LevelUpSoulsParam = 0x580;
-        public const int WeaponParam = 0x420;
-        public enum WeaponParams
+        public const int LevelUpSoulsParamOffset = 0x580;
+        public const int WeaponParamOffset = 0x420;
+        public enum WeaponParam
         {
             ReinforceID = 0x8
         }
 
-        public const int WeaponReinforceParam = 0x470;
-        public enum WeaponReinforceParams
+        public const int WeaponReinforceParamOffset = 0x470;
+        public enum WeaponReinforceParam
         {
             MaxUpgrade = 0x48,
             CustomAttrID = 0xE8
         }
-        public const int CustomAttrSpecParam = 0x4F0;
+        public const int CustomAttrSpecParamOffset = 0x4F0;
+
+        public const int ArmorParamOffset = 0x4A0;
+        public enum ArmorParam
+        {
+            ReinforceID = 0x8
+        }
+        public const int ArmorReinforceParamOffset = 0x4B0;
+        public enum ArmorReinforceParam
+        {
+            MaxUpgrade = 0x60,
+        }
+
+        public const int ItemParamOffset = 0x20;
+        public enum ItemParam
+        {
+            MaxHeld = 0x4A,
+        }
 
         #endregion
     }

@@ -140,8 +140,6 @@ namespace DS2S_META
 
             //nudUpgrade.Maximum = item.MaxUpgrade;
             //nudUpgrade.IsEnabled = item.MaxUpgrade > 0;
-            var lol = Hook.GetWeaponInfusions(item.ID);
-
             if (item.Type == DS2SItem.ItemType.Weapon)
                 foreach (var infusion in Hook.GetWeaponInfusions(item.ID))
                     cmbInfusion.Items.Add(infusion);

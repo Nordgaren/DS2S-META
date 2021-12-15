@@ -12,7 +12,7 @@ namespace DS2S_META
             Weapon = 0,
             Armor = 1,
             Item = 2,
-            Magic = 3
+            Ring = 3
         }
        
         private static Regex itemEntryRx = new Regex(@"^\s*(?<id>\S+)\s+(?<name>.+)$");

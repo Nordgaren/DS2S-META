@@ -1,18 +1,18 @@
  //Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
- 60538000  01 0 00 Fire Seed
- 60970000  01 0 00 Titanite Shard
- 60975000  01 0 00 Large Titanite Shard
- 60980000  01 0 00 Titanite Chunk
- 60990000  01 0 00 Titanite Slab
- 61000000  01 0 00 Twinkling Titanite
- 61030000  01 0 00 Petrified Dragon Bone
- 61060000  01 0 00 Faintstone
- 61070000  01 0 00 Boltstone
- 61080000  01 0 00 Firedrake Stone
- 61090000  01 0 00 Darknight Stone
- 61100000  01 0 00 Poison Stone
- 61110000  01 0 00 Bleed Stone
- 61130000  01 0 00 Raw Stone
- 61140000  01 0 00 Magic Stone
- 61150000  01 0 00 Old Mundane Stone
- 61160000  01 0 00 Palestone
+ 60538000 Fire Seed
+ 60970000 Titanite Shard
+ 60975000 Large Titanite Shard
+ 60980000 Titanite Chunk
+ 60990000 Titanite Slab
+ 61000000 Twinkling Titanite
+ 61030000 Petrified Dragon Bone
+ 61060000 Faintstone
+ 61070000 Boltstone
+ 61080000 Firedrake Stone
+ 61090000 Darknight Stone
+ 61100000 Poison Stone
+ 61110000 Bleed Stone
+ 61130000 Raw Stone
+ 61140000 Magic Stone
+ 61150000 Old Mundane Stone
+ 61160000 Palestone

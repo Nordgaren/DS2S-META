@@ -47,6 +47,9 @@ namespace DS2S_META
         private PHPointer WeaponParam;
         private PHPointer WeaponReinforceParam;
         private PHPointer CustomAttrSpecParam;
+        private PHPointer ArmorParam;
+        private PHPointer ArmorReinforceParam;
+        private PHPointer ItemParam;
 
         private PHPointer BaseBSetup;
         private PHPointer BaseB;
@@ -92,10 +95,13 @@ namespace DS2S_META
             PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2SOffsets.PlayerMapDataOffset2, (int)DS2SOffsets.PlayerMapDataOffset3);
             Bonfire = CreateChildPointer(BaseA, (int)DS2SOffsets.BonfireOffset);
 
-            LevelUpSoulsParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.LevelUpSoulsParam, (int)DS2SOffsets.ParamDataOffset3);
-            WeaponParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponParam, (int)DS2SOffsets.ParamDataOffset3);
-            WeaponReinforceParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponReinforceParam, (int)DS2SOffsets.ParamDataOffset3);
-            CustomAttrSpecParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.CustomAttrSpecParam, (int)DS2SOffsets.ParamDataOffset3);
+            LevelUpSoulsParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.LevelUpSoulsParamOffset, (int)DS2SOffsets.ParamDataOffset2);
+            WeaponParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponParamOffset, (int)DS2SOffsets.ParamDataOffset2);
+            WeaponReinforceParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponReinforceParamOffset, (int)DS2SOffsets.ParamDataOffset2);
+            CustomAttrSpecParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.CustomAttrSpecParamOffset, (int)DS2SOffsets.ParamDataOffset2);
+            ArmorParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.ArmorParamOffset, (int)DS2SOffsets.ParamDataOffset2);
+            ArmorReinforceParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.ArmorReinforceParamOffset, (int)DS2SOffsets.ParamDataOffset2);
+            ItemParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset3, (int)DS2SOffsets.ItemParamOffset, (int)DS2SOffsets.ParamDataOffset2);
 
             BaseB = CreateBasePointer(BasePointerFromSetupPointer(BaseBSetup));
             Connection = CreateChildPointer(BaseB, (int)DS2SOffsets.ConnectionOffset);
@@ -104,144 +110,18 @@ namespace DS2S_META
             Camera2 = CreateChildPointer(Camera, (int)DS2SOffsets.CameraOffset2);
 
             GetLevelRequirements();
-            BuildOffsetDictionary(WeaponParam, WeaponParamOffsets, "WEAPON_PARAM");
-            BuildOffsetDictionary(WeaponReinforceParam, WeaponReinforceParamOffsets, "WEAPON_REINFORCE_PARAM");
-            BuildOffsetDictionary(CustomAttrSpecParam, CustomAttrOffsets, "CUSTOM_ATTR_SPEC_PARAM");
+            BuildOffsetDictionary(WeaponParam, WeaponParamOffsetDict, "WEAPON_PARAM");
+            BuildOffsetDictionary(WeaponReinforceParam, WeaponReinforceParamOffsetDict, "WEAPON_REINFORCE_PARAM");
+            BuildOffsetDictionary(CustomAttrSpecParam, CustomAttrOffsetDict, "CUSTOM_ATTR_SPEC_PARAM");
+            BuildOffsetDictionary(ArmorParam, ArmorParamOffsetDict, "ARMOR_PARAM");
+            BuildOffsetDictionary(ArmorReinforceParam, ArmorReinforceParamOffsetDict, "ARMOR_REINFORCE_PARAM");
+            BuildOffsetDictionary(ItemParam, ItemParamOffsetDict, "ITEM_PARAM");
             UpdateStatsProperties();
         }
 
-      
+       
 
-        public static List<int> Levels = new List<int>();
-        private void GetLevelRequirements()
-        {
-            var paramName = LevelUpSoulsParam.ReadString(0xC, Encoding.UTF8, 0x18);
-            if (paramName != "CHR_LEVEL_UP_SOULS_PARAM")
-                throw new InvalidOperationException("Incorrect Param Pointer: LEVEL_UP_SOULS_PARAM");
-
-            var tableLength = LevelUpSoulsParam.ReadInt32((int)DS2SOffsets.Param.TableLength);
-            var paramID = 0x40;
-            var paramOffset = 0x48;
-            var nextParam = 0x18;
-            var slOffset = 0x8;
-
-            while (paramID < tableLength)
-            {
-                var soulReqOffset = LevelUpSoulsParam.ReadInt32(paramOffset);
-                var soulReq = LevelUpSoulsParam.ReadInt32(soulReqOffset + slOffset);
-                Levels.Add(soulReq);
-
-                paramID += nextParam;
-                paramOffset += nextParam;
-            }
-        }
-
-        private static Dictionary<int, int> WeaponParamOffsets = new Dictionary<int, int>();
-        private static Dictionary<int, int> WeaponReinforceParamOffsets = new Dictionary<int, int>();
-        private static Dictionary<int, int> CustomAttrOffsets = new Dictionary<int, int>();
-
-        private void BuildOffsetDictionary(PHPointer pointer, Dictionary<int, int> dictionary, string expectedParamName)
-        {
-            var paramName = pointer.ReadString(0xC, Encoding.UTF8, 0x18);
-            if (paramName != expectedParamName)
-                throw new InvalidOperationException($"Incorrect Param Pointer: {expectedParamName}");
-
-            var tableLength = pointer.ReadInt32((int)DS2SOffsets.Param.TableLength);
-            var paramID = 0x40;
-            var paramOffset = 0x48;
-            var nextParam = 0x18;
-
-            while (paramID < tableLength)
-            {
-                var weaponID = pointer.ReadInt32(paramID);
-                var weaponParamOffset = pointer.ReadInt32(paramOffset);
-                dictionary.Add(weaponID, weaponParamOffset);
-
-                paramID += nextParam;
-                paramOffset += nextParam;
-            }
-        }
-
-        internal int GetMaxUpgrade(DS2SItem item)
-        {
-            switch (item.Type)
-            {
-                case DS2SItem.ItemType.Weapon:
-                    return GetWeaponMaxUpgrade(item.ID);
-                case DS2SItem.ItemType.Armor:
-                    return 0;
-                case DS2SItem.ItemType.Item:
-                case DS2SItem.ItemType.Magic:
-                    return 0;
-            }
-
-            return 0;
-        }
-
-        private int GetWeaponMaxUpgrade(int id)
-        {
-            var reinforceParamID = WeaponParam.ReadInt32(WeaponParamOffsets[id] + (int)DS2SOffsets.WeaponParams.ReinforceID);
-            return WeaponReinforceParam.ReadInt32(WeaponReinforceParamOffsets[reinforceParamID] + (int)DS2SOffsets.WeaponReinforceParams.MaxUpgrade);
-        }
-
-        internal int GetMaxQuantity(DS2SItem item)
-        {
-            switch (item.Type)
-            {
-                case DS2SItem.ItemType.Weapon:
-                case DS2SItem.ItemType.Armor:
-                    return 1;
-                case DS2SItem.ItemType.Item:
-                    return 99;
-                case DS2SItem.ItemType.Magic:
-                    return 99;
-            }
-
-            return 0;
-        }
-
-        internal List<DS2SInfusion> GetWeaponInfusions(int id)
-        {
-            var infusions = new List<DS2SInfusion>();
-            var reinforceParamID = WeaponParam.ReadInt32(WeaponParamOffsets[id] + (int)DS2SOffsets.WeaponParams.ReinforceID);
-            var customAttrID = WeaponReinforceParam.ReadInt32(WeaponReinforceParamOffsets[reinforceParamID] + (int)DS2SOffsets.WeaponReinforceParams.CustomAttrID);
-            var bitField = CustomAttrSpecParam.ReadInt32(CustomAttrOffsets[customAttrID]);
-
-            if (bitField == 0)
-                return new List<DS2SInfusion>() { DS2SInfusion.Normal };
-
-            if ((bitField & 1) != 0)
-                infusions.Add(DS2SInfusion.Normal);
-
-            if ((bitField & 2) != 0)
-                infusions.Add(DS2SInfusion.Fire);
-
-            if ((bitField & 4)  != 0)
-                infusions.Add(DS2SInfusion.Magic);
-
-            if ((bitField & 8)  != 0)
-                infusions.Add(DS2SInfusion.Lightning);
-
-            if ((bitField & 16)  != 0)
-                infusions.Add(DS2SInfusion.Dark);
-
-            if ((bitField & 32)  != 0)
-                infusions.Add(DS2SInfusion.Poison);
-
-            if ((bitField & 64)  != 0)
-                infusions.Add(DS2SInfusion.Bleed);
-
-            if ((bitField & 128)  != 0)
-                infusions.Add(DS2SInfusion.Raw);
-
-            if ((bitField & 256)  != 0)
-                infusions.Add(DS2SInfusion.Enchanted);
-
-            if ((bitField & 512)  != 0)
-                infusions.Add(DS2SInfusion.Mundane);
-
-            return infusions;
-        }
+        
 
         private void DS2Hook_OnUnhooked(object sender, PHEventArgs e)
         {
@@ -648,6 +528,31 @@ namespace DS2S_META
             }
             return soulMemory;
         }
+
+        public static List<int> Levels = new List<int>();
+        private void GetLevelRequirements()
+        {
+            var paramName = LevelUpSoulsParam.ReadString(0xC, Encoding.UTF8, 0x18);
+            if (paramName != "CHR_LEVEL_UP_SOULS_PARAM")
+                throw new InvalidOperationException("Incorrect Param Pointer: LEVEL_UP_SOULS_PARAM");
+
+            var tableLength = LevelUpSoulsParam.ReadInt32((int)DS2SOffsets.Param.TableLength);
+            var paramID = 0x40;
+            var paramOffset = 0x48;
+            var nextParam = 0x18;
+            var slOffset = 0x8;
+
+            while (paramID < tableLength)
+            {
+                var soulReqOffset = LevelUpSoulsParam.ReadInt32(paramOffset);
+                var soulReq = LevelUpSoulsParam.ReadInt32(soulReqOffset + slOffset);
+                Levels.Add(soulReq);
+
+                paramID += nextParam;
+                paramOffset += nextParam;
+            }
+        }
+
         #endregion
 
         #region Items
@@ -716,6 +621,127 @@ namespace DS2S_META
             Execute(asm);
             Free(itemStruct);
         }
+        #endregion
+
+        #region Params
+
+        private static Dictionary<int, int> WeaponParamOffsetDict = new Dictionary<int, int>();
+        private static Dictionary<int, int> WeaponReinforceParamOffsetDict = new Dictionary<int, int>();
+        private static Dictionary<int, int> CustomAttrOffsetDict = new Dictionary<int, int>();
+        private static Dictionary<int, int> ArmorParamOffsetDict = new Dictionary<int, int>();
+        private static Dictionary<int, int> ArmorReinforceParamOffsetDict = new Dictionary<int, int>();
+        private static Dictionary<int, int> ItemParamOffsetDict = new Dictionary<int, int>();
+
+        private void BuildOffsetDictionary(PHPointer pointer, Dictionary<int, int> dictionary, string expectedParamName)
+        {
+            var paramName = pointer.ReadString(0xC, Encoding.UTF8, 0x18);
+            if (paramName != expectedParamName)
+                throw new InvalidOperationException($"Incorrect Param Pointer: {expectedParamName}");
+
+            var tableLength = pointer.ReadInt32((int)DS2SOffsets.Param.TableLength);
+            var paramID = 0x40;
+            var paramOffset = 0x48;
+            var nextParam = 0x18;
+
+            while (paramID < tableLength)
+            {
+                var weaponID = pointer.ReadInt32(paramID);
+                var weaponParamOffset = pointer.ReadInt32(paramOffset);
+                dictionary.Add(weaponID, weaponParamOffset);
+
+                paramID += nextParam;
+                paramOffset += nextParam;
+            }
+        }
+
+        internal int GetMaxUpgrade(DS2SItem item)
+        {
+            switch (item.Type)
+            {
+                case DS2SItem.ItemType.Weapon:
+                    return GetWeaponMaxUpgrade(item.ID);
+                case DS2SItem.ItemType.Armor:
+                    return GetArmorMaxUpgrade(item.ID);
+                case DS2SItem.ItemType.Item:
+                case DS2SItem.ItemType.Ring:
+                    return 0;
+            }
+
+            return 0;
+        }
+
+        internal int GetMaxQuantity(DS2SItem item)
+        {
+            switch (item.Type)
+            {
+                case DS2SItem.ItemType.Ring:
+                case DS2SItem.ItemType.Weapon:
+                case DS2SItem.ItemType.Armor:
+                    return 1;
+                case DS2SItem.ItemType.Item:
+                    return GetMaxItemQuantity(item.ID);
+            }
+
+            return 0;
+        }
+        private int GetArmorMaxUpgrade(int id)
+        {
+            return ArmorReinforceParam.ReadInt32(ArmorReinforceParamOffsetDict[id - 10000000] + (int)DS2SOffsets.ArmorReinforceParam.MaxUpgrade);
+        }
+
+        private int GetWeaponMaxUpgrade(int id)
+        {
+            var reinforceParamID = WeaponParam.ReadInt32(WeaponParamOffsetDict[id] + (int)DS2SOffsets.WeaponParam.ReinforceID);
+            return WeaponReinforceParam.ReadInt32(WeaponReinforceParamOffsetDict[reinforceParamID] + (int)DS2SOffsets.WeaponReinforceParam.MaxUpgrade);
+        }
+        private int GetMaxItemQuantity(int id)
+        {
+            return ItemParam.ReadInt16(ItemParamOffsetDict[id] + (int)DS2SOffsets.ItemParam.MaxHeld);
+        }
+
+        internal List<DS2SInfusion> GetWeaponInfusions(int id)
+        {
+            var infusions = new List<DS2SInfusion>();
+            var reinforceParamID = WeaponParam.ReadInt32(WeaponParamOffsetDict[id] + (int)DS2SOffsets.WeaponParam.ReinforceID);
+            var customAttrID = WeaponReinforceParam.ReadInt32(WeaponReinforceParamOffsetDict[reinforceParamID] + (int)DS2SOffsets.WeaponReinforceParam.CustomAttrID);
+            var bitField = CustomAttrSpecParam.ReadInt32(CustomAttrOffsetDict[customAttrID]);
+
+            if (bitField == 0)
+                return new List<DS2SInfusion>() { DS2SInfusion.Normal };
+
+            if ((bitField & 1) != 0)
+                infusions.Add(DS2SInfusion.Normal);
+
+            if ((bitField & 2) != 0)
+                infusions.Add(DS2SInfusion.Fire);
+
+            if ((bitField & 4) != 0)
+                infusions.Add(DS2SInfusion.Magic);
+
+            if ((bitField & 8) != 0)
+                infusions.Add(DS2SInfusion.Lightning);
+
+            if ((bitField & 16) != 0)
+                infusions.Add(DS2SInfusion.Dark);
+
+            if ((bitField & 32) != 0)
+                infusions.Add(DS2SInfusion.Poison);
+
+            if ((bitField & 64) != 0)
+                infusions.Add(DS2SInfusion.Bleed);
+
+            if ((bitField & 128) != 0)
+                infusions.Add(DS2SInfusion.Raw);
+
+            if ((bitField & 256) != 0)
+                infusions.Add(DS2SInfusion.Enchanted);
+
+            if ((bitField & 512) != 0)
+                infusions.Add(DS2SInfusion.Mundane);
+
+            return infusions;
+        }
+
         #endregion
     }
 }

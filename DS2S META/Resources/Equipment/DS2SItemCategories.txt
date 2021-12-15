@@ -1,14 +1,14 @@
 ﻿//Format: Name, /Relative/File/Path/Category.txt, Show ID boolean
-//Armor, Resources/Equipment/Armor/Armor.txt, false
-//Consumeables, Resources/Equipment/Items/Consumeables.txt, false
-//Useable Items, Resources/Equipment/Items/UseableItems.txt, false
-//Upgrade Materials, Resources/Equipment/Items/UpgradeMaterials.txt, false
-//Gestures, Resources/Equipment/Items/Gestures.txt, false
-//Key Items, Resources/Equipment/Items/KeyItems.txt, false
+Armor, 1, Resources/Equipment/Armor/Armor.txt, false
+Consumeables, 2, Resources/Equipment/Items/Consumeables.txt, false
+Useable Items, 2, Resources/Equipment/Items/UseableItems.txt, false
+Upgrade Materials, 2, Resources/Equipment/Items/UpgradeMaterials.txt, false
+Gestures, 2, Resources/Equipment/Items/Gestures.txt, false
+Key Items, 2, Resources/Equipment/Items/KeyItems.txt, false
 Melee Weapons, 0, Resources/Equipment/Weapons/MeleeWeapons.txt, false
 Ranged Weapons, 0, Resources/Equipment/Weapons/RangedWeapons.txt, false
-//Ammo, Resources/Equipment/Items/Ammo.txt, false
-//Rings, Resources/Equipment/Rings/Rings.txt, false
+Ammo, 2, Resources/Equipment/Items/Ammo.txt, false
+Rings, 4, Resources/Equipment/Rings/Rings.txt, false
 Shields, 0, Resources/Equipment/Weapons/Shields.txt, false
-//Spells, Resources/Equipment/Items/Spells.txt, false
+Spells, 3, Resources/Equipment/Items/Spells.txt, false
 Spell Tools, 0, Resources/Equipment/Weapons/SpellTools.txt, false

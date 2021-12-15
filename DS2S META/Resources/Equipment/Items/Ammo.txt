@@ -1,19 +1,19 @@
  //Format: Item ID; Stack Limit; Reinforce Type; Max Upgrade; Name [arbitrary]
- 60760000  01 0 00 Wood Arrow
- 60770000  01 0 00 Iron Arrow
- 60780000  01 0 00 Magic Arrow
- 60790000  01 0 00 Lightning Arrow
- 60800000  01 0 00 Fire Arrow
- 60810000  01 0 00 Dark Arrow
- 60820000  01 0 00 Poison Arrow
- 60830000  01 0 00 Lacerating Arrow
- 60850000  01 0 00 Iron Greatarrow
- 60870000  01 0 00 Lightning Greatarrow
- 60880000  01 0 00 Fire Greatarrow
- 60900000  01 0 00 Destructive Greatarrow
- 60910000  01 0 00 Wood Bolt
- 60920000  01 0 00 Heavy Bolt
- 60930000  01 0 00 Magic Bolt
- 60940000  01 0 00 Lightning Bolt
- 60950000  01 0 00 Fire Bolt
- 60960000  01 0 00 Dark Bolt
+ 60760000 Wood Arrow
+ 60770000 Iron Arrow
+ 60780000 Magic Arrow
+ 60790000 Lightning Arrow
+ 60800000 Fire Arrow
+ 60810000 Dark Arrow
+ 60820000 Poison Arrow
+ 60830000 Lacerating Arrow
+ 60850000 Iron Greatarrow
+ 60870000 Lightning Greatarrow
+ 60880000 Fire Greatarrow
+ 60900000 Destructive Greatarrow
+ 60910000 Wood Bolt
+ 60920000 Heavy Bolt
+ 60930000 Magic Bolt
+ 60940000 Lightning Bolt
+ 60950000 Fire Bolt
+ 60960000 Dark Bolt
