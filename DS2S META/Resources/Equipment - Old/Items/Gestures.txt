@@ -1,0 +1,21 @@
+//Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
+ 63000000  01 0 00 "Point" Gesture
+ 63001000  01 0 00 "I won't bite" Gesture
+ 63003000  01 0 00 "Bow" Gesture
+ 63004000  01 0 00 "Welcome" Gesture
+ 63005000  01 0 00 "Duel bow" Gesture
+ 63006000  01 0 00 "Wave" Gesture
+ 63007000  01 0 00 "Pumped up" Gesture
+ 63008000  01 0 00 "Joy" Gesture
+ 63009000  01 0 00 "Warcry" Gesture
+ 63010000  01 0 00 "Warmup" Gesture
+ 63011000  01 0 00 "Hurrah!" Gesture
+ 63012000  01 0 00 "Righty-ho!" Gesture
+ 63013000  01 0 00 "No way" Gesture
+ 63014000  01 0 00 "This one's me" Gesture
+ 63015000  01 0 00 "Have mercy!" Gesture
+ 63016000  01 0 00 "Prostration" Gesture
+ 63017000  01 0 00 "Decapitate" Gesture
+ 63018000  01 0 00 "Fist pump" Gesture
+ 63019000  01 0 00 "Mock" Gesture
+ 63021000  01 0 00 "Praise the Sun" Gesture

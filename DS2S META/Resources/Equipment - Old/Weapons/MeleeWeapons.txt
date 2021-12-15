@@ -1,0 +1,215 @@
+//Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
+ 1000000  01 1 10 Dagger
+ 1010000  01 1 10 Bandit's Knife
+ 1040000  01 1 10 Mytha's Bent Blade
+ 1050000  01 1 10 Shadow Dagger
+ 1060000  01 1 10 Thief Dagger
+ 1070000  01 1 10 Broken Thief Sword
+ 1100000  01 1 10 Parrying Dagger
+ 1110000  01 1 10 Manikin Knife
+ 1130000  01 1 10 Royal Dirk
+ 1140000  01 1 10 Blue Dagger
+ 1150000  01 1 10 Umbral Dagger
+ 1160000  01 1 10 Retainer's Short Sword
+ 1200000  01 1 10 Broken Straight Sword
+ 1210000  01 1 10 Shortsword
+ 1220000  01 1 10 Longsword
+ 1230000  01 1 10 Broadsword
+ 1240000  01 1 10 Foot Soldier Sword
+ 1250000  01 1 10 Puzzling Stone Sword
+ 1260000  01 1 10 Possessed Armor Sword
+ 1270000  01 1 10 Varangian Sword1000000
+ 1280000  01 1 10 Blue Flame
+ 1290000  01 1 10 Fume Sword
+ 1320000  01 1 10 Heide Knight Sword
+ 1330000  01 1 10 Red Rust Sword
+ 1350000  01 1 10 Black Dragon Sword
+ 1360000  01 1 10 Sun Sword
+ 1370000  01 1 10 Drakekeeper's Sword
+ 1380000  01 1 10 Ashen Warrior Sword
+ 1390000  01 1 10 Ivory Straight Sword
+ 1400000  01 1 10 Estoc
+ 1410000  01 1 10 Mail Breaker
+ 1420000  01 1 10 Chaos Rapier
+ 1430000  01 1 10 Spider's Silk
+ 1440000  01 1 10 Espada Ropera
+ 1500000  01 1 10 Rapier
+ 1520000  01 1 10 Black Scorpion Stinger
+ 1530000  01 1 10 Ricard's Rapier
+ 1580000  01 1 10 Ice Rapier
+ 1600000  01 1 10 Falchion
+ 1610000  01 1 10 Shotel
+ 1620000  01 1 10 Warped Sword
+ 1630000  01 1 10 Eleum Loyce
+ 1640000  01 1 10 Manikin Sabre
+ 1650000  01 1 10 Scimitar
+ 1660000  01 1 10 Red Rust Scimitar
+ 1670000  01 1 10 Spider Fang
+ 1680000  01 1 10 Melu Scimitar
+ 1690000  01 1 10 Monastery Scimitar
+ 1700000  01 1 10 Uchigatana
+ 1710000  01 1 10 Washing Pole
+ 1720000  01 1 10 Chaos Blade
+ 1730000  01 1 10 Blacksteel Katana
+ 1740000  01 1 10 Manslayer
+ 1760000  01 1 10 Darkdrift
+ 1770000  01 1 10 Berserker Blade
+ 1790000  01 1 10 Bewitched Alonne Sword
+ 1800000  01 1 10 Bastard Sword
+ 1810000  01 1 10 Flamberge
+ 1820000  01 1 10 Claymore
+ 1830000  01 1 10 Majestic Greatsword
+ 1831000  01 1 10 Majestic Greatsword
+ 1850000  01 1 10 Drangleic Sword
+ 1860000  01 1 10 Thorned Greatsword
+ 1870000  01 1 10 Bluemoon Greatsword
+ 1871000  01 1 10 Moonlight Greatsword
+ 1880000  01 1 10 Mastodon Greatsword
+ 1900000  01 1 10 Ruler's Sword
+ 1910000  01 1 10 Mirrah Greatsword
+ 1911000  01 1 10 Old Mirrah Greatsword
+ 1920000  01 1 10 Black Dragon Greatsword
+ 1930000  01 1 10 Black Knight Greatsword
+ 1940000  01 1 10 Royal Greatsword
+ 1950000  01 1 10 Old Knight Greatsword
+ 1960000  01 1 10 Defender Greatsword
+ 1970000  01 1 10 Watcher Greatsword
+ 1980000  01 1 10 Key to the Embedded
+ 1990000  01 1 10 Drakeblood Greatsword
+ 1995000  01 1 10 Loyce Greatsword
+ 1996000  01 1 10 Charred Loyce Greatsword
+ 1997000  01 1 10 Greatsword of the Forlorn
+ 2000000  01 1 10 Hand Axe
+ 2010000  01 1 10 Battle Axe
+ 2020000  01 1 10 Bandit Axe
+ 2030000  01 1 10 Infantry Axe
+ 2070000  01 1 10 Gyrm Axe
+ 2080000  01 1 10 Dragonslayer's Crescent Axe
+ 2090000  01 1 10 Butcher's Knife
+ 2100000  01 1 10 Silverblack Sickle
+ 2200000  01 1 10 Crescent Axe
+ 2210000  01 1 10 Greataxe
+ 2220000  01 1 10 Bandit Greataxe
+ 2240000  01 1 10 Lion Greataxe
+ 2250000  01 1 10 Giant Stone Axe
+ 2260000  01 1 10 Gyrm Greataxe
+ 2290000  01 1 10 Black Dragon Greataxe
+ 2300000  01 1 10 Black Knight Greataxe
+ 2310000  01 1 10 Drakekeeper's Greataxe
+ 2400000  01 1 10 Club
+ 2410000  01 1 10 Mace
+ 2420000  01 1 10 Morning Star
+ 2430000  01 1 10 Reinforced Club
+ 2440000  01 1 10 Craftsman's Hammer
+ 2470000  01 1 10 Mace of the Insolent
+ 2500000  01 1 10 Handmaid's Ladle
+ 2520000  01 1 10 Blacksmith's Hammer
+ 2530000  01 1 10 Black Dragon Warpick
+ 2540000  01 1 10 Aldia Hammer
+ 2560000  01 1 10 Barbed Club
+ 2600000  01 1 10 Large Club
+ 2610000  01 1 10 Pickaxe
+ 2620000  01 1 10 Great Club
+ 2630000  01 1 10 Gyrm Great Hammer
+ 2660000  01 1 10 Iron King Hammer
+ 2670000  01 1 10 Malformed Skull
+ 2680000  01 1 10 Dragon Tooth
+ 2690000  01 1 10 Giant Warrior Club
+ 2700000  01 1 10 Malformed Shell
+ 2710000  01 1 10 Demon's Great Hammer
+ 2720000  01 1 10 Archdrake Mace
+ 2730000  01 1 10 Old Knight Hammer
+ 2740000  01 1 10 Drakekeeper's Great Hammer
+ 2750000  01 1 10 Sacred Chime Hammer
+ 2760000  01 1 10 Sanctum Mace
+ 2800000  01 1 10 Spear
+ 2810000  01 1 10 Winged Spear
+ 2820000  01 1 10 Pike
+ 2830000  01 1 10 Partizan
+ 2840000  01 1 10 Stone Soldier Spear
+ 2850000  01 1 10 Spitfire Spear
+ 2855000  01 1 10 Yorgh's Spear
+ 2860000  01 1 10 Silverblack Spear
+ 2870000  01 1 10 Heide Spear
+ 2880000  01 1 10 Pate's Spear
+ 2890000  01 1 10 Channeler's Trident
+ 2895000  01 1 10 Gargoyle Bident
+ 2896000  01 1 10 Dragonslayer Spear
+ 2900000  01 1 10 Heide Lance
+ 2920000  01 1 10 Heide Greatlance
+ 2930000  01 1 10 Grand Lance
+ 2940000  01 1 10 Chariot Lance
+ 2950000  01 1 10 Rampart Golem Lance
+ 2960000  01 1 10 Smelter Hammer
+ 3000000  01 1 10 Great Scythe
+ 3010000  01 1 10 Great Machete
+ 3020000  01 1 10 Full Moon Sickle
+ 3040000  01 1 10 Crescent Sickle
+ 3050000  01 1 10 Scythe of Nahr Alma
+ 3060000  01 1 10 Bone Scythe
+ 3070000  01 1 10 Scythe of Want
+ 3080000  01 1 10 Scythe of the Forlorn
+ 3200000  01 1 10 Lucerne
+ 3210000  01 1 10 Scythe
+ 3220000  01 1 10 Halberd
+ 3240000  01 1 10 Helix Halberd
+ 3250000  01 1 10 Santier's Spear
+ 3251000  01 1 10 Santier's Spear
+ 3270000  01 1 10 Mastodon Halberd
+ 3280000  01 1 10 Blue Knight's Halberd
+ 3290000  01 1 10 Dragonrider's Halberd
+ 3300000  01 1 10 Black Knight Halberd
+ 3310000  01 1 10 Syan's Halberd
+ 3320000  01 1 10 Roaring Halberd
+ 3330000  01 1 10 Old Knight Halberd
+ 3340000  01 1 10 Old Knight Pike
+ 3350000  01 1 10 Drakekeeper's Warpick
+ 3370000  01 1 10 Wrathful Axe
+ 3410000  01 1 10 Claws
+ 3420000  01 1 10 Malformed Claws
+ 3430000  01 1 10 Manikin Claws
+ 3440000  01 1 10 Work Hook
+ 3500000  01 1 10 Caestus
+ 3530000  01 1 10 Bone Fist
+ 3600000  01 1 10 Whip
+ 3610000  01 1 10 Notched Whip
+ 3620000  01 1 10 Bloodied Whip
+ 3630000  01 1 10 Spotted Whip
+ 3660000  01 1 10 Old Whip
+ 5000000  01 1 10 Murakumo
+ 5010000  01 1 10 Arced Sword
+ 5040000  01 1 10 Curved Dragon Greatsword
+ 5050000  01 1 10 Curved Nil Greatsword
+ 5200000  01 1 10 Zweihander
+ 5210000  01 1 10 Greatsword
+ 5220000  01 1 10 Smelter Sword
+ 5225000  01 1 10 Aged Smelter Sword
+ 5230000  01 1 10 Drakewing Ultra Greatsword
+ 5240000  01 1 10 King's Ultra Greatsword
+ 5250000  01 1 10 Fume Ultra Greatsword
+ 5255000  01 1 10 Ivory King Ultra Greatsword
+ 5270000  01 1 10 Pursuer's Ultra Greatsword
+ 5275000  01 1 10 Drakekeeper's Ultra Greatsword
+ 5280000  01 1 10 Crypt Blacksword
+ 5285000  01 1 10 Old Knight Ultra Greatsword
+ 5290000  01 1 10 Black Knight Ultra Greatsword
+ 5295000  01 1 10 Lost Sinner's Sword
+ 5310000  01 1 10 Stone Twinblade
+ 5330000  01 1 10 Dragonrider Twinblade
+ 5340000  01 1 10 Twinblade
+ 5350000  01 1 10 Red Iron Twinblade
+ 5360000  01 1 10 Curved Twinblade
+ 5370000  01 1 10 Sorcerer's Twinblade
+ 5400000  01 1 10 Pyromancy Flame
+ 5410000  01 1 10 Dark Pyromancy Flame
+ 5500000  01 1 10 Black Flamestone Dagger
+ 5510000  01 1 10 Yellow Quartz Longsword
+ 5520000  01 1 10 Bound Hand Axe
+ 5530000  01 1 10 Homunculus Mace
+ 5600000  01 1 10 Longsword
+ 5610000  01 1 10 Murakumo
+ 5620000  01 1 10 Blacksteel Katana
+ 5630000  01 1 10 Rapier
+ 5640000  01 1 10 Greataxe
+ 5650000  01 1 10 Great Club
+ 5660000  01 1 10 Caestus

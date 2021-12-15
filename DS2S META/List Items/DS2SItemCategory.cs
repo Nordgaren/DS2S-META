@@ -11,14 +11,14 @@ namespace DS2S_META
         public string Name;
         public List<DS2SItem> Items;
 
-        private DS2SItemCategory(string name, string itemList, bool showIDs)
+        private DS2SItemCategory(string name, int type, string itemList, bool showIDs)
         {
             Name = name;
             Items = new List<DS2SItem>();
             foreach (string line in GetTxtResourceClass.RegexSplit(itemList, "[\r\n]+"))
             {
                 if (GetTxtResourceClass.IsValidTxtResource(line)) //determine if line is a valid resource or not
-                    Items.Add(new DS2SItem(line, showIDs));
+                    Items.Add(new DS2SItem(line, type, showIDs));
             };
             Items.Sort();
         }
@@ -34,7 +34,7 @@ namespace DS2S_META
                 {
                     var att = GetTxtResourceClass.RegexSplit(line, ",");
                     Array.ForEach<string>(att, x => att[Array.IndexOf<string>(att, x)] = x.Trim());
-                    All.Add(new DS2SItemCategory(att[0], GetTxtResourceClass.GetTxtResource(att[1]), bool.Parse(att[2])));
+                    All.Add(new DS2SItemCategory(att[0], int.Parse(att[1]), GetTxtResourceClass.GetTxtResource(att[2]), bool.Parse(att[3])));
                 }
             };
         }

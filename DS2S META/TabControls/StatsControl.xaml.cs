@@ -78,8 +78,6 @@ namespace DS2S_META
             nudInt.IsEnabled = enable;
             nudFth.IsEnabled = enable;
 
-            var lol = StatsCon.LogicalChildren;
-
             if (!enable)
                 cmbClass.SelectedIndex = -1;
         }

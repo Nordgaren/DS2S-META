@@ -1,0 +1,14 @@
+ //Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
+ 6100000   01 0 00 Binoculars
+ 60360000  01 0 00 Darksign
+ 60405000  01 0 00 Dragon Head Stone
+ 60405010  01 0 00 Dragon Head Stone
+ 60406000  01 0 00 Dragon Torso Stone
+ 60406010  01 0 00 Dragon Torso Stone
+ 62000000  01 0 00 Dried Fingers
+ 62020000  01 0 00 Bone of Order
+ 62030000  01 0 00 White Sign Soapstone
+ 62040000  01 0 00 Small White Sign Soapstone
+ 62045000  01 0 00 Red Sign Soapstone
+ 62070000  01 0 00 Dragon Eye
+ 62160000  01 0 00 Black Separation Crystal

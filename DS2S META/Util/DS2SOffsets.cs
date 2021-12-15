@@ -141,9 +141,7 @@ namespace DS2S_META
 
         public const string GiveSoulsFunc = "48 83 ec 28 48 8b 01 48 85 c0 74 23 48 8b 80 b8 00 00 00";
 
-        public const int ParamDataOffset1 = 0x18;
-        public const int ParamDataOffset2 = 0x580;
-        public const int ParamDataOffset3 = 0xD8;
+      
 
         public const int BonfireOffset = 0x70;
         public enum Bonfire
@@ -163,14 +161,44 @@ namespace DS2S_META
         #endregion
 
         #region FCData
-        public const string FCAoB = "66 0F 7F 49 30 C3 CC CC CC CC CC CC CC CC CC CC CC CC CC 48";
-        public enum CameraAngle
+        public const string CameraAoB = "60 02 2c f0 f3 7f 00 00";
+        public const int CameraOffset1 = 0x0;
+        public const int CameraOffset2 = 0x20;
+        public enum Camera
         {
-            CamStart = 0x30,
-            CamX = 0x30,
-            CamZ = 0x34,
-            CamY = 0x38
+            CamStart = 0x170,
+            CamX = 0x1A0,
+            CamZ = 0x1A4,
+            CamY = 0x1A8
         }
+        #endregion
+
+        #region Param
+
+        public enum Param
+        {
+            TotalParamLength = 0x0,
+            TableLength = 0x48
+        }
+
+        public const int ParamDataOffset1 = 0x18;
+        public const int ParamDataOffset3 = 0xD8;
+
+        public const int LevelUpSoulsParam = 0x580;
+        public const int WeaponParam = 0x420;
+        public enum WeaponParams
+        {
+            ReinforceID = 0x8
+        }
+
+        public const int WeaponReinforceParam = 0x470;
+        public enum WeaponReinforceParams
+        {
+            MaxUpgrade = 0x48,
+            CustomAttrID = 0xE8
+        }
+        public const int CustomAttrSpecParam = 0x4F0;
+
         #endregion
     }
 }

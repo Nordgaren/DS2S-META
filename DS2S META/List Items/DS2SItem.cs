@@ -6,24 +6,31 @@ namespace DS2S_META
 {
     class DS2SItem : IComparable<DS2SItem>
     {
+
+        public enum ItemType
+        {
+            Weapon = 0,
+            Armor = 1,
+            Item = 2,
+            Magic = 3
+        }
        
-        private static Regex itemEntryRx = new Regex(@"^\s*(?<id>\S+)\s+(?<limit>\S+)\s+(?<infusion>\S+)\s+(?<max>\S+)\s+(?<name>.+)$");
+        private static Regex itemEntryRx = new Regex(@"^\s*(?<id>\S+)\s+(?<name>.+)$");
 
         private bool ShowID;
 
         public string Name;
         public int ID;
-        public int StackLimit;
-        public DS2SInfusion.InfusionType Infusion;
-        public int MaxUpgrade;
+        //public int StackLimit;
+        //public DS2SInfusion.InfusionType Infusion;
+        //public int MaxUpgrade;
+        public ItemType Type;
 
-        public DS2SItem(string config, bool showID)
+        public DS2SItem(string config, int type, bool showID)
         {
             Match itemEntry = itemEntryRx.Match(config);
             ID = Convert.ToInt32(itemEntry.Groups["id"].Value);
-            StackLimit = Convert.ToInt32(itemEntry.Groups["limit"].Value);
-            Infusion = (DS2SInfusion.InfusionType)Convert.ToInt32(itemEntry.Groups["infusion"].Value);
-            MaxUpgrade = Convert.ToInt32(itemEntry.Groups["max"].Value);
+            Type = (ItemType)type;
             ShowID = showID;
             if (showID)
                 Name = ID.ToString() + ": " + itemEntry.Groups["name"].Value;

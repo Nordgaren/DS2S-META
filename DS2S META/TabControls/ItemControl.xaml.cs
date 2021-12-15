@@ -101,10 +101,11 @@ namespace DS2S_META
             }
             else if (lbxItems.SelectedIndex != -1)
             {
-                DS2SItem item = lbxItems.SelectedItem as DS2SItem;
-                nudQuantity.Maximum = item.StackLimit;
-                if (item.StackLimit == 1)
-                    nudQuantity.IsEnabled = false;
+                // Must Fix
+                //DS2SItem item = lbxItems.SelectedItem as DS2SItem;
+                //nudQuantity.Maximum = item.StackLimit;
+                //if (item.StackLimit == 1)
+                //    nudQuantity.IsEnabled = false;
             }
         }
 
@@ -118,29 +119,48 @@ namespace DS2S_META
 
         private void lbxItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            if (!Hook.Loaded) return;
+
             DS2SItem item = lbxItems.SelectedItem as DS2SItem;
             if (item == null)
                 return;
 
             if (cbxQuantityRestrict.IsChecked.Value)
             {
-                if (item.StackLimit <= 1)
-                    nudQuantity.IsEnabled = false;
-                else
-                    nudQuantity.IsEnabled = true;
-                nudQuantity.Maximum = item.StackLimit;
+                nudQuantity.Maximum = Hook.GetMaxQuantity(item);
+                nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
             }
 
             cmbInfusion.Items.Clear();
-            foreach (var infusion in DS2SInfusion.InfusionDict[item.Infusion])
-                cmbInfusion.Items.Add(infusion);
+            //foreach (var infusion in DS2SInfusion.InfusionDict[item.Infusion])
+            //    cmbInfusion.Items.Add(infusion);
+            //cmbInfusion.SelectedIndex = 0;
+            //cmbInfusion.IsEnabled = cmbInfusion.Items.Count > 1;
+
+            //nudUpgrade.Maximum = item.MaxUpgrade;
+            //nudUpgrade.IsEnabled = item.MaxUpgrade > 0;
+            var lol = Hook.GetWeaponInfusions(item.ID);
+
+            if (item.Type == DS2SItem.ItemType.Weapon)
+                foreach (var infusion in Hook.GetWeaponInfusions(item.ID))
+                    cmbInfusion.Items.Add(infusion);
+            else
+                cmbInfusion.Items.Add(DS2SInfusion.Normal);
+            
             cmbInfusion.SelectedIndex = 0;
             cmbInfusion.IsEnabled = cmbInfusion.Items.Count > 1;
 
-            nudUpgrade.Maximum = item.MaxUpgrade;
-            nudUpgrade.IsEnabled = item.MaxUpgrade > 0;
+            nudUpgrade.Maximum = Hook.GetMaxUpgrade(item);
+            nudUpgrade.IsEnabled = nudUpgrade.Maximum > 0;
 
             HandleMaxItemCheckbox();
+        }
+
+        internal void ReloadCtrl() 
+        {
+            lbxItems.SelectedIndex = -1;
+            lbxItems.SelectedIndex = 0;
         }
 
         internal void EnableStats(bool enable)

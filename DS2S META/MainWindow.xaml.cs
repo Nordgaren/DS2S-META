@@ -182,6 +182,7 @@ namespace DS2S_META
         {
             metaPlayer.ReloadCtrl();
             metaStats.ReloadCtrl();
+            metaItems.ReloadCtrl();
         }
         private void UpdateAllTabs()
         {

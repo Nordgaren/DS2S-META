@@ -1,27 +1,27 @@
 //Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
- 3800000  01 5 10 Sorcerer's Staff
- 3810000  01 5 10 Staff of Amana
- 3820000  01 5 10 Witchtree Branch
- 3830000  01 5 10 Lizard Staff
- 3850000  01 5 05 Olenford's Staff
- 3860000  01 5 10 Archdrake Staff
- 3870000  01 5 10 Bat Staff
- 3880000  01 5 10 Bone Staff
- 3890000  01 5 05 Staff of Wisdom
- 3900000  01 5 05 Sunset Staff
- 3910000  01 5 10 Pilgrim's Spontoon
- 3930000  01 0 05 Azal's Staff
- 3940000  01 5 10 Retainer Staff
- 4010000  01 4 10 Cleric's Sacred Chime
- 4020000  01 4 10 Witchtree Bellvine
- 4030000  01 4 10 Priest's Chime
- 4040000  01 4 05 Dragon Chime
- 4050000  01 4 05 Chime of Want
- 4060000  01 4 10 Archdrake Chime
- 4080000  01 4 05 Idol's Chime
- 4090000  01 4 10 Caitha's Chime
- 4100000  01 4 10 Protective Chime
- 4110000  01 4 10 Disc Chime
- 4120000  01 4 05 Chime of Screams
- 4150000  01 5 10 Black Witch's Staff
- 5540000  01 5 10 Transgressor's Staff
+ 3800000 Sorcerer's Staff
+ 3810000 Staff of Amana
+ 3820000 Witchtree Branch
+ 3830000 Lizard Staff
+ 3850000 Olenford's Staff
+ 3860000 Archdrake Staff
+ 3870000 Bat Staff
+ 3880000 Bone Staff
+ 3890000 Staff of Wisdom
+ 3900000 Sunset Staff
+ 3910000 Pilgrim's Spontoon
+ 3930000 Azal's Staff
+ 3940000 Retainer Staff
+ 4010000 Cleric's Sacred Chime
+ 4020000 Witchtree Bellvine
+ 4030000 Priest's Chime
+ 4040000 Dragon Chime
+ 4050000 Chime of Want
+ 4060000 Archdrake Chime
+ 4080000 Idol's Chime
+ 4090000 Caitha's Chime
+ 4100000 Protective Chime
+ 4110000 Disc Chime
+ 4120000 Chime of Screams
+ 4150000 Black Witch's Staff
+ 5540000 Transgressor's Staff

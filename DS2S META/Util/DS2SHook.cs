@@ -41,15 +41,20 @@ namespace DS2S_META
         private PHPointer PlayerGravity;
         private PHPointer PlayerParam;
         private PHPointer PlayerMapData;
-        private PHPointer ParamLevelUpSouls;
         private PHPointer Bonfire;
+
+        private PHPointer LevelUpSoulsParam;
+        private PHPointer WeaponParam;
+        private PHPointer WeaponReinforceParam;
+        private PHPointer CustomAttrSpecParam;
 
         private PHPointer BaseBSetup;
         private PHPointer BaseB;
         private PHPointer Connection;
 
-        private PHPointer FCData;
-        private PHPointer FCDataPointer;
+        private PHPointer CameraSetup;
+        private PHPointer Camera;
+        private PHPointer Camera2;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
 
@@ -68,7 +73,7 @@ namespace DS2S_META
 
             BaseBSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseBAoB);
 
-            FCData = RegisterAbsoluteAOB(DS2SOffsets.FCAoB);
+            CameraSetup = RegisterAbsoluteAOB(DS2SOffsets.CameraAoB);
 
             OnHooked += DS2Hook_OnHooked;
             OnUnhooked += DS2Hook_OnUnhooked;
@@ -85,42 +90,158 @@ namespace DS2S_META
             PlayerGravity = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerMapDataOffset1);
             PlayerParam = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerParamOffset);
             PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2SOffsets.PlayerMapDataOffset2, (int)DS2SOffsets.PlayerMapDataOffset3);
-            ParamLevelUpSouls = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.ParamDataOffset2, (int)DS2SOffsets.ParamDataOffset3);
             Bonfire = CreateChildPointer(BaseA, (int)DS2SOffsets.BonfireOffset);
+
+            LevelUpSoulsParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.LevelUpSoulsParam, (int)DS2SOffsets.ParamDataOffset3);
+            WeaponParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponParam, (int)DS2SOffsets.ParamDataOffset3);
+            WeaponReinforceParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponReinforceParam, (int)DS2SOffsets.ParamDataOffset3);
+            CustomAttrSpecParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.CustomAttrSpecParam, (int)DS2SOffsets.ParamDataOffset3);
 
             BaseB = CreateBasePointer(BasePointerFromSetupPointer(BaseBSetup));
             Connection = CreateChildPointer(BaseB, (int)DS2SOffsets.ConnectionOffset);
 
-            FCDataPointer = CreateChildPointer(FCData);
+            Camera = CreateBasePointer(BaseAddress + 0x160B8D0, (int)DS2SOffsets.CameraOffset1);
+            Camera2 = CreateChildPointer(Camera, (int)DS2SOffsets.CameraOffset2);
 
             GetLevelRequirements();
+            BuildOffsetDictionary(WeaponParam, WeaponParamOffsets, "WEAPON_PARAM");
+            BuildOffsetDictionary(WeaponReinforceParam, WeaponReinforceParamOffsets, "WEAPON_REINFORCE_PARAM");
+            BuildOffsetDictionary(CustomAttrSpecParam, CustomAttrOffsets, "CUSTOM_ATTR_SPEC_PARAM");
             UpdateStatsProperties();
         }
+
+      
 
         public static List<int> Levels = new List<int>();
         private void GetLevelRequirements()
         {
-            var paramName = ParamLevelUpSouls.ReadString(0x10, Encoding.UTF8, 0x18);
-            if (paramName != "LEVEL_UP_SOULS_PARAM")
-                return;
+            var paramName = LevelUpSoulsParam.ReadString(0xC, Encoding.UTF8, 0x18);
+            if (paramName != "CHR_LEVEL_UP_SOULS_PARAM")
+                throw new InvalidOperationException("Incorrect Param Pointer: LEVEL_UP_SOULS_PARAM");
 
-            var slPositionStart = 0x40;
-            var reqPositionStart = 0x48;
-            var paramOffset = 0x18;
-            var soulLevel = 0;
+            var tableLength = LevelUpSoulsParam.ReadInt32((int)DS2SOffsets.Param.TableLength);
+            var paramID = 0x40;
+            var paramOffset = 0x48;
+            var nextParam = 0x18;
+            var slOffset = 0x8;
 
-            while (soulLevel < 999)
+            while (paramID < tableLength)
             {
-                soulLevel = ParamLevelUpSouls.ReadInt32(slPositionStart);
-                var soulReqOffset = ParamLevelUpSouls.ReadInt32(reqPositionStart);
-                var soulReq = ParamLevelUpSouls.ReadInt32(soulReqOffset + 0x8);
+                var soulReqOffset = LevelUpSoulsParam.ReadInt32(paramOffset);
+                var soulReq = LevelUpSoulsParam.ReadInt32(soulReqOffset + slOffset);
                 Levels.Add(soulReq);
 
-                slPositionStart += paramOffset;
-                reqPositionStart += paramOffset;
+                paramID += nextParam;
+                paramOffset += nextParam;
             }
         }
 
+        private static Dictionary<int, int> WeaponParamOffsets = new Dictionary<int, int>();
+        private static Dictionary<int, int> WeaponReinforceParamOffsets = new Dictionary<int, int>();
+        private static Dictionary<int, int> CustomAttrOffsets = new Dictionary<int, int>();
+
+        private void BuildOffsetDictionary(PHPointer pointer, Dictionary<int, int> dictionary, string expectedParamName)
+        {
+            var paramName = pointer.ReadString(0xC, Encoding.UTF8, 0x18);
+            if (paramName != expectedParamName)
+                throw new InvalidOperationException($"Incorrect Param Pointer: {expectedParamName}");
+
+            var tableLength = pointer.ReadInt32((int)DS2SOffsets.Param.TableLength);
+            var paramID = 0x40;
+            var paramOffset = 0x48;
+            var nextParam = 0x18;
+
+            while (paramID < tableLength)
+            {
+                var weaponID = pointer.ReadInt32(paramID);
+                var weaponParamOffset = pointer.ReadInt32(paramOffset);
+                dictionary.Add(weaponID, weaponParamOffset);
+
+                paramID += nextParam;
+                paramOffset += nextParam;
+            }
+        }
+
+        internal int GetMaxUpgrade(DS2SItem item)
+        {
+            switch (item.Type)
+            {
+                case DS2SItem.ItemType.Weapon:
+                    return GetWeaponMaxUpgrade(item.ID);
+                case DS2SItem.ItemType.Armor:
+                    return 0;
+                case DS2SItem.ItemType.Item:
+                case DS2SItem.ItemType.Magic:
+                    return 0;
+            }
+
+            return 0;
+        }
+
+        private int GetWeaponMaxUpgrade(int id)
+        {
+            var reinforceParamID = WeaponParam.ReadInt32(WeaponParamOffsets[id] + (int)DS2SOffsets.WeaponParams.ReinforceID);
+            return WeaponReinforceParam.ReadInt32(WeaponReinforceParamOffsets[reinforceParamID] + (int)DS2SOffsets.WeaponReinforceParams.MaxUpgrade);
+        }
+
+        internal int GetMaxQuantity(DS2SItem item)
+        {
+            switch (item.Type)
+            {
+                case DS2SItem.ItemType.Weapon:
+                case DS2SItem.ItemType.Armor:
+                    return 1;
+                case DS2SItem.ItemType.Item:
+                    return 99;
+                case DS2SItem.ItemType.Magic:
+                    return 99;
+            }
+
+            return 0;
+        }
+
+        internal List<DS2SInfusion> GetWeaponInfusions(int id)
+        {
+            var infusions = new List<DS2SInfusion>();
+            var reinforceParamID = WeaponParam.ReadInt32(WeaponParamOffsets[id] + (int)DS2SOffsets.WeaponParams.ReinforceID);
+            var customAttrID = WeaponReinforceParam.ReadInt32(WeaponReinforceParamOffsets[reinforceParamID] + (int)DS2SOffsets.WeaponReinforceParams.CustomAttrID);
+            var bitField = CustomAttrSpecParam.ReadInt32(CustomAttrOffsets[customAttrID]);
+
+            if (bitField == 0)
+                return new List<DS2SInfusion>() { DS2SInfusion.Normal };
+
+            if ((bitField & 1) != 0)
+                infusions.Add(DS2SInfusion.Normal);
+
+            if ((bitField & 2) != 0)
+                infusions.Add(DS2SInfusion.Fire);
+
+            if ((bitField & 4)  != 0)
+                infusions.Add(DS2SInfusion.Magic);
+
+            if ((bitField & 8)  != 0)
+                infusions.Add(DS2SInfusion.Lightning);
+
+            if ((bitField & 16)  != 0)
+                infusions.Add(DS2SInfusion.Dark);
+
+            if ((bitField & 32)  != 0)
+                infusions.Add(DS2SInfusion.Poison);
+
+            if ((bitField & 64)  != 0)
+                infusions.Add(DS2SInfusion.Bleed);
+
+            if ((bitField & 128)  != 0)
+                infusions.Add(DS2SInfusion.Raw);
+
+            if ((bitField & 256)  != 0)
+                infusions.Add(DS2SInfusion.Enchanted);
+
+            if ((bitField & 512)  != 0)
+                infusions.Add(DS2SInfusion.Mundane);
+
+            return infusions;
+        }
 
         private void DS2Hook_OnUnhooked(object sender, PHEventArgs e)
         {
@@ -269,25 +390,25 @@ namespace DS2S_META
                 PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpZC, value);
             }
         }
-        public byte[] CamerData
+        public byte[] CameraData
         {
-            get => FCData.ReadBytes((int)DS2SOffsets.CameraAngle.CamStart, 0xC);
-            set => FCData.WriteBytes((int)DS2SOffsets.CameraAngle.CamStart, value);
+            get => Camera2.ReadBytes((int)DS2SOffsets.Camera.CamStart, 0x4C);
+            set => Camera2.WriteBytes((int)DS2SOffsets.Camera.CamStart, value);
         }
         public float CamX
         {
-            get => FCData.ReadSingle((int)DS2SOffsets.CameraAngle.CamX);
-            set => FCData.WriteSingle((int)DS2SOffsets.CameraAngle.CamX, value);
+            get => CameraSetup.ReadSingle((int)DS2SOffsets.Camera.CamX);
+            set => CameraSetup.WriteSingle((int)DS2SOffsets.Camera.CamX, value);
         }
         public float CamY
         {
-            get => FCData.ReadSingle((int)DS2SOffsets.CameraAngle.CamY);
-            set => FCData.WriteSingle((int)DS2SOffsets.CameraAngle.CamY, value);
+            get => CameraSetup.ReadSingle((int)DS2SOffsets.Camera.CamY);
+            set => CameraSetup.WriteSingle((int)DS2SOffsets.Camera.CamY, value);
         }
         public float CamZ
         {
-            get => FCData.ReadSingle((int)DS2SOffsets.CameraAngle.CamZ);
-            set => FCData.WriteSingle((int)DS2SOffsets.CameraAngle.CamZ, value);
+            get => CameraSetup.ReadSingle((int)DS2SOffsets.Camera.CamZ);
+            set => CameraSetup.WriteSingle((int)DS2SOffsets.Camera.CamZ, value);
         }
         public float Speed
         {

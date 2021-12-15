@@ -8,6 +8,7 @@
             public int HP, Stamina;
             public byte[] FollowCam;
             public float AngX, AngY, AngZ;
+            public float CamX, CamY, CamZ;
         }
     }
 }

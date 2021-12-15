@@ -29,6 +29,10 @@ namespace DS2S_META
         private State.PlayerState PlayerState;
 
         private List<SavedPos> Positions = new List<SavedPos>();
+
+        float CamX;
+        float CamY;
+        float CamZ;
         public override void InitTab()
         {
             PlayerState.Set = false;
@@ -53,8 +57,11 @@ namespace DS2S_META
                 PlayerState.AngZ = Hook.AngZ;
                 PlayerState.HP = (int)nudHealth.Value;
                 PlayerState.Stamina = (int)nudStamina.Value;
-                //PlayerState.FollowCam = Hook.DumpFollowCam();
+                PlayerState.FollowCam = Hook.CameraData;
                 PlayerState.Set = true;
+                CamX = Hook.CamX;
+                CamY = Hook.CamY;
+                CamZ = Hook.CamZ;
                 pos.X = Hook.PosX;
                 pos.Y = Hook.PosY;
                 pos.Z = Hook.PosZ;
@@ -124,6 +131,25 @@ namespace DS2S_META
                 Hook.AngX = PlayerState.AngX;
                 Hook.AngY = PlayerState.AngY;
                 Hook.AngZ = PlayerState.AngZ;
+                //Hook.CamX = CamX;
+                //Hook.CamY = CamY;
+                //Hook.CamZ = CamZ;
+                //System.Threading.Thread.Sleep(1000 / 15);
+                //Hook.CameraData = PlayerState.FollowCam;
+                //if (PlayerState.Set)
+                //{
+                //    // Two frames for safety, wait until after warp
+                //    System.Threading.Thread.Sleep(1000 / 15);
+                    
+
+                //    //if (cbxStoreState.Checked)
+                //    //{
+                //    //    nudHealth.Value = playerState.HP;
+                //    //    nudStamina.Value = playerState.Stamina;
+                //    //    cbxDeathCam.Checked = playerState.DeathCam;
+                //    //}
+                //}
+               
             }
         }
 
