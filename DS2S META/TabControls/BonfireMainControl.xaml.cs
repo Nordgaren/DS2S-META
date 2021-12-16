@@ -35,7 +35,7 @@ namespace DS2S_META
             IsEnabled = enable;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void UnlockBonfires_Click(object sender, RoutedEventArgs e)
         {
             Hook.UnlockBonfires();
         }

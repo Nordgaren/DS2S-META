@@ -11,7 +11,7 @@
     <Grid >
         <StackPanel>
             <Label Content="Bonfires"/>
-            <Button Content="Unlock All Bonfires" Click="Button_Click" Width="125" HorizontalAlignment="Left" Margin="25,0,0,0"/>
+            <Button Content="Unlock All Bonfires" Click="UnlockBonfires_Click" Width="125" HorizontalAlignment="Left" Margin="25,0,0,0"/>
 
             <Border BorderBrush="Gray" BorderThickness="1" >
                 <StackPanel Orientation="Horizontal" Margin="15" Visibility="Hidden">

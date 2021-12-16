@@ -45,6 +45,12 @@
                     <Label Content="{Binding ContentOnline}" Margin="5,0,0,0" Foreground="{Binding ForegroundOnline}"/>
                 </StackPanel>
             </StackPanel >
+            <StackPanel Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" Width="150">
+                    <Label Content="Version:" />
+                    <Label Content="{Binding Hook.Version}" x:Name="VersionText" Margin="5,0,0,0" />
+                </StackPanel>
+            </StackPanel >
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" Grid.ColumnSpan="3">
                 <Label x:Name="labelCheckVersion" Content="Check Version" />
                

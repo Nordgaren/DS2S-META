@@ -22,13 +22,21 @@ namespace DS2S_META
         public string ID => Process?.Id.ToString() ?? "Not Hooked";
         public IntPtr BaseAddress => Process?.MainModule.BaseAddress ?? IntPtr.Zero;
 
-        
-        public string Version { get; private set; }
+        private string _version;
+        public string Version 
+        { 
+            get => _version;
+            private set
+            {
+                _version = value;
+                OnPropertyChanged(Version);
+            }
+        }
 
         public static bool Reading { get; set; }
 
         private PHPointer BaseASetup;
-        private PHPointer BaseASetup2;
+        private PHPointer BaseABabyJSetup;
         private PHPointer GiveSoulsFunc;
         private PHPointer ItemGiveFunc;
         private PHPointer ItemStruct2dDisplay;
@@ -70,9 +78,10 @@ namespace DS2S_META
         public DS2SHook(int refreshInterval, int minLifetime) :
             base(refreshInterval, minLifetime, p => p.MainWindowTitle == "DARK SOULS II")
         {
-            Version = "None";
+            Version = "Vanilla";
 
             BaseASetup = RegisterAbsoluteAOB(DS2SOffsets.BaseAAob);
+            BaseABabyJSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseABabyJumpAoB);
             GiveSoulsFunc = RegisterAbsoluteAOB(DS2SOffsets.GiveSoulsFunc);
             ItemGiveFunc = RegisterAbsoluteAOB(DS2SOffsets.ItemGiveFunc);
             ItemStruct2dDisplay = RegisterAbsoluteAOB(DS2SOffsets.ItemStruct2dDisplay);
@@ -85,10 +94,13 @@ namespace DS2S_META
         }
         private void DS2Hook_OnHooked(object sender, PHEventArgs e)
         {
-            if (BaseASetup.Resolve() == IntPtr.Zero)
-                BaseASetup2 = RegisterAbsoluteAOB(DS2SOffsets.BaseABabyJumpAoB);
-
             BaseA = CreateBasePointer(BasePointerFromSetupPointer(BaseASetup));
+            if (BaseA.Resolve() == IntPtr.Zero)
+            {
+                BaseA = CreateBasePointer(BasePointerFromSetupBabyJ(BaseABabyJSetup));
+                Version = "BabyJump Dll Installed";
+            }
+
             PlayerName = CreateChildPointer(BaseA, (int)DS2SOffsets.PlayerNameOffset);
             AvailableItemBag = CreateChildPointer(PlayerName, (int)DS2SOffsets.AvailableItemBagOffset, (int)DS2SOffsets.AvailableItemBagOffset);
             ItemGiveWindow = CreateChildPointer(BaseA, (int)DS2SOffsets.ItemGiveWindowPointer);
@@ -181,10 +193,85 @@ namespace DS2S_META
             OnPropertyChanged(nameof(Gravity));
         }
 
-        internal void UpdateBonfireProperties()
+        public void UpdateBonfireProperties()
         {
             OnPropertyChanged(nameof(FireKeepersDwelling));
-
+            OnPropertyChanged(nameof(Majula));
+            OnPropertyChanged(nameof(CrestfallensRetreat));
+            OnPropertyChanged(nameof(CardinalTower));
+            OnPropertyChanged(nameof(SoldiersRest));
+            OnPropertyChanged(nameof(ThePlaceUnbeknownst));
+            OnPropertyChanged(nameof(HeidesRuin));
+            OnPropertyChanged(nameof(TowerofFlame));
+            OnPropertyChanged(nameof(TheBlueCathedral));
+            OnPropertyChanged(nameof(UnseenPathtoHeide));
+            OnPropertyChanged(nameof(ExileHoldingCells));
+            OnPropertyChanged(nameof(McDuffsWorkshop));
+            OnPropertyChanged(nameof(ServantsQuarters));
+            OnPropertyChanged(nameof(StraidsCell));
+            OnPropertyChanged(nameof(TheTowerApart));
+            OnPropertyChanged(nameof(TheSaltfort));
+            OnPropertyChanged(nameof(UpperRamparts));
+            OnPropertyChanged(nameof(UndeadRefuge));
+            OnPropertyChanged(nameof(BridgeApproach));
+            OnPropertyChanged(nameof(UndeadLockaway));
+            OnPropertyChanged(nameof(UndeadPurgatory));
+            OnPropertyChanged(nameof(PoisonPool));
+            OnPropertyChanged(nameof(TheMines));
+            OnPropertyChanged(nameof(LowerEarthenPeak));
+            OnPropertyChanged(nameof(CentralEarthenPeak));
+            OnPropertyChanged(nameof(UpperEarthenPeak));
+            OnPropertyChanged(nameof(ThresholdBridge));
+            OnPropertyChanged(nameof(IronhearthHall));
+            OnPropertyChanged(nameof(EygilsIdol));
+            OnPropertyChanged(nameof(BelfrySolApproach));
+            OnPropertyChanged(nameof(OldAkelarre));
+            OnPropertyChanged(nameof(RuinedForkRoad));
+            OnPropertyChanged(nameof(ShadedRuins));
+            OnPropertyChanged(nameof(GyrmsRespite));
+            OnPropertyChanged(nameof(OrdealsEnd));
+            OnPropertyChanged(nameof(RoyalArmyCampsite));
+            OnPropertyChanged(nameof(ChapelThreshold));
+            OnPropertyChanged(nameof(LowerBrightstoneCove));
+            OnPropertyChanged(nameof(HarvalsRestingPlace));
+            OnPropertyChanged(nameof(GraveEntrance));
+            OnPropertyChanged(nameof(UpperGutter));
+            OnPropertyChanged(nameof(CentralGutter));
+            OnPropertyChanged(nameof(HiddenChamber));
+            OnPropertyChanged(nameof(BlackGulchMouth));
+            OnPropertyChanged(nameof(KingsGate));
+            OnPropertyChanged(nameof(UnderCastleDrangleic));
+            OnPropertyChanged(nameof(ForgottenChamber));
+            OnPropertyChanged(nameof(CentralCastleDrangleic));
+            OnPropertyChanged(nameof(TowerofPrayer));
+            OnPropertyChanged(nameof(CrumbledRuins));
+            OnPropertyChanged(nameof(RhoysRestingPlace));
+            OnPropertyChanged(nameof(RiseoftheDead));
+            OnPropertyChanged(nameof(UndeadCryptEntrance));
+            OnPropertyChanged(nameof(UndeadDitch));
+            OnPropertyChanged(nameof(Foregarden));
+            OnPropertyChanged(nameof(RitualSite));
+            OnPropertyChanged(nameof(DragonAerie));
+            OnPropertyChanged(nameof(ShrineEntrance));
+            OnPropertyChanged(nameof(SanctumWalk));
+            OnPropertyChanged(nameof(PriestessChamber));
+            OnPropertyChanged(nameof(HiddenSanctumChamber));
+            OnPropertyChanged(nameof(LairoftheImperfect));
+            OnPropertyChanged(nameof(SanctumInterior));
+            OnPropertyChanged(nameof(TowerofPrayer));
+            OnPropertyChanged(nameof(SanctumNadir));
+            OnPropertyChanged(nameof(ThroneFloor));
+            OnPropertyChanged(nameof(UpperFloor));
+            OnPropertyChanged(nameof(Foyer));
+            OnPropertyChanged(nameof(LowermostFloor));
+            OnPropertyChanged(nameof(TheSmelterThrone));
+            OnPropertyChanged(nameof(IronHallwayEntrance));
+            OnPropertyChanged(nameof(OuterWall));
+            OnPropertyChanged(nameof(AbandonedDwelling));
+            OnPropertyChanged(nameof(ExpulsionChamber));
+            OnPropertyChanged(nameof(InnerWall));
+            OnPropertyChanged(nameof(LowerGarrison));
+            OnPropertyChanged(nameof(GrandCathedral));
         }
 
         public IntPtr BasePointerFromSetupPointer(PHPointer pointer)
@@ -193,7 +280,12 @@ namespace DS2S_META
             return pointer.ReadIntPtr(readInt + DS2SOffsets.BasePtrOffset2);
         }
 
-        
+        public IntPtr BasePointerFromSetupBabyJ(PHPointer pointer)
+        {
+            return pointer.ReadIntPtr(0x0121D4D0 + DS2SOffsets.BasePtrOffset2);
+        }
+
+
 
         #region Player
         public int Health
@@ -203,7 +295,6 @@ namespace DS2S_META
             {
                 if (Reading || !Loaded) return;
                 PlayerCtrl.WriteInt32((int)DS2SOffsets.PlayerCtrl.HP, value);
-                OnPropertyChanged(nameof(Health));
             }
         }
         public int HealthMax
@@ -228,7 +319,6 @@ namespace DS2S_META
             { 
                 if (Reading || !Loaded) return;
                 PlayerCtrl.WriteSingle((int)DS2SOffsets.PlayerCtrl.SP, value);
-                OnPropertyChanged(nameof(Stamina));
             }
         }
         public float MaxStamina
