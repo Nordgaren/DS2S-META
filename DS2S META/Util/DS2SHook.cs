@@ -25,11 +25,11 @@ namespace DS2S_META
         private string _version;
         public string Version 
         { 
-            get => _version;
+            get =>_version;
             private set
             {
                 _version = value;
-                OnPropertyChanged(Version);
+                OnPropertyChanged(nameof(Version));
             }
         }
 
@@ -78,8 +78,7 @@ namespace DS2S_META
         public DS2SHook(int refreshInterval, int minLifetime) :
             base(refreshInterval, minLifetime, p => p.MainWindowTitle == "DARK SOULS II")
         {
-            Version = "Vanilla";
-
+            Version = "Not Hooked";
             BaseASetup = RegisterAbsoluteAOB(DS2SOffsets.BaseAAob);
             BaseABabyJSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseABabyJumpAoB);
             GiveSoulsFunc = RegisterAbsoluteAOB(DS2SOffsets.GiveSoulsFunc);
@@ -94,11 +93,13 @@ namespace DS2S_META
         }
         private void DS2Hook_OnHooked(object sender, PHEventArgs e)
         {
+            Version = "Vanilla";
+
             BaseA = CreateBasePointer(BasePointerFromSetupPointer(BaseASetup));
             if (BaseA.Resolve() == IntPtr.Zero)
             {
                 BaseA = CreateBasePointer(BasePointerFromSetupBabyJ(BaseABabyJSetup));
-                Version = "BabyJump Dll Installed";
+                Version = "BabyJump Dll";
             }
 
             PlayerName = CreateChildPointer(BaseA, (int)DS2SOffsets.PlayerNameOffset);
@@ -144,6 +145,7 @@ namespace DS2S_META
 
         private void DS2Hook_OnUnhooked(object sender, PHEventArgs e)
         {
+            Version = "Not Hooked";
         }
 
         public void UpdateMainProperties()

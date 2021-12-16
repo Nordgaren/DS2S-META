@@ -46,7 +46,7 @@
                 </StackPanel>
             </StackPanel >
             <StackPanel Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal" Width="150">
+                <StackPanel Orientation="Horizontal" Width="175">
                     <Label Content="Version:" />
                     <Label Content="{Binding Hook.Version}" x:Name="VersionText" Margin="5,0,0,0" />
                 </StackPanel>

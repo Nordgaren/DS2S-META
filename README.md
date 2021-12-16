@@ -30,6 +30,10 @@ You can also try adding DS2S META as an exception to your antivirus
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 
 # Change Log 
+### Beta 0.0.0.6  
+
+* Baby Jump DLL Compatability  
+
 ### Beta 0.0.0.5  
 
 * Item Quantity, Infusion and Max level read from params  
