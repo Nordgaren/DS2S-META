@@ -172,18 +172,22 @@ namespace DS2S_META
         {
             Hook.UpdateStatsProperties();
             Hook.UpdatePlayerProperties();
+            Hook.UpdateBonfireProperties();
+            Hook.UpdateInternalProperties();
         }
         private void EnableTabs(bool enable)
         {
             metaPlayer.EnableCtrls(enable);
             metaStats.EnableCtrls(enable);
             metaBonfire.EnableCtrls(enable);
+            metaInternal.EnableCtrls(enable);
         }
         private void ReloadAllTabs()
         {
             metaPlayer.ReloadCtrl();
             metaStats.ReloadCtrl();
             metaItems.ReloadCtrl();
+            metaBonfire.ReloadCtrl();
         }
         private void UpdateAllTabs()
         {
@@ -200,6 +204,11 @@ namespace DS2S_META
         private void SaveAllTabs()
         {
             SaveHotkeys();
+        }
+
+        private void EnableStatEditing_Checked(object sender, RoutedEventArgs e)
+        {
+            metaStats.EnableCtrls(Hook.Loaded);
         }
     }
 }

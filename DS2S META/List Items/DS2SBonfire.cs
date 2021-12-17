@@ -17,18 +17,15 @@ namespace DS2S_META
             Name = bonfireEntry.Groups["name"].Value;
             ID = Convert.ToInt32(bonfireEntry.Groups["id"].Value);
         }
-
         public DS2SBonfire(int id, string name)
         {
             ID = id;
             Name = name;
         }
-
         public override string ToString()
         {
             return Name;
         }
-
         public int CompareTo(DS2SBonfire other)
         {
             return Name.CompareTo(other.Name);

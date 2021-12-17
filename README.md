@@ -30,6 +30,14 @@ You can also try adding DS2S META as an exception to your antivirus
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 
 # Change Log 
+### Beta 0.0.0.7  
+
+* Fixed bonfire unlock script no longer breaks Fire Keepers Dwelling Bonfire (Have to rest at it to unlock it)
+
+* Added Internals tab to display character equipment info and other
+
+* Bonfires tab works now kinda. Will make it nice looking later.
+
 ### Beta 0.0.0.6  
 
 * Baby Jump DLL Compatability  

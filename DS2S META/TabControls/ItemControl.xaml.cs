@@ -35,6 +35,12 @@ namespace DS2S_META
             FilterItems();
         }
 
+        internal override void ReloadCtrl()
+        {
+            lbxItems.SelectedIndex = -1;
+            lbxItems.SelectedIndex = 0;
+        }
+
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FilterItems();
@@ -153,11 +159,7 @@ namespace DS2S_META
             HandleMaxItemCheckbox();
         }
 
-        internal override void ReloadCtrl() 
-        {
-            lbxItems.SelectedIndex = -1;
-            lbxItems.SelectedIndex = 0;
-        }
+        
 
         internal void EnableStats(bool enable)
         {
@@ -190,7 +192,7 @@ namespace DS2S_META
 
                 var infusion = cmbInfusion.SelectedItem as DS2SInfusion;
 
-                Hook.GetItem(id, (short)nudQuantity.Value, (byte)nudUpgrade.Value, (byte)infusion.ID, Properties.Settings.Default.SilentItemGive);
+                Hook.GetItem(id, (short)nudQuantity.Value, (byte)nudUpgrade.Value, (byte)infusion.ID);
             }
         }
 

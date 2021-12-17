@@ -43,6 +43,25 @@ namespace DS2S_META
             Positions = SavedPos.GetSavedPositions();
             UpdatePositions();
         }
+        internal override void ReloadCtrl()
+        {
+            Hook.Speed = cbxSpeed.IsChecked.Value ? (float)nudSpeed.Value : 1;
+        }
+        internal override void EnableCtrls(bool enable)
+        {
+            btnPosStore.IsEnabled = enable;
+            btnPosRestore.IsEnabled = enable;
+            nudPosStoredX.IsEnabled = enable;
+            nudPosStoredY.IsEnabled = enable;
+            nudPosStoredZ.IsEnabled = enable;
+            nudHealth.IsEnabled = enable;
+            nudStamina.IsEnabled = enable;
+            cbxSpeed.IsEnabled = enable;
+            cbxGravity.IsEnabled = enable;
+
+            if (enable)
+                cbxBonfire.SelectedIndex = cbxBonfire.Items.Count - 1;
+        }
         public void StorePosition()
         {
             if (btnPosStore.IsEnabled)
@@ -212,24 +231,7 @@ namespace DS2S_META
             else
                 lblSearch.Visibility = Visibility.Hidden;
         }
-        internal override void ReloadCtrl() 
-        { 
-        }
-        internal override void EnableCtrls(bool enable)
-        {
-            btnPosStore.IsEnabled = enable;
-            btnPosRestore.IsEnabled = enable;
-            nudPosStoredX.IsEnabled = enable;
-            nudPosStoredY.IsEnabled = enable;
-            nudPosStoredZ.IsEnabled = enable;
-            nudHealth.IsEnabled = enable;
-            nudStamina.IsEnabled = enable;
-            cbxSpeed.IsEnabled = enable;
-            cbxGravity.IsEnabled = enable;
-
-            if (enable)
-                cbxBonfire.SelectedIndex = cbxBonfire.Items.Count - 1;
-        }
+        
         public void ToggleGravity()
         {
             cbxGravity.IsChecked = !cbxGravity.IsChecked;

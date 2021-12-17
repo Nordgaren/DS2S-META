@@ -1,0 +1,7 @@
+﻿0:  e9 ff ff 00 00          jmp    ;Jump to new instructions
+5:  90                      nop
+6:  90                      nop
+7:  90                      nop
+8:  f3 0f 59 1d ff ff 00    mulss  xmm3,DWORD PTR [rip+0xffff] ;Move float into register
+f:  00
+10: e9 ff ff 00 00          jmp    ;Jump back to AoB Pointer + 0x8

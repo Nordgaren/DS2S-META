@@ -1,0 +1,35 @@
+﻿//Format: Bonfire Entity ID; Name [arbitrary]
+Things Betwixed: Fire Keepers' Dwelling
+Majula: The Far Fire
+Forest of the Fallen Giants: The Crestfallen's Retreat-Cardinal Tower-Soldiers' Rest-The Place Unbeknownst
+Heide's Tower of Flame: Heide's Ruin-Tower of Flame
+Cathedral of Blue: The Blue Cathedral
+No-Man's Warf: Unseen Path to Heide
+The Lost Bastille: Exile Holding Cells-McDuff's Workshop-Servants' Quarters-Straid's Cell-The Tower Apart
+Sinners' Rise: The Saltfort
+Belfry Luna: Upper Ramparts
+Huntsman's Copse: Undead Refuge-Bridge Approach-Undead Lockaway
+Undead Purgatory: Undead Purgatory
+Harvest Valley: Poison Pool-The Mines
+Earthen Peak: Lower Earthen Peak-Central Earthen Peak-Upper Earthen Peak
+Iron Keep: Threshold Bridge-Ironhearth Hall-Eygil's Idol
+Belfry Sol: Belfry Sol Approach
+Shaded Woods: Old Akelarre-Ruined Fork Road-Shaded Ruins
+Door of Pharros: Gyrm's Respite-Ordeal's End
+Brightstone Cove Tseldora: Royal Army Campsite-Chapel Threshold-Lower Brightstone Cove
+Grave of Saints: Harval's Resting Place-Grave Entrance
+The Gutter: Upper Gutter-Central Gutter
+Black Gulch: Black Gulch Mouth-Hidden Chamber
+Drangleic Castle: King's Gate-Forgotten Chamber-Under Castle Drangleic-Central Castle Drangleic
+Shrine of Amana: Tower of Prayer-Crumbled Ruins-Rhoy's Resting Place-Rise of the Dead
+Undead Crypt: Undead Crypt Entrance-Undead Ditch
+Aldias Keep: Foregarden-Ritual Site
+Dragon Aerie: Dragon Aerie
+Dragon Shrine: Shrine Entrance
+Shulva, Sanctum City: Sanctum Walk-Tower of Prayer-Priestess' Chamber
+Dragon's Sanctum: Hidden Sanctum Chamber-Lair of the Imperfect-Sanctum Interior
+Dragon's Rest: Sanctum Nadir
+Brume Tower: Throne Floor-Upper Floor-Foyer-Lowermost Floor-The Smelter Throne
+Iron Passage: Iron Hallway Entrance
+Frozen Elium Loyce: Outer Wall-Abandoned Dwelling-Expulsion Chamber-Inner Wall-Lower Garrison
+Grand Cathedral: Grand Cathedral

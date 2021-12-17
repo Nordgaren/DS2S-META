@@ -28,6 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -222,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="List Items\DS2SBonfireHub.cs" />
+    <Compile Include="TabControls\InternalControl.xaml.cs">
+      <DependentUpon>InternalControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TabControls\BonfireControl.xaml.cs">
       <DependentUpon>BonfireControl.xaml</DependentUpon>
     </Compile>
@@ -244,49 +249,9 @@
       <DependentUpon>HotkeyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\User32.cs" />
-    <Resource Include="Resources\Equipment - Old\Weapons\SpellTools.txt">
+    <None Include="Resources\Systems\BonfireHubs.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Weapons\Shields.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Weapons\RangedWeapons.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Weapons\MeleeWeapons.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Weapons\Ammo.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Rings\Rings.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Items\UseableItems.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Items\UpgradeMaterials.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Items\Spells.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Items\KeyItems.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Items\Gestures.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Items\Consumeables.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\DS2SItemCategories.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Equipment - Old\Armor\Armor.txt">
-      <Generator>MSBuild:Compile</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </None>
     <None Include="Resources\Equipment\Items\Ammo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -300,6 +265,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Resource Include="Resources\Assembly\GiveItemWithoutMenu.txt" />
+    <Resource Include="Resources\Assembly\SpeedFactor.txt" />
     <Content Include="Resources\Assembly\GiveItemWithMenu.txt" />
     <Compile Include="TabControls\HotkeyControl.cs" />
     <Compile Include="Util\METAHotkey.cs" />
@@ -358,6 +324,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Include="TabControls\InternalControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TabControls\BonfireControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

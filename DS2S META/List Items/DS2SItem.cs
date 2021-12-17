@@ -21,10 +21,13 @@ namespace DS2S_META
 
         public string Name;
         public int ID;
-        //public int StackLimit;
-        //public DS2SInfusion.InfusionType Infusion;
-        //public int MaxUpgrade;
         public ItemType Type;
+
+        public static Dictionary<int, string> Items = new Dictionary<int, string>()
+        {
+
+            {3400000 ,"Fist"}
+        };
 
         public DS2SItem(string config, int type, bool showID)
         {
@@ -36,6 +39,8 @@ namespace DS2S_META
                 Name = ID.ToString() + ": " + itemEntry.Groups["name"].Value;
             else
                 Name = itemEntry.Groups["name"].Value;
+
+            Items.Add(ID, itemEntry.Groups["name"].Value);
         }
         public override string ToString()
         {

@@ -14,7 +14,7 @@ namespace DS2S_META
     {
         private static Regex asmLineRx = new Regex(@"^[\w\d]+:\s+((?:[\w\d][\w\d] ?)+)");
 
-        private static byte[] loadDefuseOutput(string lines)
+        private static byte[] LoadDefuseOutput(string lines)
         {
             List<byte> bytes = new List<byte>();
             foreach (string line in Regex.Split(lines, "[\r\n]+"))
@@ -27,8 +27,9 @@ namespace DS2S_META
             return bytes.ToArray();
         }
 
-        public static byte[] AddSouls = loadDefuseOutput(Properties.Resources.AddSouls);
-        public static byte[] GetItem = loadDefuseOutput(Properties.Resources.GiveItemWithMenu);
-        public static byte[] GetItemNoMenu = loadDefuseOutput(Properties.Resources.GiveItemWithoutMenu);
+        public static byte[] AddSouls = LoadDefuseOutput(Properties.Resources.AddSouls);
+        public static byte[] GetItem = LoadDefuseOutput(Properties.Resources.GiveItemWithMenu);
+        public static byte[] GetItemNoMenu = LoadDefuseOutput(Properties.Resources.GiveItemWithoutMenu);
+        public static byte[] SpeedFactor = LoadDefuseOutput(Properties.Resources.SpeedFactor);
     }
 }

@@ -68,15 +68,15 @@ namespace DS2S_META
             btnGive.IsEnabled = enable;
             btnResetSoulMemory.IsEnabled = enable;
             nudGiveSouls.IsEnabled = enable;
-            nudVig.IsEnabled = enable;
-            nudEnd.IsEnabled = enable;
-            nudVit.IsEnabled = enable;
-            nudAtt.IsEnabled = enable;
-            nudStr.IsEnabled = enable;
-            nudDex.IsEnabled = enable;
-            nudAdp.IsEnabled = enable;
-            nudInt.IsEnabled = enable;
-            nudFth.IsEnabled = enable;
+            nudVig.IsEnabled = enable && Properties.Settings.Default.EditStats;
+            nudEnd.IsEnabled = enable && Properties.Settings.Default.EditStats;
+            nudVit.IsEnabled = enable && Properties.Settings.Default.EditStats;
+            nudAtt.IsEnabled = enable && Properties.Settings.Default.EditStats;
+            nudStr.IsEnabled = enable && Properties.Settings.Default.EditStats;
+            nudDex.IsEnabled = enable && Properties.Settings.Default.EditStats;
+            nudAdp.IsEnabled = enable && Properties.Settings.Default.EditStats;
+            nudInt.IsEnabled = enable && Properties.Settings.Default.EditStats;
+            nudFth.IsEnabled = enable && Properties.Settings.Default.EditStats;
             nudHollowLevel.IsEnabled = enable;
 
             if (!enable)

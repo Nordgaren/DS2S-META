@@ -84,7 +84,11 @@
             <TabItem Header="Bonfires">
                 <Grid Background="LightGray">
                     <local:BonfireMainControl x:Name="metaBonfire" Hook="{Binding Hook}" GameLoaded="{Binding Loaded}"/>
-                    <!--< x:Name="metaBonfires" Hook="{Binding Hook}" GameLoaded="{Binding Loaded}"/>-->
+                </Grid>
+            </TabItem>
+            <TabItem Header="Internal">
+                <Grid Background="LightGray">
+                    <local:InternalControl x:Name="metaInternal" Hook="{Binding Hook}" GameLoaded="{Binding Loaded}"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabSettings" Header="Settings">
@@ -108,10 +112,20 @@
                 Source={x:Static p:Settings.Default}, 
                 UpdateSourceTrigger=PropertyChanged}"/>
                                             </StackPanel>
-
                                         </Border>
                                     </StackPanel>
-                                    
+                                    <StackPanel Grid.Column="0" >
+                                        <Separator Visibility="Hidden" Height="10"/>
+                                        <Label Content="Stats Tab"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" >
+                                            <StackPanel Margin="0,5,0,5">
+                                                <CheckBox Margin="10,5,0,0" Content="Unlock Stat Editing" IsChecked="{Binding EditStats, 
+                Mode=TwoWay, 
+                Source={x:Static p:Settings.Default}, 
+                UpdateSourceTrigger=PropertyChanged}" Checked="EnableStatEditing_Checked" Unchecked="EnableStatEditing_Checked"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
                                     <StackPanel Grid.Column="0" >
                                         <Separator Visibility="Hidden" Height="10"/>
                                         <Label Content="Item Tab"/>
@@ -122,9 +136,7 @@
                 Source={x:Static p:Settings.Default}, 
                 UpdateSourceTrigger=PropertyChanged}"/>
                                             </StackPanel>
-                                            
                                         </Border>
-                                       
                                     </StackPanel>
                                 </StackPanel>
                                 

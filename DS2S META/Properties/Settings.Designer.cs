@@ -130,5 +130,17 @@ namespace DS2S_META.Properties {
                 this["RestoreState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EditStats {
+            get {
+                return ((bool)(this["EditStats"]));
+            }
+            set {
+                this["EditStats"] = value;
+            }
+        }
     }
 }

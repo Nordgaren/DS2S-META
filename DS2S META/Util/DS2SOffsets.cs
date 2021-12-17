@@ -52,6 +52,20 @@ namespace DS2S_META
             SpeedModifier = 0x2A8,
         }
 
+        public enum PlayerEquipment
+        {
+            Legs = 0x920,
+            Arms = 0x90C,
+            Chest = 0x8F8,
+            Head = 0x8E4,
+            RightHand1 = 0x880,
+            RightHand2 = 0x8A8,
+            RightHand3 = 0x8D0,
+            LeftHand1 = 0x86C,
+            LeftHand2 = 0x894,
+            LeftHand3 = 0x8BC
+        }
+
         public const int PlayerParamOffset = 0x490;
         public enum PlayerParam
         {
@@ -161,7 +175,7 @@ namespace DS2S_META
         public enum BonfireLevels
         {
             FireKeepersDwelling = 0x2,
-            Majula = 0x1A,
+            TheFarFire = 0x1A,
             CrestfallensRetreat = 0x62,
             CardinalTower = 0x32,
             SoldiersRest = 0x4A,
@@ -268,6 +282,7 @@ namespace DS2S_META
         public enum Param
         {
             TotalParamLength = 0x0,
+            ParamName = 0xC,
             TableLength = 0x48
         }
 
@@ -306,6 +321,11 @@ namespace DS2S_META
         {
             MaxHeld = 0x4A,
         }
+
+        #endregion
+
+        #region Internals
+        public const string SpeedFactorAccelOffset = "F3 0F 59 9F A8 02 00 00 F3 0F 10 16";
 
         #endregion
     }

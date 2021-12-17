@@ -19,8 +19,8 @@ namespace DS2S_META
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-        public string ID => Process?.Id.ToString() ?? "Not Hooked";
         public IntPtr BaseAddress => Process?.MainModule.BaseAddress ?? IntPtr.Zero;
+        public string ID => Process?.Id.ToString() ?? "Not Hooked";
 
         private string _version;
         public string Version 
@@ -36,7 +36,6 @@ namespace DS2S_META
         public static bool Reading { get; set; }
 
         private PHPointer BaseASetup;
-        private PHPointer BaseABabyJSetup;
         private PHPointer GiveSoulsFunc;
         private PHPointer ItemGiveFunc;
         private PHPointer ItemStruct2dDisplay;
@@ -71,6 +70,8 @@ namespace DS2S_META
         private PHPointer Camera;
         private PHPointer Camera2;
 
+        private PHPointer SpeedFactorAccel;
+
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
 
         public bool Focused => Hooked && User32.GetForegroundProcessID() == Process.Id;
@@ -80,7 +81,7 @@ namespace DS2S_META
         {
             Version = "Not Hooked";
             BaseASetup = RegisterAbsoluteAOB(DS2SOffsets.BaseAAob);
-            BaseABabyJSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseABabyJumpAoB);
+            SpeedFactorAccel = RegisterAbsoluteAOB(DS2SOffsets.SpeedFactorAccelOffset);
             GiveSoulsFunc = RegisterAbsoluteAOB(DS2SOffsets.GiveSoulsFunc);
             ItemGiveFunc = RegisterAbsoluteAOB(DS2SOffsets.ItemGiveFunc);
             ItemStruct2dDisplay = RegisterAbsoluteAOB(DS2SOffsets.ItemStruct2dDisplay);
@@ -98,7 +99,9 @@ namespace DS2S_META
             BaseA = CreateBasePointer(BasePointerFromSetupPointer(BaseASetup));
             if (BaseA.Resolve() == IntPtr.Zero)
             {
-                BaseA = CreateBasePointer(BasePointerFromSetupBabyJ(BaseABabyJSetup));
+                BaseASetup = RegisterAbsoluteAOB(DS2SOffsets.BaseABabyJumpAoB);
+                RescanAOB();
+                BaseA = CreateBasePointer(BasePointerFromSetupBabyJ(BaseASetup));
                 Version = "BabyJump Dll";
             }
 
@@ -126,7 +129,7 @@ namespace DS2S_META
             BaseB = CreateBasePointer(BasePointerFromSetupPointer(BaseBSetup));
             Connection = CreateChildPointer(BaseB, (int)DS2SOffsets.ConnectionOffset);
 
-            Camera = CreateBasePointer(BaseAddress + 0x160B8D0, (int)DS2SOffsets.CameraOffset1);
+            Camera = CreateBasePointer(Handle + 0x160B8D0, (int)DS2SOffsets.CameraOffset1);
             Camera2 = CreateChildPointer(Camera, (int)DS2SOffsets.CameraOffset2);
 
             GetLevelRequirements();
@@ -198,8 +201,8 @@ namespace DS2S_META
         public void UpdateBonfireProperties()
         {
             OnPropertyChanged(nameof(FireKeepersDwelling));
-            OnPropertyChanged(nameof(Majula));
-            OnPropertyChanged(nameof(CrestfallensRetreat));
+            OnPropertyChanged(nameof(TheFarFire));
+            OnPropertyChanged(nameof(TheCrestfallensRetreat));
             OnPropertyChanged(nameof(CardinalTower));
             OnPropertyChanged(nameof(SoldiersRest));
             OnPropertyChanged(nameof(ThePlaceUnbeknownst));
@@ -274,6 +277,27 @@ namespace DS2S_META
             OnPropertyChanged(nameof(InnerWall));
             OnPropertyChanged(nameof(LowerGarrison));
             OnPropertyChanged(nameof(GrandCathedral));
+        }
+
+        public void UpdateInternalProperties()
+        {
+            //var addr = SpeedFactorAccel.Resolve();
+            //var bytes = SpeedFactorAccel.ReadBytes(0x0, 24);
+
+            //foreach (var num in bytes)
+            //{
+            //    Debug.Write($"{num.ToString("X2")} ");
+            //}
+            OnPropertyChanged(nameof(Head));
+            OnPropertyChanged(nameof(Chest));
+            OnPropertyChanged(nameof(Arms));
+            OnPropertyChanged(nameof(Legs));
+            OnPropertyChanged(nameof(RightHand1));
+            OnPropertyChanged(nameof(RightHand2));
+            OnPropertyChanged(nameof(RightHand3));
+            OnPropertyChanged(nameof(LeftHand1));
+            OnPropertyChanged(nameof(LeftHand2));
+            OnPropertyChanged(nameof(LeftHand3));
         }
 
         public IntPtr BasePointerFromSetupPointer(PHPointer pointer)
@@ -424,7 +448,7 @@ namespace DS2S_META
         {
             set 
             {
-                if (Reading || !Loaded) return;
+                if (!Loaded) return;
                 PlayerCtrl.WriteSingle((int)DS2SOffsets.PlayerCtrl.SpeedModifier, value); 
             }
         }
@@ -686,9 +710,9 @@ namespace DS2S_META
         #endregion
 
         #region Items
-        public void GetItem(int item, short amount, byte upgrade, byte infusion, bool silent)
+        public void GetItem(int item, short amount, byte upgrade, byte infusion)
         {
-            if (silent)
+            if (Properties.Settings.Default.SilentItemGive)
                 GiveItemSilently(item, amount, upgrade, infusion);
             else
                 GiveItem(item, amount, upgrade, infusion);
@@ -697,6 +721,7 @@ namespace DS2S_META
         private void GiveItem(int item, short amount, byte upgrade, byte infusion)
         {
             var itemStruct = Allocate(0x8A);
+
             Kernel32.WriteBytes(Handle, itemStruct + 0x4, BitConverter.GetBytes(item));
             Kernel32.WriteBytes(Handle, itemStruct + 0x8, BitConverter.GetBytes(float.MaxValue));
             Kernel32.WriteBytes(Handle, itemStruct + 0xC, BitConverter.GetBytes(amount));
@@ -764,7 +789,7 @@ namespace DS2S_META
 
         private void BuildOffsetDictionary(PHPointer pointer, Dictionary<int, int> dictionary, string expectedParamName)
         {
-            var paramName = pointer.ReadString(0xC, Encoding.UTF8, 0x18);
+            var paramName = pointer.ReadString((int)DS2SOffsets.Param.ParamName, Encoding.UTF8, 0x18);
             if (paramName != expectedParamName)
                 throw new InvalidOperationException($"Incorrect Param Pointer: {expectedParamName}");
 
@@ -818,7 +843,6 @@ namespace DS2S_META
         {
             return ArmorReinforceParam.ReadInt32(ArmorReinforceParamOffsetDict[id - 10000000] + (int)DS2SOffsets.ArmorReinforceParam.MaxUpgrade);
         }
-
         private int GetWeaponMaxUpgrade(int id)
         {
             var reinforceParamID = WeaponParam.ReadInt32(WeaponParamOffsetDict[id] + (int)DS2SOffsets.WeaponParam.ReinforceID);
@@ -880,12 +904,12 @@ namespace DS2S_META
             get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.FireKeepersDwelling) : (byte)0;
             set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.FireKeepersDwelling, value);
         }
-        public byte Majula
+        public byte TheFarFire
         {
-            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.Majula) : (byte)0;
-            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.Majula, value);
+            get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.TheFarFire) : (byte)0;
+            set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.TheFarFire, value);
         }
-        public byte CrestfallensRetreat
+        public byte TheCrestfallensRetreat
         {
             get => Loaded ? BonfireLevels.ReadByte((int)DS2SOffsets.BonfireLevels.CrestfallensRetreat) : (byte)0;
             set => BonfireLevels.WriteByte((int)DS2SOffsets.BonfireLevels.CrestfallensRetreat, value);
@@ -1265,16 +1289,251 @@ namespace DS2S_META
         {
             foreach (DS2SOffsets.BonfireLevels bonfire in Enum.GetValues(typeof(DS2SOffsets.BonfireLevels)))
             {
-
                 var currentLevel = BonfireLevels.ReadByte((int)bonfire);
+
+                if (bonfire == DS2SOffsets.BonfireLevels.FireKeepersDwelling)
+                        continue;
 
                 if (currentLevel == 0)
                     BonfireLevels.WriteByte((int)bonfire, 1);
-
-
             }
         }
 
+        #endregion
+
+        #region Internal
+
+        public string Head
+        {
+            get
+            {
+                if (!Loaded) return "";
+                var itemID = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerEquipment.Head);
+
+                if (DS2SItem.Items.ContainsKey(itemID + 10000000))
+                    return DS2SItem.Items[itemID + 10000000];
+
+                return "Unknown";
+            }
+        }
+        public string Chest
+        {
+            get
+            {
+                if (!Loaded) return "";
+                var itemID = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerEquipment.Chest);
+
+                if (DS2SItem.Items.ContainsKey(itemID + 10000000))
+                    return DS2SItem.Items[itemID + 10000000];
+
+                return "Unknown";
+            }
+        }
+        public string Arms
+        {
+            get
+            {
+                if (!Loaded) return "";
+                var itemID = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerEquipment.Arms);
+
+                if (DS2SItem.Items.ContainsKey(itemID + 10000000))
+                    return DS2SItem.Items[itemID + 10000000];
+
+                return "Unknown";
+            }
+        }
+        public string Legs
+        {
+            get
+            {
+                if (!Loaded) return "";
+                var itemID = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerEquipment.Legs);
+
+                if (DS2SItem.Items.ContainsKey(itemID + 10000000))
+                    return DS2SItem.Items[itemID + 10000000];
+
+                return "Unknown";
+            }
+        }
+        public string RightHand1
+        {
+            get
+            {
+                if (!Loaded) return "";
+                var itemID = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerEquipment.RightHand1);
+
+                if (DS2SItem.Items.ContainsKey(itemID))
+                    return DS2SItem.Items[itemID];
+
+                return "Unknown";
+            }
+        }
+        public string RightHand2
+        {
+            get
+            {
+                if (!Loaded) return "";
+                var itemID = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerEquipment.RightHand2);
+
+                if (DS2SItem.Items.ContainsKey(itemID))
+                    return DS2SItem.Items[itemID];
+
+                return "Unknown";
+            }
+        }
+        public string RightHand3
+        {
+            get
+            {
+                if (!Loaded) return "";
+                var itemID = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerEquipment.RightHand3);
+
+                if (DS2SItem.Items.ContainsKey(itemID))
+                    return DS2SItem.Items[itemID];
+
+                return "Unknown";
+            }
+        }
+        public string LeftHand1
+        {
+            get
+            {
+                if (!Loaded) return "";
+                var itemID = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerEquipment.LeftHand1);
+
+                if (DS2SItem.Items.ContainsKey(itemID))
+                    return DS2SItem.Items[itemID];
+
+                return "Unknown";
+            }
+        }
+        public string LeftHand2
+        {
+            get
+            {
+                if (!Loaded) return "";
+                var itemID = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerEquipment.LeftHand2);
+
+                if (DS2SItem.Items.ContainsKey(itemID))
+                    return DS2SItem.Items[itemID];
+
+                return "Unknown";
+            }
+        }
+        public string LeftHand3
+        {
+            get
+            {
+                if (!Loaded) return "";
+                var itemID = PlayerCtrl.ReadInt32((int)DS2SOffsets.PlayerEquipment.LeftHand3);
+
+                if (DS2SItem.Items.ContainsKey(itemID))
+                    return DS2SItem.Items[itemID];
+
+                return "Unknown";
+            }
+        }
+        private IntPtr AccelSpeedPtr;
+        public float AccelSpeed
+        {
+            get => AccelSpeedPtr != IntPtr.Zero ? BitConverter.ToSingle(Kernel32.ReadBytes(Handle, AccelSpeedPtr, 0x4), 0x0) : 1f;
+            set
+            {
+                if (AccelSpeedPtr != IntPtr.Zero)
+                    Kernel32.WriteBytes(Handle, AccelSpeedPtr, BitConverter.GetBytes(value));
+            }
+        }
+        private bool _accelerationStamina;
+        public bool AccelerationStamina
+        {
+            get => _accelerationStamina;
+            set
+            {
+                _accelerationStamina = value;
+                if (_accelerationStamina)
+                    AccelSpeedPtr = InjectSpeedFactor(SpeedFactorAccel);
+            }
+        } 
+        private IntPtr InjectSpeedFactor(PHPointer speedFactorPointer)
+        {
+            var asm = (byte[])DS2SAssembly.SpeedFactor.Clone();
+            var inject = new byte[0x8];
+            var newCode = new byte[0xD];
+            Array.Copy(asm, inject, inject.Length);
+            Array.Copy(asm, 0x8, newCode, 0x0, newCode.Length);
+
+            var valuePointer = Allocate(sizeof(float));
+            Kernel32.WriteBytes(Handle, valuePointer, BitConverter.GetBytes(1f));
+            
+
+            var code = Kernel32.VirtualAllocEx(Handle, IntPtr.Zero, (IntPtr)newCode.Length, Kernel32.MEM_COMMIT | Kernel32.MEM_RESERVE, Kernel32.PAGE_EXECUTE_READWRITE);
+            Kernel32.WriteBytes(Handle, code, newCode);
+            var kek2 = RegisterAbsoluteAOB(GetAoBFromBytes(newCode));
+            RescanAOB();
+            var heh = kek2.Resolve();
+            var kek = speedFactorPointer.Resolve().ToInt64() - BaseAddress.ToInt64();
+            var keklol = kek + Handle.ToInt64();
+            var pro = Process;
+            var lol = GetJumpOffset(speedFactorPointer.Resolve() + inject.Length, code);
+            return valuePointer;
+        }
+
+        private byte?[] GetAoBFromBytes(byte[] incomingBytes)
+        {
+            var bytes = new byte?[incomingBytes.Length];
+
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                    bytes[i] = incomingBytes[i];
+            }
+
+            return bytes;
+           
+        }
+
+        private short GetJumpOffset(IntPtr srcPtr, IntPtr destPtr)
+        {
+            var addr1 = srcPtr.ToInt64();
+            var addr2 = destPtr.ToInt64();
+            var result = addr1 - addr2;
+            return (short)result;
+        }
+
+        #endregion
+
+        #region Indexer
+        //public int this[string attributeName]
+        //{
+        //    get
+        //    {
+        //        var prop = GetType().GetProperty(attributeName);
+        //        if (prop != null)
+        //            return prop;
+
+        //        throw new MissingMemberException("DSHook", attributeName);
+        //    }
+        //    set
+        //    {
+        //        //Get each property
+        //        var props = typeof(DS2SHook).GetProperties();
+        //        foreach (var prop in props)
+        //        {
+        //            //Check if it has a ControlAttribute with the same name
+        //            //var Attr = prop.GetCustomAttribute<ControlAttribute>();
+        //            //if (Attr != null && Attr.Name == attributeName)
+        //            //{
+        //            //    if (prop.PropertyType.Equals(typeof(byte)))
+        //            //        prop.SetValue(this, (byte)value, null); //Set the properties value
+        //            //    else
+        //            //        prop.SetValue(this, value, null); //Set the properties value
+
+        //            //    return;
+        //            //}
+        //        }
+        //        throw new MissingMemberException("DSHook", attributeName);
+
+        //    }
+        //}
         #endregion
     }
 }
