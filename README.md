@@ -30,6 +30,12 @@ You can also try adding DS2S META as an exception to your antivirus
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 
 # Change Log 
+### Beta 0.0.0.8  
+
+* Revamped Bonfire tab code and look
+
+* Added Up, Down, Collision and Speed hotkeys
+
 ### Beta 0.0.0.7  
 
 * Fixed bonfire unlock script no longer breaks Fire Keepers Dwelling Bonfire (Have to rest at it to unlock it)
