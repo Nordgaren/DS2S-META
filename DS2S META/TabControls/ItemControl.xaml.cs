@@ -124,7 +124,7 @@ namespace DS2S_META
         private void lbxItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if (!Hook.Loaded) return;
+            if (!Hook.Hooked) return;
 
             DS2SItem item = lbxItems.SelectedItem as DS2SItem;
             if (item == null)

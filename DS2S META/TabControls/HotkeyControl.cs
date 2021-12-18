@@ -30,7 +30,27 @@ namespace DS2S_META
 
             Hotkeys.Add(new METAHotkey("ToggleGravity", hkeyGravity.tbxHotkey, tabHotkeys, () =>
             {
-                metaPlayer.ToggleGravity();
+                metaPlayer.cbxGravity.IsChecked = !metaPlayer.cbxGravity.IsChecked.Value;
+            }));
+
+            Hotkeys.Add(new METAHotkey("ToggleCollision", hkeyCollision.tbxHotkey, tabHotkeys, () =>
+            {
+                metaPlayer.cbxCollision.IsChecked = !metaPlayer.cbxCollision.IsChecked.Value;
+            }));
+
+            Hotkeys.Add(new METAHotkey("Up", hkeyUp.tbxHotkey, tabHotkeys, () =>
+            {
+                Hook.StableZ += 5;
+            }));
+
+            Hotkeys.Add(new METAHotkey("Down", hkeyDown.tbxHotkey, tabHotkeys, () =>
+            {
+                Hook.StableZ -= 5;
+            }));
+
+            Hotkeys.Add(new METAHotkey("ModifySpeed", hkeySpeed.tbxHotkey, tabHotkeys, () =>
+            {
+                metaPlayer.cbxSpeed.IsChecked = !metaPlayer.cbxSpeed.IsChecked.Value;
             }));
 
             KeyboardHook.KeyDownOrUp += GlobalKeyboardHook_KeyDownOrUp;

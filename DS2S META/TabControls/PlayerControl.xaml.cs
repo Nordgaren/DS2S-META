@@ -45,7 +45,8 @@ namespace DS2S_META
         }
         internal override void ReloadCtrl()
         {
-            Hook.Speed = cbxSpeed.IsChecked.Value ? (float)nudSpeed.Value : 1;
+            if (cbxSpeed.IsChecked.Value)
+            Hook.Speed = (float)nudSpeed.Value;
         }
         internal override void EnableCtrls(bool enable)
         {
@@ -58,6 +59,7 @@ namespace DS2S_META
             nudStamina.IsEnabled = enable;
             cbxSpeed.IsEnabled = enable;
             cbxGravity.IsEnabled = enable;
+            cbxCollision.IsEnabled = enable;
 
             if (enable)
                 cbxBonfire.SelectedIndex = cbxBonfire.Items.Count - 1;

@@ -1,5 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="CopyFiles" Condition="$(ConfigurationName) == Release" AfterTargets="Build">
+		<GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+			<Output TaskParameter="Assemblies" ItemName="Targets" />
+		</GetAssemblyIdentity>
+		<ItemGroup>
+			<Res Include="Resources\**\*.*" />
+			<VersionNumber Include="%(Targets.Version)">
+				<Number>%(Targets.Version)</Number>
+			</VersionNumber>
+			<OutputDir Include ="$(TargetDir)$(ProjectName) %(Targets.Version)"/>
+		</ItemGroup>
+		<Message Text="Executing Copy Filess task" Importance="High" />
+		<Copy
+			SourceFiles="$(TargetDir)$(ProjectName).exe"
+			DestinationFolder="@(OutputDir)" />
+		<Copy
+			SourceFiles="$(SolutionDir)Readme.md"
+			DestinationFolder="@(OutputDir)" />
+		<!--<Copy SourceFiles="@(Res)" DesitnationFiles="@(Res->'Resources\%(RecursiveDir)%(Filename)%(Extension)')" />-->
+		<Message Text="Copied files to build folder" Importance="High" />
+	</Target>
   <Import Project="..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -39,6 +60,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Ladder.ico</ApplicationIcon>

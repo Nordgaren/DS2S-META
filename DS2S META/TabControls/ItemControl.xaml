@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="135"/>
-            <RowDefinition/>
+            <RowDefinition Height="470"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" Margin="5">
             <Label Content="Category"/>
@@ -43,6 +43,6 @@
             <Separator Height="5" Visibility="Hidden"/>
             <Button x:Name="btnCreate" Content="Create" Click="btnCreate_Click" PreviewKeyDown="KeyPressed"/>
         </StackPanel>
-        <ListBox x:Name="lbxItems" Grid.Row="1" ScrollViewer.IsDeferredScrollingEnabled="True" Grid.ColumnSpan="3" Margin="5" SelectionChanged="lbxItems_SelectionChanged" MouseDoubleClick="lbxItems_MouseDoubleClick" PreviewKeyDown="KeyPressed" />
+        <ListBox x:Name="lbxItems" Grid.Row="1" Grid.ColumnSpan="3" Margin="5" SelectionChanged="lbxItems_SelectionChanged" MouseDoubleClick="lbxItems_MouseDoubleClick" PreviewKeyDown="KeyPressed" />
     </Grid>
 </local:METAControl>

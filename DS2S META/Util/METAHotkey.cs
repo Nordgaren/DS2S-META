@@ -38,7 +38,25 @@ namespace DS2S_META
 
         private void HotkeyTextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            var parse = Enum.TryParse(e.Key.ToString(), out LowLevelHooking.VirtualKey virtualKey);
+            var key = e.Key.ToString();
+            switch (key)
+            {
+                case "Left":
+                    key += "Arrow";
+                        break;
+                case "Right":
+                    key += "Arrow";
+                    break;
+                case "Up":
+                    key += "Arrow";
+                    break;
+                case "Down":
+                    key += "Arrow";
+                    break;
+                default:
+                    break;
+            }
+            var parse = Enum.TryParse(key, out VirtualKey virtualKey);
             if (!parse)
             {
                 HotkeyTextBox.Text = "Error";

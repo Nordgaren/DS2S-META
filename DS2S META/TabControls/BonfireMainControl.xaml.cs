@@ -27,11 +27,12 @@ namespace DS2S_META
             {
                 cmbBonfirHub.Items.Add(bonfireHub);
             }
+            cmbBonfirHub.SelectedIndex = -1;
         }
 
         internal override void UpdateCtrl() 
         {
-            Hook.UpdateBonfireProperties();
+
         }
 
         internal override void EnableCtrls(bool enable) 
@@ -40,7 +41,6 @@ namespace DS2S_META
         }
         internal override void ReloadCtrl()
         {
-            cmbBonfirHub.SelectedIndex = -1;
             cmbBonfirHub.SelectedIndex = 0;
         }
         private void UnlockBonfires_Click(object sender, RoutedEventArgs e)
@@ -60,24 +60,18 @@ namespace DS2S_META
 
             foreach (var bonfire in bonfireHub.Bonfires)
             {
-                var hookBonfire = Hook.GetType().GetProperty(bonfire.Replace(" ", "").Replace("'", ""));
                 var bonfireControl = new BonfireControl();
+                Binding binding = new Binding("Value")
+                {
+                    Source = Hook,
+                    Path = new PropertyPath(bonfire.Replace(" ", "").Replace("'", ""))
+                };
+                bonfireControl.nudBonfireLevel.SetBinding(Xceed.Wpf.Toolkit.IntegerUpDown.ValueProperty, binding);
+                bonfireControl.nudBonfireLevel.Minimum = 0;
+                bonfireControl.nudBonfireLevel.Maximum = 255;
                 bonfireControl.BonfireName = bonfire;
-                bonfireControl.BonfireLevel = (byte)hookBonfire.GetValue(Hook);
-                bonfireControl.nudBonfireLevel.ValueChanged += nudChanged;
-               
                 spBonfires.Children.Add(bonfireControl);
             }
-        }
-
-        private void nudChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            var nud = sender as Control;
-            var grid = nud.Parent as Grid;
-            var bonfireControl = grid.Parent as BonfireControl;
-            var hookBonfire = Hook.GetType().GetProperty(bonfireControl.BonfireName.Replace(" ", "").Replace("'", ""));
-            hookBonfire.SetValue(Hook, (byte)bonfireControl.nudBonfireLevel.Value.Value);
-            bonfireControl.BonfireLevel = (byte)hookBonfire.GetValue(Hook);
         }
     }
 }

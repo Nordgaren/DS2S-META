@@ -133,12 +133,11 @@ namespace DS2S_META
             Camera2 = CreateChildPointer(Camera, (int)DS2SOffsets.CameraOffset2);
 
             GetLevelRequirements();
-            BuildOffsetDictionary(WeaponParam, WeaponParamOffsetDict, "WEAPON_PARAM");
-            BuildOffsetDictionary(WeaponReinforceParam, WeaponReinforceParamOffsetDict, "WEAPON_REINFORCE_PARAM");
-            BuildOffsetDictionary(CustomAttrSpecParam, CustomAttrOffsetDict, "CUSTOM_ATTR_SPEC_PARAM");
-            BuildOffsetDictionary(ArmorParam, ArmorParamOffsetDict, "ARMOR_PARAM");
-            BuildOffsetDictionary(ArmorReinforceParam, ArmorReinforceParamOffsetDict, "ARMOR_REINFORCE_PARAM");
-            BuildOffsetDictionary(ItemParam, ItemParamOffsetDict, "ITEM_PARAM");
+            WeaponParamOffsetDict = BuildOffsetDictionary(WeaponParam, "WEAPON_PARAM");
+            WeaponReinforceParamOffsetDict = BuildOffsetDictionary(WeaponReinforceParam, "WEAPON_REINFORCE_PARAM");
+            CustomAttrOffsetDict = BuildOffsetDictionary(CustomAttrSpecParam, "CUSTOM_ATTR_SPEC_PARAM");
+            ArmorReinforceParamOffsetDict = BuildOffsetDictionary(ArmorReinforceParam, "ARMOR_REINFORCE_PARAM");
+            ItemParamOffsetDict = BuildOffsetDictionary(ItemParam, "ITEM_PARAM");
             UpdateStatsProperties();
         }
 
@@ -192,10 +191,11 @@ namespace DS2S_META
             OnPropertyChanged(nameof(AngX));
             OnPropertyChanged(nameof(AngY));
             OnPropertyChanged(nameof(AngZ));
+            OnPropertyChanged(nameof(Collision));
+            OnPropertyChanged(nameof(Gravity));
             OnPropertyChanged(nameof(StableX));
             OnPropertyChanged(nameof(StableY));
             OnPropertyChanged(nameof(StableZ));
-            OnPropertyChanged(nameof(Gravity));
         }
 
         public void UpdateBonfireProperties()
@@ -370,14 +370,29 @@ namespace DS2S_META
         public float PosX
         {
             get => Loaded ? PlayerPosition.ReadSingle((int)DS2SOffsets.PlayerPosition.PosX) : 0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerPosition.WriteSingle((int)DS2SOffsets.PlayerPosition.PosX, value);
+            }
         }
         public float PosY
         {
             get => Loaded ? PlayerPosition.ReadSingle((int)DS2SOffsets.PlayerPosition.PosY) : 0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerPosition.WriteSingle((int)DS2SOffsets.PlayerPosition.PosY, value);
+            }
         }
         public float PosZ
         {
             get => Loaded ? PlayerPosition.ReadSingle((int)DS2SOffsets.PlayerPosition.PosZ) : 0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerPosition.WriteSingle((int)DS2SOffsets.PlayerPosition.PosZ, value);
+            }
         }
         public float AngX
         {
@@ -396,32 +411,32 @@ namespace DS2S_META
         }
         public float StableX
         {
-            get => Loaded ? PlayerMapData.ReadSingle((int)DS2SOffsets.PlayerMapData.WarpXA) : 0;
+            get => Loaded ? PlayerMapData.ReadSingle((int)DS2SOffsets.PlayerMapData.WarpX1) : 0;
             set
             {
-                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpXA, value);
-                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpXB, value);
-                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpXC, value);
+                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpX1, value);
+                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpX2, value);
+                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpX3, value);
             }
         }
         public float StableY
         {
-            get => Loaded ? PlayerMapData.ReadSingle((int)DS2SOffsets.PlayerMapData.WarpYA) : 0;
+            get => Loaded ? PlayerMapData.ReadSingle((int)DS2SOffsets.PlayerMapData.WarpY1) : 0;
             set
             {
-                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpYA, value);
-                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpYB, value);
-                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpYC, value);
+                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpY1, value);
+                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpY2, value);
+                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpY3, value);
             }
         }
         public float StableZ
         {
-            get => Loaded ? PlayerMapData.ReadSingle((int)DS2SOffsets.PlayerMapData.WarpZA) : 0;
+            get => Loaded ? PlayerMapData.ReadSingle((int)DS2SOffsets.PlayerMapData.WarpZ1) : 0;
             set
             {
-                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpZA, value);
-                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpZB, value);
-                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpZC, value);
+                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpZ1, value);
+                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpZ2, value);
+                PlayerMapData.WriteSingle((int)DS2SOffsets.PlayerMapData.WarpZ3, value);
             }
         }
         public byte[] CameraData
@@ -454,8 +469,20 @@ namespace DS2S_META
         }
         public bool Gravity
         {
-            get => Loaded ? PlayerGravity.ReadBoolean((int)DS2SOffsets.Gravity.Gravity) : false;
-            set => PlayerGravity.WriteBoolean((int)DS2SOffsets.Gravity.Gravity, value);
+            get => Loaded ? !PlayerGravity.ReadBoolean((int)DS2SOffsets.Gravity.Gravity) : true;
+            set => PlayerGravity.WriteBoolean((int)DS2SOffsets.Gravity.Gravity, !value);
+        }
+        public bool Collision
+        {
+            get => Loaded ? NetworkPhantomID != 18 && NetworkPhantomID != 19 : true;
+            set
+            {
+                if (Reading || !Loaded) return;
+                if (value)
+                    NetworkPhantomID = 0;
+                else
+                    NetworkPhantomID = 18;
+            }
         }
         public int LastBonfireID
         {
@@ -470,7 +497,7 @@ namespace DS2S_META
 
         public bool Online
         {
-            get => Hooked ? Connection.ReadInt32((int)DS2SOffsets.Connection.Online) > 0 : false;
+            get => Hooked && Connection != null ? Connection.ReadInt32((int)DS2SOffsets.Connection.Online) > 0 : false;
         }
         #endregion
 
@@ -683,9 +710,10 @@ namespace DS2S_META
             return soulMemory;
         }
 
-        public static List<int> Levels = new List<int>();
+        public static List<int> Levels;
         private void GetLevelRequirements()
         {
+            Levels = new List<int>();
             var paramName = LevelUpSoulsParam.ReadString(0xC, Encoding.UTF8, 0x18);
             if (paramName != "CHR_LEVEL_UP_SOULS_PARAM")
                 throw new InvalidOperationException("Incorrect Param Pointer: LEVEL_UP_SOULS_PARAM");
@@ -780,15 +808,16 @@ namespace DS2S_META
 
         #region Params
 
-        private static Dictionary<int, int> WeaponParamOffsetDict = new Dictionary<int, int>();
-        private static Dictionary<int, int> WeaponReinforceParamOffsetDict = new Dictionary<int, int>();
-        private static Dictionary<int, int> CustomAttrOffsetDict = new Dictionary<int, int>();
-        private static Dictionary<int, int> ArmorParamOffsetDict = new Dictionary<int, int>();
-        private static Dictionary<int, int> ArmorReinforceParamOffsetDict = new Dictionary<int, int>();
-        private static Dictionary<int, int> ItemParamOffsetDict = new Dictionary<int, int>();
+        private static Dictionary<int, int> WeaponParamOffsetDict;
+        private static Dictionary<int, int> WeaponReinforceParamOffsetDict;
+        private static Dictionary<int, int> CustomAttrOffsetDict;
+        private static Dictionary<int, int> ArmorParamOffsetDict;
+        private static Dictionary<int, int> ArmorReinforceParamOffsetDict;
+        private static Dictionary<int, int> ItemParamOffsetDict;
 
-        private void BuildOffsetDictionary(PHPointer pointer, Dictionary<int, int> dictionary, string expectedParamName)
+        private Dictionary<int, int> BuildOffsetDictionary(PHPointer pointer, string expectedParamName)
         {
+            var dictionary = new Dictionary<int, int>();
             var paramName = pointer.ReadString((int)DS2SOffsets.Param.ParamName, Encoding.UTF8, 0x18);
             if (paramName != expectedParamName)
                 throw new InvalidOperationException($"Incorrect Param Pointer: {expectedParamName}");
@@ -807,6 +836,8 @@ namespace DS2S_META
                 paramID += nextParam;
                 paramOffset += nextParam;
             }
+
+            return dictionary;
         }
 
         internal int GetMaxUpgrade(DS2SItem item)

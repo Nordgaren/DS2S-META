@@ -60,7 +60,7 @@ namespace DS2S_META
             set => ViewModel.Reading = value;
         }
 
-        Timer updateTimer = new Timer();
+        Timer UpdateTimer = new Timer();
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -68,7 +68,7 @@ namespace DS2S_META
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             var version= fileVersionInfo.ProductVersion;
 
-            Title = "DS2 META " + version;
+            lblWindowName.Content = "DS2 META " + version;
             EnableTabs(false);
             InitAllTabs();
 
@@ -80,9 +80,9 @@ namespace DS2S_META
                 Version exeVersion = Version.Parse(version);
                 if (gitVersion > exeVersion) //Compare latest version to current version
                 {
-                    labelCheckVersion.Content = "App out of date";
                     link.NavigateUri = new Uri(release.HtmlUrl);
                     llbNewVersion.Visibility = Visibility.Visible;
+                    labelCheckVersion.Visibility = Visibility.Hidden;
                 }
                 else if (gitVersion == exeVersion)
                 {
@@ -102,14 +102,14 @@ namespace DS2S_META
                 labelCheckVersion.Content = "Something is very broke, contact DS2 META repo owner";
                 MessageBox.Show(ex.Message);
             }
-            updateTimer.Interval = 16;
-            updateTimer.Elapsed += UpdateTimer_Elapsed;
-            updateTimer.Enabled = true;
+            UpdateTimer.Interval = 16;
+            UpdateTimer.Elapsed += UpdateTimer_Elapsed;
+            UpdateTimer.Enabled = true;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            updateTimer.Stop();
+            UpdateTimer.Stop();
             SaveAllTabs();
 
             Settings.Save();
@@ -172,8 +172,8 @@ namespace DS2S_META
         {
             Hook.UpdateStatsProperties();
             Hook.UpdatePlayerProperties();
-            Hook.UpdateBonfireProperties();
             Hook.UpdateInternalProperties();
+            Hook.UpdateBonfireProperties();
         }
         private void EnableTabs(bool enable)
         {
@@ -209,6 +209,22 @@ namespace DS2S_META
         private void EnableStatEditing_Checked(object sender, RoutedEventArgs e)
         {
             metaStats.EnableCtrls(Hook.Loaded);
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
+        }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

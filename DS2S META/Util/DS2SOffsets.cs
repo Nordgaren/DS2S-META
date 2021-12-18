@@ -148,15 +148,15 @@ namespace DS2S_META
         public enum PlayerMapData
         {
             WarpBase = 0x1A0,
-            WarpYA = 0x1A0,
-            WarpZA = 0x1A4,
-            WarpXA = 0x1A8,
-            WarpYB = 0x1B0,
-            WarpZB = 0x1B4,
-            WarpXB = 0x1B8,
-            WarpYC = 0x1C0,
-            WarpZC = 0x1C4,
-            WarpXC = 0x1C8
+            WarpY1 = 0x1A0,
+            WarpZ1 = 0x1A4,
+            WarpX1 = 0x1A8,
+            WarpY2 = 0x1B0,
+            WarpZ2 = 0x1B4,
+            WarpX2 = 0x1B8,
+            WarpY3 = 0x1C0,
+            WarpZ3 = 0x1C4,
+            WarpX3 = 0x1C8
         }
 
         public const int CharacterFlagsOffset = 0x490;

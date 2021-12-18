@@ -142,5 +142,53 @@ namespace DS2S_META.Properties {
                 this["EditStats"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public int ToggleCollision {
+            get {
+                return ((int)(this["ToggleCollision"]));
+            }
+            set {
+                this["ToggleCollision"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public int Up {
+            get {
+                return ((int)(this["Up"]));
+            }
+            set {
+                this["Up"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public int Down {
+            get {
+                return ((int)(this["Down"]));
+            }
+            set {
+                this["Down"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public int ModifySpeed {
+            get {
+                return ((int)(this["ModifySpeed"]));
+            }
+            set {
+                this["ModifySpeed"] = value;
+            }
+        }
     }
 }

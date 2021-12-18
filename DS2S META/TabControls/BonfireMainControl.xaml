@@ -9,30 +9,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="425" Background="LightGray">
     <Grid >
-        <StackPanel>
+        <StackPanel Margin="25">
             <Label Content="Bonfires"/>
-            <Button Content="Unlock All Bonfires" Click="UnlockBonfires_Click" Width="125" HorizontalAlignment="Left" Margin="25,0,0,0"/>
-
+            <Button Content="Unlock All Bonfires" Click="UnlockBonfires_Click" Width="125" HorizontalAlignment="Center" Margin="25,0,25,0"/>
+            <Separator Visibility="Hidden" Height="10"/>
+            <Label Content="Manage Bonfire Levels"/>
             <Border BorderBrush="Gray" BorderThickness="1" >
-                <StackPanel>
+                <StackPanel Margin="25">
                     <ComboBox x:Name="cmbBonfirHub" SelectionChanged="cmbBonfirHub_SelectionChanged" />
+                    <Separator Visibility="Hidden" Height="10"/>
                     <StackPanel x:Name="spBonfires">
-                
                     </StackPanel>
                 </StackPanel>
-             
-                <!--<StackPanel Orientation="Horizontal" Margin="15" Visibility="Hidden">
-                    <StackPanel Width="200" >
-                        <local:BonfireControl BonfireName="Fire Keepers Dwelling" BonfireLevel="{Binding ElementName=BonMainCon, Path=Hook.FireKeepersDwelling}" />
-                        <local:BonfireControl BonfireName="Fire Keepers Dwelling" BonfireLevel="{Binding ElementName=BonMainCon, Path=Hook.FireKeepersDwelling}" />
-                    </StackPanel>
-                    <StackPanel Width="200" >
-                        <local:BonfireControl BonfireName="Fire Keepers Dwelling" BonfireLevel="{Binding ElementName=BonMainCon, Path=Hook.FireKeepersDwelling}" />
-                    </StackPanel>
-                </StackPanel>-->
             </Border>
         </StackPanel>
-        
-
     </Grid>
 </local:METAControl>
