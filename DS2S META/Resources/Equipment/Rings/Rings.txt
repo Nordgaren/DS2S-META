@@ -1,4 +1,4 @@
-//Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
+//Format: Item ID; Name [arbitrary]
  40010000 Life Ring
  40010001 Life Ring+1
  40010002 Life Ring+2

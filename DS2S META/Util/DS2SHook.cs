@@ -282,13 +282,6 @@ namespace DS2S_META
 
         public void UpdateInternalProperties()
         {
-            //var addr = SpeedFactorAccel.Resolve();
-            //var bytes = SpeedFactorAccel.ReadBytes(0x0, 24);
-
-            //foreach (var num in bytes)
-            //{
-            //    Debug.Write($"{num.ToString("X2")} ");
-            //}
             OnPropertyChanged(nameof(Head));
             OnPropertyChanged(nameof(Chest));
             OnPropertyChanged(nameof(Arms));
@@ -812,7 +805,6 @@ namespace DS2S_META
         private static Dictionary<int, int> WeaponParamOffsetDict;
         private static Dictionary<int, int> WeaponReinforceParamOffsetDict;
         private static Dictionary<int, int> CustomAttrOffsetDict;
-        private static Dictionary<int, int> ArmorParamOffsetDict;
         private static Dictionary<int, int> ArmorReinforceParamOffsetDict;
         private static Dictionary<int, int> ItemParamOffsetDict;
 
@@ -830,9 +822,9 @@ namespace DS2S_META
 
             while (paramID < tableLength)
             {
-                var weaponID = pointer.ReadInt32(paramID);
-                var weaponParamOffset = pointer.ReadInt32(paramOffset);
-                dictionary.Add(weaponID, weaponParamOffset);
+                var itemID = pointer.ReadInt32(paramID);
+                var itemParamOffset = pointer.ReadInt32(paramOffset);
+                dictionary.Add(itemID, itemParamOffset);
 
                 paramID += nextParam;
                 paramOffset += nextParam;
@@ -873,7 +865,7 @@ namespace DS2S_META
         }
         private int GetArmorMaxUpgrade(int id)
         {
-            if (!Setup) return 0;
+            if (ArmorReinforceParamOffsetDict == null) return 0;
             return ArmorReinforceParam.ReadInt32(ArmorReinforceParamOffsetDict[id - 10000000] + (int)DS2SOffsets.ArmorReinforceParam.MaxUpgrade);
         }
         private int GetWeaponMaxUpgrade(int id)
@@ -1492,40 +1484,22 @@ namespace DS2S_META
         private IntPtr InjectSpeedFactor(PHPointer speedFactorPointer)
         {
             var asm = (byte[])DS2SAssembly.SpeedFactor.Clone();
-            var inject = new byte[0x8];
-            var newCode = new byte[0xD];
+            var inject = new byte[0x11];
             Array.Copy(asm, inject, inject.Length);
-            Array.Copy(asm, 0x8, newCode, 0x0, newCode.Length);
-
             var valuePointer = Allocate(sizeof(float));
-            Kernel32.WriteBytes(Handle, valuePointer, BitConverter.GetBytes(1f));
-            
+            Kernel32.WriteBytes(Handle, valuePointer, BitConverter.GetBytes(.1f));
+            var valuePointerBytes = BitConverter.GetBytes(valuePointer.ToInt64());
 
-            var code = Kernel32.VirtualAllocEx(Handle, IntPtr.Zero, (IntPtr)newCode.Length, Kernel32.MEM_COMMIT | Kernel32.MEM_RESERVE, Kernel32.PAGE_EXECUTE_READWRITE);
+            var newCode = new byte[0x19];
+            Array.Copy(asm, inject.Length, newCode, 0x0, newCode.Length);
+            var code = Allocate((uint)newCode.Length,Kernel32.PAGE_EXECUTE_READWRITE);
+            var codePointerBytes = BitConverter.GetBytes(code.ToInt64());
+            Array.Copy(codePointerBytes, 0x0, inject, 0x3, valuePointerBytes.Length);
+            Array.Copy(valuePointerBytes, 0x0, newCode, 0x2, valuePointerBytes.Length);
             Kernel32.WriteBytes(Handle, code, newCode);
-            var kek2 = RegisterAbsoluteAOB(GetAoBFromBytes(newCode));
-            RescanAOB();
-            var heh = kek2.Resolve();
-            var kek = speedFactorPointer.Resolve().ToInt64() - BaseAddress.ToInt64();
-            var keklol = kek + Handle.ToInt64();
-            var pro = Process;
-            var lol = GetJumpOffset(speedFactorPointer.Resolve() + inject.Length, code);
+            SpeedFactorAccel.WriteBytes(0x0, inject);
             return valuePointer;
         }
-
-        private byte?[] GetAoBFromBytes(byte[] incomingBytes)
-        {
-            var bytes = new byte?[incomingBytes.Length];
-
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                    bytes[i] = incomingBytes[i];
-            }
-
-            return bytes;
-           
-        }
-
         private short GetJumpOffset(IntPtr srcPtr, IntPtr destPtr)
         {
             var addr1 = srcPtr.ToInt64();
@@ -1536,39 +1510,5 @@ namespace DS2S_META
 
         #endregion
 
-        #region Indexer
-        //public int this[string attributeName]
-        //{
-        //    get
-        //    {
-        //        var prop = GetType().GetProperty(attributeName);
-        //        if (prop != null)
-        //            return prop;
-
-        //        throw new MissingMemberException("DSHook", attributeName);
-        //    }
-        //    set
-        //    {
-        //        //Get each property
-        //        var props = typeof(DS2SHook).GetProperties();
-        //        foreach (var prop in props)
-        //        {
-        //            //Check if it has a ControlAttribute with the same name
-        //            //var Attr = prop.GetCustomAttribute<ControlAttribute>();
-        //            //if (Attr != null && Attr.Name == attributeName)
-        //            //{
-        //            //    if (prop.PropertyType.Equals(typeof(byte)))
-        //            //        prop.SetValue(this, (byte)value, null); //Set the properties value
-        //            //    else
-        //            //        prop.SetValue(this, value, null); //Set the properties value
-
-        //            //    return;
-        //            //}
-        //        }
-        //        throw new MissingMemberException("DSHook", attributeName);
-
-        //    }
-        //}
-        #endregion
     }
 }

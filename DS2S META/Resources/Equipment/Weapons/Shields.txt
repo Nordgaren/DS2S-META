@@ -1,4 +1,4 @@
-//Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
+//Format: Item ID; Name [arbitrary]
  11000000 Buckler
  11005000 Benhart's Parma
  11010000 Small Leather Shield

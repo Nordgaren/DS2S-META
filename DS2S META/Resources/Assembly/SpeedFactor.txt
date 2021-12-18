@@ -1,7 +1,15 @@
-﻿0:  e9 ff ff 00 00          jmp    ;Jump to new instructions
-5:  90                      nop
-6:  90                      nop
-7:  90                      nop
-8:  f3 0f 59 1d ff ff 00    mulss  xmm3,DWORD PTR [rip+0xffff] ;Move float into register
-f:  00
-10: e9 ff ff 00 00          jmp    ;Jump back to AoB Pointer + 0x8
+﻿0:  52                      push   rdx
+1:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
+8:  ff ff ff
+b:  ff d2                   call   rdx
+d:  90                      nop
+e:  90                      nop
+f:  90                      nop
+10: 90                      nop
+11: 48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
+18: ff ff ff
+1b: f3 0f 59 1a             mulss  xmm3,DWORD PTR [rdx]
+1f: f3 0f 10 16             movss  xmm2,DWORD PTR [rsi]
+23: f3 0f 10 46 04          movss  xmm0,DWORD PTR [rsi+0x4]
+28: 5a                      pop    rdx
+29: c3                      ret 

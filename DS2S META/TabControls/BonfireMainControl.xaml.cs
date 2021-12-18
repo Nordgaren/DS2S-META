@@ -25,10 +25,6 @@ namespace DS2S_META
         {
             InitializeComponent();
             cmbBonfirHub.ItemsSource = DS2SBonfireHub.All;
-            //foreach (var bonfireHub in DS2SBonfireHub.All)
-            //{
-            //    cmbBonfirHub.Items.Add(bonfireHub);
-            //}
             cmbBonfirHub.SelectedIndex = -1;
         }
 

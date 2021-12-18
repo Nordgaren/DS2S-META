@@ -1,4 +1,4 @@
- //Format: Item ID; Stack Limit; Reinforce Type; Max Upgrade; Name [arbitrary]
+ //Format: Item ID; Name [arbitrary]
  60760000 Wood Arrow
  60770000 Iron Arrow
  60780000 Magic Arrow

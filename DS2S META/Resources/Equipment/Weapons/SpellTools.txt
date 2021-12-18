@@ -1,4 +1,4 @@
-//Format: Item ID; Stack Limit; Infusion Type; Max Upgrade; Name [arbitrary]
+//Format: Item ID; Name [arbitrary]
  3800000 Sorcerer's Staff
  3810000 Staff of Amana
  3820000 Witchtree Branch

@@ -28,8 +28,6 @@ namespace DS2S_META
         public override void InitTab()
         {
             cmbCategory.ItemsSource = DS2SItemCategory.All;
-            //foreach (DS2SItemCategory category in DS2SItemCategory.All)
-            //    cmbCategory.Items.Add(category);
             cmbCategory.SelectedIndex = 0;
             FilterItems();
         }
@@ -122,7 +120,6 @@ namespace DS2S_META
 
         private void lbxItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             if (!Hook.Hooked) return;
 
             DS2SItem item = lbxItems.SelectedItem as DS2SItem;
@@ -134,15 +131,13 @@ namespace DS2S_META
                 nudQuantity.Maximum = Hook.GetMaxQuantity(item);
                 nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
             }
+            else
+            {
+                nudQuantity.IsEnabled = true;
+                nudQuantity.Maximum = int.MaxValue;
+            }
 
             cmbInfusion.Items.Clear();
-            //foreach (var infusion in DS2SInfusion.InfusionDict[item.Infusion])
-            //    cmbInfusion.Items.Add(infusion);
-            //cmbInfusion.SelectedIndex = 0;
-            //cmbInfusion.IsEnabled = cmbInfusion.Items.Count > 1;
-
-            //nudUpgrade.Maximum = item.MaxUpgrade;
-            //nudUpgrade.IsEnabled = item.MaxUpgrade > 0;
             if (item.Type == DS2SItem.ItemType.Weapon)
                 foreach (var infusion in Hook.GetWeaponInfusions(item.ID))
                     cmbInfusion.Items.Add(infusion);
@@ -319,5 +314,10 @@ namespace DS2S_META
             txtSearch.Focus();
         }
 
+        private void SearchAllCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (txtSearch.Text != "")
+                FilterItems();
+        }
     }
 }
