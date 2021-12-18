@@ -6,7 +6,7 @@ namespace DS2S_META
 {
     class DS2SClass
     {
-        private static Regex classEntryRx = new Regex(@"^(?<id>\S+) (?<sl>\S+) (?<vig>\S+) (?<end>\S+) (?<vit>\S+) (?<att>\S+) (?<str>\S+) (?<dex>\S+) (?<adp>\S+) (?<int>\S+) (?<fth>\S+) (?<name>.+)$");
+        private static Regex ClassEntryRx = new Regex(@"^(?<id>\S+) (?<sl>\S+) (?<vig>\S+) (?<end>\S+) (?<vit>\S+) (?<att>\S+) (?<str>\S+) (?<dex>\S+) (?<adp>\S+) (?<int>\S+) (?<fth>\S+) (?<name>.+)$");
 
         public string Name;
         public byte ID;
@@ -23,7 +23,7 @@ namespace DS2S_META
 
         private DS2SClass(string config)
         {
-            Match classEntry = classEntryRx.Match(config);
+            Match classEntry = ClassEntryRx.Match(config);
             Name = classEntry.Groups["name"].Value;
             ID = Convert.ToByte(classEntry.Groups["id"].Value);
             SoulLevel = Convert.ToInt16(classEntry.Groups["sl"].Value);

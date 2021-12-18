@@ -26,7 +26,7 @@ namespace DS2S_META
         {
             return Name;
         }
-        public static void GetItemCategories()
+        static DS2SItemCategory()
         {
             foreach (string line in GetTxtResourceClass.RegexSplit(GetTxtResourceClass.GetTxtResource("Resources/Equipment/DS2SItemCategories.txt"), "[\r\n]+"))
             {

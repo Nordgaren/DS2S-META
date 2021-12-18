@@ -73,6 +73,7 @@ namespace DS2S_META
         private PHPointer SpeedFactorAccel;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
+        public bool Setup => BaseA != null && BaseA.Resolve() != IntPtr.Zero;
 
         public bool Focused => Hooked && User32.GetForegroundProcessID() == Process.Id;
 
@@ -872,15 +873,18 @@ namespace DS2S_META
         }
         private int GetArmorMaxUpgrade(int id)
         {
+            if (!Setup) return 0;
             return ArmorReinforceParam.ReadInt32(ArmorReinforceParamOffsetDict[id - 10000000] + (int)DS2SOffsets.ArmorReinforceParam.MaxUpgrade);
         }
         private int GetWeaponMaxUpgrade(int id)
         {
+            if (!Setup) return 0;
             var reinforceParamID = WeaponParam.ReadInt32(WeaponParamOffsetDict[id] + (int)DS2SOffsets.WeaponParam.ReinforceID);
             return WeaponReinforceParam.ReadInt32(WeaponReinforceParamOffsetDict[reinforceParamID] + (int)DS2SOffsets.WeaponReinforceParam.MaxUpgrade);
         }
         private int GetMaxItemQuantity(int id)
         {
+            if (!Setup) return 0;
             return ItemParam.ReadInt16(ItemParamOffsetDict[id] + (int)DS2SOffsets.ItemParam.MaxHeld);
         }
 

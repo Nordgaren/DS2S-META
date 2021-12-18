@@ -6,14 +6,14 @@ namespace DS2S_META
 {
     class DS2SBonfire : IComparable<DS2SBonfire>
     {
-        private static Regex bonfireEntryRx = new Regex(@"^(?<id>\S+) (?<name>.+)$");
+        private static Regex BonfireEntryRx = new Regex(@"^(?<id>\S+) (?<name>.+)$");
 
         public string Name;
         public int ID;
 
         private DS2SBonfire(string config)
         {
-            Match bonfireEntry = bonfireEntryRx.Match(config);
+            Match bonfireEntry = BonfireEntryRx.Match(config);
             Name = bonfireEntry.Groups["name"].Value;
             ID = Convert.ToInt32(bonfireEntry.Groups["id"].Value);
         }

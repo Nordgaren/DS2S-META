@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,10 +24,11 @@ namespace DS2S_META
         public BonfireMainControl()
         {
             InitializeComponent();
-            foreach (var bonfireHub in DS2SBonfireHub.All)
-            {
-                cmbBonfirHub.Items.Add(bonfireHub);
-            }
+            cmbBonfirHub.ItemsSource = DS2SBonfireHub.All;
+            //foreach (var bonfireHub in DS2SBonfireHub.All)
+            //{
+            //    cmbBonfirHub.Items.Add(bonfireHub);
+            //}
             cmbBonfirHub.SelectedIndex = -1;
         }
 

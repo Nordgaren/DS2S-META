@@ -6,14 +6,14 @@ namespace DS2S_META
 {
     class DS2SBonfireHub : IComparable<DS2SBonfireHub>
     {
-        private static Regex bonfireEntryRx = new Regex(@"^(?<name>(.*:)+)\s+(?<bonfires>.+)$");
+        private static Regex BonfireHubEntryRx = new Regex(@"^(?<name>(.*:)+)\s+(?<bonfires>.+)$");
 
         public string Name;
         public List<string> Bonfires = new List<string>();
 
         private DS2SBonfireHub(string config)
         {
-            Match bonfireEntry = bonfireEntryRx.Match(config);
+            Match bonfireEntry = BonfireHubEntryRx.Match(config);
             Name = bonfireEntry.Groups["name"].Value.Replace(":", "");
 
             foreach (var item in bonfireEntry.Groups["bonfires"].Value.Split('-'))

@@ -27,10 +27,9 @@ namespace DS2S_META
 
         public override void InitTab()
         {
-            DS2SItemCategory.GetItemCategories();
-            DS2SInfusion.BuildInfusionDicts();
-            foreach (DS2SItemCategory category in DS2SItemCategory.All)
-                cmbCategory.Items.Add(category);
+            cmbCategory.ItemsSource = DS2SItemCategory.All;
+            //foreach (DS2SItemCategory category in DS2SItemCategory.All)
+            //    cmbCategory.Items.Add(category);
             cmbCategory.SelectedIndex = 0;
             FilterItems();
         }

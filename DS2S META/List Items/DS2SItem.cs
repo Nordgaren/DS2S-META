@@ -6,7 +6,6 @@ namespace DS2S_META
 {
     class DS2SItem : IComparable<DS2SItem>
     {
-
         public enum ItemType
         {
             Weapon = 0,
@@ -15,7 +14,7 @@ namespace DS2S_META
             Ring = 3
         }
        
-        private static Regex itemEntryRx = new Regex(@"^\s*(?<id>\S+)\s+(?<name>.+)$");
+        private static Regex ItemEntryRx = new Regex(@"^\s*(?<id>\S+)\s+(?<name>.+)$");
 
         private bool ShowID;
 
@@ -25,13 +24,12 @@ namespace DS2S_META
 
         public static Dictionary<int, string> Items = new Dictionary<int, string>()
         {
-
             {3400000 ,"Fist"}
         };
 
         public DS2SItem(string config, int type, bool showID)
         {
-            Match itemEntry = itemEntryRx.Match(config);
+            Match itemEntry = ItemEntryRx.Match(config);
             ID = Convert.ToInt32(itemEntry.Groups["id"].Value);
             Type = (ItemType)type;
             ShowID = showID;
