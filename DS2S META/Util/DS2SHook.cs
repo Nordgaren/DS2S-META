@@ -933,7 +933,7 @@ namespace DS2S_META
             var bitField = CustomAttrSpecParam.ReadInt32(CustomAttrOffsetDict[customAttrID]);
 
             if (bitField == 0)
-                return new List<DS2SInfusion>() { DS2SInfusion.Normal };
+                return new List<DS2SInfusion>() { DS2SInfusion.Infusions[0] };
 
             var position = 1;
 
