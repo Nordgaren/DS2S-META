@@ -326,6 +326,9 @@ namespace DS2S_META
 
         #region Internals
         public const string SpeedFactorAccelOffset = "F3 0F 59 9F A8 02 00 00 F3 0F 10 16";
+        public const string SpeedFactorAnimOffset = "F3 0F 59 99 A8 02 00 00";
+        public const string SpeedFactorJumpOffset = "F3 0F 59 99 A8 02 00 00 F3 0F 10 12 F3 0F 10 42 04 48 8B 89 E0 00 00 00";
+        public const string SpeedFactorBuildupOffset = "F3 0F 59 99 A8 02 00 00 F3 0F 10 12 F3 0F 10 42 04 48 8B 89 E8 03 00 00";
 
         #endregion
     }

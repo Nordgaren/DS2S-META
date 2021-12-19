@@ -206,6 +206,7 @@
                                                 <local:HotkeyControl x:Name="hkeyUp" HotkeyName="Move Up" Margin="0,5,0,0"/>
                                                 <local:HotkeyControl x:Name="hkeyDown" HotkeyName="Move Down" Margin="0,5,0,0"/>
                                                 <local:HotkeyControl x:Name="hkeySpeed" HotkeyName="Toggle Speed" Margin="0,5,0,0"/>
+                                                <local:HotkeyControl x:Name="hkeySpeedFactor" HotkeyName="Toggle Speed" Margin="0,5,0,0"/>
                                             </StackPanel>
                                         </Border>
 

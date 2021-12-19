@@ -71,6 +71,9 @@ namespace DS2S_META
         private PHPointer Camera2;
 
         private PHPointer SpeedFactorAccel;
+        private PHPointer SpeedFactorAnim;
+        private PHPointer SpeedFactorJump;
+        private PHPointer SpeedFactorBuildup;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
         public bool Setup => BaseA != null && BaseA.Resolve() != IntPtr.Zero;
@@ -83,6 +86,9 @@ namespace DS2S_META
             Version = "Not Hooked";
             BaseASetup = RegisterAbsoluteAOB(DS2SOffsets.BaseAAob);
             SpeedFactorAccel = RegisterAbsoluteAOB(DS2SOffsets.SpeedFactorAccelOffset);
+            SpeedFactorAnim = RegisterAbsoluteAOB(DS2SOffsets.SpeedFactorAnimOffset);
+            SpeedFactorJump = RegisterAbsoluteAOB(DS2SOffsets.SpeedFactorJumpOffset);
+            SpeedFactorBuildup = RegisterAbsoluteAOB(DS2SOffsets.SpeedFactorBuildupOffset);
             GiveSoulsFunc = RegisterAbsoluteAOB(DS2SOffsets.GiveSoulsFunc);
             ItemGiveFunc = RegisterAbsoluteAOB(DS2SOffsets.ItemGiveFunc);
             ItemStruct2dDisplay = RegisterAbsoluteAOB(DS2SOffsets.ItemStruct2dDisplay);
@@ -142,13 +148,11 @@ namespace DS2S_META
             UpdateStatsProperties();
         }
 
-       
-
-        
-
+      
         private void DS2Hook_OnUnhooked(object sender, PHEventArgs e)
         {
             Version = "Not Hooked";
+            
         }
 
         public void UpdateMainProperties()
@@ -159,6 +163,7 @@ namespace DS2S_META
         }
         public void UpdateStatsProperties()
         {
+            var lol = AvailableItemBag.Resolve();
             OnPropertyChanged(nameof(SoulLevel));
             OnPropertyChanged(nameof(Souls));
             OnPropertyChanged(nameof(SoulMemory));
@@ -292,6 +297,7 @@ namespace DS2S_META
             OnPropertyChanged(nameof(LeftHand1));
             OnPropertyChanged(nameof(LeftHand2));
             OnPropertyChanged(nameof(LeftHand3));
+            OnPropertyChanged(nameof(EnableSpeedFactors));
         }
 
         public IntPtr BasePointerFromSetupPointer(PHPointer pointer)
@@ -832,7 +838,6 @@ namespace DS2S_META
 
             return dictionary;
         }
-
         internal int GetMaxUpgrade(DS2SItem item)
         {
             switch (item.Type)
@@ -848,7 +853,6 @@ namespace DS2S_META
 
             return 0;
         }
-
         internal int GetMaxQuantity(DS2SItem item)
         {
             switch (item.Type)
@@ -863,6 +867,43 @@ namespace DS2S_META
 
             return 0;
         }
+        internal int GetHeld(DS2SItem item)
+        {
+            switch (item.Type)
+            {
+                case DS2SItem.ItemType.Ring:
+                case DS2SItem.ItemType.Weapon:
+                case DS2SItem.ItemType.Armor:
+                    return 0;
+                case DS2SItem.ItemType.Item:
+                    return GetHeldInInventory(item.ID);
+            }
+
+            return 0;
+        }
+
+        private int GetHeldInInventory(int id)
+        {
+            var itemOffset = 0x30;
+            var heldOffset = 0x38;
+            var nextOffset = 0x10;
+
+            while (true)
+            {
+                var itemID = AvailableItemBag.ReadInt32(itemOffset);
+                var held = AvailableItemBag.ReadInt32(heldOffset);
+
+                if (itemID == id)
+                    return held;
+
+                if (itemID == 0 && held == 0)
+                    return held;
+
+                itemOffset += nextOffset;
+                heldOffset += nextOffset;
+            }
+        }
+
         private int GetArmorMaxUpgrade(int id)
         {
             if (ArmorReinforceParamOffsetDict == null) return 0;
@@ -1460,14 +1501,31 @@ namespace DS2S_META
                 return "Unknown";
             }
         }
+        private bool _speedFactors;
+        public bool EnableSpeedFactors
+        {
+            get => _speedFactors;
+            set
+            {
+                _speedFactors = value;
+                AccelerationStamina = value;
+                AnimationSpeed = value;
+                JumpSpeed = value;
+                BuildupSpeed = value;
+            }
+        }
+
         private IntPtr AccelSpeedPtr;
+        private IntPtr AccelSpeedCodePtr;
         public float AccelSpeed
         {
-            get => AccelSpeedPtr != IntPtr.Zero ? BitConverter.ToSingle(Kernel32.ReadBytes(Handle, AccelSpeedPtr, 0x4), 0x0) : 1f;
+            get => AccelSpeedPtr != IntPtr.Zero ? BitConverter.ToSingle(Kernel32.ReadBytes(Handle, AccelSpeedPtr, 0x4), 0x0) : Properties.Settings.Default.AccelSpeed;
             set
             {
                 if (AccelSpeedPtr != IntPtr.Zero)
                     Kernel32.WriteBytes(Handle, AccelSpeedPtr, BitConverter.GetBytes(value));
+
+                Properties.Settings.Default.AccelSpeed = value;
             }
         }
         private bool _accelerationStamina;
@@ -1478,34 +1536,132 @@ namespace DS2S_META
             {
                 _accelerationStamina = value;
                 if (_accelerationStamina)
-                    AccelSpeedPtr = InjectSpeedFactor(SpeedFactorAccel);
+                    InjectSpeedFactor(SpeedFactorAccel, ref AccelSpeedPtr, ref AccelSpeedCodePtr, (byte[])DS2SAssembly.SpeedFactorAccel.Clone(), Properties.Settings.Default.AccelSpeed);
+                else
+                {
+                    RepairSpeedFactor(SpeedFactorAccel, AccelSpeedPtr, AccelSpeedCodePtr, (byte[])DS2SAssembly.OgSpeedFactorAccel.Clone());
+                    AccelSpeedPtr = IntPtr.Zero;
+                    AccelSpeedCodePtr = IntPtr.Zero;
+                }
             }
-        } 
-        private IntPtr InjectSpeedFactor(PHPointer speedFactorPointer)
+        }
+
+        private IntPtr AnimSpeedPtr;
+        private IntPtr AnimSpeedCodePtr;
+        public float AnimSpeed
         {
-            var asm = (byte[])DS2SAssembly.SpeedFactor.Clone();
+            get => AnimSpeedPtr != IntPtr.Zero ? BitConverter.ToSingle(Kernel32.ReadBytes(Handle, AnimSpeedPtr, 0x4), 0x0) : Properties.Settings.Default.AnimSpeed;
+            set
+            {
+                if (AnimSpeedPtr != IntPtr.Zero)
+                    Kernel32.WriteBytes(Handle, AnimSpeedPtr, BitConverter.GetBytes(value));
+
+                Properties.Settings.Default.AnimSpeed = value;
+            }
+        }
+        private bool _animationSpeed;
+        public bool AnimationSpeed
+        {
+            get => _animationSpeed;
+            set
+            {
+                _animationSpeed = value;
+                if (_animationSpeed)
+                    InjectSpeedFactor(SpeedFactorAnim, ref AnimSpeedPtr, ref AnimSpeedCodePtr, (byte[])DS2SAssembly.SpeedFactor.Clone(), Properties.Settings.Default.AnimSpeed);
+                else
+                {
+                    RepairSpeedFactor(SpeedFactorAnim, AnimSpeedPtr, AnimSpeedCodePtr, (byte[])DS2SAssembly.OgSpeedFactor.Clone());
+                    AnimSpeedPtr = IntPtr.Zero;
+                    AnimSpeedCodePtr = IntPtr.Zero;
+                }
+            }
+        }
+
+        private IntPtr JumpSpeedPtr;
+        private IntPtr JumpSpeedCodePtr;
+        public float JumpSpeedValue
+        {
+            get => JumpSpeedPtr != IntPtr.Zero ? BitConverter.ToSingle(Kernel32.ReadBytes(Handle, JumpSpeedPtr, 0x4), 0x0) : Properties.Settings.Default.JumpSpeed;
+            set
+            {
+                if (JumpSpeedPtr != IntPtr.Zero)
+                    Kernel32.WriteBytes(Handle, JumpSpeedPtr, BitConverter.GetBytes(value));
+
+                Properties.Settings.Default.JumpSpeed = value;
+            }
+        }
+        private bool _jumpSpeed;
+        public bool JumpSpeed
+        {
+            get => _jumpSpeed;
+            set
+            {
+                _jumpSpeed = value;
+                if (_jumpSpeed)
+                    InjectSpeedFactor(SpeedFactorJump, ref JumpSpeedPtr, ref JumpSpeedCodePtr, (byte[])DS2SAssembly.SpeedFactor.Clone(), Properties.Settings.Default.JumpSpeed);
+                else
+                {
+                    RepairSpeedFactor(SpeedFactorJump, JumpSpeedPtr, JumpSpeedCodePtr, (byte[])DS2SAssembly.OgSpeedFactor.Clone());
+                    JumpSpeedPtr = IntPtr.Zero;
+                    JumpSpeedCodePtr = IntPtr.Zero;
+                }
+            }
+        }
+
+        private IntPtr BuildupSpeedPtr;
+        private IntPtr BuildupSpeedCodePtr;
+        public float BuildupSpeedValue
+        {
+            get => BuildupSpeedPtr != IntPtr.Zero ? BitConverter.ToSingle(Kernel32.ReadBytes(Handle, BuildupSpeedPtr, 0x4), 0x0) : Properties.Settings.Default.BuildupSpeed;
+            set
+            {
+                if (BuildupSpeedPtr != IntPtr.Zero)
+                    Kernel32.WriteBytes(Handle, BuildupSpeedPtr, BitConverter.GetBytes(value));
+
+                Properties.Settings.Default.BuildupSpeed = value;
+            }
+        }
+        private bool _buildupSpeed;
+        public bool BuildupSpeed
+        {
+            get => _buildupSpeed;
+            set
+            {
+                _buildupSpeed = value;
+                if (_buildupSpeed)
+                    InjectSpeedFactor(SpeedFactorBuildup, ref BuildupSpeedPtr, ref BuildupSpeedCodePtr, (byte[])DS2SAssembly.SpeedFactor.Clone(), Properties.Settings.Default.BuildupSpeed);
+                else
+                {
+                    RepairSpeedFactor(SpeedFactorBuildup, BuildupSpeedPtr, BuildupSpeedCodePtr, (byte[])DS2SAssembly.OgSpeedFactor.Clone());
+                    BuildupSpeedPtr = IntPtr.Zero;
+                    BuildupSpeedCodePtr = IntPtr.Zero;
+                }
+            }
+        }
+
+        private void RepairSpeedFactor(PHPointer speedFactorPointer, IntPtr valuePointer, IntPtr codePointer, byte[] asm)
+        {
+            speedFactorPointer.WriteBytes(0x0, asm);
+            Free(valuePointer);
+            Free(codePointer);
+        }
+
+        private void InjectSpeedFactor(PHPointer speedFactorPointer, ref IntPtr valuePointer, ref IntPtr codePointer, byte[] asm, float value)
+        {
             var inject = new byte[0x11];
             Array.Copy(asm, inject, inject.Length);
-            var valuePointer = Allocate(sizeof(float));
-            Kernel32.WriteBytes(Handle, valuePointer, BitConverter.GetBytes(.1f));
+            valuePointer = Allocate(sizeof(float));
+            Kernel32.WriteBytes(Handle, valuePointer, BitConverter.GetBytes(value));
             var valuePointerBytes = BitConverter.GetBytes(valuePointer.ToInt64());
 
-            var newCode = new byte[0x19];
+            var newCode = new byte[0x18];
             Array.Copy(asm, inject.Length, newCode, 0x0, newCode.Length);
-            var code = Allocate((uint)newCode.Length,Kernel32.PAGE_EXECUTE_READWRITE);
-            var codePointerBytes = BitConverter.GetBytes(code.ToInt64());
+            codePointer = Allocate(sizeof(float), Kernel32.PAGE_EXECUTE_READWRITE);
+            var codePointerBytes = BitConverter.GetBytes(codePointer.ToInt64());
             Array.Copy(codePointerBytes, 0x0, inject, 0x3, valuePointerBytes.Length);
             Array.Copy(valuePointerBytes, 0x0, newCode, 0x2, valuePointerBytes.Length);
-            Kernel32.WriteBytes(Handle, code, newCode);
-            SpeedFactorAccel.WriteBytes(0x0, inject);
-            return valuePointer;
-        }
-        private short GetJumpOffset(IntPtr srcPtr, IntPtr destPtr)
-        {
-            var addr1 = srcPtr.ToInt64();
-            var addr2 = destPtr.ToInt64();
-            var result = addr1 - addr2;
-            return (short)result;
+            Kernel32.WriteBytes(Handle, codePointer, newCode);
+            speedFactorPointer.WriteBytes(0x0, inject);
         }
 
         #endregion

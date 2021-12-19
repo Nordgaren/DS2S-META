@@ -61,15 +61,16 @@ namespace DS2S_META.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0:  48 83 ec 28             sub    rsp,0x28 
-        ///4:  48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000 ;PlayerParam Pointer
-        ///b:  ff ff ff
-        ///e:  48 c7 c2 f4 01 00 00    mov    rdx,0x1f4 ;number of souls
-        ///15: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000 ;Give Souls func
-        ///1c: ff ff ff
-        ///1f: 41 ff d6                call   r14
-        ///22: 48 83 c4 28             add    rsp,0x28
-        ///26: c3                      ret .
+        ///   Looks up a localized string similar to 0:  52                      push   rdx
+        ///1:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
+        ///8:  ff ff ff
+        ///b:  ff d2                   call   rdx
+        ///d:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
+        ///14: ff ff ff
+        ///17: f3 0f 59 1a             mulss  xmm3,DWORD PTR [rdx]
+        ///1b: f3 0f 10 16             movss  xmm2,DWORD PTR [rsi]
+        ///1f: 5a                      pop    rdx
+        ///20: c3                      ret .
         /// </summary>
         internal static string AddSouls {
             get {
@@ -133,17 +134,68 @@ namespace DS2S_META.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0:  e9 00 00 00 00          jmp    ;Jump to new instructions
-        ///5:  90                      nop
-        ///6:  90                      nop
-        ///7:  90                      nop
-        ///8:  f3 0f 59 1d ff ff 00    mulss  xmm3,DWORD PTR [rip+0xffff] ;Move float into register
-        ///f:  00
-        ///10: e9 ff ff 00 00          jmp    ;Jump back to AoB Pointer + 0x8.
+        ///   Looks up a localized string similar to 0:  f3 0f 59 99 a8 02 00    mulss  xmm3,DWORD PTR [rcx+0x2a8]
+        ///7:  00
+        ///8:  f3 0f 10 12             movss  xmm2,DWORD PTR [rdx]
+        ///c:  f3 0f 10 42 04          movss  xmm0,DWORD PTR [rdx+0x4] .
+        /// </summary>
+        internal static string OgSpeedFactor {
+            get {
+                return ResourceManager.GetString("OgSpeedFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0:  f3 0f 59 9f a8 02 00    mulss  xmm3,DWORD PTR [rdi+0x2a8]
+        ///7:  00
+        ///8:  f3 0f 10 16             movss  xmm2,DWORD PTR [rsi]
+        ///c:  f3 0f 10 46 04          movss  xmm0,DWORD PTR [rsi+0x4] .
+        /// </summary>
+        internal static string OgSpeedFactorAccel {
+            get {
+                return ResourceManager.GetString("OgSpeedFactorAccel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0:  50                      push   rax
+        ///1:  48 b8 00 00 00 00 ff    movabs rax,0xffffffff00000000
+        ///8:  ff ff ff
+        ///b:  ff d0                   call   rax
+        ///d:  58                      pop    rax
+        ///e:  90                      nop
+        ///f:  90                      nop
+        ///10: 90                      nop
+        ///11: 48 b8 00 00 00 00 ff    movabs rax,0xffffffff00000000
+        ///18: ff ff ff
+        ///1b: f3 0f 59 18             mulss  xmm3,DWORD PTR [rax]
+        ///1f: f3 0f 10 12             movss  xmm2,DWORD PTR [rdx]
+        ///23: f3 0f 10 42 04          movss [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SpeedFactor {
             get {
                 return ResourceManager.GetString("SpeedFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0:  50                      push   rax
+        ///1:  48 b8 00 00 00 00 ff    movabs rax,0xffffffff00000000
+        ///8:  ff ff ff
+        ///b:  ff d0                   call   rax
+        ///d:  58                      pop    rax
+        ///e:  90                      nop
+        ///f:  90                      nop
+        ///10: 90                      nop
+        ///11: 48 b8 00 00 00 00 ff    movabs rax,0xffffffff00000000
+        ///18: ff ff ff
+        ///1b: f3 0f 59 18             mulss  xmm3,DWORD PTR [rax]
+        ///1f: f3 0f 10 16             movss  xmm2,DWORD PTR [rsi]
+        ///23: f3 0f 10 46 04          movss [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SpeedFactorAccel {
+            get {
+                return ResourceManager.GetString("SpeedFactorAccel", resourceCulture);
             }
         }
     }

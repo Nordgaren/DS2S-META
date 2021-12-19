@@ -1,26 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Target Name="CopyFiles" Condition="$(ConfigurationName) == Release" AfterTargets="Build">
-		<GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
-			<Output TaskParameter="Assemblies" ItemName="Targets" />
-		</GetAssemblyIdentity>
-		<ItemGroup>
-			<Res Include="Resources\**\*.*" />
-			<VersionNumber Include="%(Targets.Version)">
-				<Number>%(Targets.Version)</Number>
-			</VersionNumber>
-			<OutputDir Include ="$(TargetDir)$(ProjectName) %(Targets.Version)"/>
-		</ItemGroup>
-		<Message Text="Executing Copy Filess task" Importance="High" />
-		<Copy
-			SourceFiles="$(TargetDir)$(ProjectName).exe"
-			DestinationFolder="@(OutputDir)" />
-		<Copy
-			SourceFiles="$(SolutionDir)Readme.md"
-			DestinationFolder="@(OutputDir)" />
-		<!--<Copy SourceFiles="@(Res)" DesitnationFiles="@(Res->'Resources\%(RecursiveDir)%(Filename)%(Extension)')" />-->
-		<Message Text="Copied files to build folder" Importance="High" />
-	</Target>
+  <Target Name="CopyFiles" Condition="$(ConfigurationName) == Release" AfterTargets="Build">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <Res Include="Resources\**\*.*" />
+      <VersionNumber Include="%(Targets.Version)">
+        <Number>%(Targets.Version)</Number>
+      </VersionNumber>
+      <OutputDir Include="$(TargetDir)$(ProjectName) %(Targets.Version)" />
+    </ItemGroup>
+    <Message Text="Executing Copy Filess task" Importance="High" />
+    <Copy SourceFiles="$(TargetDir)$(ProjectName).exe" DestinationFolder="@(OutputDir)" />
+    <Copy SourceFiles="$(SolutionDir)Readme.md" DestinationFolder="@(OutputDir)" />
+    <Copy SourceFiles="@(Res)" DesitnationFiles="@(Res->'Resources\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Message Text="Copied files to build folder" Importance="High" />
+  </Target>
   <Import Project="..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -60,7 +56,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Ladder.ico</ApplicationIcon>
@@ -246,6 +241,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="List Items\DS2SBonfireHub.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TabControls\InternalControl.xaml.cs">
       <DependentUpon>InternalControl.xaml</DependentUpon>
     </Compile>
@@ -271,6 +271,9 @@
       <DependentUpon>HotkeyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\User32.cs" />
+    <Resource Include="Resources\Assembly\SpeedFactor.txt" />
+    <Resource Include="Resources\Assembly\OgSpeedFactor.txt" />
+    <Resource Include="Resources\Assembly\OgSpeedFactorAccel.txt" />
     <None Include="Resources\Systems\BonfireHubs.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -287,7 +290,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Resource Include="Resources\Assembly\GiveItemWithoutMenu.txt" />
-    <Resource Include="Resources\Assembly\SpeedFactor.txt" />
+    <Resource Include="Resources\Assembly\SpeedFactorAccel.txt" />
     <Content Include="Resources\Assembly\GiveItemWithMenu.txt" />
     <Compile Include="TabControls\HotkeyControl.cs" />
     <Compile Include="Util\METAHotkey.cs" />
@@ -387,11 +390,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -399,8 +397,8 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

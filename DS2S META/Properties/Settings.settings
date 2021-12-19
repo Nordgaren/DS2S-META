@@ -44,5 +44,20 @@
     <Setting Name="ModifySpeed" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">27</Value>
     </Setting>
+    <Setting Name="AccelSpeed" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="AnimSpeed" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="JumpSpeed" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="BuildupSpeed" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ToggleSpeedFactors" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">27</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

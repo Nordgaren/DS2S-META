@@ -190,5 +190,65 @@ namespace DS2S_META.Properties {
                 this["ModifySpeed"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float AccelSpeed {
+            get {
+                return ((float)(this["AccelSpeed"]));
+            }
+            set {
+                this["AccelSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float AnimSpeed {
+            get {
+                return ((float)(this["AnimSpeed"]));
+            }
+            set {
+                this["AnimSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float JumpSpeed {
+            get {
+                return ((float)(this["JumpSpeed"]));
+            }
+            set {
+                this["JumpSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float BuildupSpeed {
+            get {
+                return ((float)(this["BuildupSpeed"]));
+            }
+            set {
+                this["BuildupSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public int ToggleSpeedFactors {
+            get {
+                return ((int)(this["ToggleSpeedFactors"]));
+            }
+            set {
+                this["ToggleSpeedFactors"] = value;
+            }
+        }
     }
 }

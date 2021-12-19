@@ -50,7 +50,15 @@ namespace DS2S_META
 
             Hotkeys.Add(new METAHotkey("ModifySpeed", hkeySpeed.tbxHotkey, tabHotkeys, () =>
             {
-                metaPlayer.cbxSpeed.IsChecked = !metaPlayer.cbxSpeed.IsChecked.Value;
+                if (!metaInternal.cbxSpeeds.IsChecked.Value)
+                    metaPlayer.cbxSpeed.IsChecked = !metaPlayer.cbxSpeed.IsChecked.Value;
+            }));
+
+            Hotkeys.Add(new METAHotkey("ToggleSpeedFactors", hkeySpeedFactor.tbxHotkey, tabHotkeys, () =>
+            {
+                metaInternal.cbxSpeeds.IsChecked = !metaInternal.cbxSpeeds.IsChecked.Value;
+                metaPlayer.cbxSpeed.IsChecked = false;
+                metaPlayer.cbxSpeed.IsEnabled = !metaInternal.cbxSpeeds.IsChecked.Value;
             }));
 
             KeyboardHook.KeyDownOrUp += GlobalKeyboardHook_KeyDownOrUp;

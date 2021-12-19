@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:DS2S_META"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="425" Background="LightGray">
@@ -61,8 +62,32 @@
                 </Grid>
 
             </Border>
-            <StackPanel>
-                <CheckBox Content="Acceleration/Stamina Regen Speed" x:Name="cbxAccel" IsChecked="{Binding ElementName=InternalCon, Path=Hook.AccelerationStamina}" IsEnabled="False"/>
+            <StackPanel Margin="20,0,25,0">
+                <CheckBox Content="Individual Speed Factors" x:Name="cbxSpeeds" IsChecked="{Binding ElementName=InternalCon, Path=Hook.EnableSpeedFactors}" IsEnabled="False"/>
+                <Border BorderBrush="Gray" BorderThickness="1" Width="185" HorizontalAlignment="Left" Margin="20,5,20,20" >
+                    <StackPanel Width="170" HorizontalAlignment="Left" Margin="5" IsEnabled="{Binding ElementName=InternalCon, Path=Hook.EnableSpeedFactors}" >
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label Content="Speed Accel/Stam" Width="120"/>
+                            <wpfTool:DecimalUpDown Value="{Binding ElementName=InternalCon, Path=Hook.AccelSpeed}" Width="50" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label Content="Speed Animation" Width="120"/>
+
+                            <wpfTool:DecimalUpDown Value="{Binding ElementName=InternalCon, Path=Hook.AnimSpeed}" Width="50"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label Content="Speed Jump/Knock" Width="120"/>
+
+                            <wpfTool:DecimalUpDown Value="{Binding ElementName=InternalCon, Path=Hook.JumpSpeedValue}" Width="50"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label Content="Speed Stats Effect" Width="120"/>
+
+                            <wpfTool:DecimalUpDown Value="{Binding ElementName=InternalCon, Path=Hook.BuildupSpeedValue}" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                </Border>
             </StackPanel>
         </StackPanel>
         

@@ -97,16 +97,25 @@ namespace DS2S_META
             if (lbxItems == null)
                 return;
 
+            DS2SItem item = lbxItems.SelectedItem as DS2SItem;
+            if (item == null)
+                return;
+
             if (!cbxQuantityRestrict.IsChecked.Value)
             {
+                var max = Hook.GetMaxQuantity(item);
+                var held = Hook.GetHeld(item);
                 nudQuantity.IsEnabled = true;
                 nudQuantity.Maximum = int.MaxValue;
+                txtMaxHeld.Visibility = max - held > 0 ? Visibility.Hidden : Visibility.Visible;
             }
             else if (lbxItems.SelectedIndex != -1)
             {
-                DS2SItem item = lbxItems.SelectedItem as DS2SItem;
-                nudQuantity.Maximum = Hook.GetMaxQuantity(item);
+                var max = Hook.GetMaxQuantity(item);
+                var held = Hook.GetHeld(item);
+                nudQuantity.Maximum = max - held;
                 nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
+                txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible;
             }
         }
 
@@ -128,14 +137,21 @@ namespace DS2S_META
 
             if (cbxQuantityRestrict.IsChecked.Value)
             {
-                nudQuantity.Maximum = Hook.GetMaxQuantity(item);
+                var max = Hook.GetMaxQuantity(item);
+                var held = Hook.GetHeld(item);
+                nudQuantity.Maximum = max - held;
                 nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
+                txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible;
             }
             else
             {
-                nudQuantity.IsEnabled = true;
+                var max = Hook.GetMaxQuantity(item);
+                var held = Hook.GetHeld(item);
                 nudQuantity.Maximum = int.MaxValue;
+                nudQuantity.IsEnabled = true;
+                txtMaxHeld.Visibility = max - held > 0 ? Visibility.Hidden : Visibility.Visible;
             }
+            
 
             cmbInfusion.Items.Clear();
             if (item.Type == DS2SItem.ItemType.Weapon)
@@ -185,8 +201,11 @@ namespace DS2S_META
                 var id = item.ID;
 
                 var infusion = cmbInfusion.SelectedItem as DS2SInfusion;
-
                 Hook.GetItem(id, (short)nudQuantity.Value, (byte)nudUpgrade.Value, (byte)infusion.ID);
+                var max = Hook.GetMaxQuantity(item);
+                var held = Hook.GetHeld(item);
+                nudQuantity.Maximum = max - held;
+                txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible;
             }
         }
 

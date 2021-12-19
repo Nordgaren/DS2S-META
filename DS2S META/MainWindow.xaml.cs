@@ -109,6 +109,8 @@ namespace DS2S_META
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (Hook.EnableSpeedFactors)
+                Hook.EnableSpeedFactors = false;
             UpdateTimer.Stop();
             SaveAllTabs();
 

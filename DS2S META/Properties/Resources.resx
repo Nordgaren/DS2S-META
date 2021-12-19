@@ -130,7 +130,16 @@
   <data name="GiveItemWithoutMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\assembly\giveitemwithoutmenu.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="OgSpeedFactor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\assembly\ogspeedfactor.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="OgSpeedFactorAccel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\assembly\ogspeedfactoraccel.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="SpeedFactor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\assembly\speedfactor.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SpeedFactorAccel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\assembly\speedfactoraccel.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

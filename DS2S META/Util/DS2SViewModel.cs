@@ -84,6 +84,7 @@ namespace DS2S_META
             OnPropertyChanged(nameof(ForegroundLoaded));
             OnPropertyChanged(nameof(ContentOnline));
             OnPropertyChanged(nameof(ForegroundOnline));
+            OnPropertyChanged(nameof(GameLoaded));
         }
 
         private void Hook_OnHooked(object sender, PHEventArgs e)

@@ -46,7 +46,7 @@ namespace DS2S_META
         internal override void ReloadCtrl()
         {
             if (cbxSpeed.IsChecked.Value)
-            Hook.Speed = (float)nudSpeed.Value;
+                Hook.Speed = (float)nudSpeed.Value;
         }
         internal override void EnableCtrls(bool enable)
         {

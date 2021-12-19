@@ -30,6 +30,9 @@ namespace DS2S_META
         public static byte[] AddSouls = LoadDefuseOutput(Properties.Resources.AddSouls);
         public static byte[] GetItem = LoadDefuseOutput(Properties.Resources.GiveItemWithMenu);
         public static byte[] GetItemNoMenu = LoadDefuseOutput(Properties.Resources.GiveItemWithoutMenu);
+        public static byte[] SpeedFactorAccel = LoadDefuseOutput(Properties.Resources.SpeedFactorAccel);
+        public static byte[] OgSpeedFactorAccel = LoadDefuseOutput(Properties.Resources.OgSpeedFactorAccel);
         public static byte[] SpeedFactor = LoadDefuseOutput(Properties.Resources.SpeedFactor);
+        public static byte[] OgSpeedFactor = LoadDefuseOutput(Properties.Resources.OgSpeedFactor);
     }
 }
