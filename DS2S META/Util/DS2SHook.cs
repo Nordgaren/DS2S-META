@@ -889,7 +889,10 @@ namespace DS2S_META
             var heldOffset = 0x38;
             var nextOffset = 0x10;
 
-            while (itemOffset < 0x7D00)
+            var endPointer = AvailableItemBag.ReadIntPtr(0x10).ToInt64();
+            var bagSize = endPointer - AvailableItemBag.Resolve().ToInt64();
+
+            while (itemOffset < bagSize)
             {
                 var itemID = AvailableItemBag.ReadInt32(itemOffset);
                 var boxValue = AvailableItemBag.ReadInt32(boxOffset);
