@@ -885,20 +885,24 @@ namespace DS2S_META
         {
             var itemOffset = 0x30;
             var heldOffset = 0x38;
+            var boxOffset = 0x38;
             var nextOffset = 0x10;
 
             while (true)
             {
                 var itemID = AvailableItemBag.ReadInt32(itemOffset);
+                var boxValue = AvailableItemBag.ReadInt32(boxOffset);
                 var held = AvailableItemBag.ReadInt32(heldOffset);
 
                 if (itemID == id)
-                    return held;
+                    if (boxValue == 0)
+                        return held;
 
                 if (itemID == 0 && held == 0)
                     return held;
 
                 itemOffset += nextOffset;
+                boxOffset += nextOffset;
                 heldOffset += nextOffset;
             }
         }
