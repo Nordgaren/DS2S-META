@@ -937,7 +937,7 @@ namespace DS2S_META
 
             var position = 1;
 
-            for (int i = 0; i < DS2SInfusion.Infusions.Count; i++)
+            for (int i = 0; position < 1024; i++)
             {
                 if ((bitField & position) != 0)
                     infusions.Add(DS2SInfusion.Infusions[i]);
