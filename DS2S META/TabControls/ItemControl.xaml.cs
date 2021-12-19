@@ -170,7 +170,7 @@ namespace DS2S_META
                 foreach (var infusion in Hook.GetWeaponInfusions(item.ID))
                     cmbInfusion.Items.Add(infusion);
             else
-                cmbInfusion.Items.Add(DS2SInfusion.Normal);
+                cmbInfusion.Items.Add(DS2SInfusion.Infusions[0]);
             
             cmbInfusion.SelectedIndex = 0;
             cmbInfusion.IsEnabled = cmbInfusion.Items.Count > 1;

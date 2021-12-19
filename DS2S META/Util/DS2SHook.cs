@@ -163,6 +163,7 @@ namespace DS2S_META
         }
         public void UpdateStatsProperties()
         {
+            var lol = AvailableItemBag.Resolve();
             OnPropertyChanged(nameof(SoulLevel));
             OnPropertyChanged(nameof(Souls));
             OnPropertyChanged(nameof(SoulMemory));
@@ -884,8 +885,8 @@ namespace DS2S_META
         private int GetHeldInInventory(int id)
         {
             var itemOffset = 0x30;
+            var boxOffset = 0x34;
             var heldOffset = 0x38;
-            var boxOffset = 0x38;
             var nextOffset = 0x10;
 
             while (true)
@@ -934,35 +935,15 @@ namespace DS2S_META
             if (bitField == 0)
                 return new List<DS2SInfusion>() { DS2SInfusion.Normal };
 
-            if ((bitField & 1) != 0)
-                infusions.Add(DS2SInfusion.Normal);
+            var position = 1;
 
-            if ((bitField & 2) != 0)
-                infusions.Add(DS2SInfusion.Fire);
+            for (int i = 0; i < DS2SInfusion.Infusions.Count; i++)
+            {
+                if ((bitField & position) != 0)
+                    infusions.Add(DS2SInfusion.Infusions[i]);
 
-            if ((bitField & 4) != 0)
-                infusions.Add(DS2SInfusion.Magic);
-
-            if ((bitField & 8) != 0)
-                infusions.Add(DS2SInfusion.Lightning);
-
-            if ((bitField & 16) != 0)
-                infusions.Add(DS2SInfusion.Dark);
-
-            if ((bitField & 32) != 0)
-                infusions.Add(DS2SInfusion.Poison);
-
-            if ((bitField & 64) != 0)
-                infusions.Add(DS2SInfusion.Bleed);
-
-            if ((bitField & 128) != 0)
-                infusions.Add(DS2SInfusion.Raw);
-
-            if ((bitField & 256) != 0)
-                infusions.Add(DS2SInfusion.Enchanted);
-
-            if ((bitField & 512) != 0)
-                infusions.Add(DS2SInfusion.Mundane);
+                position *= 2;
+            }
 
             return infusions;
         }
