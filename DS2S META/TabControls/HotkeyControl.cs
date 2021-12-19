@@ -50,7 +50,7 @@ namespace DS2S_META
 
             Hotkeys.Add(new METAHotkey("ModifySpeed", hkeySpeed.tbxHotkey, tabHotkeys, () =>
             {
-                if (!metaInternal.cbxSpeeds.IsChecked.Value)
+                if (metaPlayer.cbxSpeed.IsEnabled)
                     metaPlayer.cbxSpeed.IsChecked = !metaPlayer.cbxSpeed.IsChecked.Value;
             }));
 

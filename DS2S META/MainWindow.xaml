@@ -205,8 +205,13 @@
                                                 <local:HotkeyControl x:Name="hkeyCollision" HotkeyName="Toggle Collision" Margin="0,5,0,0"/>
                                                 <local:HotkeyControl x:Name="hkeyUp" HotkeyName="Move Up" Margin="0,5,0,0"/>
                                                 <local:HotkeyControl x:Name="hkeyDown" HotkeyName="Move Down" Margin="0,5,0,0"/>
-                                                <local:HotkeyControl x:Name="hkeySpeed" HotkeyName="Toggle Speed" Margin="0,5,0,0"/>
-                                                <local:HotkeyControl x:Name="hkeySpeedFactor" HotkeyName="Toggle Speed" Margin="0,5,0,0"/>
+                                                <local:HotkeyControl x:Name="hkeySpeed" HotkeyName="Modify Speed" Margin="0,5,0,0"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Label Content="Internal Tab"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" >
+                                            <StackPanel Margin="5,0,5,5" >
+                                                <local:HotkeyControl x:Name="hkeySpeedFactor" HotkeyName="Speed Factors" Margin="0,5,0,0"/>
                                             </StackPanel>
                                         </Border>
 

@@ -36,6 +36,19 @@ namespace DS2S_META
         {
             lbxItems.SelectedIndex = -1;
             lbxItems.SelectedIndex = 0;
+            if (cbxMax.IsChecked.Value)
+            {
+                DS2SItem item = lbxItems.SelectedItem as DS2SItem;
+                if (item == null)
+                    return;
+
+                var max = Hook.GetMaxQuantity(item);
+                var held = Hook.GetHeld(item);
+                nudQuantity.Maximum = max - held;
+                nudQuantity.Value = nudQuantity.Maximum;
+                nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
+                txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible; ;
+            }
         }
 
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -106,7 +119,7 @@ namespace DS2S_META
                 var max = Hook.GetMaxQuantity(item);
                 var held = Hook.GetHeld(item);
                 nudQuantity.IsEnabled = true;
-                nudQuantity.Maximum = int.MaxValue;
+                nudQuantity.Maximum = 99;
                 txtMaxHeld.Visibility = max - held > 0 ? Visibility.Hidden : Visibility.Visible;
             }
             else if (lbxItems.SelectedIndex != -1)
@@ -147,11 +160,10 @@ namespace DS2S_META
             {
                 var max = Hook.GetMaxQuantity(item);
                 var held = Hook.GetHeld(item);
-                nudQuantity.Maximum = int.MaxValue;
+                nudQuantity.Maximum = 99;
                 nudQuantity.IsEnabled = true;
                 txtMaxHeld.Visibility = max - held > 0 ? Visibility.Hidden : Visibility.Visible;
             }
-            
 
             cmbInfusion.Items.Clear();
             if (item.Type == DS2SItem.ItemType.Weapon)
@@ -294,7 +306,7 @@ namespace DS2S_META
         private void cbxMaxUpgrade_Checked(object sender, RoutedEventArgs e)
         {
             //HandleMaxItemCheckbox()
-            if (cbxMaxUpgrade.IsChecked.Value)
+            if (cbxMax.IsChecked.Value)
             {
                 nudUpgrade.Value = nudUpgrade.Maximum;
                 nudQuantity.Value = nudQuantity.Maximum;
@@ -309,7 +321,7 @@ namespace DS2S_META
         private void HandleMaxItemCheckbox()
         {
             //Set upgrade nud to max if max checkbox is ticked
-            if (cbxMaxUpgrade.IsChecked.Value)
+            if (cbxMax.IsChecked.Value)
             {
                 nudUpgrade.Value = nudUpgrade.Maximum;
                 nudQuantity.Value = nudQuantity.Maximum;

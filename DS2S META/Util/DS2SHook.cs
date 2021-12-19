@@ -163,7 +163,6 @@ namespace DS2S_META
         }
         public void UpdateStatsProperties()
         {
-            var lol = AvailableItemBag.Resolve();
             OnPropertyChanged(nameof(SoulLevel));
             OnPropertyChanged(nameof(Souls));
             OnPropertyChanged(nameof(SoulMemory));

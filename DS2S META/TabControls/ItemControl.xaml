@@ -39,7 +39,7 @@
             <Label Content="Max Held" Visibility="Hidden" x:Name="txtMaxHeld"/>
             <CheckBox Content="Restrict" IsChecked="True" x:Name="cbxQuantityRestrict" Checked="cbxQuantityRestrict_Checked" Unchecked="cbxQuantityRestrict_Checked"/>
             <Separator Height="25" Visibility="Hidden"/>
-            <CheckBox x:Name="cbxMaxUpgrade" Content="Max" IsChecked="True" Checked="cbxMaxUpgrade_Checked" Unchecked="cbxMaxUpgrade_Checked" />
+            <CheckBox x:Name="cbxMax" Content="Max" IsChecked="True" Checked="cbxMaxUpgrade_Checked" Unchecked="cbxMaxUpgrade_Checked" />
             <Separator Height="5" Visibility="Hidden"/>
             <Button x:Name="btnCreate" Content="Create" Click="btnCreate_Click" PreviewKeyDown="KeyPressed"/>
         </StackPanel>

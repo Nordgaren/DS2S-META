@@ -30,6 +30,16 @@ You can also try adding DS2S META as an exception to your antivirus
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 
 # Change Log 
+### Beta 0.0.1  
+
+* Items max quantity now looks at how many items are in your inventory  
+
+* Individual speed factors  
+
+* Search all now toggles filter  
+
+* Misc cosmetic changes to positioning  
+
 ### Beta 0.0.0.8  
 
 * Revamped Bonfire tab code and look
