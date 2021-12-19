@@ -98,19 +98,15 @@ namespace DS2S_META
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            DS2SClass charClass = cmbClass.SelectedItem as DS2SClass;
-            if (charClass == null)
-                return;
-
-            nudVig.Value = charClass.Vigor;
-            nudEnd.Value = charClass.Endurance;
-            nudVit.Value = charClass.Vitality;
-            nudAtt.Value = charClass.Attunement;
-            nudStr.Value = charClass.Strength;
-            nudDex.Value = charClass.Dexterity;
-            nudAdp.Value = charClass.Adaptability;
-            nudInt.Value = charClass.Intelligence;
-            nudFth.Value = charClass.Faith;
+            nudVig.Value = nudVig.Minimum;
+            nudEnd.Value = nudEnd.Minimum;
+            nudVit.Value = nudVit.Minimum;
+            nudAtt.Value = nudAtt.Minimum;
+            nudStr.Value = nudStr.Minimum;
+            nudDex.Value = nudDex.Minimum;
+            nudAdp.Value = nudAdp.Minimum;
+            nudInt.Value = nudInt.Minimum;
+            nudFth.Value = nudFth.Minimum;
         }
 
         private void Max_Click(object sender, RoutedEventArgs e)

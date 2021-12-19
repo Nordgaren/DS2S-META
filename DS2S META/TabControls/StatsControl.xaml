@@ -89,7 +89,6 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
                     <Label Content="Soul Level" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="0,0,10,0" Grid.Column="0" Grid.Row="0" />
                     <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.SoulLevel, Mode=TwoWay, UpdateSourceTrigger=Explicit}" MaxWidth="150" TextAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Margin="0,0,18,0" Grid.Column="1" Grid.Row="0" />
                     <Label Content="Vigor" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="0,0,10,0" Grid.Column="0" Grid.Row="1" />
@@ -110,9 +109,7 @@
                     <wpfTool:IntegerUpDown x:Name="nudInt" Value="{Binding ElementName=StatsCon, Path=Hook.Intelligence}" Grid.Column="1" Grid.Row="8" TextAlignment="Center" Maximum="99" ClipValueToMinMax="True"/>
                     <Label Content="Faith" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Grid.Column="0" Grid.Row="9" />
                     <wpfTool:IntegerUpDown x:Name="nudFth" Value="{Binding ElementName=StatsCon, Path=Hook.Faith}" Grid.Column="1" Grid.Row="9" TextAlignment="Center" Maximum="99" ClipValueToMinMax="True"/>
-
                 </Grid>
-
             </Border>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
