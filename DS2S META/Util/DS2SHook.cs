@@ -935,15 +935,29 @@ namespace DS2S_META
             if (bitField == 0)
                 return new List<DS2SInfusion>() { DS2SInfusion.Infusions[0] };
 
-            var position = 1;
 
-            for (int i = 0; position < 1024; i++)
+            for (int i = 0; (1 << i) < 1024; i++)
             {
-                if ((bitField & position) != 0)
+                if ((bitField & (1 << i)) != 0)
                     infusions.Add(DS2SInfusion.Infusions[i]);
-
-                position *= 2;
             }
+
+            if ((bitField & 4) != 0)
+                infusions.Add(DS2SInfusion.Magic);
+            if ((bitField & 8) != 0)
+                infusions.Add(DS2SInfusion.Lightning);
+            if ((bitField & 16) != 0)
+                infusions.Add(DS2SInfusion.Dark);
+            if ((bitField & 32) != 0)
+                infusions.Add(DS2SInfusion.Poison);
+            if ((bitField & 64) != 0)
+                infusions.Add(DS2SInfusion.Bleed);
+            if ((bitField & 128) != 0)
+                infusions.Add(DS2SInfusion.Raw);
+            if ((bitField & 256) != 0)
+                infusions.Add(DS2SInfusion.Enchanted);
+            if ((bitField & 512) != 0)
+                infusions.Add(DS2SInfusion.Mundane);
 
             return infusions;
         }
