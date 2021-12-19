@@ -30,6 +30,16 @@ You can also try adding DS2S META as an exception to your antivirus
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 
 # Change Log 
+### Beta 0.0.2  
+
+* Fixed Give Souls func  
+
+* Added reset/max level buttons  
+
+* Blank search now stores a position
+
+* Items refresh on reload
+
 ### Beta 0.0.1  
 
 * Items max quantity now looks at how many items are in your inventory  
