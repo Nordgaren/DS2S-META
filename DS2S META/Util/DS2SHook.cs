@@ -905,9 +905,6 @@ namespace DS2S_META
                 itemOffset += nextOffset;
                 boxOffset += nextOffset;
                 heldOffset += nextOffset;
-
-                if (itemOffset >= bagSize)
-                    Console.WriteLine();
             }
 
             return 0;
