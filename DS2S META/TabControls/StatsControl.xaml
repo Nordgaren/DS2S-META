@@ -67,6 +67,10 @@
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="1" Margin="10,10,10,0">
             <Label Content="Stats"/>
+            <StackPanel Orientation="Horizontal" Width="110" Margin="5">
+                <Button Content="Reset" Width="50" Margin="0,0,10,0" Click="Reset_Click"/>
+                <Button Content="Max" Width="50" Click="Max_Click"/>
+            </StackPanel>
             <Border BorderBrush="Gray" BorderThickness="1"  >
                 <Grid Margin="5,5,5,5" >
                     <Grid.ColumnDefinitions>

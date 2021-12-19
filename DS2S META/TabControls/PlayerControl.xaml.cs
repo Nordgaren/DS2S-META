@@ -69,7 +69,7 @@ namespace DS2S_META
             if (btnPosStore.IsEnabled)
             {
                 var pos = new SavedPos();
-                pos.Name = storedPositions.Text;
+                pos.Name = cmbStoredPositions.Text;
                 nudPosStoredX.Value = (decimal)Hook.PosX;
                 nudPosStoredY.Value = (decimal)Hook.PosY;
                 nudPosStoredZ.Value = (decimal)Hook.PosZ;
@@ -98,17 +98,21 @@ namespace DS2S_META
         }
         public void ProcessSavedPos(SavedPos pos)
         {
-            if (!string.IsNullOrWhiteSpace(storedPositions.Text))
+            if (!string.IsNullOrWhiteSpace(cmbStoredPositions.Text))
             {
-                if (Positions.Any(n => n.Name == storedPositions.Text))
+                if (Positions.Any(n => n.Name == cmbStoredPositions.Text))
                 {
-                    var old = Positions.Single(n => n.Name == storedPositions.Text);
+                    var old = Positions.Single(n => n.Name == cmbStoredPositions.Text);
                     Positions.Remove(old);
                     Positions.Add(pos);
                     return;
                 }
 
                 Positions.Add(pos);
+            }
+            else
+            {
+                cmbStoredPositions.Items[0] = pos;
             }
 
         }
@@ -123,18 +127,25 @@ namespace DS2S_META
 
             if (e.Key == Key.Delete && shift)
             {
-                deleteButton_Click(sender, e);
+                DeleteButton_Click(sender, e);
             }
         }
         private void UpdatePositions()
         {
-            if (storedPositions.SelectedItem != new SavedPos())
+            if (cmbStoredPositions.Items.Count == 0)
+                return;
+
+            if (cmbStoredPositions.SelectedItem != new SavedPos())
             {
-                storedPositions.Items.Clear();
-                storedPositions.Items.Add(new SavedPos());
+                var blank = cmbStoredPositions.Items[0] as SavedPos;
+                if (blank == null)
+                    blank = new SavedPos();
+
+                cmbStoredPositions.Items.Clear();
+                cmbStoredPositions.Items.Add(blank);
                 foreach (var item in Positions)
                 {
-                    storedPositions.Items.Add(item);
+                    cmbStoredPositions.Items.Add(item);
                 }
             }
 
@@ -165,13 +176,13 @@ namespace DS2S_META
 
         public void RemoveSavedPos()
         {
-            if (Positions.Any(n => n.Name == storedPositions.Text))
+            if (Positions.Any(n => n.Name == cmbStoredPositions.Text))
             {
                 if (System.Windows.Forms.MessageBox.Show("Are you sure you want to delete this positon?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    var old = Positions.Single(n => n.Name == storedPositions.Text);
+                    var old = Positions.Single(n => n.Name == cmbStoredPositions.Text);
                     Positions.Remove(old);
-                    storedPositions.SelectedIndex = 0;
+                    cmbStoredPositions.SelectedIndex = 0;
                     UpdatePositions();
                     SavedPos.Save(Positions);
                 }
@@ -267,14 +278,14 @@ namespace DS2S_META
             //    Hook.LastBonfire = ((DS2SBonfire)cbxBonfire.SelectedItem).ID;
         }
 
-        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             RemoveSavedPos();
         }
 
         private void storedPositions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var savedPos = storedPositions.SelectedItem as SavedPos;
+            var savedPos = cmbStoredPositions.SelectedItem as SavedPos;
             if (savedPos == null)
                 return;
 

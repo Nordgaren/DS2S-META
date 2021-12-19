@@ -23,7 +23,6 @@ namespace DS2S_META
         public InternalControl()
         {
             InitializeComponent();
-            var lol = DS2SBonfireHub.All;
         }
 
         internal override void EnableCtrls(bool enable)

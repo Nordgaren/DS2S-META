@@ -1649,16 +1649,18 @@ namespace DS2S_META
         {
             var inject = new byte[0x11];
             Array.Copy(asm, inject, inject.Length);
-            valuePointer = Allocate(sizeof(float));
-            Kernel32.WriteBytes(Handle, valuePointer, BitConverter.GetBytes(value));
-            var valuePointerBytes = BitConverter.GetBytes(valuePointer.ToInt64());
-
             var newCode = new byte[0x18];
             Array.Copy(asm, inject.Length, newCode, 0x0, newCode.Length);
+
+            valuePointer = Allocate(sizeof(float));
+            var valuePointerBytes = BitConverter.GetBytes(valuePointer.ToInt64());
             codePointer = Allocate(sizeof(float), Kernel32.PAGE_EXECUTE_READWRITE);
             var codePointerBytes = BitConverter.GetBytes(codePointer.ToInt64());
-            Array.Copy(codePointerBytes, 0x0, inject, 0x3, valuePointerBytes.Length);
+
             Array.Copy(valuePointerBytes, 0x0, newCode, 0x2, valuePointerBytes.Length);
+            Array.Copy(codePointerBytes, 0x0, inject, 0x3, valuePointerBytes.Length);
+
+            Kernel32.WriteBytes(Handle, valuePointer, BitConverter.GetBytes(value));
             Kernel32.WriteBytes(Handle, codePointer, newCode);
             speedFactorPointer.WriteBytes(0x0, inject);
         }

@@ -82,10 +82,10 @@
                                 <Separator Width="259" Visibility="Hidden"/>
                                 <StackPanel>
                                     <Label Content="Stored Positions"/>
-                                    <ComboBox x:Name="storedPositions" KeyDown="storedPositions_KeyDown" SelectionChanged="storedPositions_SelectionChanged" IsEditable="True" Width="100" />
+                                    <ComboBox x:Name="cmbStoredPositions" KeyDown="storedPositions_KeyDown" SelectionChanged="storedPositions_SelectionChanged" IsEditable="True" Width="100" />
                                 </StackPanel>
                                 <StackPanel Margin="5,26,0,0">
-                                    <Button x:Name="deleteButton" Content="Del" Width="35" Height="22" Click="deleteButton_Click"/>
+                                    <Button x:Name="deleteButton" Content="Del" Width="35" Height="22" Click="DeleteButton_Click"/>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>

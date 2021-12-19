@@ -34,9 +34,9 @@ namespace DS2S_META
         }
         private void cbmClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DS2SClass charClass = cmbClass.SelectedItem as DS2SClass;
             if (Hook.Loaded)
             {
+                DS2SClass charClass = cmbClass.SelectedItem as DS2SClass;
                 Hook.Class = charClass.ID;
                 nudVig.Minimum = charClass.Vigor;
                 nudEnd.Minimum = charClass.Endurance;
@@ -94,6 +94,36 @@ namespace DS2S_META
         private void Name_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             Hook.Name = txtName.Text;
+        }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            DS2SClass charClass = cmbClass.SelectedItem as DS2SClass;
+            if (charClass == null)
+                return;
+
+            nudVig.Value = charClass.Vigor;
+            nudEnd.Value = charClass.Endurance;
+            nudVit.Value = charClass.Vitality;
+            nudAtt.Value = charClass.Attunement;
+            nudStr.Value = charClass.Strength;
+            nudDex.Value = charClass.Dexterity;
+            nudAdp.Value = charClass.Adaptability;
+            nudInt.Value = charClass.Intelligence;
+            nudFth.Value = charClass.Faith;
+        }
+
+        private void Max_Click(object sender, RoutedEventArgs e)
+        {
+            nudVig.Value = 99;
+            nudEnd.Value = 99;
+            nudVit.Value = 99;
+            nudAtt.Value = 99;
+            nudStr.Value = 99;
+            nudDex.Value = 99;
+            nudAdp.Value = 99;
+            nudInt.Value = 99;
+            nudFth.Value = 99;
         }
     }
 }
