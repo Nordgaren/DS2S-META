@@ -224,7 +224,7 @@ namespace DS2S_META
             WindowState = WindowState.Minimized;
         }
 
-        private void Close_Click(object sender, RoutedEventArgs e)
+        private void MainWindowClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

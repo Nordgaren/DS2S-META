@@ -52,7 +52,7 @@
                         Height="20"
                         Background="Transparent"
                         Foreground="White"
-                        Click="Close_Click"
+                        Click="MainWindowClose_Click"
                         BorderThickness="0"/>
                 </StackPanel>
             </Grid>

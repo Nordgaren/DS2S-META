@@ -889,7 +889,7 @@ namespace DS2S_META
             var heldOffset = 0x38;
             var nextOffset = 0x10;
 
-            while (true)
+            while (itemOffset < 0x7D00)
             {
                 var itemID = AvailableItemBag.ReadInt32(itemOffset);
                 var boxValue = AvailableItemBag.ReadInt32(boxOffset);
@@ -899,13 +899,12 @@ namespace DS2S_META
                     if (boxValue == 0)
                         return held;
 
-                if (itemID == 0 && held == 0)
-                    return held;
-
                 itemOffset += nextOffset;
                 boxOffset += nextOffset;
                 heldOffset += nextOffset;
             }
+
+            return 0;
         }
 
         private int GetArmorMaxUpgrade(int id)
@@ -935,29 +934,11 @@ namespace DS2S_META
             if (bitField == 0)
                 return new List<DS2SInfusion>() { DS2SInfusion.Infusions[0] };
 
-
-            for (int i = 0; (1 << i) < 1024; i++)
+            for (int i = 0; i < DS2SInfusion.Infusions.Count; i++)
             {
                 if ((bitField & (1 << i)) != 0)
                     infusions.Add(DS2SInfusion.Infusions[i]);
             }
-
-            if ((bitField & 4) != 0)
-                infusions.Add(DS2SInfusion.Magic);
-            if ((bitField & 8) != 0)
-                infusions.Add(DS2SInfusion.Lightning);
-            if ((bitField & 16) != 0)
-                infusions.Add(DS2SInfusion.Dark);
-            if ((bitField & 32) != 0)
-                infusions.Add(DS2SInfusion.Poison);
-            if ((bitField & 64) != 0)
-                infusions.Add(DS2SInfusion.Bleed);
-            if ((bitField & 128) != 0)
-                infusions.Add(DS2SInfusion.Raw);
-            if ((bitField & 256) != 0)
-                infusions.Add(DS2SInfusion.Enchanted);
-            if ((bitField & 512) != 0)
-                infusions.Add(DS2SInfusion.Mundane);
 
             return infusions;
         }
