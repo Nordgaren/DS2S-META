@@ -1,4 +1,4 @@
-﻿//Format: Bonfire Entity ID; Name [arbitrary]
+﻿//Format: Bonfire Hub Name: Name of Each Bonfire Seperated by '-'[Important];
 Things Betwixed: Fire Keepers' Dwelling
 Majula: The Far Fire
 Forest of the Fallen Giants: The Crestfallen's Retreat - Cardinal Tower - Soldiers' Rest - The Place Unbeknownst

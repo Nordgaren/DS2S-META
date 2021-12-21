@@ -79,7 +79,7 @@ namespace DS2S_META
         private PHPointer SpeedFactorBuildup;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
-        public bool Setup => BaseA != null && BaseA.Resolve() != IntPtr.Zero;
+        public bool Setup => ItemParamOffsetDict != null;
         public bool Multiplayer => Loaded ? ConnectionType > 1 : true;
         public bool Focused => Hooked && User32.GetForegroundProcessID() == Process.Id;
 
@@ -950,7 +950,7 @@ namespace DS2S_META
 
         private int GetArmorMaxUpgrade(int id)
         {
-            if (ArmorReinforceParamOffsetDict == null) return 0;
+            if  (!Setup) return 0;
             return ArmorReinforceParam.ReadInt32(ArmorReinforceParamOffsetDict[id - 10000000] + (int)DS2SOffsets.ArmorReinforceParam.MaxUpgrade);
         }
         private int GetWeaponMaxUpgrade(int id)
