@@ -274,5 +274,17 @@ namespace DS2S_META.Properties {
                 this["CreateItem"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SpawnUndroppable {
+            get {
+                return ((bool)(this["SpawnUndroppable"]));
+            }
+            set {
+                this["SpawnUndroppable"] = value;
+            }
+        }
     }
 }

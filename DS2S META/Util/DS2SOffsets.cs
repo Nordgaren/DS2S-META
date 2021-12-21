@@ -322,7 +322,15 @@ namespace DS2S_META
         public const int ItemParamOffset = 0x20;
         public enum ItemParam
         {
-            MaxHeld = 0x4A,
+            ItemUsageID = 0x44,
+            MaxHeld = 0x4
+        }
+
+        public const int ItemUsageParamOffset1 = 0x40;
+        public const int ItemUsageParamOffset2 = 0xD8;
+        public enum ItemUasgeParam
+        {
+            Bitfield = 0x6
         }
 
         #endregion

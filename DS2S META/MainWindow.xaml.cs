@@ -127,7 +127,7 @@ namespace DS2S_META
                 UpdateMainProperties();
                 if (Hook.Hooked)
                 {
-                    if (Hook.Loaded)
+                    if (Hook.Loaded && Hook.Setup)
                     {
                         if (!FormLoaded)
                         {
@@ -229,6 +229,11 @@ namespace DS2S_META
         private void MainWindowClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void SpawnUndroppable_Checked(object sender, RoutedEventArgs e)
+        {
+            metaItems.UpdateCreateEnabled();
         }
     }
 }

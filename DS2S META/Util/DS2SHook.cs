@@ -62,9 +62,9 @@ namespace DS2S_META
         private PHPointer WeaponParam;
         private PHPointer WeaponReinforceParam;
         private PHPointer CustomAttrSpecParam;
-        private PHPointer ArmorParam;
         private PHPointer ArmorReinforceParam;
         private PHPointer ItemParam;
+        private PHPointer ItemUseageParam;
 
         private PHPointer BaseBSetup;
         private PHPointer BaseB;
@@ -79,7 +79,7 @@ namespace DS2S_META
         private PHPointer SpeedFactorBuildup;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
-        public bool Setup => ItemParamOffsetDict != null;
+        public bool Setup = false;
         public bool Multiplayer => Loaded ? ConnectionType > 1 : true;
         public bool Focused => Hooked && User32.GetForegroundProcessID() == Process.Id;
 
@@ -135,9 +135,9 @@ namespace DS2S_META
             WeaponParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             WeaponReinforceParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponReinforceParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             CustomAttrSpecParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.CustomAttrSpecParamOffset, (int)DS2SOffsets.ParamDataOffset2);
-            ArmorParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.ArmorParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             ArmorReinforceParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.ArmorReinforceParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             ItemParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset3, (int)DS2SOffsets.ItemParamOffset, (int)DS2SOffsets.ParamDataOffset2);
+            ItemUseageParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset3, (int)DS2SOffsets.ItemUsageParamOffset1, (int)DS2SOffsets.ItemUsageParamOffset2);
 
             BaseB = CreateBasePointer(BasePointerFromSetupPointer(BaseBSetup));
             Connection = CreateChildPointer(BaseB, (int)DS2SOffsets.ConnectionOffset);
@@ -151,14 +151,16 @@ namespace DS2S_META
             CustomAttrOffsetDict = BuildOffsetDictionary(CustomAttrSpecParam, "CUSTOM_ATTR_SPEC_PARAM");
             ArmorReinforceParamOffsetDict = BuildOffsetDictionary(ArmorReinforceParam, "ARMOR_REINFORCE_PARAM");
             ItemParamOffsetDict = BuildOffsetDictionary(ItemParam, "ITEM_PARAM");
+            ItemUsageParamOffsetDict = BuildOffsetDictionary(ItemUseageParam, "ITEM_USAGE_PARAM");
             UpdateStatsProperties();
+            Setup = true;
         }
 
       
         private void DS2Hook_OnUnhooked(object sender, PHEventArgs e)
         {
             Version = "Not Hooked";
-            
+            Setup = false;
         }
 
         public void UpdateMainProperties()
@@ -852,6 +854,8 @@ namespace DS2S_META
         private static Dictionary<int, int> CustomAttrOffsetDict;
         private static Dictionary<int, int> ArmorReinforceParamOffsetDict;
         private static Dictionary<int, int> ItemParamOffsetDict;
+        private static Dictionary<int, int> ItemUsageParamOffsetDict;
+
 
         private Dictionary<int, int> BuildOffsetDictionary(PHPointer pointer, string expectedParamName)
         {
@@ -920,7 +924,7 @@ namespace DS2S_META
 
             return 0;
         }
-
+        
         private int GetHeldInInventory(int id)
         {
             var inventorySlot = 0x30;
@@ -947,7 +951,6 @@ namespace DS2S_META
 
             return 0;
         }
-
         private int GetArmorMaxUpgrade(int id)
         {
             if  (!Setup) return 0;
@@ -982,6 +985,17 @@ namespace DS2S_META
             }
 
             return infusions;
+        }
+        internal bool GetIsDroppable(int id)
+        {
+            if (!Setup) return false;
+            var itemUsageID = ItemParam.ReadInt32(ItemParamOffsetDict[id] + (int)DS2SOffsets.ItemParam.ItemUsageID);
+            byte bitField = ItemUseageParam.ReadByte(ItemUsageParamOffsetDict[itemUsageID] + (int)DS2SOffsets.ItemUasgeParam.Bitfield);
+
+            if (bitField == 0)
+                return false;
+
+            return (bitField & 4) != 0;
         }
 
         #endregion
