@@ -16,9 +16,9 @@ namespace DS2S_META
             Match bonfireEntry = BonfireHubEntryRx.Match(config);
             Name = bonfireEntry.Groups["name"].Value.Replace(":", "");
 
-            foreach (var item in bonfireEntry.Groups["bonfires"].Value.Split('-'))
+            foreach (var bonfire in bonfireEntry.Groups["bonfires"].Value.Split('-'))
             {
-                Bonfires.Add(item);
+                Bonfires.Add(bonfire.Trim());
             }
         }
 

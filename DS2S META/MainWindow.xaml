@@ -206,6 +206,13 @@
                                                 <local:HotkeyControl x:Name="hkeyUp" HotkeyName="Move Up" Margin="0,5,0,0"/>
                                                 <local:HotkeyControl x:Name="hkeyDown" HotkeyName="Move Down" Margin="0,5,0,0"/>
                                                 <local:HotkeyControl x:Name="hkeySpeed" HotkeyName="Modify Speed" Margin="0,5,0,0"/>
+                                                <local:HotkeyControl x:Name="hkeyWarp" HotkeyName="Warp" Margin="0,5,0,0"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Label Content="Item Tab"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" >
+                                            <StackPanel Margin="5,0,5,5" >
+                                                <local:HotkeyControl x:Name="hkeyCreateItem" HotkeyName="Create Item" Margin="0,5,0,0"/>
                                             </StackPanel>
                                         </Border>
                                         <Label Content="Internal Tab"/>

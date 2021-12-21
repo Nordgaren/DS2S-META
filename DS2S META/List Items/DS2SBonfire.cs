@@ -1,26 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 
 namespace DS2S_META
 {
     class DS2SBonfire : IComparable<DS2SBonfire>
     {
-        private static Regex BonfireEntryRx = new Regex(@"^(?<id>\S+) (?<name>.+)$");
+        private static Regex BonfireEntryRx = new Regex(@"^(?<area>\S+) (?<id>\S+) (?<name>.+)$");
 
         public string Name;
-        public int ID;
+        public ushort ID;
+        public int AreaID;
 
         private DS2SBonfire(string config)
         {
             Match bonfireEntry = BonfireEntryRx.Match(config);
+
             Name = bonfireEntry.Groups["name"].Value;
-            ID = Convert.ToInt32(bonfireEntry.Groups["id"].Value);
+            ID = Convert.ToUInt16(bonfireEntry.Groups["id"].Value);
+            AreaID = Convert.ToInt32(bonfireEntry.Groups["area"].Value);
         }
-        public DS2SBonfire(int id, string name)
+        public DS2SBonfire(int areaId, ushort id, string name)
         {
             ID = id;
             Name = name;
+            AreaID = areaId;
         }
         public override string ToString()
         {

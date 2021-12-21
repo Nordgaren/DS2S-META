@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -30,27 +31,48 @@ namespace DS2S_META
             cmbCategory.ItemsSource = DS2SItemCategory.All;
             cmbCategory.SelectedIndex = 0;
             FilterItems();
+            InventoryTimer.Interval = 100;
+            InventoryTimer.Elapsed += InventoryTimer_Elapsed;
+        }
+
+        private void InventoryTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Dispatcher.Invoke(new Action(() =>
+            {
+                if (cbxQuantityRestrict.IsChecked.Value)
+                {
+                    DS2SItem item = lbxItems.SelectedItem as DS2SItem;
+                    if (item == null)
+                        return;
+
+                    var max = Hook.GetMaxQuantity(item);
+                    var held = Hook.GetHeld(item);
+                    var diff = max - held;
+                    if (diff > nudQuantity.Maximum || diff < nudQuantity.Maximum)
+                    {
+                        nudQuantity.Maximum = diff;
+                        if (cbxMax.IsChecked.Value)
+                            nudQuantity.Value = nudQuantity.Maximum;
+
+                        nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
+                        txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible;
+                    }
+                }
+            }));
         }
 
         internal override void ReloadCtrl()
         {
             lbxItems.SelectedIndex = -1;
             lbxItems.SelectedIndex = 0;
-            if (cbxMax.IsChecked.Value)
-            {
-                DS2SItem item = lbxItems.SelectedItem as DS2SItem;
-                if (item == null)
-                    return;
-
-                var max = Hook.GetMaxQuantity(item);
-                var held = Hook.GetHeld(item);
-                nudQuantity.Maximum = max - held;
-                nudQuantity.Value = nudQuantity.Maximum;
-                nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
-                txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible; ;
-            }
         }
 
+        internal override void EnableCtrls(bool enable)
+        {
+            InventoryTimer.Enabled = enable;
+        }
+
+        Timer InventoryTimer = new Timer();
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FilterItems();
@@ -148,16 +170,10 @@ namespace DS2S_META
             if (item == null)
                 return;
 
-            if (cbxQuantityRestrict.IsChecked.Value)
+            if (!cbxQuantityRestrict.IsChecked.Value)
             {
-                var max = Hook.GetMaxQuantity(item);
-                var held = Hook.GetHeld(item);
-                nudQuantity.Maximum = max - held;
-                nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
                 txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible;
-            }
-            else
-            {
+
                 var max = Hook.GetMaxQuantity(item);
                 var held = Hook.GetHeld(item);
                 nudQuantity.Maximum = 99;
@@ -190,14 +206,6 @@ namespace DS2S_META
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            _ = ChangeColor(Brushes.DarkGray);
-            CreateItem();
-        }
-
-        //I think this is for safety so you don't spawn two items (not my code) - Nord
-        private void lbxItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            _ = ChangeColor(Brushes.DarkGray);
             CreateItem();
         }
 
@@ -209,15 +217,13 @@ namespace DS2S_META
             {
                 _ = ChangeColor(Brushes.DarkGray);
                 DS2SItem item = lbxItems.SelectedItem as DS2SItem;
+                if (item == null)
+                    return;
 
                 var id = item.ID;
 
                 var infusion = cmbInfusion.SelectedItem as DS2SInfusion;
                 Hook.GetItem(id, (short)nudQuantity.Value, (byte)nudUpgrade.Value, (byte)infusion.ID);
-                var max = Hook.GetMaxQuantity(item);
-                var held = Hook.GetHeld(item);
-                nudQuantity.Maximum = max - held;
-                txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible;
             }
         }
 
@@ -343,6 +349,7 @@ namespace DS2S_META
         {
             txtSearch.SelectAll();
             txtSearch.Focus();
+            e.Handled = true;
         }
 
         private void SearchAllCheckbox_Checked(object sender, RoutedEventArgs e)

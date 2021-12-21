@@ -19,4 +19,3 @@
  62045000 Red Sign Soapstone
  62070000 Dragon Eye
  62160000 Black Separation Crystal
- 62190000 Petrified Egg

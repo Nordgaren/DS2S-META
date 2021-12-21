@@ -1,1 +1,4 @@
-﻿PlayerBaseMisc BaseA -> A8 -> C0 - Class, NewGame & SaveSlot
+﻿Future improvements:
+ - stam regen?
+ - item discovery?
+ - quitout!

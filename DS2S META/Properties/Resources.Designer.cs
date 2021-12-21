@@ -61,20 +61,34 @@ namespace DS2S_META.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0:  52                      push   rdx
-        ///1:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
-        ///8:  ff ff ff
-        ///b:  ff d2                   call   rdx
-        ///d:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
-        ///14: ff ff ff
-        ///17: f3 0f 59 1a             mulss  xmm3,DWORD PTR [rdx]
-        ///1b: f3 0f 10 16             movss  xmm2,DWORD PTR [rsi]
-        ///1f: 5a                      pop    rdx
-        ///20: c3                      ret .
+        ///   Looks up a localized string similar to 0:  48 83 ec 28             sub    rsp,0x28 
+        ///4:  48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000 ;PlayerParam Pointer
+        ///b:  ff ff ff
+        ///e:  48 c7 c2 f4 01 00 00    mov    rdx,0x1f4 ;number of souls
+        ///15: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000 ;Give Souls func
+        ///1c: ff ff ff
+        ///1f: 41 ff d6                call   r14
+        ///22: 48 83 c4 28             add    rsp,0x28
+        ///26: c3                      ret .
         /// </summary>
         internal static string AddSouls {
             get {
                 return ResourceManager.GetString("AddSouls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0:  48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000
+        ///7:  ff ff ff
+        ///a:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
+        ///11: ff ff ff
+        ///14: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000
+        ///1b: ff ff ff
+        ///1e: 41 ff d6                call   r14 .
+        /// </summary>
+        internal static string BonfireWarp {
+            get {
+                return ResourceManager.GetString("BonfireWarp", resourceCulture);
             }
         }
         

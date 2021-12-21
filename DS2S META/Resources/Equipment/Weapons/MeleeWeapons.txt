@@ -59,7 +59,6 @@
  1810000 Flamberge
  1820000 Claymore
  1830000 Majestic Greatsword
- 1831000 Majestic Greatsword
  1850000 Drangleic Sword
  1860000 Thorned Greatsword
  1870000 Bluemoon Greatsword
@@ -154,7 +153,6 @@
  3220000 Halberd
  3240000 Helix Halberd
  3250000 Santier's Spear
- 3251000 Santier's Spear
  3270000 Mastodon Halberd
  3280000 Blue Knight's Halberd
  3290000 Dragonrider's Halberd
@@ -176,6 +174,7 @@
  3620000 Bloodied Whip
  3630000 Spotted Whip
  3660000 Old Whip
+ 3910000 Pilgrim's Spontoon
  5000000 Murakumo
  5010000 Arced Sword
  5040000 Curved Dragon Greatsword
@@ -206,10 +205,3 @@
  5510000 Yellow Quartz Longsword
  5520000 Bound Hand Axe
  5530000 Homunculus Mace
- 5600000 Longsword
- 5610000 Murakumo
- 5620000 Blacksteel Katana
- 5630000 Rapier
- 5640000 Greataxe
- 5650000 Great Club
- 5660000 Caestus

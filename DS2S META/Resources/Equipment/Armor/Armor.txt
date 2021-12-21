@@ -64,10 +64,10 @@
  21350101 Robe of Judgment
  21350102 Manchettes of Judgment
  21350103 Tights of Judgment
- 21360100 Helm of Aurous (T)
- 21360101 Armor of Aurous (T)
- 21360102 Gauntlets of Aurous (T)
- 21360103 Leggings of Aurous (T)
+ 21360100 Helm of Aurous (Invis)
+ 21360101 Armor of Aurous (Invis)
+ 21360102 Gauntlets of Aurous (Invis)
+ 21360103 Leggings of Aurous (Invis)
  21361100 Helm of Aurous
  21361101 Armor of Aurous
  21361102 Gauntlets of Aurous
@@ -177,8 +177,8 @@
  22270101 Prisoner's Tatters
  22270102 Prisoner's Gloves
  22270103 Prisoner's Waistcloth
- 22271100 Prisoner's Hood
- 22271101 Prisoner's Tatters
+ 22271100 Prisoner's Hood Variation
+ 22271101 Prisoner's Tatters Variation
  22310100 Archdrake Helm
  22310101 Archdrake Robes
  22310102 Archdrake Gloves

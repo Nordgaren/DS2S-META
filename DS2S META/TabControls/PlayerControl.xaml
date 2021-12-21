@@ -8,18 +8,18 @@
              xmlns:p="clr-namespace:DS2S_META.Properties"
              xmlns:local="clr-namespace:DS2S_META"
              mc:Ignorable="d" 
-             d:DesignHeight="625" d:DesignWidth="425" Background="LightGray">
+             d:DesignHeight="605" d:DesignWidth="425" Background="LightGray">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="185"/>
+            <RowDefinition Height="170"/>
             <RowDefinition Height="275"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <StackPanel Margin="10,10,10,0">
+        <Grid Grid.Row="0" Grid.RowSpan="2">
+            <StackPanel Margin="10,5,10,0" >
                 <Label Content="Status"/>
                 <Border BorderBrush="Gray" BorderThickness="1" Height="145" >
-                    <StackPanel >
+                    <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
                             <StackPanel Width="100">
                                 <Label Content="Health"/>
@@ -72,7 +72,7 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Grid.RowSpan="2">
-            <StackPanel Margin="10,00,10,0">
+            <StackPanel Margin="10,0,10,0">
                 
                 <Label Content="Position"/>
                 <Border BorderBrush="Gray" BorderThickness="1" Height="252" >
@@ -182,12 +182,19 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel>
-                            <Label Content="Bonfire"/>
-                            <ComboBox x:Name="cbxBonfire" SelectionChanged="cbxBonfire_SelectionChanged" IsEnabled="False" Width="350"/>
-                            <Grid Visibility="Hidden">
-                                <TextBox x:Name="txtSearch" Width="350"/>
-                                <Label Content="Search" x:Name="lblSearch" Margin="45,0,0,0"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Bonfire"/>
+                                <CheckBox Content="Quick Select Bonfire" x:Name="cbxQuickSelectBonfire" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <Grid HorizontalAlignment="Center" >
+                                <TextBox x:Name="txtSearch" Height="20" TextChanged="txtSearch_TextChanged" Width="385" PreviewKeyDown="KeyPressed" PreviewMouseLeftButtonDown="txtSearch_PreviewMouseLeftButtonDown" AutoWordSelection="True"/>
+                                <Label x:Name="lblSearch" Foreground="LightSlateGray" Content="Search..." IsEnabled="False" Margin="5,0,0,0" IsHitTestVisible="False"/>
                             </Grid>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <ComboBox x:Name="cbxBonfire" SelectionChanged="cbxBonfire_SelectionChanged"  Width="300"/>
+                                <Button Content="Warp" Click="WarpButton_Click" Width="75" Margin="10,0,0,0" x:Name="btnWarp"/>
+                            </StackPanel>
+                            <Label x:Name="txtTest"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
