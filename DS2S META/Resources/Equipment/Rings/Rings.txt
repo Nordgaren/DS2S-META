@@ -96,8 +96,6 @@
  40530002 Ring of Thorns+2
  40540000 Delicate String
  40550000 White Ring
- 40560000 Illusory Ring of the Vengeful
- 40570000 Illusory Ring of the Guilty
  40610000 Ring of Whispers
  40620000 Illusory Ring of the Exalted
  40700000 Crest of the Rat

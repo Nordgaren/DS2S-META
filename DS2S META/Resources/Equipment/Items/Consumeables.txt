@@ -1,4 +1,12 @@
  //Format: Item ID; Name [arbitrary]
+ 51010000 Simpleton's Spice
+ 51020000 Skeptic's Spice
+ 50880000 Smooth & Silky Stone
+ 50885000 Small Smooth & Silky Stone
+ 50920000 Soul of a Giant
+ 50960000 Soul Vessel
+ 53200000 Smelter Wedge
+ 53300000 Soul of Nadalia, Bride of Ash - Shard
  60010000 Lifegem
  60020000 Radiant Lifegem
  60030000 Old Radiant Lifegem

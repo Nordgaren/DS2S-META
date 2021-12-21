@@ -40,6 +40,9 @@ namespace DS2S_META
         private PHPointer ItemGiveFunc;
         private PHPointer ItemStruct2dDisplay;
         private PHPointer DisplayItem;
+        private PHPointer SetWarpTargetFunc;
+        private PHPointer WarpManager;
+        private PHPointer WarpFunc;
 
         private PHPointer BaseA;
         private PHPointer PlayerName;
@@ -52,16 +55,16 @@ namespace DS2S_META
         private PHPointer PlayerParam;
         private PHPointer PlayerType;
         private PHPointer PlayerMapData;
-        private PHPointer Bonfire;
+        private PHPointer EventManager;
         private PHPointer BonfireLevels;
 
         private PHPointer LevelUpSoulsParam;
         private PHPointer WeaponParam;
         private PHPointer WeaponReinforceParam;
         private PHPointer CustomAttrSpecParam;
-        private PHPointer ArmorParam;
         private PHPointer ArmorReinforceParam;
         private PHPointer ItemParam;
+        private PHPointer ItemUseageParam;
 
         private PHPointer BaseBSetup;
         private PHPointer BaseB;
@@ -76,8 +79,8 @@ namespace DS2S_META
         private PHPointer SpeedFactorBuildup;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
-        public bool Setup => BaseA != null && BaseA.Resolve() != IntPtr.Zero;
-
+        public bool Setup = false;
+        public bool Multiplayer => Loaded ? ConnectionType > 1 : true;
         public bool Focused => Hooked && User32.GetForegroundProcessID() == Process.Id;
 
         public DS2SHook(int refreshInterval, int minLifetime) :
@@ -89,10 +92,12 @@ namespace DS2S_META
             SpeedFactorAnim = RegisterAbsoluteAOB(DS2SOffsets.SpeedFactorAnimOffset);
             SpeedFactorJump = RegisterAbsoluteAOB(DS2SOffsets.SpeedFactorJumpOffset);
             SpeedFactorBuildup = RegisterAbsoluteAOB(DS2SOffsets.SpeedFactorBuildupOffset);
-            GiveSoulsFunc = RegisterAbsoluteAOB(DS2SOffsets.GiveSoulsFunc);
+            GiveSoulsFunc = RegisterAbsoluteAOB(DS2SOffsets.GiveSoulsFuncAoB);
             ItemGiveFunc = RegisterAbsoluteAOB(DS2SOffsets.ItemGiveFunc);
             ItemStruct2dDisplay = RegisterAbsoluteAOB(DS2SOffsets.ItemStruct2dDisplay);
             DisplayItem = RegisterAbsoluteAOB(DS2SOffsets.DisplayItem); 
+            SetWarpTargetFunc = RegisterAbsoluteAOB(DS2SOffsets.SetWarpTargetFuncAoB);
+            WarpFunc = RegisterAbsoluteAOB(DS2SOffsets.WarpFuncAoB);
 
             BaseBSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseBAoB);
 
@@ -101,7 +106,7 @@ namespace DS2S_META
         }
         private void DS2Hook_OnHooked(object sender, PHEventArgs e)
         {
-            Version = "Vanilla";
+            Version = "Scholar";
 
             BaseA = CreateBasePointer(BasePointerFromSetupPointer(BaseASetup));
             if (BaseA.Resolve() == IntPtr.Zero)
@@ -122,16 +127,17 @@ namespace DS2S_META
             PlayerParam = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerParamOffset);
             PlayerType = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerTypeOffset);
             PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2SOffsets.PlayerMapDataOffset2, (int)DS2SOffsets.PlayerMapDataOffset3);
-            Bonfire = CreateChildPointer(BaseA, (int)DS2SOffsets.BonfireOffset);
-            BonfireLevels = CreateChildPointer(Bonfire, (int)DS2SOffsets.BonfireLevelsOffset1, (int)DS2SOffsets.BonfireLevelsOffset2);
+            EventManager = CreateChildPointer(BaseA, (int)DS2SOffsets.EventManagerOffset);
+            BonfireLevels = CreateChildPointer(EventManager, (int)DS2SOffsets.BonfireLevelsOffset1, (int)DS2SOffsets.BonfireLevelsOffset2);
+            WarpManager = CreateChildPointer(EventManager, (int)DS2SOffsets.WarpManagerOffset);
 
             LevelUpSoulsParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.LevelUpSoulsParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             WeaponParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             WeaponReinforceParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponReinforceParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             CustomAttrSpecParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.CustomAttrSpecParamOffset, (int)DS2SOffsets.ParamDataOffset2);
-            ArmorParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.ArmorParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             ArmorReinforceParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.ArmorReinforceParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             ItemParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset3, (int)DS2SOffsets.ItemParamOffset, (int)DS2SOffsets.ParamDataOffset2);
+            ItemUseageParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset3, (int)DS2SOffsets.ItemUsageParamOffset1, (int)DS2SOffsets.ItemUsageParamOffset2);
 
             BaseB = CreateBasePointer(BasePointerFromSetupPointer(BaseBSetup));
             Connection = CreateChildPointer(BaseB, (int)DS2SOffsets.ConnectionOffset);
@@ -145,14 +151,16 @@ namespace DS2S_META
             CustomAttrOffsetDict = BuildOffsetDictionary(CustomAttrSpecParam, "CUSTOM_ATTR_SPEC_PARAM");
             ArmorReinforceParamOffsetDict = BuildOffsetDictionary(ArmorReinforceParam, "ARMOR_REINFORCE_PARAM");
             ItemParamOffsetDict = BuildOffsetDictionary(ItemParam, "ITEM_PARAM");
+            ItemUsageParamOffsetDict = BuildOffsetDictionary(ItemUseageParam, "ITEM_USAGE_PARAM");
             UpdateStatsProperties();
+            Setup = true;
         }
 
       
         private void DS2Hook_OnUnhooked(object sender, PHEventArgs e)
         {
             Version = "Not Hooked";
-            
+            Setup = false;
         }
 
         public void UpdateMainProperties()
@@ -163,7 +171,6 @@ namespace DS2S_META
         }
         public void UpdateStatsProperties()
         {
-            var lol = AvailableItemBag.Resolve();
             OnPropertyChanged(nameof(SoulLevel));
             OnPropertyChanged(nameof(Souls));
             OnPropertyChanged(nameof(SoulMemory));
@@ -202,6 +209,7 @@ namespace DS2S_META
             OnPropertyChanged(nameof(StableX));
             OnPropertyChanged(nameof(StableY));
             OnPropertyChanged(nameof(StableZ));
+            OnPropertyChanged(nameof(LastAreaID));
         }
 
         public void UpdateBonfireProperties()
@@ -284,6 +292,8 @@ namespace DS2S_META
             OnPropertyChanged(nameof(LowerGarrison));
             OnPropertyChanged(nameof(GrandCathedral));
         }
+
+       
 
         public void UpdateInternalProperties()
         {
@@ -484,10 +494,15 @@ namespace DS2S_META
                     NetworkPhantomID = 18;
             }
         }
-        public int LastBonfireID
+        public ushort LastBonfireID
         {
-            get => Loaded ? Bonfire.ReadInt32((int)DS2SOffsets.Bonfire.LastSetBonfire) : 0;
-            set => Bonfire.WriteInt32((int)DS2SOffsets.Bonfire.LastSetBonfire, value);
+            get => Loaded ? EventManager.ReadUInt16((int)DS2SOffsets.Bonfire.LastSetBonfire) : (ushort)0;
+            set => EventManager.WriteUInt16((int)DS2SOffsets.Bonfire.LastSetBonfire, value);
+        }
+        public int LastAreaID
+        {
+            get => Loaded ? EventManager.ReadInt32((int)DS2SOffsets.Bonfire.LastSetAreaID) : 0;
+            set => EventManager.WriteInt32((int)DS2SOffsets.Bonfire.LastSetAreaID, value);
         }
         //public DS2SBonfire LastBonfireObj
         //{
@@ -497,7 +512,33 @@ namespace DS2S_META
 
         public bool Online
         {
-            get => Hooked && Connection != null ? Connection.ReadInt32((int)DS2SOffsets.Connection.Online) > 0 : false;
+            get =>  ConnectionType > 0;
+        }
+
+        public int ConnectionType
+        {
+            get => Hooked && Connection != null ? Connection.ReadInt32((int)DS2SOffsets.Connection.Online) : 0;
+        }
+
+        internal void Warp(ushort id)
+        {
+            var asm = (byte[])DS2SAssembly.BonfireWarp.Clone();
+            var value = Allocate(sizeof(short));
+            Kernel32.WriteBytes(Handle, value, BitConverter.GetBytes(id));
+
+            var bytes = BitConverter.GetBytes(value.ToInt64());
+            Array.Copy(bytes, 0x0, asm, 0x9, bytes.Length);
+            bytes = BitConverter.GetBytes(SetWarpTargetFunc.Resolve().ToInt64());
+            Array.Copy(bytes, 0x0, asm, 0x21, bytes.Length);
+            bytes = BitConverter.GetBytes(WarpManager.Resolve().ToInt64());
+            Array.Copy(bytes, 0x0, asm, 0x2E, bytes.Length);
+            bytes = BitConverter.GetBytes(WarpFunc.Resolve().ToInt64());
+            Array.Copy(bytes, 0x0, asm, 0x3B, bytes.Length);
+
+            if (!Multiplayer)
+                Execute(asm);
+
+            Free(value);
         }
         #endregion
 
@@ -813,6 +854,8 @@ namespace DS2S_META
         private static Dictionary<int, int> CustomAttrOffsetDict;
         private static Dictionary<int, int> ArmorReinforceParamOffsetDict;
         private static Dictionary<int, int> ItemParamOffsetDict;
+        private static Dictionary<int, int> ItemUsageParamOffsetDict;
+
 
         private Dictionary<int, int> BuildOffsetDictionary(PHPointer pointer, string expectedParamName)
         {
@@ -822,18 +865,18 @@ namespace DS2S_META
                 throw new InvalidOperationException($"Incorrect Param Pointer: {expectedParamName}");
 
             var tableLength = pointer.ReadInt32((int)DS2SOffsets.Param.TableLength);
-            var paramID = 0x40;
-            var paramOffset = 0x48;
+            var param = 0x40;
+            var paramID = 0x0;
+            var paramOffset = 0x8;
             var nextParam = 0x18;
 
-            while (paramID < tableLength)
+            while (param < tableLength)
             {
-                var itemID = pointer.ReadInt32(paramID);
-                var itemParamOffset = pointer.ReadInt32(paramOffset);
+                var itemID = pointer.ReadInt32(param + paramID);
+                var itemParamOffset = pointer.ReadInt32(param + paramOffset);
                 dictionary.Add(itemID, itemParamOffset);
 
-                paramID += nextParam;
-                paramOffset += nextParam;
+                param += nextParam;
             }
 
             return dictionary;
@@ -881,38 +924,36 @@ namespace DS2S_META
 
             return 0;
         }
-
+        
         private int GetHeldInInventory(int id)
         {
-            var itemOffset = 0x30;
-            var boxOffset = 0x34;
-            var heldOffset = 0x38;
+            var inventorySlot = 0x30;
+            var itemOffset = 0x0;
+            var boxOffset = 0x4;
+            var heldOffset = 0x8;
             var nextOffset = 0x10;
 
             var endPointer = AvailableItemBag.ReadIntPtr(0x10).ToInt64();
             var bagSize = endPointer - AvailableItemBag.Resolve().ToInt64();
 
-            while (itemOffset < bagSize)
+            while (inventorySlot < bagSize)
             {
-                var itemID = AvailableItemBag.ReadInt32(itemOffset);
-                var boxValue = AvailableItemBag.ReadInt32(boxOffset);
-                var held = AvailableItemBag.ReadInt32(heldOffset);
+                var itemID = AvailableItemBag.ReadInt32(inventorySlot + itemOffset);
+                var boxValue = AvailableItemBag.ReadInt32(inventorySlot + boxOffset);
+                var held = AvailableItemBag.ReadInt32(inventorySlot + heldOffset);
 
                 if (itemID == id)
                     if (boxValue == 0)
                         return held;
 
-                itemOffset += nextOffset;
-                boxOffset += nextOffset;
-                heldOffset += nextOffset;
+                inventorySlot += nextOffset;
             }
 
             return 0;
         }
-
         private int GetArmorMaxUpgrade(int id)
         {
-            if (ArmorReinforceParamOffsetDict == null) return 0;
+            if  (!Setup) return 0;
             return ArmorReinforceParam.ReadInt32(ArmorReinforceParamOffsetDict[id - 10000000] + (int)DS2SOffsets.ArmorReinforceParam.MaxUpgrade);
         }
         private int GetWeaponMaxUpgrade(int id)
@@ -929,21 +970,32 @@ namespace DS2S_META
 
         internal List<DS2SInfusion> GetWeaponInfusions(int id)
         {
-            var infusions = new List<DS2SInfusion>();
+            var infusions = new List<DS2SInfusion>() { DS2SInfusion.Infusions[0] };
             var reinforceParamID = WeaponParam.ReadInt32(WeaponParamOffsetDict[id] + (int)DS2SOffsets.WeaponParam.ReinforceID);
             var customAttrID = WeaponReinforceParam.ReadInt32(WeaponReinforceParamOffsetDict[reinforceParamID] + (int)DS2SOffsets.WeaponReinforceParam.CustomAttrID);
             var bitField = CustomAttrSpecParam.ReadInt32(CustomAttrOffsetDict[customAttrID]);
 
             if (bitField == 0)
-                return new List<DS2SInfusion>() { DS2SInfusion.Infusions[0] };
+                return infusions;
 
-            for (int i = 0; i < DS2SInfusion.Infusions.Count; i++)
+            for (int i = 1; i < DS2SInfusion.Infusions.Count; i++)
             {
                 if ((bitField & (1 << i)) != 0)
                     infusions.Add(DS2SInfusion.Infusions[i]);
             }
 
             return infusions;
+        }
+        internal bool GetIsDroppable(int id)
+        {
+            if (!Setup) return false;
+            var itemUsageID = ItemParam.ReadInt32(ItemParamOffsetDict[id] + (int)DS2SOffsets.ItemParam.ItemUsageID);
+            byte bitField = ItemUseageParam.ReadByte(ItemUsageParamOffsetDict[itemUsageID] + (int)DS2SOffsets.ItemUasgeParam.Bitfield);
+
+            if (bitField == 0)
+                return false;
+
+            return (bitField & 4) != 0;
         }
 
         #endregion
@@ -1363,7 +1415,7 @@ namespace DS2S_META
                 if (DS2SItem.Items.ContainsKey(itemID + 10000000))
                     return DS2SItem.Items[itemID + 10000000];
 
-                return "Unknown";
+                return itemID.ToString();
             }
         }
         public string Chest
@@ -1376,7 +1428,7 @@ namespace DS2S_META
                 if (DS2SItem.Items.ContainsKey(itemID + 10000000))
                     return DS2SItem.Items[itemID + 10000000];
 
-                return "Unknown";
+                return itemID.ToString();
             }
         }
         public string Arms
@@ -1389,7 +1441,7 @@ namespace DS2S_META
                 if (DS2SItem.Items.ContainsKey(itemID + 10000000))
                     return DS2SItem.Items[itemID + 10000000];
 
-                return "Unknown";
+                return itemID.ToString();
             }
         }
         public string Legs
@@ -1402,7 +1454,7 @@ namespace DS2S_META
                 if (DS2SItem.Items.ContainsKey(itemID + 10000000))
                     return DS2SItem.Items[itemID + 10000000];
 
-                return "Unknown";
+                return itemID.ToString();
             }
         }
         public string RightHand1
@@ -1415,7 +1467,7 @@ namespace DS2S_META
                 if (DS2SItem.Items.ContainsKey(itemID))
                     return DS2SItem.Items[itemID];
 
-                return "Unknown";
+                return itemID.ToString();
             }
         }
         public string RightHand2
@@ -1428,7 +1480,7 @@ namespace DS2S_META
                 if (DS2SItem.Items.ContainsKey(itemID))
                     return DS2SItem.Items[itemID];
 
-                return "Unknown";
+                return itemID.ToString();
             }
         }
         public string RightHand3
@@ -1441,7 +1493,7 @@ namespace DS2S_META
                 if (DS2SItem.Items.ContainsKey(itemID))
                     return DS2SItem.Items[itemID];
 
-                return "Unknown";
+                return itemID.ToString();
             }
         }
         public string LeftHand1
@@ -1454,7 +1506,7 @@ namespace DS2S_META
                 if (DS2SItem.Items.ContainsKey(itemID))
                     return DS2SItem.Items[itemID];
 
-                return "Unknown";
+                return itemID.ToString();
             }
         }
         public string LeftHand2
@@ -1467,7 +1519,7 @@ namespace DS2S_META
                 if (DS2SItem.Items.ContainsKey(itemID))
                     return DS2SItem.Items[itemID];
 
-                return "Unknown";
+                return itemID.ToString();
             }
         }
         public string LeftHand3
@@ -1480,7 +1532,7 @@ namespace DS2S_META
                 if (DS2SItem.Items.ContainsKey(itemID))
                     return DS2SItem.Items[itemID];
 
-                return "Unknown";
+                return itemID.ToString();
             }
         }
         private bool _speedFactors;

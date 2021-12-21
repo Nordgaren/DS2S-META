@@ -1,0 +1,17 @@
+﻿0:  48 81 ec 10 01 00 00    sub    rsp,0x110
+7:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
+e:  ff ff ff
+11: 0f b7 12                movzx  edx,WORD PTR [rdx]
+14: 48 8d 4c 24 50          lea    rcx,[rsp+0x50]
+19: 41 b8 02 00 00 00       mov    r8d,0x2
+1f: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000
+26: ff ff ff
+29: 41 ff d6                call   r14
+2c: 48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000
+33: ff ff ff
+36: 48 89 c2                mov    rdx,rax
+39: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000
+40: ff ff ff
+43: 41 ff d6                call   r14
+46: 48 81 c4 10 01 00 00    add    rsp,0x110
+4d: c3                      ret 

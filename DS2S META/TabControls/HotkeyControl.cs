@@ -61,6 +61,17 @@ namespace DS2S_META
                 metaPlayer.cbxSpeed.IsEnabled = !metaInternal.cbxSpeeds.IsChecked.Value;
             }));
 
+            Hotkeys.Add(new METAHotkey("Warp", hkeyWarp.tbxHotkey, tabHotkeys, () =>
+            {
+                if (!Hook.Multiplayer)
+                    metaPlayer.Warp();
+            }));
+
+            Hotkeys.Add(new METAHotkey("CreateItem", hkeyCreateItem.tbxHotkey, tabHotkeys, () =>
+            {
+                metaItems.CreateItem();
+            }));
+
             KeyboardHook.KeyDownOrUp += GlobalKeyboardHook_KeyDownOrUp;
         }
 

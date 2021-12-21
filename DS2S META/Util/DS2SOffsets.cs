@@ -161,13 +161,16 @@ namespace DS2S_META
 
         public const int CharacterFlagsOffset = 0x490;
 
-        public const string GiveSoulsFunc = "48 83 ec 28 48 8b 01 48 85 c0 74 23 48 8b 80 b8 00 00 00";
+        public const string GiveSoulsFuncAoB = "48 83 ec 28 48 8b 01 48 85 c0 74 23 48 8b 80 b8 00 00 00";
 
-      
+        public const string SetWarpTargetFuncAoB = "48 89 5C 24 08 48 89 74 24 20 57 48 83 EC 60";
+        public const string WarpFuncAoB = "40 53 48 83 EC 60 8B 02 48 8B D9 89 01 8B 42 04";
 
-        public const int BonfireOffset = 0x70;
+        public const int EventManagerOffset = 0x70;
+        public const int WarpManagerOffset = 0x70;
         public enum Bonfire
         {
+            LastSetAreaID = 0x164,
             LastSetBonfire = 0x16C
         }
         public const int BonfireLevelsOffset1 = 0x58;
@@ -319,7 +322,15 @@ namespace DS2S_META
         public const int ItemParamOffset = 0x20;
         public enum ItemParam
         {
-            MaxHeld = 0x4A,
+            ItemUsageID = 0x44,
+            MaxHeld = 0x4
+        }
+
+        public const int ItemUsageParamOffset1 = 0x40;
+        public const int ItemUsageParamOffset2 = 0xD8;
+        public enum ItemUasgeParam
+        {
+            Bitfield = 0x6
         }
 
         #endregion

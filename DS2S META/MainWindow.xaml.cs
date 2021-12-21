@@ -127,7 +127,7 @@ namespace DS2S_META
                 UpdateMainProperties();
                 if (Hook.Hooked)
                 {
-                    if (Hook.Loaded)
+                    if (Hook.Loaded && Hook.Setup)
                     {
                         if (!FormLoaded)
                         {
@@ -183,6 +183,7 @@ namespace DS2S_META
             metaStats.EnableCtrls(enable);
             metaBonfire.EnableCtrls(enable);
             metaInternal.EnableCtrls(enable);
+            metaItems.EnableCtrls(enable);
         }
         private void ReloadAllTabs()
         {
@@ -196,6 +197,7 @@ namespace DS2S_META
             metaPlayer.UpdateCtrl();
             metaStats.UpdateCtrl();
             metaBonfire.UpdateCtrl();
+            metaItems.UpdateCtrl();
         }
 
         private void link_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -227,6 +229,11 @@ namespace DS2S_META
         private void MainWindowClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void SpawnUndroppable_Checked(object sender, RoutedEventArgs e)
+        {
+            metaItems.UpdateCreateEnabled();
         }
     }
 }

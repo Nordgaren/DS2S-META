@@ -273,6 +273,9 @@
       <DependentUpon>HotkeyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\User32.cs" />
+    <None Include="Resources\Equipment\Weapons\ReskinnedWeapons.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="Resources\Assembly\SpeedFactor.txt" />
     <Resource Include="Resources\Assembly\OgSpeedFactor.txt" />
     <Resource Include="Resources\Assembly\OgSpeedFactorAccel.txt" />
@@ -293,6 +296,7 @@
     </None>
     <Resource Include="Resources\Assembly\GiveItemWithoutMenu.txt" />
     <Resource Include="Resources\Assembly\SpeedFactorAccel.txt" />
+    <Resource Include="Resources\Assembly\BonfireWarp.txt" />
     <Content Include="Resources\Assembly\GiveItemWithMenu.txt" />
     <Compile Include="TabControls\HotkeyControl.cs" />
     <Compile Include="Util\METAHotkey.cs" />

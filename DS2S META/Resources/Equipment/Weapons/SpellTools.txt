@@ -9,7 +9,6 @@
  3880000 Bone Staff
  3890000 Staff of Wisdom
  3900000 Sunset Staff
- 3910000 Pilgrim's Spontoon
  3930000 Azal's Staff
  3940000 Retainer Staff
  4010000 Cleric's Sacred Chime

@@ -250,5 +250,41 @@ namespace DS2S_META.Properties {
                 this["ToggleSpeedFactors"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public int Warp {
+            get {
+                return ((int)(this["Warp"]));
+            }
+            set {
+                this["Warp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public int CreateItem {
+            get {
+                return ((int)(this["CreateItem"]));
+            }
+            set {
+                this["CreateItem"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SpawnUndroppable {
+            get {
+                return ((bool)(this["SpawnUndroppable"]));
+            }
+            set {
+                this["SpawnUndroppable"] = value;
+            }
+        }
     }
 }

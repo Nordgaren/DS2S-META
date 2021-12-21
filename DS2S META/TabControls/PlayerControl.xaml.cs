@@ -38,7 +38,7 @@ namespace DS2S_META
             PlayerState.Set = false;
             foreach (var bonfire in DS2SBonfire.All)
                 cbxBonfire.Items.Add(bonfire);
-            LastSetBonfire = new DS2SBonfire(-1, "Last Set: None"); //last set bonfire (default values)
+            LastSetBonfire = new DS2SBonfire(0, 0, "Last Set: None"); //last set bonfire (default values)
             cbxBonfire.Items.Add(LastSetBonfire); //add to end of filter
             Positions = SavedPos.GetSavedPositions();
             UpdatePositions();
@@ -47,6 +47,15 @@ namespace DS2S_META
         {
             if (cbxSpeed.IsChecked.Value)
                 Hook.Speed = (float)nudSpeed.Value;
+
+            var bonfire = cbxBonfire.SelectedItem as DS2SBonfire;
+            if (bonfire == null)
+                return;
+
+            var result = bonfire.AreaID == Hook.LastAreaID;
+            txtTest.Content = result;
+            txtTest.Foreground = result ? Brushes.LawnGreen : Brushes.Red;
+
         }
         internal override void EnableCtrls(bool enable)
         {
@@ -60,6 +69,7 @@ namespace DS2S_META
             cbxSpeed.IsEnabled = enable;
             cbxGravity.IsEnabled = enable;
             cbxCollision.IsEnabled = enable;
+            btnWarp.IsEnabled = enable && !Hook.Multiplayer;
 
             if (enable)
                 cbxBonfire.SelectedIndex = cbxBonfire.Items.Count - 1;
@@ -194,7 +204,7 @@ namespace DS2S_META
         internal override void UpdateCtrl() 
         {
             //manage unknown warps and current warps that are not in filter
-            int bonfireID = Hook.LastBonfireID;
+            var bonfireID = Hook.LastBonfireID;
 
             if (LastSetBonfire.ID != bonfireID) // lastSetBonfire does not match game LastBonfire
             {
@@ -203,7 +213,7 @@ namespace DS2S_META
                 if (result == null)
                 {
                     //bonfire not in filter. Add to filter as unknown
-                    result = new DS2SBonfire(bonfireID, $"Unknown {bonfireID}");
+                    result = new DS2SBonfire(Hook.LastAreaID ,bonfireID, $"Unknown {Hook.LastAreaID}: {bonfireID}");
                     DS2SBonfire.All.Add(result);
                     FilterBonfires();
                 }
@@ -211,6 +221,7 @@ namespace DS2S_META
                 //manage lastSetBonfire
                 cbxBonfire.Items.Remove(LastSetBonfire); //remove from filter (if there)
 
+                LastSetBonfire.AreaID = result.AreaID;
                 LastSetBonfire.ID = result.ID;
                 LastSetBonfire.Name = "Last Set: " + result.Name;
 
@@ -274,8 +285,15 @@ namespace DS2S_META
 
         private void cbxBonfire_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (Hook.Loaded && cbxQuickSelectBonfire.Checked)
-            //    Hook.LastBonfire = ((DS2SBonfire)cbxBonfire.SelectedItem).ID;
+            if (Hook.Loaded && cbxQuickSelectBonfire.IsChecked.Value)
+            {
+                var bonfire = cbxBonfire.SelectedItem as DS2SBonfire;
+                if (bonfire == null)
+                    return;
+
+                Hook.LastBonfireID = bonfire.ID;
+                Hook.LastAreaID = bonfire.AreaID;
+            }
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -297,5 +315,87 @@ namespace DS2S_META
             txtAngY.Text = PlayerState.AngY.ToString("N2");
             txtAngZ.Text = PlayerState.AngZ.ToString("N2");
         }
+
+        private void WarpButton_Click(object sender, RoutedEventArgs e)
+        {
+            Warp();
+        }
+
+        public void Warp()
+        {
+            _ = ChangeColor(Brushes.DarkGray);
+            if (Hook.Multiplayer)
+            {
+                System.Windows.MessageBox.Show("Warning: Cannot warp while engaging in Multiplayer", "Multiplayer Warp Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var bonfire = cbxBonfire.SelectedItem as DS2SBonfire;
+            if (bonfire.ID == 0 || bonfire.AreaID == 0)
+                return;
+
+            Hook.LastBonfireID = bonfire.ID;
+            Hook.LastAreaID = bonfire.AreaID;
+            Hook.Warp(bonfire.ID);
+        }
+
+        private async Task ChangeColor(Brush new_color)
+        {
+            btnWarp.Background = new_color;
+
+            await Task.Delay(TimeSpan.FromSeconds(.25));
+
+            btnWarp.Background = default(Brush);
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            FilterBonfires();
+        }
+        private void KeyPressed(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                txtSearch.Clear();
+
+            KeyDownListbox(e);
+        }
+        private void KeyDownListbox(System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Down)
+            {
+                e.Handled = true;
+
+                if (cbxBonfire.SelectedIndex < cbxBonfire.Items.Count - 1)
+                {
+                    cbxBonfire.SelectedIndex += 1;
+                    return;
+                }
+            }
+
+            if (e.Key == Key.Up)
+            {
+                e.Handled = true;
+
+                if (cbxBonfire.SelectedIndex != 0)
+                {
+                    cbxBonfire.SelectedIndex -= 1;
+                    return;
+                }
+            }
+
+            if (e.Key == Key.Enter)
+            {
+                e.Handled = true;
+                Warp();
+                return;
+            }
+        }
+        private void txtSearch_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            txtSearch.SelectAll();
+            txtSearch.Focus();
+            e.Handled=true;
+        }
+  
     }
 }

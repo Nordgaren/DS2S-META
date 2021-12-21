@@ -9,21 +9,15 @@
  50850000 Fang Key
  50860000 House Key
  50870000 Lenigrast's Key
- 50880000 Smooth & Silky Stone
- 50885000 Small Smooth & Silky Stone
  50890000 Rotunda Lockstone
  50900000 Giant's Kinship
  50910000 Ashen Mist Heart
- 50920000 Soul of a Giant
  50930000 Tseldora Den Key
  50940000 Champion's Tablet
  50950000 Ladder Miniature
- 50960000 Soul Vessel
  50970000 Undead Lockaway Key
  50990000 Dull Ember
  51000000 Crushed Eye Orb
- 51010000 Simpleton's Spice
- 51020000 Skeptic's Spice
  51030000 Aldia Key
  52000000 Dragon Talon
  52100000 Heavy Iron Key
@@ -33,6 +27,5 @@
  52500000 Garrison Ward Key
  52650000 Dragon Stone
  53100000 Scorching Iron Scepter
- 53200000 Smelter Wedge
- 53300000 Soul of Nadalia, Bride of Ash
  53600000 Eye of the Priestess
+ 62190000 Petrified Egg

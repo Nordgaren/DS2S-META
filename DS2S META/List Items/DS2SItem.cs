@@ -24,7 +24,11 @@ namespace DS2S_META
 
         public static Dictionary<int, string> Items = new Dictionary<int, string>()
         {
-            {3400000 ,"Fist"}
+            {3400000 ,"Fist"},
+            {21001100 ,"Naked"},
+            {21001101 ,"Naked"},
+            {21001102 ,"Naked"},
+            {21001103 ,"Naked"}
         };
 
         public DS2SItem(string config, int type, bool showID)
