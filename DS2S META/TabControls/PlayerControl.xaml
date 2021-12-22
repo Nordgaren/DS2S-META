@@ -8,7 +8,7 @@
              xmlns:p="clr-namespace:DS2S_META.Properties"
              xmlns:local="clr-namespace:DS2S_META"
              mc:Ignorable="d" 
-             d:DesignHeight="605" d:DesignWidth="425" Background="LightGray">
+             d:DesignHeight="615" d:DesignWidth="425" Background="LightGray">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="170"/>
@@ -167,7 +167,7 @@
         <Grid Grid.Row="2">
             <StackPanel Margin="10,0,10,0">
                 <Label Content="Misc"/>
-                <Border BorderBrush="Gray" BorderThickness="1" >
+                <Border BorderBrush="Gray" BorderThickness="1" Height="128">
                     <StackPanel Margin="0,5,0,0" >
                         <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
                             <CheckBox  Width="100" IsChecked="{Binding ElementName=PlayerCon, Path=Hook.Gravity}" Content="Gravity" x:Name="cbxGravity" IsEnabled="False"/>
@@ -194,7 +194,6 @@
                                 <ComboBox x:Name="cbxBonfire" SelectionChanged="cbxBonfire_SelectionChanged"  Width="300"/>
                                 <Button Content="Warp" Click="WarpButton_Click" Width="75" Margin="10,0,0,0" x:Name="btnWarp"/>
                             </StackPanel>
-                            <Label x:Name="txtTest"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>

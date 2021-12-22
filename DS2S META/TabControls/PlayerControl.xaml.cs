@@ -41,21 +41,13 @@ namespace DS2S_META
             LastSetBonfire = new DS2SBonfire(0, 0, "Last Set: None"); //last set bonfire (default values)
             cbxBonfire.Items.Add(LastSetBonfire); //add to end of filter
             Positions = SavedPos.GetSavedPositions();
+            cmbStoredPositions.Items.Add(new SavedPos());
             UpdatePositions();
         }
         internal override void ReloadCtrl()
         {
             if (cbxSpeed.IsChecked.Value)
                 Hook.Speed = (float)nudSpeed.Value;
-
-            var bonfire = cbxBonfire.SelectedItem as DS2SBonfire;
-            if (bonfire == null)
-                return;
-
-            var result = bonfire.AreaID == Hook.LastAreaID;
-            txtTest.Content = result;
-            txtTest.Foreground = result ? Brushes.LawnGreen : Brushes.Red;
-
         }
         internal override void EnableCtrls(bool enable)
         {
@@ -89,6 +81,7 @@ namespace DS2S_META
                 PlayerState.HP = (int)nudHealth.Value;
                 PlayerState.Stamina = (int)nudStamina.Value;
                 PlayerState.FollowCam = Hook.CameraData;
+                PlayerState.FollowCam2 = Hook.CameraData2;
                 PlayerState.Set = true;
                 CamX = Hook.CamX;
                 CamY = Hook.CamY;
@@ -142,9 +135,6 @@ namespace DS2S_META
         }
         private void UpdatePositions()
         {
-            if (cmbStoredPositions.Items.Count == 0)
-                return;
-
             if (cmbStoredPositions.SelectedItem != new SavedPos())
             {
                 var blank = cmbStoredPositions.Items[0] as SavedPos;
@@ -173,6 +163,7 @@ namespace DS2S_META
                 Hook.AngX = PlayerState.AngX;
                 Hook.AngY = PlayerState.AngY;
                 Hook.AngZ = PlayerState.AngZ;
+                Hook.CameraData2 = PlayerState.FollowCam2;
                 //Hook.CamX = CamX;
                 //Hook.CamY = CamY;
                 //Hook.CamZ = CamZ;

@@ -281,9 +281,12 @@ namespace DS2S_META
         public const string CameraAoB = "60 02 2c f0 f3 7f 00 00";
         public const int CameraOffset1 = 0x0;
         public const int CameraOffset2 = 0x20;
+        public const int CameraOffset3 = 0x28;
         public enum Camera
         {
             CamStart = 0x170,
+            CamStart2 = 0x19C,
+            CamStart3 = 0x1C,
             CamX = 0x1A0,
             CamZ = 0x1A4,
             CamY = 0x1A8
