@@ -35,6 +35,12 @@ You can also try adding DS2S META as an exception to your antivirus
 **[pseudostripy](https://github.com/pseudostripy)** Tester and contributor   
 
 # Change Log 
+### Beta 0.0.3.1
+
+* Bonfire menu fixed so it displays actual ascetic level  
+
+* Fixed wrong offset for Max Held, causing max item to be broken  
+
 ### Beta 0.0.3
 **Please update all files in your Resource folder**  
 

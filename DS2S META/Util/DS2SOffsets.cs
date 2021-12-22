@@ -333,7 +333,7 @@ namespace DS2S_META
         public enum ItemParam
         {
             ItemUsageID = 0x44,
-            MaxHeld = 0x4
+            MaxHeld = 0x4A
         }
 
         public const int ItemUsageParamOffset1 = 0x40;
