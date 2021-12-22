@@ -66,7 +66,7 @@ namespace DS2S_META
                 };
                 bonfireControl.nudBonfireLevel.SetBinding(Xceed.Wpf.Toolkit.IntegerUpDown.ValueProperty, binding);
                 bonfireControl.nudBonfireLevel.Minimum = 0;
-                bonfireControl.nudBonfireLevel.Maximum = 255;
+                bonfireControl.nudBonfireLevel.Maximum = 99;
                 bonfireControl.BonfireName = bonfire;
                 spBonfires.Children.Add(bonfireControl);
             }

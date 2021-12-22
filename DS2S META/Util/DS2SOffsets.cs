@@ -66,6 +66,16 @@ namespace DS2S_META
             LeftHand3 = 0x8BC
         }
 
+        public const int NetSvrBloodstainManagerOffset1 = 0x90; 
+        public const int NetSvrBloodstainManagerOffset2 = 0x28; 
+        public const int NetSvrBloodstainManagerOffset3 = 0x88;
+        public enum NetSvrBloodstainManager
+        {
+            BloodstainY = 0x38,
+            BloodstainZ = 0x3C,
+            BloodstainX = 0x40
+        }
+
         public const int PlayerParamOffset = 0x490;
         public enum PlayerParam
         {
