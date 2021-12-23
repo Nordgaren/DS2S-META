@@ -46,7 +46,7 @@
                         Background="Transparent"
                         Foreground="White"
                         BorderThickness="0"/>-->
-                    <Button x:Name="Close"
+                    <Button x:Name="btnClose"
                         Content="❌"
                         Width="20"
                         Height="20"
