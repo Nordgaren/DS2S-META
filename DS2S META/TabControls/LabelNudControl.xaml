@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="DS2S_META.BonfireControl"
+﻿<UserControl x:Class="DS2S_META.LabelNudControl"
              x:Name="BonCon"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
@@ -15,6 +15,6 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="{Binding ElementName=BonCon, Path=BonfireName}" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
-        <wpfTool:IntegerUpDown x:Name="nudBonfireLevel" Value="{Binding ElementName=BonCon, Path=BonfireLevel}" Width="75" Grid.Column="1" HorizontalAlignment="Right"/>
+        <wpfTool:IntegerUpDown x:Name="nudValue" Value="{Binding ElementName=BonCon, Path=BonfireLevel}" Width="75" Grid.Column="1" HorizontalAlignment="Right"/>
     </Grid>
 </UserControl>

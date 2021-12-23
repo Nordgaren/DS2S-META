@@ -176,6 +176,7 @@ namespace DS2S_META
             Hook.UpdatePlayerProperties();
             Hook.UpdateInternalProperties();
             Hook.UpdateBonfireProperties();
+            Hook.UpdateCovenantProperties();
         }
         private void EnableTabs(bool enable)
         {

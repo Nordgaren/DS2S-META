@@ -106,33 +106,33 @@ namespace DS2S_META
         public enum Covenants
         {
             CurrentCovenant = 0x1AD,
-            HeirsDiscovered = 0x1AF,
-            HeirsRank = 0x1B9,
-            HeirsProgress = 0x1C4,
+            HeirsOfTheSunDiscovered = 0x1AF,
+            HeirsOfTheSunOfTheSunRank = 0x1B9,
+            HeirsOfTheSunProgress = 0x1C4,
             BlueSentinelsDiscovered = 0x1B0,
             BlueSentinelsRank = 0x1BA,
             BlueSentinelsProgress = 0x1C6,
-            BrotherhoodDiscovered = 0x1B1,
-            BrotherhoodRank = 0x1BB,
-            BrotherhoodProgress = 0x1CB,
-            WayBlueDiscovered = 0x1B2,
-            WayBlueRank = 0x1BC,
-            WayBlueProgress = 0x1CA,
+            BrotherhoodOfBloodDiscovered = 0x1B1,
+            BrotherhoodOfBloodRank = 0x1BB,
+            BrotherhoodOfBloodProgress = 0x1CB,
+            WayOfTheBlueDiscovered = 0x1B2,
+            WayOfTheBlueRank = 0x1BC,
+            WayOfTheBlueProgress = 0x1CA,
             RatKingDiscovered = 0x1B3,
             RatKingRank = 0x1BD,
             RatKingProgress = 0x1CC,
-            BellDiscovered = 0x1B4,
-            BellRank = 0x1BE,
-            BellProgress = 0x1CE,
-            DragonDiscovered = 0x1B5,
-            DragonRank = 0x1BF,
-            DragonProgress = 0x1D0,
-            CompanyDiscovered = 0x1B6,
-            CompanyRank = 0x1C0,
-            CompanyProgress = 0x1D2,
-            PilgrimsDiscovered = 0x1B7,
-            PilgrimsRank = 0x1C1,
-            PilgrimsProgress = 0x1D4
+            BellKeepersDiscovered = 0x1B4,
+            BellKeepersRank = 0x1BE,
+            BellKeepersProgress = 0x1CE,
+            DragonRemnantsDiscovered = 0x1B5,
+            DragonRemnantsRank = 0x1BF,
+            DragonRemnantsProgress = 0x1D0,
+            CompanyOfChampionsDiscovered = 0x1B6,
+            CompanyOfChampionsRank = 0x1C0,
+            CompanyOfChampionsProgress = 0x1D2,
+            PilgrimsOfDarknessDiscovered = 0x1B7,
+            PilgrimsOfDarknessRank = 0x1C1,
+            PilgrimsOfDarknessProgress = 0x1D4
         }
 
         public const int PlayerPositionOffset1 = 0xF8;
@@ -173,14 +173,14 @@ namespace DS2S_META
 
         public const string GiveSoulsFuncAoB = "48 83 ec 28 48 8b 01 48 85 c0 74 23 48 8b 80 b8 00 00 00";
 
-        public const string SetWarpTargetFuncAoB = "48 89 5C 24 08 48 89 74 24 20 57 48 83 EC 60";
+        public const string SetWarpTargetFuncAoB = "48 89 5C 24 08 48 89 74 24 20 57 48 83 EC 60 0F B7 FA";
         public const string WarpFuncAoB = "40 53 48 83 EC 60 8B 02 48 8B D9 89 01 8B 42 04";
 
         public const int EventManagerOffset = 0x70;
         public const int WarpManagerOffset = 0x70;
         public enum Bonfire
         {
-            LastSetAreaID = 0x164,
+            LastSetBonfireAreaID = 0x164,
             LastSetBonfire = 0x16C
         }
         public const int BonfireLevelsOffset1 = 0x58;

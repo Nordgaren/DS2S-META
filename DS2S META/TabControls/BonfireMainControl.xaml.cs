@@ -58,16 +58,17 @@ namespace DS2S_META
 
             foreach (var bonfire in bonfireHub.Bonfires)
             {
-                var bonfireControl = new BonfireControl();
+                var bonfireControl = new LabelNudControl();
                 Binding binding = new Binding("Value")
                 {
                     Source = Hook,
                     Path = new PropertyPath(bonfire.Replace(" ", "").Replace("'", ""))
                 };
-                bonfireControl.nudBonfireLevel.SetBinding(Xceed.Wpf.Toolkit.IntegerUpDown.ValueProperty, binding);
-                bonfireControl.nudBonfireLevel.Minimum = 0;
-                bonfireControl.nudBonfireLevel.Maximum = 99;
-                bonfireControl.BonfireName = bonfire;
+                bonfireControl.nudValue.SetBinding(Xceed.Wpf.Toolkit.IntegerUpDown.ValueProperty, binding);
+                bonfireControl.nudValue.Minimum = 0;
+                bonfireControl.nudValue.Maximum = 99;
+                bonfireControl.Label = bonfire;
+                bonfireControl.nudValue.Margin = new Thickness(0, 5, 0, 0);
                 spBonfires.Children.Add(bonfireControl);
             }
         }

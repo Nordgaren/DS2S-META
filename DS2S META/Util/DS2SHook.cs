@@ -215,7 +215,7 @@ namespace DS2S_META
             OnPropertyChanged(nameof(StableX));
             OnPropertyChanged(nameof(StableY));
             OnPropertyChanged(nameof(StableZ));
-            OnPropertyChanged(nameof(LastAreaID));
+            OnPropertyChanged(nameof(LastBonfireAreaID));
         }
 
         public void UpdateBonfireProperties()
@@ -299,8 +299,38 @@ namespace DS2S_META
             OnPropertyChanged(nameof(GrandCathedral));
         }
 
-       
-
+        public void UpdateCovenantProperties()
+        {
+            OnPropertyChanged(nameof(CurrentCovenant));
+            OnPropertyChanged(nameof(CurrentCovenantName));
+            OnPropertyChanged(nameof(HeirsOfTheSunDiscovered));
+            OnPropertyChanged(nameof(HeirsOfTheSunRank));
+            OnPropertyChanged(nameof(HeirsOfTheSunProgress));
+            OnPropertyChanged(nameof(BlueSentinelsDiscovered));
+            OnPropertyChanged(nameof(BlueSentinelsRank));
+            OnPropertyChanged(nameof(BlueSentinelsProgress));
+            OnPropertyChanged(nameof(BrotherhoodOfBloodDiscovered));
+            OnPropertyChanged(nameof(BrotherhoodOfBloodRank));
+            OnPropertyChanged(nameof(BrotherhoodOfBloodProgress));
+            OnPropertyChanged(nameof(WayOfTheBlueDiscovered));
+            OnPropertyChanged(nameof(WayOfTheBlueRank));
+            OnPropertyChanged(nameof(WayOfTheBlueProgress));
+            OnPropertyChanged(nameof(RatKingDiscovered));
+            OnPropertyChanged(nameof(RatKingRank));
+            OnPropertyChanged(nameof(RatKingProgress));
+            OnPropertyChanged(nameof(BellKeepersDiscovered));
+            OnPropertyChanged(nameof(BellKeepersRank));
+            OnPropertyChanged(nameof(BellKeepersProgress));
+            OnPropertyChanged(nameof(DragonRemnantsDiscovered));
+            OnPropertyChanged(nameof(DragonRemnantsRank));
+            OnPropertyChanged(nameof(DragonRemnantsProgress));
+            OnPropertyChanged(nameof(CompanyOfChampionsDiscovered));
+            OnPropertyChanged(nameof(CompanyOfChampionsRank));
+            OnPropertyChanged(nameof(CompanyOfChampionsProgress));
+            OnPropertyChanged(nameof(PilgrimsOfDarknessDiscovered));
+            OnPropertyChanged(nameof(PilgrimsOfDarknessRank));
+            OnPropertyChanged(nameof(PilgrimsOfDarknessProgress));
+        }
         public void UpdateInternalProperties()
         {
             OnPropertyChanged(nameof(Head));
@@ -522,10 +552,10 @@ namespace DS2S_META
             get => Loaded ? EventManager.ReadUInt16((int)DS2SOffsets.Bonfire.LastSetBonfire) : (ushort)0;
             set => EventManager.WriteUInt16((int)DS2SOffsets.Bonfire.LastSetBonfire, value);
         }
-        public int LastAreaID
+        public int LastBonfireAreaID
         {
-            get => Loaded ? EventManager.ReadInt32((int)DS2SOffsets.Bonfire.LastSetAreaID) : 0;
-            set => EventManager.WriteInt32((int)DS2SOffsets.Bonfire.LastSetAreaID, value);
+            get => Loaded ? EventManager.ReadInt32((int)DS2SOffsets.Bonfire.LastSetBonfireAreaID) : 0;
+            set => EventManager.WriteInt32((int)DS2SOffsets.Bonfire.LastSetBonfireAreaID, value);
         }
         //public DS2SBonfire LastBonfireObj
         //{
@@ -3031,6 +3061,267 @@ namespace DS2S_META
             Kernel32.WriteBytes(Handle, valuePointer, BitConverter.GetBytes(value));
             Kernel32.WriteBytes(Handle, codePointer, newCode);
             speedFactorPointer.WriteBytes(0x0, inject);
+        }
+
+        #endregion
+
+        #region Covenant
+
+        public byte CurrentCovenant
+        {
+            get => Loaded ? PlayerParam.ReadByte((int)DS2SOffsets.Covenants.CurrentCovenant) : (byte)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteByte((int)DS2SOffsets.Covenants.CurrentCovenant, value);
+            }
+        }
+        public string CurrentCovenantName
+        {
+            get => Loaded ? DS2SCovenant.All.FirstOrDefault(x => x.ID == CurrentCovenant).Name : "";
+        }
+        public bool HeirsOfTheSunDiscovered
+        {
+            get => Loaded ? PlayerParam.ReadBoolean((int)DS2SOffsets.Covenants.HeirsOfTheSunDiscovered) : false;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteBoolean((int)DS2SOffsets.Covenants.HeirsOfTheSunDiscovered, value);
+            }
+        }
+        public byte HeirsOfTheSunRank
+        {
+            get => Loaded ? PlayerParam.ReadByte((int)DS2SOffsets.Covenants.HeirsOfTheSunOfTheSunRank) : (byte)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteByte((int)DS2SOffsets.Covenants.HeirsOfTheSunOfTheSunRank, value);
+            }
+        }
+        public short HeirsOfTheSunProgress
+        {
+            get => Loaded ? PlayerParam.ReadInt16((int)DS2SOffsets.Covenants.HeirsOfTheSunProgress) : (short)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteInt16((int)DS2SOffsets.Covenants.HeirsOfTheSunProgress, value);
+            }
+        }
+        public bool BlueSentinelsDiscovered
+        {
+            get => Loaded ? PlayerParam.ReadBoolean((int)DS2SOffsets.Covenants.BlueSentinelsDiscovered) : false;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteBoolean((int)DS2SOffsets.Covenants.BlueSentinelsDiscovered, value);
+            }
+        }
+        public byte BlueSentinelsRank
+        {
+            get => Loaded ? PlayerParam.ReadByte((int)DS2SOffsets.Covenants.BlueSentinelsRank) : (byte)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteByte((int)DS2SOffsets.Covenants.BlueSentinelsRank, value);
+            }
+        }
+        public short BlueSentinelsProgress
+        {
+            get => Loaded ? PlayerParam.ReadInt16((int)DS2SOffsets.Covenants.BlueSentinelsProgress) : (short)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteInt16((int)DS2SOffsets.Covenants.BlueSentinelsProgress, value);
+            }
+        }
+        public bool BrotherhoodOfBloodDiscovered
+        {
+            get => Loaded ? PlayerParam.ReadBoolean((int)DS2SOffsets.Covenants.BrotherhoodOfBloodDiscovered) : false;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteBoolean((int)DS2SOffsets.Covenants.BrotherhoodOfBloodDiscovered, value);
+            }
+        }
+        public byte BrotherhoodOfBloodRank
+        {
+            get => Loaded ? PlayerParam.ReadByte((int)DS2SOffsets.Covenants.BrotherhoodOfBloodRank) : (byte)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteByte((int)DS2SOffsets.Covenants.BrotherhoodOfBloodRank, value);
+            }
+        }
+        public short BrotherhoodOfBloodProgress
+        {
+            get => Loaded ? PlayerParam.ReadInt16((int)DS2SOffsets.Covenants.BrotherhoodOfBloodProgress) : (short)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteInt16((int)DS2SOffsets.Covenants.BrotherhoodOfBloodProgress, value);
+            }
+        }
+        public bool WayOfTheBlueDiscovered
+        {
+            get => Loaded ? PlayerParam.ReadBoolean((int)DS2SOffsets.Covenants.WayOfTheBlueDiscovered) : false;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteBoolean((int)DS2SOffsets.Covenants.WayOfTheBlueDiscovered, value);
+            }
+        }
+        public byte WayOfTheBlueRank
+        {
+            get => Loaded ? PlayerParam.ReadByte((int)DS2SOffsets.Covenants.WayOfTheBlueRank) : (byte)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteByte((int)DS2SOffsets.Covenants.WayOfTheBlueRank, value);
+            }
+        }
+        public short WayOfTheBlueProgress
+        {
+            get => Loaded ? PlayerParam.ReadInt16((int)DS2SOffsets.Covenants.WayOfTheBlueProgress) : (short)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteInt16((int)DS2SOffsets.Covenants.WayOfTheBlueProgress, value);
+            }
+        }
+        public bool RatKingDiscovered
+        {
+            get => Loaded ? PlayerParam.ReadBoolean((int)DS2SOffsets.Covenants.RatKingDiscovered) : false;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteBoolean((int)DS2SOffsets.Covenants.RatKingDiscovered, value);
+            }
+        }
+        public byte RatKingRank
+        {
+            get => Loaded ? PlayerParam.ReadByte((int)DS2SOffsets.Covenants.RatKingRank) : (byte)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteByte((int)DS2SOffsets.Covenants.RatKingRank, value);
+            }
+        }
+        public short RatKingProgress
+        {
+            get => Loaded ? PlayerParam.ReadInt16((int)DS2SOffsets.Covenants.RatKingProgress) : (short)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteInt16((int)DS2SOffsets.Covenants.RatKingProgress, value);
+            }
+        }
+        public bool BellKeepersDiscovered
+        {
+            get => Loaded ? PlayerParam.ReadBoolean((int)DS2SOffsets.Covenants.BellKeepersDiscovered) : false;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteBoolean((int)DS2SOffsets.Covenants.BellKeepersDiscovered, value);
+            }
+        }
+        public byte BellKeepersRank
+        {
+            get => Loaded ? PlayerParam.ReadByte((int)DS2SOffsets.Covenants.BellKeepersRank) : (byte)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteByte((int)DS2SOffsets.Covenants.BellKeepersRank, value);
+            }
+        }
+        public short BellKeepersProgress
+        {
+            get => Loaded ? PlayerParam.ReadInt16((int)DS2SOffsets.Covenants.BellKeepersProgress) : (short)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteInt16((int)DS2SOffsets.Covenants.BellKeepersProgress, value);
+            }
+        }
+        public bool DragonRemnantsDiscovered
+        {
+            get => Loaded ? PlayerParam.ReadBoolean((int)DS2SOffsets.Covenants.DragonRemnantsDiscovered) : false;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteBoolean((int)DS2SOffsets.Covenants.DragonRemnantsDiscovered, value);
+            }
+        }
+        public byte DragonRemnantsRank
+        {
+            get => Loaded ? PlayerParam.ReadByte((int)DS2SOffsets.Covenants.DragonRemnantsRank) : (byte)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteByte((int)DS2SOffsets.Covenants.DragonRemnantsRank, value);
+            }
+        }
+        public short DragonRemnantsProgress
+        {
+            get => Loaded ? PlayerParam.ReadInt16((int)DS2SOffsets.Covenants.DragonRemnantsProgress) : (short)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteInt16((int)DS2SOffsets.Covenants.DragonRemnantsProgress, value);
+            }
+        }
+        public bool CompanyOfChampionsDiscovered
+        {
+            get => Loaded ? PlayerParam.ReadBoolean((int)DS2SOffsets.Covenants.CompanyOfChampionsDiscovered) : false;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteBoolean((int)DS2SOffsets.Covenants.CompanyOfChampionsDiscovered, value);
+            }
+        }
+        public byte CompanyOfChampionsRank
+        {
+            get => Loaded ? PlayerParam.ReadByte((int)DS2SOffsets.Covenants.CompanyOfChampionsRank) : (byte)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteByte((int)DS2SOffsets.Covenants.CompanyOfChampionsRank, value);
+            }
+        }
+        public short CompanyOfChampionsProgress
+        {
+            get => Loaded ? PlayerParam.ReadInt16((int)DS2SOffsets.Covenants.CompanyOfChampionsProgress) : (short)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteInt16((int)DS2SOffsets.Covenants.CompanyOfChampionsProgress, value);
+            }
+        }
+        public bool PilgrimsOfDarknessDiscovered
+        {
+            get => Loaded ? PlayerParam.ReadBoolean((int)DS2SOffsets.Covenants.PilgrimsOfDarknessDiscovered) : false;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteBoolean((int)DS2SOffsets.Covenants.PilgrimsOfDarknessDiscovered, value);
+            }
+        }
+        public byte PilgrimsOfDarknessRank
+        {
+            get => Loaded ? PlayerParam.ReadByte((int)DS2SOffsets.Covenants.PilgrimsOfDarknessRank) : (byte)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteByte((int)DS2SOffsets.Covenants.PilgrimsOfDarknessRank, value);
+            }
+        }
+        public short PilgrimsOfDarknessProgress
+        {
+            get => Loaded ? PlayerParam.ReadInt16((int)DS2SOffsets.Covenants.PilgrimsOfDarknessProgress) : (short)0;
+            set
+            {
+                if (Reading || !Loaded) return;
+                PlayerParam.WriteInt16((int)DS2SOffsets.Covenants.PilgrimsOfDarknessProgress, value);
+            }
         }
 
         #endregion

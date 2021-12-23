@@ -18,10 +18,10 @@ namespace DS2S_META
     /// <summary>
     /// Interaction logic for BonfireControl.xaml
     /// </summary>
-    public partial class BonfireControl : UserControl
+    public partial class LabelNudControl : UserControl
     {
 
-        public string BonfireName
+        public string Label
         {
             get { return (string)GetValue(BonfireNameProperty); }
             set { SetValue(BonfireNameProperty, value); }
@@ -29,7 +29,7 @@ namespace DS2S_META
 
         // Using a DependencyProperty as the backing store for BonfireName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty BonfireNameProperty =
-            DependencyProperty.Register("BonfireName", typeof(string), typeof(BonfireControl), new PropertyMetadata(default));
+            DependencyProperty.Register("BonfireName", typeof(string), typeof(LabelNudControl), new PropertyMetadata(default));
 
         public byte BonfireLevel
         {
@@ -39,9 +39,9 @@ namespace DS2S_META
 
         // Using a DependencyProperty as the backing store for BonfireLevel.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty BonfireLevelProperty =
-            DependencyProperty.Register("BonfireLevel", typeof(byte), typeof(BonfireControl), new PropertyMetadata(default));
+            DependencyProperty.Register("BonfireLevel", typeof(byte), typeof(LabelNudControl), new PropertyMetadata(default));
 
-        public BonfireControl()
+        public LabelNudControl()
         {
             InitializeComponent();
         }

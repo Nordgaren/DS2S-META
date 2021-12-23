@@ -242,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="List Items\DS2SCovenant.cs" />
+    <Compile Include="TabControls\CovenantControl.xaml.cs">
+      <DependentUpon>CovenantControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="List Items\DS2SBonfireHub.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -251,8 +255,8 @@
     <Compile Include="TabControls\InternalControl.xaml.cs">
       <DependentUpon>InternalControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TabControls\BonfireControl.xaml.cs">
-      <DependentUpon>BonfireControl.xaml</DependentUpon>
+    <Compile Include="TabControls\LabelNudControl.xaml.cs">
+      <DependentUpon>LabelNudControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="TabControls\BonfireMainControl.xaml.cs">
       <DependentUpon>BonfireMainControl.xaml</DependentUpon>
@@ -273,6 +277,9 @@
       <DependentUpon>HotkeyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\User32.cs" />
+    <None Include="Resources\Systems\Covenants.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Equipment\Weapons\ReskinnedWeapons.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -355,11 +362,15 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Include="TabControls\CovenantControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TabControls\InternalControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TabControls\BonfireControl.xaml">
+    <Page Include="TabControls\LabelNudControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

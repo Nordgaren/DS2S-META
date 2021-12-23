@@ -163,7 +163,7 @@ namespace DS2S_META
                 Hook.AngX = PlayerState.AngX;
                 Hook.AngY = PlayerState.AngY;
                 Hook.AngZ = PlayerState.AngZ;
-                Hook.CameraData2 = PlayerState.FollowCam2;
+                //Hook.CameraData = PlayerState.FollowCam;
                 //Hook.CamX = CamX;
                 //Hook.CamY = CamY;
                 //Hook.CamZ = CamZ;
@@ -204,7 +204,7 @@ namespace DS2S_META
                 if (result == null)
                 {
                     //bonfire not in filter. Add to filter as unknown
-                    result = new DS2SBonfire(Hook.LastAreaID ,bonfireID, $"Unknown {Hook.LastAreaID}: {bonfireID}");
+                    result = new DS2SBonfire(Hook.LastBonfireAreaID ,bonfireID, $"Unknown {Hook.LastBonfireAreaID}: {bonfireID}");
                     DS2SBonfire.All.Add(result);
                     FilterBonfires();
                 }
@@ -283,7 +283,7 @@ namespace DS2S_META
                     return;
 
                 Hook.LastBonfireID = bonfire.ID;
-                Hook.LastAreaID = bonfire.AreaID;
+                Hook.LastBonfireAreaID = bonfire.AreaID;
             }
         }
 
@@ -326,7 +326,7 @@ namespace DS2S_META
                 return;
 
             Hook.LastBonfireID = bonfire.ID;
-            Hook.LastAreaID = bonfire.AreaID;
+            Hook.LastBonfireAreaID = bonfire.AreaID;
             Hook.Warp(bonfire.ID);
         }
 
