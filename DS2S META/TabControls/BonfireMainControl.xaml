@@ -9,7 +9,8 @@
              d:DesignHeight="600" d:DesignWidth="425" Background="LightGray">
     <Grid >
         <StackPanel Margin="25">
-            <Label Content="Bonfires"/>
+            <Label Content="Bonfires" FontSize="20" HorizontalAlignment="Center"/>
+            <Separator Visibility="Hidden" Height="10"/>
             <Button Content="Unlock All Bonfires" Click="UnlockBonfires_Click" Width="125" HorizontalAlignment="Center" Margin="25,0,25,0"/>
             <Separator Visibility="Hidden" Height="10"/>
             <Label Content="Manage Bonfire Levels"/>

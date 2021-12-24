@@ -8,18 +8,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="425" Background="LightGray">
     <Grid>
-        <StackPanel>
+        <StackPanel Margin="25">
             <Label Content="Covenants" FontSize="20" HorizontalAlignment="Center"/>
             <Border BorderBrush="Gray" BorderThickness="1" >
                 <StackPanel Margin="20">
-                    <Separator  Visibility="Hidden" Height="10"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="250">
                         <Label Content="Current Covenant: "/>
-                        <Label Content="{Binding ElementName=CovenantCon, Path=Hook.CurrentCovenantName}"/>
+                        <Label Content="{Binding ElementName=CovenantCon, Path=Hook.CurrentCovenantName}" />
                     </StackPanel>
+                    <Separator  Visibility="Hidden" Height="10"/>
                     <StackPanel Orientation="Horizontal">
-                    <ComboBox x:Name="cmbCovenant" SelectionChanged="cmbCovenant_SelectionChanged" Width="280" />
-                    <Button Content="Set Covenant" Width="85" Margin="15,0,0,0" Click="SetCovenant_Click"/>
+                    <ComboBox x:Name="cmbCovenant" SelectionChanged="cmbCovenant_SelectionChanged" Width="280"/>
+                        <Button Content="Set" Width="35" Margin="15,0,0,0" Click="SetCovenant_Click" x:Name="btnSet"/>
                     </StackPanel>
                     <Separator Visibility="Hidden" Height="10"/>
                     <StackPanel x:Name="spCovenants">

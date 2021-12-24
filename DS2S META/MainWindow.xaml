@@ -184,6 +184,10 @@
                 Mode=TwoWay, 
                 Source={x:Static p:Settings.Default}, 
                 UpdateSourceTrigger=PropertyChanged}" Checked="SpawnUndroppable_Checked" Unchecked="SpawnUndroppable_Checked"/>
+                                                    <CheckBox Margin="10,5,0,0" Content="Live Update Max Quantity" IsChecked="{Binding UpdateMaxLive, 
+                Mode=TwoWay, 
+                Source={x:Static p:Settings.Default}, 
+                UpdateSourceTrigger=PropertyChanged}"/>
                                                 </StackPanel>
                                             </Border>
                                         </StackPanel>

@@ -115,7 +115,6 @@ namespace DS2S_META
             SaveAllTabs();
 
             Settings.Save();
-            //ResetAllTabs();
         }
 
         
@@ -149,6 +148,7 @@ namespace DS2S_META
                     {
                         Reading = true;
                         UpdateProperties();
+                        Hook.UpdateName();
                         EnableTabs(false);
                         FormLoaded = false;
                         Reading = false;
@@ -185,6 +185,7 @@ namespace DS2S_META
             metaBonfire.EnableCtrls(enable);
             metaInternal.EnableCtrls(enable);
             metaItems.EnableCtrls(enable);
+            metaCovenant.EnableCtrls(enable);
         }
         private void ReloadAllTabs()
         {

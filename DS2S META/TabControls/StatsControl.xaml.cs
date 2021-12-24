@@ -78,6 +78,8 @@ namespace DS2S_META
             nudInt.IsEnabled = enable && Properties.Settings.Default.EditStats;
             nudFth.IsEnabled = enable && Properties.Settings.Default.EditStats;
             nudHollowLevel.IsEnabled = enable;
+            btnReset.IsEnabled = enable;
+            btnMax.IsEnabled = enable;
 
             if (!enable)
                 cmbClass.SelectedIndex = -1;

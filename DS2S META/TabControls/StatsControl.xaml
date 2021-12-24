@@ -57,7 +57,7 @@
                     </Grid>
                     <Button Content="Reset Soul Memory" x:Name="btnResetSoulMemory" Width="150" IsEnabled="False" Click="ResetSoulMemory_Click"/>
                     <Label Content="Give Souls" HorizontalAlignment="Center"/>
-                    <wpfTool:IntegerUpDown x:Name="nudGiveSouls" TextAlignment="Center" VerticalContentAlignment="Center" Width="100" LostKeyboardFocus="Name_LostKeyboardFocus" Minimum="0" Value="0" ClipValueToMinMax="True"/>
+                    <wpfTool:IntegerUpDown x:Name="nudGiveSouls" TextAlignment="Center" Width="100" LostKeyboardFocus="Name_LostKeyboardFocus" Minimum="0" Value="0" ClipValueToMinMax="True"/>
                     <Separator Visibility="Hidden"/>
                     <Button x:Name="btnGive" Content="Give" Width="100" Click="GiveSouls_Click" IsEnabled="False" />
                 </StackPanel>
@@ -68,8 +68,8 @@
         <StackPanel Grid.Column="0" Grid.Row="1" Margin="10,10,10,0">
             <Label Content="Stats"/>
             <StackPanel Orientation="Horizontal" Width="110" Margin="5">
-                <Button Content="Reset" Width="50" Margin="0,0,10,0" Click="Reset_Click"/>
-                <Button Content="Max" Width="50" Click="Max_Click"/>
+                <Button Content="Reset" Width="50" Margin="0,0,10,0" Click="Reset_Click" x:Name="btnReset"/>
+                <Button Content="Max" Width="50" Click="Max_Click" x:Name="btnMax"/>
             </StackPanel>
             <Border BorderBrush="Gray" BorderThickness="1"  >
                 <Grid Margin="5,5,5,5" >
@@ -126,7 +126,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label Content="Hollow Level" Grid.Row="0" Grid.Column="0"/>
-                    <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.HollowLevel}" x:Name="nudHollowLevel" Maximum="32" IsEnabled="False" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Width="85"/>
+                    <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.HollowLevel}" x:Name="nudHollowLevel" Maximum="32" IsEnabled="False" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Width="85"/>
                     <Label Content="Sinner Level" Grid.Row="1" Grid.Column="0" />
                     <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.SinnerLevel}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" IsEnabled="False" Width="68" LostKeyboardFocus="Name_LostKeyboardFocus"/>
                     <Label Content="Sinner Points" Grid.Row="2" Grid.Column="0"/>

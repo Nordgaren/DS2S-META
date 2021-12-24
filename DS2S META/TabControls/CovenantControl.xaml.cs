@@ -29,7 +29,11 @@ namespace DS2S_META
             }
             cmbCovenant.SelectedIndex = 0;
         }
-
+        internal override void EnableCtrls(bool enable)
+        {
+            spCovenants.IsEnabled = enable;
+            btnSet.IsEnabled = enable;
+        }
         private void cmbCovenant_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Hook == null)

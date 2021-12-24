@@ -35,6 +35,12 @@ You can also try adding DS2S META as an exception to your antivirus
 **[pseudostripy](https://github.com/pseudostripy)** Tester and contributor   
 
 # Change Log 
+### Beta 0.1
+
+* Cosmetic changes, and added bonfire control  
+
+* Getting ready for 1.0  
+
 ### Beta 0.0.3.2
 
 * Unoofed storing position. (Fixed crash)  
