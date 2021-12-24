@@ -277,6 +277,9 @@
       <DependentUpon>HotkeyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\User32.cs" />
+    <Resource Include="Resources\Equipment\DS2SItemCategories - Copy.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <None Include="Resources\Systems\Covenants.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

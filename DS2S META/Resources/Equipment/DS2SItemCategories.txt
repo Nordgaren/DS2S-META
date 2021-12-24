@@ -1,16 +1,16 @@
-﻿//Format: Name, Category, /Relative/File/Path/Category.txt, Show ID boolean
-//Categories - Weapon = 0x0000 Armor = 0x0001 Item = 0x0002 Ring = 0x0003
-Armor, 0x0001, Resources/Equipment/Armor/Armor.txt, false
-Consumables, 0x0002, Resources/Equipment/Items/Consumeables.txt, false
-Useable Items, 0x0002, Resources/Equipment/Items/UseableItems.txt, false
-Upgrade Materials, 0x0002, Resources/Equipment/Items/UpgradeMaterials.txt, false
-Gestures, 0x0002, Resources/Equipment/Items/Gestures.txt, false
-Key Items, 0x0002, Resources/Equipment/Items/KeyItems.txt, false
-Melee Weapons, 0x0000, Resources/Equipment/Weapons/MeleeWeapons.txt, false
-Reskinned Weapons (Unsafe), 0x0000, Resources/Equipment/Weapons/ReskinnedWeapons.txt, false
-Ranged Weapons, 0x0000, Resources/Equipment/Weapons/RangedWeapons.txt, false
-Ammo, 0x0002, Resources/Equipment/Items/Ammo.txt, false
-Rings, 0x0003, Resources/Equipment/Rings/Rings.txt, false
-Shields, 0x0000, Resources/Equipment/Weapons/Shields.txt, false
-Spells, 0x0002, Resources/Equipment/Items/Spells.txt, false
-Staff/Chimes, 0x0000, Resources/Equipment/Weapons/SpellTools.txt, false
+﻿//Format: Category; Show ID boolean; /Relative/File/Path/Category.txt; Name;
+//Categories - Weapon = 0 Armor = 1 Item = 2 Ring = 3
+1 false Resources/Equipment/Armor/Armor.txt Armor
+2 false Resources/Equipment/Items/Consumeables.txt Consumables
+2 false Resources/Equipment/Items/UseableItems.txt Useable Items
+2 false Resources/Equipment/Items/UpgradeMaterials.txt Upgrade Materials
+2 false Resources/Equipment/Items/Gestures.txt Gestures
+2 false Resources/Equipment/Items/KeyItems.txt Key Items
+0 false Resources/Equipment/Weapons/MeleeWeapons.txt Melee Weapons
+0 false Resources/Equipment/Weapons/ReskinnedWeapons.txt Reskinned Weapons (Unsafe)
+0 false Resources/Equipment/Weapons/RangedWeapons.txt Ranged Weapons
+2 false Resources/Equipment/Items/Ammo.txt Ammo
+3 false Resources/Equipment/Rings/Rings.txt Rings
+0 false Resources/Equipment/Weapons/Shields.txt Shields
+2 false Resources/Equipment/Items/Spells.txt Spells
+0 false Resources/Equipment/Weapons/SpellTools.txt Staff/Chimes

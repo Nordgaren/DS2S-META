@@ -322,7 +322,7 @@ namespace DS2S_META
             }
 
             var bonfire = cbxBonfire.SelectedItem as DS2SBonfire;
-            if (bonfire.ID == 0 || bonfire.AreaID == 0)
+            if (bonfire.ID == 0 || bonfire.AreaID == 0 || bonfire == null)
                 return;
 
             Hook.LastBonfireID = bonfire.ID;
