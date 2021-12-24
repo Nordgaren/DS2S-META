@@ -1,4 +1,4 @@
-﻿//Format: Category; Show ID boolean; /Relative/File/Path/Category.txt; Name;
+﻿//Format: Category; Show ID boolean; /Relative/File/Path/Category.txt; Name [arbitrary]
 //Categories - Weapon = 0 Armor = 1 Item = 2 Ring = 3
 1 false Resources/Equipment/Armor/Armor.txt Armor
 2 false Resources/Equipment/Items/Consumeables.txt Consumables
