@@ -75,6 +75,7 @@ namespace DS2S_META
         private PHPointer Camera2;
         private PHPointer Camera3;
         private PHPointer Camera4;
+        private PHPointer Camera5;
 
         private PHPointer SpeedFactorAccel;
         private PHPointer SpeedFactorAnim;
@@ -150,6 +151,7 @@ namespace DS2S_META
             Camera2 = CreateChildPointer(Camera, (int)DS2SOffsets.CameraOffset2);
             Camera3 = CreateChildPointer(BaseA, (int)DS2SOffsets.CameraOffset2, (int)DS2SOffsets.CameraOffset2);
             Camera4 = CreateChildPointer(BaseA, (int)DS2SOffsets.CameraOffset2, (int)DS2SOffsets.CameraOffset3);
+            Camera5 = CreateChildPointer(BaseA, (int)DS2SOffsets.CameraOffset2);
 
             GetLevelRequirements();
             WeaponParamOffsetDict = BuildOffsetDictionary(WeaponParam, "WEAPON_PARAM");
@@ -503,12 +505,12 @@ namespace DS2S_META
         }
         public byte[] CameraData
         {
-            get => Camera3.ReadBytes((int)DS2SOffsets.Camera.CamStart2, 0x40);
-            set => Camera3.WriteBytes((int)DS2SOffsets.Camera.CamStart2, value);
+            get => Camera5.ReadBytes((int)0xE9C, 512);
+            set => Camera5.WriteBytes((int)0xE9C, value);
         }
         public byte[] CameraData2
         {
-            get => Camera4.ReadBytes((int)DS2SOffsets.Camera.CamStart3, 0x40);
+            get => Camera4.ReadBytes((int)DS2SOffsets.Camera.CamStart3, 512);
             set => Camera4.WriteBytes((int)DS2SOffsets.Camera.CamStart3, value);
         }
         public float CamX

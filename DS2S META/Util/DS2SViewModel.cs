@@ -31,7 +31,7 @@ namespace DS2S_META
             {
                 if (Hook.ID != "Not Hooked")
                     return Brushes.GreenYellow;
-                return Brushes.MediumVioletRed;
+                return Brushes.IndianRed;
             }
         }
         public string ContentLoaded
@@ -49,7 +49,7 @@ namespace DS2S_META
             {
                 if (Hook.Loaded)
                     return Brushes.GreenYellow;
-                return Brushes.MediumVioletRed;
+                return Brushes.IndianRed;
             }
         }
         public string ContentOnline
@@ -73,7 +73,7 @@ namespace DS2S_META
 
                 if (Hook.Online)
                     return Brushes.GreenYellow;
-                return Brushes.MediumVioletRed;
+                return Brushes.IndianRed;
             }
         }
 

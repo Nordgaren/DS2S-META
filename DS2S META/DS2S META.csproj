@@ -5,16 +5,17 @@
       <Output TaskParameter="Assemblies" ItemName="Targets" />
     </GetAssemblyIdentity>
     <ItemGroup>
-		<MyFiles Include="Resources\**\*.*" />
       <VersionNumber Include="%(Targets.Version)">
         <Number>%(Targets.Version)</Number>
       </VersionNumber>
       <OutputDir Include="$(TargetDir)$(ProjectName) %(Targets.Version)" />
     </ItemGroup>
+	  <PropertyGroup>
+		  <OutputPath>@(OutputDir)\</OutputPath>
+	  </PropertyGroup>
     <Message Text="Executing Copy Filess task" Importance="High" />
     <Copy SourceFiles="$(TargetDir)$(ProjectName).exe" DestinationFolder="@(OutputDir)" />
-    <Copy SourceFiles="$(SolutionDir)Readme.md" DestinationFolder="@(OutputDir)" />
-
+    <Copy SourceFiles="$(SolutionDir)Readme.md" DestinationFiles="$(OutputPath)Readme.txt"/>
 	  <Exec Command="md &quot;@(OutputDir)\Resources&quot;" />
 	  <Exec Command="xcopy /e &quot;$(TargetDir)\Resources&quot; &quot;@(OutputDir)\Resources&quot;" />
 	  <Message Text="Copied files to build folder" Importance="High" />

@@ -163,7 +163,7 @@ namespace DS2S_META
                 Hook.AngX = PlayerState.AngX;
                 Hook.AngY = PlayerState.AngY;
                 Hook.AngZ = PlayerState.AngZ;
-                //Hook.CameraData = PlayerState.FollowCam;
+                Hook.CameraData = PlayerState.FollowCam;
                 //Hook.CamX = CamX;
                 //Hook.CamY = CamY;
                 //Hook.CamZ = CamZ;
