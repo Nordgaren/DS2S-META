@@ -35,5 +35,6 @@ namespace DS2S_META
         public static byte[] SpeedFactor = LoadDefuseOutput(Properties.Resources.SpeedFactor);
         public static byte[] OgSpeedFactor = LoadDefuseOutput(Properties.Resources.OgSpeedFactor);
         public static byte[] BonfireWarp = LoadDefuseOutput(Properties.Resources.BonfireWarp);
+        public static byte[] ApplySpecialEffect = LoadDefuseOutput(Properties.Resources.ApplySpecialEffect);
     }
 }

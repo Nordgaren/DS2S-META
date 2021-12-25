@@ -48,6 +48,9 @@ namespace DS2S_META
         {
             if (cbxSpeed.IsChecked.Value)
                 Hook.Speed = (float)nudSpeed.Value;
+
+            if (WarpRest)
+                Hook.ApplySpecialEffect(110000010);
         }
         internal override void EnableCtrls(bool enable)
         {
@@ -62,6 +65,7 @@ namespace DS2S_META
             cbxGravity.IsEnabled = enable;
             cbxCollision.IsEnabled = enable;
             btnWarp.IsEnabled = enable && !Hook.Multiplayer;
+            cbxWarpRest.IsEnabled = enable;
 
             if (enable)
                 cbxBonfire.SelectedIndex = cbxBonfire.Items.Count - 1;
@@ -192,6 +196,9 @@ namespace DS2S_META
 
         }
         private DS2SBonfire LastSetBonfire;
+
+        public bool WarpRest { get; private set; }
+
         internal override void UpdateCtrl() 
         {
             //manage unknown warps and current warps that are not in filter
@@ -327,7 +334,9 @@ namespace DS2S_META
 
             Hook.LastBonfireID = bonfire.ID;
             Hook.LastBonfireAreaID = bonfire.AreaID;
-            Hook.Warp(bonfire.ID);
+            var warped = Hook.Warp(bonfire.ID);
+            if (warped && cbxWarpRest.IsChecked.Value)
+                WarpRest = true; 
         }
 
         private async Task ChangeColor(Brush new_color)
@@ -387,6 +396,5 @@ namespace DS2S_META
             txtSearch.Focus();
             e.Handled=true;
         }
-  
     }
 }

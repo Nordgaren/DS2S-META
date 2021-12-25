@@ -169,6 +169,9 @@ namespace DS2S_META
             WarpX3 = 0x1C8
         }
 
+        public const int SpEffectCtrlOffset = 0x3E0;
+        public const string ApplySpEffectAoB = "E9 ? ? ? ? E9 ? ? ? ? 50 5A 41 51 59";
+
         public const int CharacterFlagsOffset = 0x490;
 
         public const string GiveSoulsFuncAoB = "48 83 ec 28 48 8b 01 48 85 c0 74 23 48 8b 80 b8 00 00 00";

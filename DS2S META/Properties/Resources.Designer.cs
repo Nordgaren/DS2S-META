@@ -78,13 +78,40 @@ namespace DS2S_META.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0:  48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000
-        ///7:  ff ff ff
-        ///a:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
-        ///11: ff ff ff
-        ///14: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000
-        ///1b: ff ff ff
-        ///1e: 41 ff d6                call   r14 .
+        ///   Looks up a localized string similar to 0:  48 83 ec 26             sub    rsp,0x26
+        ///4:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
+        ///b:  ff ff ff
+        ///e:  48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000
+        ///15: ff ff ff
+        ///18: 48 b8 00 00 00 00 ff    movabs rax,0xffffffff00000000
+        ///1f: ff ff ff
+        ///22: f3 0f 10 00             movss  xmm0,DWORD PTR [rax]
+        ///26: f3 0f 11 44 24 1c       movss  DWORD PTR [rsp+0x1c],xmm0
+        ///2c: 48 b8 00 00 00 00 ff    movabs rax,0xffffffff00000000
+        ///33: ff ff ff
+        ///36: ff d0                   call   rax
+        ///38: 48 83 c4 26  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ApplySpecialEffect {
+            get {
+                return ResourceManager.GetString("ApplySpecialEffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0:  48 81 ec 10 01 00 00    sub    rsp,0x110
+        ///7:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
+        ///e:  ff ff ff
+        ///11: 0f b7 12                movzx  edx,WORD PTR [rdx]
+        ///14: 48 8d 4c 24 50          lea    rcx,[rsp+0x50]
+        ///19: 41 b8 02 00 00 00       mov    r8d,0x2
+        ///1f: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000
+        ///26: ff ff ff
+        ///29: 41 ff d6                call   r14
+        ///2c: 48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000
+        ///33: ff ff ff
+        ///36: 48 89 c2                mov    rdx,rax
+        ///39: 49 be 00  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string BonfireWarp {
             get {

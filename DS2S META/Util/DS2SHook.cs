@@ -54,6 +54,8 @@ namespace DS2S_META
         private PHPointer PlayerGravity;
         private PHPointer PlayerParam;
         private PHPointer PlayerType;
+        private PHPointer SpEffectCtrl;
+        private PHPointer ApplySpEffect;
         private PHPointer PlayerMapData;
         private PHPointer EventManager;
         private PHPointer BonfireLevels;
@@ -101,6 +103,7 @@ namespace DS2S_META
             ItemStruct2dDisplay = RegisterAbsoluteAOB(DS2SOffsets.ItemStruct2dDisplay);
             DisplayItem = RegisterAbsoluteAOB(DS2SOffsets.DisplayItem); 
             SetWarpTargetFunc = RegisterAbsoluteAOB(DS2SOffsets.SetWarpTargetFuncAoB);
+            ApplySpEffect = RegisterAbsoluteAOB(DS2SOffsets.ApplySpEffectAoB);
             WarpFunc = RegisterAbsoluteAOB(DS2SOffsets.WarpFuncAoB);
 
             BaseBSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseBAoB);
@@ -120,7 +123,6 @@ namespace DS2S_META
                 BaseA = CreateBasePointer(BasePointerFromSetupBabyJ(BaseASetup));
                 Version = "BabyJump Dll";
             }
-
             PlayerName = CreateChildPointer(BaseA, (int)DS2SOffsets.PlayerNameOffset);
             AvailableItemBag = CreateChildPointer(PlayerName, (int)DS2SOffsets.AvailableItemBagOffset, (int)DS2SOffsets.AvailableItemBagOffset);
             ItemGiveWindow = CreateChildPointer(BaseA, (int)DS2SOffsets.ItemGiveWindowPointer);
@@ -130,6 +132,7 @@ namespace DS2S_META
             PlayerGravity = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerMapDataOffset1);
             PlayerParam = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerParamOffset);
             PlayerType = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.PlayerTypeOffset);
+            SpEffectCtrl = CreateChildPointer(PlayerCtrl, (int)DS2SOffsets.SpEffectCtrlOffset);
             PlayerMapData = CreateChildPointer(PlayerGravity, (int)DS2SOffsets.PlayerMapDataOffset2, (int)DS2SOffsets.PlayerMapDataOffset3);
             EventManager = CreateChildPointer(BaseA, (int)DS2SOffsets.EventManagerOffset);
             BonfireLevels = CreateChildPointer(EventManager, (int)DS2SOffsets.BonfireLevelsOffset1, (int)DS2SOffsets.BonfireLevelsOffset2);
@@ -579,12 +582,12 @@ namespace DS2S_META
             get => Hooked && Connection != null ? Connection.ReadInt32((int)DS2SOffsets.Connection.Online) : 0;
         }
 
-        internal void Warp(ushort id)
+        internal bool Warp(ushort id)
         {
-            var asm = (byte[])DS2SAssembly.BonfireWarp.Clone();
             var value = Allocate(sizeof(short));
             Kernel32.WriteBytes(Handle, value, BitConverter.GetBytes(id));
 
+            var asm = (byte[])DS2SAssembly.BonfireWarp.Clone();
             var bytes = BitConverter.GetBytes(value.ToInt64());
             Array.Copy(bytes, 0x0, asm, 0x9, bytes.Length);
             bytes = BitConverter.GetBytes(SetWarpTargetFunc.Resolve().ToInt64());
@@ -594,11 +597,42 @@ namespace DS2S_META
             bytes = BitConverter.GetBytes(WarpFunc.Resolve().ToInt64());
             Array.Copy(bytes, 0x0, asm, 0x3B, bytes.Length);
 
+            var warped = false;
             if (!Multiplayer)
+            {
                 Execute(asm);
+                warped = true;
+            }
 
             Free(value);
+            return warped;
         }
+
+        internal void ApplySpecialEffect(int spEffect)
+        {
+            var effectStruct = Allocate(0x16);
+            Kernel32.WriteBytes(Handle, effectStruct, BitConverter.GetBytes(spEffect));
+            Kernel32.WriteBytes(Handle, effectStruct + 0x4, BitConverter.GetBytes(0x1));
+            Kernel32.WriteBytes(Handle, effectStruct + 0xC, BitConverter.GetBytes(0x219));
+
+            var unk = Allocate(sizeof(float));
+            Kernel32.WriteBytes(Handle, unk, BitConverter.GetBytes(-1f));
+
+            var asm = (byte[])DS2SAssembly.ApplySpecialEffect.Clone();
+            var bytes = BitConverter.GetBytes(effectStruct.ToInt64());
+            Array.Copy(bytes, 0x0, asm, 0x6, bytes.Length);
+            bytes = BitConverter.GetBytes(SpEffectCtrl.Resolve().ToInt64());
+            Array.Copy(bytes, 0x0, asm, 0x10, bytes.Length);
+            bytes = BitConverter.GetBytes(unk.ToInt64());
+            Array.Copy(bytes, 0x0, asm, 0x1A, bytes.Length);
+            bytes = BitConverter.GetBytes(ApplySpEffect.Resolve().ToInt64());
+            Array.Copy(bytes, 0x0, asm, 0x2E, bytes.Length);
+
+            Execute(asm);
+            Free(effectStruct);
+            Free(unk);
+        }
+
         #endregion
 
         #region Stats

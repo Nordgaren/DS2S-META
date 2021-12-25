@@ -78,8 +78,9 @@ namespace DS2S_META
             nudInt.IsEnabled = enable && Properties.Settings.Default.EditStats;
             nudFth.IsEnabled = enable && Properties.Settings.Default.EditStats;
             nudHollowLevel.IsEnabled = enable;
-            btnReset.IsEnabled = enable;
-            btnMax.IsEnabled = enable;
+            btnReset.IsEnabled = enable && Properties.Settings.Default.EditStats;
+            btnMax.IsEnabled = enable && Properties.Settings.Default.EditStats;
+            btnRestoreHumanity.IsEnabled = enable;
 
             if (!enable)
                 cmbClass.SelectedIndex = -1;
@@ -122,6 +123,11 @@ namespace DS2S_META
             nudAdp.Value = 99;
             nudInt.Value = 99;
             nudFth.Value = 99;
+        }
+
+        private void RestoreHumanity_Click(object sender, RoutedEventArgs e)
+        {
+            Hook.ApplySpecialEffect(100000010);
         }
     }
 }

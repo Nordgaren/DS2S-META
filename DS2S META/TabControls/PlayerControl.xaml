@@ -185,6 +185,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Bonfire"/>
                                 <CheckBox Content="Quick Select Bonfire" x:Name="cbxQuickSelectBonfire" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                                <CheckBox Content="Bonfire Rest After Warping" x:Name="cbxWarpRest" Margin="10,0,0,0" VerticalAlignment="Center"/>
                             </StackPanel>
                             <Grid HorizontalAlignment="Center" >
                                 <TextBox x:Name="txtSearch" Height="20" TextChanged="txtSearch_TextChanged" Width="385" PreviewKeyDown="KeyPressed" PreviewMouseLeftButtonDown="txtSearch_PreviewMouseLeftButtonDown" AutoWordSelection="True"/>
