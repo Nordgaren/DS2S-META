@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -107,6 +108,8 @@ namespace DS2S_META
             WarpFunc = RegisterAbsoluteAOB(DS2SOffsets.WarpFuncAoB);
 
             BaseBSetup = RegisterAbsoluteAOB(DS2SOffsets.BaseBAoB);
+
+            GetSystemInfo(ref SystemInfo);
 
             OnHooked += DS2Hook_OnHooked;
             OnUnhooked += DS2Hook_OnUnhooked;
@@ -3082,7 +3085,6 @@ namespace DS2S_META
             Free(valuePointer);
             Free(codePointer);
         }
-
         private void InjectSpeedFactor(PHPointer speedFactorPointer, ref IntPtr valuePointer, ref IntPtr codePointer, byte[] asm, float value)
         {
             var inject = new byte[0x11];
