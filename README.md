@@ -39,7 +39,9 @@ You can also try adding DS2S META as an exception to your antivirus
 
 * Cosmetic changes, and added bonfire control  
 
-* Getting ready for 1.0  
+* Getting ready for 1.0 
+
+* Checkbox to live update max quantity (Scan inventory constantly. CPU intensive).  
 
 ### Beta 0.0.3.2
 
