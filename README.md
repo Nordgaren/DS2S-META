@@ -34,6 +34,15 @@ You can also try adding DS2S META as an exception to your antivirus
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 **[pseudostripy](https://github.com/pseudostripy)** Tester and contributor   
 
+## Libraries
+[Property Hook](https://github.com/JKAnderson/PropertyHook) by [TKGP](https://github.com/JKAnderson/)  
+
+[Costura](https://github.com/Fody/Costura) by [Fody](https://github.com/Fody) team  
+
+[Octokit](https://github.com/octokit/octokit.net) by [Octokit](https://github.com/octokit) team
+
+[LowLevelHooking](https://github.com/jnm2/LowLevelHooking) by [Joseph Musser](https://github.com/jnm2)
+
 # Change Log 
 ### Beta 0.1
 
