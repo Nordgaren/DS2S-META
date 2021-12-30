@@ -27,11 +27,11 @@ namespace DS2S_META
             Name = 0x114
         }
 
-        public const string ItemGiveFunc = "48 89 5c 24 18 56 57 41 56 48 83 ec 30";
+        public const string ItemGiveFunc = "48 89 5C 24 18 56 57 41 56 48 83 EC 30 45 8B F1 41";
         public const int AvailableItemBagOffset = 0x10;
         public const int ItemGiveWindowPointer = 0x22E0;
-        public const string ItemStruct2dDisplay = "40 53 48 83 ec 20 45 33 d2 45 8b d8 48 8b d9 44 89 11";
-        public const string DisplayItem = "48 8b 89 d8 00 00 00 48 85 c9 0f 85 40 5e 00 00";
+        public const string ItemStruct2dDisplay = "40 53 48 83 EC 20 45 33 D2 45 8B D8 48 8B D9 44 89 11";
+        public const string DisplayItem = "48 8B 89 D8 00 00 00 48 85 C9 0F 85 40 5E 00 00";
 
         public const int PlayerBaseMiscOffset = 0xC0;
         public enum PlayerBaseMisc
