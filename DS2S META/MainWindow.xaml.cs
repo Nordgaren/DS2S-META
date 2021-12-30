@@ -31,7 +31,7 @@ namespace DS2S_META
         private Properties.Settings Settings;
         public MainWindow()
         {
-            PortableSettingsProvider.SettingsFileName = "DS2 Meta.config";
+            PortableSettingsProvider.SettingsFileName = "DS2S Meta.config";
             PortableSettingsProvider.ApplyProvider(Properties.Settings.Default);
             Settings = Properties.Settings.Default;
             InitializeComponent();
@@ -74,8 +74,8 @@ namespace DS2S_META
 
             try
             {
-                GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("DS2-META"));
-                Release release = await gitHubClient.Repository.Release.GetLatest("Nordgaren", "DS2-META");
+                GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("DS2S-META"));
+                Release release = await gitHubClient.Repository.Release.GetLatest("Nordgaren", "DS2S-META");
                 Version gitVersion = Version.Parse(release.TagName.ToLower().Replace("v", ""));
                 Version exeVersion = Version.Parse(version);
                 if (gitVersion > exeVersion) //Compare latest version to current version
