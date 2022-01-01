@@ -114,6 +114,12 @@ namespace DS2S_META
         }
         private void DS2Hook_OnHooked(object sender, PHEventArgs e)
         {
+            if (!Is64Bit)
+            {
+                Version = "Vanilla (Wrong)";
+                return;
+            }
+
             Version = "Scholar";
 
             BaseA = CreateBasePointer(BasePointerFromSetupPointer(BaseASetup));
@@ -124,6 +130,7 @@ namespace DS2S_META
                 BaseA = CreateBasePointer(BasePointerFromSetupBabyJ(BaseASetup));
                 Version = "BabyJump Dll";
             }
+
             PlayerName = CreateChildPointer(BaseA, (int)DS2SOffsets.PlayerNameOffset);
             AvailableItemBag = CreateChildPointer(PlayerName, (int)DS2SOffsets.AvailableItemBagOffset, (int)DS2SOffsets.AvailableItemBagOffset);
             ItemGiveWindow = CreateChildPointer(BaseA, (int)DS2SOffsets.ItemGiveWindowPointer);

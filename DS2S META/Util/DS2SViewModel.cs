@@ -77,6 +77,19 @@ namespace DS2S_META
             }
         }
 
+        public Brush ForegroundVersion
+        {
+            get
+            {
+                if (!Hook.Hooked)
+                    return Brushes.Black;
+
+                if (Hook.Is64Bit)
+                    return Brushes.GreenYellow;
+                return Brushes.IndianRed;
+            }
+        }
+
         public void UpdateMainProperties()
         {
             OnPropertyChanged(nameof(ForegroundID));
@@ -84,6 +97,7 @@ namespace DS2S_META
             OnPropertyChanged(nameof(ForegroundLoaded));
             OnPropertyChanged(nameof(ContentOnline));
             OnPropertyChanged(nameof(ForegroundOnline));
+            OnPropertyChanged(nameof(ForegroundVersion));
             OnPropertyChanged(nameof(GameLoaded));
         }
 

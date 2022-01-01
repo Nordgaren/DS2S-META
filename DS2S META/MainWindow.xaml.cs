@@ -68,7 +68,7 @@ namespace DS2S_META
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             var version= fileVersionInfo.ProductVersion;
 
-            lblWindowName.Content = $"DS2S META {version}";
+            lblWindowName.Content = $"DS2 Scholar META {version}";
             EnableTabs(false);
             InitAllTabs();
 
