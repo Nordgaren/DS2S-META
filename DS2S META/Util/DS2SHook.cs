@@ -1030,11 +1030,18 @@ namespace DS2S_META
             var endPointer = AvailableItemBag.ReadIntPtr(0x10).ToInt64();
             var bagSize = endPointer - AvailableItemBag.Resolve().ToInt64();
 
+            var inventory = AvailableItemBag.ReadBytes(0x0, (uint)bagSize);
+
             while (inventorySlot < bagSize)
             {
-                var itemID = AvailableItemBag.ReadInt32(inventorySlot + itemOffset);
-                var boxValue = AvailableItemBag.ReadInt32(inventorySlot + boxOffset);
-                var held = AvailableItemBag.ReadInt32(inventorySlot + heldOffset);
+                var itemID = BitConverter.ToInt32(inventory, inventorySlot + itemOffset);
+                if (itemID != id)
+                {
+                    inventorySlot += nextOffset;
+                    continue;
+                }
+                var boxValue = BitConverter.ToInt32(inventory, inventorySlot + boxOffset);
+                var held = BitConverter.ToInt32(inventory, inventorySlot + heldOffset);
 
                 if (itemID == id)
                     if (boxValue == 0)
@@ -1042,6 +1049,19 @@ namespace DS2S_META
 
                 inventorySlot += nextOffset;
             }
+
+            //while (inventorySlot < bagSize)
+            //{
+            //    var itemID = AvailableItemBag.ReadInt32(inventorySlot + itemOffset);
+            //    var boxValue = AvailableItemBag.ReadInt32(inventorySlot + boxOffset);
+            //    var held = AvailableItemBag.ReadInt32(inventorySlot + heldOffset);
+
+            //    if (itemID == id)
+            //        if (boxValue == 0)
+            //            return held;
+
+            //    inventorySlot += nextOffset;
+            //}
 
             return 0;
         }
