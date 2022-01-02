@@ -45,7 +45,6 @@ namespace DS2S_META
                 };
                 warning.ShowDialog();
             }
-                
         }
 
         DS2SHook Hook => ViewModel.Hook;
@@ -162,6 +161,7 @@ namespace DS2S_META
         {
             Hook.UpdateMainProperties();
             ViewModel.UpdateMainProperties();
+            CheckFocused();
         }
 
         private void InitAllTabs()

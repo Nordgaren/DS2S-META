@@ -1,32 +1,38 @@
-﻿using LowLevelHooking;
+﻿using mrousavy;
 using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace DS2S_META
 {
-    class METAHotkey
+    public class METAHotkey
     {
         private string SettingsName;
         private TextBox HotkeyTextBox;
         private TabItem HotkeyTabPage;
-        private Action HotkeyAction;
+        private Window Window;
+        private Action<HotKey> HotkeyAction;
         private Brush DefaultColor;
 
-        public VirtualKey Key;
+        public Key Key;
+        public HotKey HotKey;
 
-        public METAHotkey(string settingsName, TextBox setTextBox, TabItem setTabPage, Action setAction)
+        public METAHotkey(string settingsName, TextBox setTextBox, TabItem setTabPage, Action<HotKey> setAction, System.Windows.Window window)
         {
             SettingsName = settingsName;
             HotkeyTextBox = setTextBox;
             DefaultColor = HotkeyTextBox.Background;
             HotkeyTabPage = setTabPage;
             HotkeyAction = setAction;
+            Window = window;
 
-            Key = (VirtualKey)(int)Properties.Settings.Default[SettingsName];
+            Key = KeyInterop.KeyFromVirtualKey((int)Properties.Settings.Default[SettingsName]);
 
-            if (Key == VirtualKey.Escape)
+            if (Key == Key.Escape)
                 HotkeyTextBox.Text = "Unbound";
             else
                 HotkeyTextBox.Text = Key.ToString();
@@ -36,39 +42,44 @@ namespace DS2S_META
             HotkeyTextBox.KeyUp += HotkeyTextBox_KeyUp;
         }
 
+        public void RegisterHotkey()
+        {
+            UnregisterHotkey();
+
+            if (Key != Key.Escape)
+                HotKey = new HotKey(ModifierKeys.None, Key, Window, HotkeyAction);
+        }
+
+        public void UnregisterHotkey()
+        {
+            if (HotKey == null)
+                return;
+
+            HotKey.Dispose();
+            HotKey = null;
+        }
+
         private void HotkeyTextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            var key = e.Key.ToString();
-            switch (key)
-            {
-                case "Left":
-                    key += "Arrow";
-                        break;
-                case "Right":
-                    key += "Arrow";
-                    break;
-                case "Up":
-                    key += "Arrow";
-                    break;
-                case "Down":
-                    key += "Arrow";
-                    break;
-                default:
-                    break;
-            }
-            var parse = Enum.TryParse(key, out VirtualKey virtualKey);
-            if (!parse)
-            {
-                HotkeyTextBox.Text = "Error";
-                return;
-            }
-            Key = virtualKey;
-            if (Key == VirtualKey.Escape)
+            Key = e.Key;
+            if (Key == Key.Escape)
                 HotkeyTextBox.Text = "Unbound";
             else
                 HotkeyTextBox.Text = Key.ToString();
             e.Handled = true;
+
+            UnregisterHotkey();
+
+            var mWindow = Window as MainWindow;
+            var existingKey = mWindow.Hotkeys.Find(hKey => hKey.Key == Key && hKey.SettingsName != SettingsName && hKey.Key != Key.Escape);
+            if (existingKey != null)
+            {
+                var args = new KeyEventArgs(e.KeyboardDevice, e.InputSource, e.Timestamp, Key.Escape);
+                args.RoutedEvent = e.RoutedEvent;
+                existingKey.HotkeyTextBox_KeyUp(existingKey.HotkeyTextBox, args); 
+            }
             HotkeyTabPage.Focus();
+
         }
         private void HotkeyTextBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
@@ -79,20 +90,10 @@ namespace DS2S_META
         {
             HotkeyTextBox.Background = Brushes.LightGreen;
         }
-        public bool Trigger(VirtualKey pressed)
-        {
-            bool result = false;
-            if (Key != VirtualKey.Escape && pressed == Key)
-            {
-                HotkeyAction();
-                result = true;
-            }
-            return result;
-        }
 
         public void Save()
         {
-            Properties.Settings.Default[SettingsName] = (int)Key;
+            Properties.Settings.Default[SettingsName] = KeyInterop.VirtualKeyFromKey(Key);
         }
     }
 }

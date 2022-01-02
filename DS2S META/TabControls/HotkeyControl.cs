@@ -1,5 +1,4 @@
-﻿using LowLevelHooking;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,69 +9,67 @@ namespace DS2S_META
 {
     public partial class MainWindow : Window
     {
-        private GlobalKeyboardHook KeyboardHook = new GlobalKeyboardHook();
-        private List<METAHotkey> Hotkeys = new List<METAHotkey>();
+        public List<METAHotkey> Hotkeys = new List<METAHotkey>();
 
         private void InitHotkeys()
         {
             cbxEnableHotkeys.IsChecked = Settings.EnableHotkeys;
             cbxHandleHotkeys.IsChecked = Settings.HandleHotkeys;
 
-            Hotkeys.Add(new METAHotkey("StorePosition", hkeyStorePosition.tbxHotkey, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("StorePosition", hkeyStorePosition.tbxHotkey, tabHotkeys, (hotkey) =>
             {
                 metaPlayer.StorePosition();
-            }));
+            }, this));
 
-            Hotkeys.Add(new METAHotkey("RestorePosition", hkeyRestorePosition.tbxHotkey, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("RestorePosition", hkeyRestorePosition.tbxHotkey, tabHotkeys, (hotkey) =>
             {
                 metaPlayer.RestorePosition();
-            }));
+            }, this));
 
-            Hotkeys.Add(new METAHotkey("ToggleGravity", hkeyGravity.tbxHotkey, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("ToggleGravity", hkeyGravity.tbxHotkey, tabHotkeys, (hotkey) =>
             {
                 metaPlayer.cbxGravity.IsChecked = !metaPlayer.cbxGravity.IsChecked.Value;
-            }));
+            }, this));
 
-            Hotkeys.Add(new METAHotkey("ToggleCollision", hkeyCollision.tbxHotkey, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("ToggleCollision", hkeyCollision.tbxHotkey, tabHotkeys, (hotkey) =>
             {
                 metaPlayer.cbxCollision.IsChecked = !metaPlayer.cbxCollision.IsChecked.Value;
-            }));
+            }, this));
 
-            Hotkeys.Add(new METAHotkey("Up", hkeyUp.tbxHotkey, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("Up", hkeyUp.tbxHotkey, tabHotkeys, (hotkey) =>
             {
                 Hook.StableZ += 5;
-            }));
+            }, this));
 
-            Hotkeys.Add(new METAHotkey("Down", hkeyDown.tbxHotkey, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("Down", hkeyDown.tbxHotkey, tabHotkeys, (hotkey) =>
             {
                 Hook.StableZ -= 5;
-            }));
+            }, this));
 
-            Hotkeys.Add(new METAHotkey("ModifySpeed", hkeySpeed.tbxHotkey, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("ModifySpeed", hkeySpeed.tbxHotkey, tabHotkeys, (hotkey) =>
             {
                 if (metaPlayer.cbxSpeed.IsEnabled)
                     metaPlayer.cbxSpeed.IsChecked = !metaPlayer.cbxSpeed.IsChecked.Value;
-            }));
+            }, this));
 
-            Hotkeys.Add(new METAHotkey("ToggleSpeedFactors", hkeySpeedFactor.tbxHotkey, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("ToggleSpeedFactors", hkeySpeedFactor.tbxHotkey, tabHotkeys, (hotkey) =>
             {
                 metaInternal.cbxSpeeds.IsChecked = !metaInternal.cbxSpeeds.IsChecked.Value;
                 metaPlayer.cbxSpeed.IsChecked = false;
                 metaPlayer.cbxSpeed.IsEnabled = !metaInternal.cbxSpeeds.IsChecked.Value;
-            }));
+            }, this));
 
-            Hotkeys.Add(new METAHotkey("Warp", hkeyWarp.tbxHotkey, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("Warp", hkeyWarp.tbxHotkey, tabHotkeys, (hotkey) =>
             {
                 if (!Hook.Multiplayer)
                     metaPlayer.Warp();
-            }));
+            }, this));
 
-            Hotkeys.Add(new METAHotkey("CreateItem", hkeyCreateItem.tbxHotkey, tabHotkeys, () =>
+            Hotkeys.Add(new METAHotkey("CreateItem", hkeyCreateItem.tbxHotkey, tabHotkeys, (hotkey) =>
             {
                 metaItems.CreateItem();
-            }));
+            }, this));
 
-            KeyboardHook.KeyDownOrUp += GlobalKeyboardHook_KeyDownOrUp;
         }
 
         private void SaveHotkeys()
@@ -81,19 +78,36 @@ namespace DS2S_META
             Settings.HandleHotkeys = cbxHandleHotkeys.IsChecked.Value;
             foreach (METAHotkey hotkey in Hotkeys)
                 hotkey.Save();
-            KeyboardHook.Dispose();
         }
 
-        private void GlobalKeyboardHook_KeyDownOrUp(object sender, GlobalKeyboardHookEventArgs e)
+        private bool HotkeysSet = false;
+        private void CheckFocused()
         {
-            if (!e.IsUp && FormLoaded && cbxEnableHotkeys.IsChecked.Value && Hook.Focused)
-            {
-                foreach (METAHotkey hotkey in Hotkeys)
-                {
-                    if (hotkey.Trigger(e.KeyCode) && cbxEnableHotkeys.IsChecked.Value)
-                        e.Handled = true;
-                }
-            }
+            if (Hook.Focused && !HotkeysSet)
+                RegisterHotkeys();
+
+            if (!Hook.Focused && HotkeysSet)
+                UnregisterHotkeys();
         }
+
+        private void RegisterHotkeys()
+        {
+            foreach (var hotkey in Hotkeys)
+            {
+                hotkey.RegisterHotkey();
+            }
+            HotkeysSet = true;
+        }
+
+        private void UnregisterHotkeys()
+        {
+            foreach (var hotkey in Hotkeys)
+            {
+                var key = hotkey.Key;
+                hotkey.UnregisterHotkey();
+            }
+            HotkeysSet = false;
+        }
+
     }
 }
