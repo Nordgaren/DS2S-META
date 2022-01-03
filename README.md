@@ -49,6 +49,8 @@ A
 
 * Added check to make sure you have right version of the game loaded.  
 
+* Changed to using Stable position in the player position restore system  
+
 ### Beta 0.1  
 
 * Cosmetic changes, and added bonfire control  
