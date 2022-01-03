@@ -87,7 +87,7 @@ namespace DS2S_META
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
         public bool Setup = false;
-        public bool Multiplayer => Loaded ? ConnectionType > 1 : true;
+
         public bool Focused => Hooked && User32.GetForegroundProcessID() == Process.Id;
 
         public DS2SHook(int refreshInterval, int minLifetime) :
@@ -516,7 +516,7 @@ namespace DS2S_META
         }
         public byte[] CameraData
         {
-            get => Camera5.ReadBytes((int)0xE9C, 512);
+            get => Camera5.ReadBytes((int)0xE9C, 64);
             set => Camera5.WriteBytes((int)0xE9C, value);
         }
         public byte[] CameraData2
@@ -574,16 +574,8 @@ namespace DS2S_META
             get => Loaded ? EventManager.ReadInt32((int)DS2SOffsets.Bonfire.LastSetBonfireAreaID) : 0;
             set => EventManager.WriteInt32((int)DS2SOffsets.Bonfire.LastSetBonfireAreaID, value);
         }
-        //public DS2SBonfire LastBonfireObj
-        //{
-        //    get => Loaded ? DS2SBonfire.All.FirstOrDefault(b => b.ID == LastBonfireID) : new DS2SBonfire(0, "None");
-        //    //set => Bonfire.WriteInt32((int)DS2SOffsets.Bonfire.LastSetBonfire, value.ID);
-        //}
-
-        public bool Online
-        {
-            get =>  ConnectionType > 0;
-        }
+        public bool Multiplayer => Loaded ? ConnectionType > 1 : true;
+        public bool Online => Loaded ? ConnectionType > 0 : true;
 
         public int ConnectionType
         {

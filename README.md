@@ -36,7 +36,7 @@ A
 
 [Octokit](https://github.com/octokit/octokit.net) by [Octokit](https://github.com/octokit) team
 
-[GlobalHotkeys](https://github.com/mrousavy/Hotkeys) by [Marc Rousavy](https://github.com/mrousavy)
+[GlobalHotkeys](https://github.com/mrousavy/Hotkeys) by [Marc Rousavy](https://github.com/mrousavy)  
 
 # Change Log 
 ### Beta 0.1
