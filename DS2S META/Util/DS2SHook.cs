@@ -576,12 +576,7 @@ namespace DS2S_META
         }
         public bool Multiplayer => Loaded ? ConnectionType > 1 : true;
         public bool Online => Loaded ? ConnectionType > 0 : true;
-
-        public int ConnectionType
-        {
-            get => Hooked && Connection != null ? Connection.ReadInt32((int)DS2SOffsets.Connection.Online) : 0;
-        }
-
+        public int ConnectionType => Hooked && Connection != null ? Connection.ReadInt32((int)DS2SOffsets.Connection.Online) : 0;
         internal bool Warp(ushort id)
         {
             var value = Allocate(sizeof(short));
