@@ -38,8 +38,18 @@ A
 
 [GlobalHotkeys](https://github.com/mrousavy/Hotkeys) by [Marc Rousavy](https://github.com/mrousavy)  
 
-# Change Log 
-### Beta 0.1
+# Change Log  
+### Beta 0.2  
+
+* New Hotkey system using GlobalHotkeys library. Should fix issue with input delayin game
+
+* Optimized GetHeld method, which should make looking up items in player inventory faster. Could use feedback from anyone who previously couldn't use the live inventory update feature.  
+
+* Updated Resources/Equipment/DS2SItemCategories.txt to be more like the other editable text files.  
+
+* Added check to make sure you have right version of the game loaded.  
+
+### Beta 0.1  
 
 * Cosmetic changes, and added bonfire control  
 
