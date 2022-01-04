@@ -43,9 +43,6 @@ namespace DS2S_META
         }
         internal override void ReloadCtrl()
         {
-            if (cbxSpeed.IsChecked.Value)
-                Hook.Speed = (float)nudSpeed.Value;
-
             if (WarpRest)
                 Hook.ApplySpecialEffect(110000010);
         }
@@ -58,7 +55,7 @@ namespace DS2S_META
             nudPosStoredZ.IsEnabled = enable;
             nudHealth.IsEnabled = enable;
             nudStamina.IsEnabled = enable;
-            cbxSpeed.IsEnabled = enable;
+            cbxSpeed.IsEnabled = enable || Hook.Setup;
             cbxGravity.IsEnabled = enable;
             cbxCollision.IsEnabled = enable;
             btnWarp.IsEnabled = enable && !Hook.Multiplayer;
@@ -266,15 +263,18 @@ namespace DS2S_META
         private void cbxSpeed_Checked(object sender, RoutedEventArgs e)
         {
             nudSpeed.IsEnabled = cbxSpeed.IsChecked.Value;
-            Hook.Speed = cbxSpeed.IsChecked.Value ? (float)nudSpeed.Value : 1;
+            Hook.Speedhack(cbxSpeed.IsChecked.Value);
         }
 
         private void nudSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (GameLoaded)
-                Hook.Speed = (float)nudSpeed.Value;
+            if (GameLoaded && Hook.Hooked)
+                Hook.SetSpeed((float)nudSpeed.Value);
         }
-
+        private void nudSpeed_LostFocus(object sender, RoutedEventArgs e)
+        {
+            nudSpeed_ValueChanged(null, null);
+        }
         private void cbxBonfire_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Hook.Loaded && cbxQuickSelectBonfire.IsChecked.Value)

@@ -178,7 +178,7 @@
                                 <wpfTool:DecimalUpDown Value="{Binding SpeedValue, 
                 Mode=TwoWay, 
                 Source={x:Static p:Settings.Default}, 
-                UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" IsEnabled="False" FormatString="F2" Increment=".5" TextAlignment="Center" Name="nudSpeed" ValueChanged="nudSpeed_ValueChanged"/>
+                UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" IsEnabled="False" FormatString="F2" Increment=".5" TextAlignment="Center" Name="nudSpeed" ValueChanged="nudSpeed_ValueChanged" LostFocus="nudSpeed_LostFocus"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel>

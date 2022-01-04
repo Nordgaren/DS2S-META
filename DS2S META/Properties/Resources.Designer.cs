@@ -78,7 +78,7 @@ namespace DS2S_META.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0:  48 83 ec 26             sub    rsp,0x26
+        ///   Looks up a localized string similar to 0:  48 83 ec 38             sub    rsp,0x38
         ///4:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
         ///b:  ff ff ff
         ///e:  48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000
@@ -86,11 +86,11 @@ namespace DS2S_META.Properties {
         ///18: 48 b8 00 00 00 00 ff    movabs rax,0xffffffff00000000
         ///1f: ff ff ff
         ///22: f3 0f 10 00             movss  xmm0,DWORD PTR [rax]
-        ///26: f3 0f 11 44 24 1c       movss  DWORD PTR [rsp+0x1c],xmm0
+        ///26: f3 0f 11 44 24 28       movss  DWORD PTR [rsp+0x28],xmm0
         ///2c: 48 b8 00 00 00 00 ff    movabs rax,0xffffffff00000000
         ///33: ff ff ff
         ///36: ff d0                   call   rax
-        ///38: 48 83 c4 26  [rest of string was truncated]&quot;;.
+        ///38: 48 83 c4 38  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ApplySpecialEffect {
             get {

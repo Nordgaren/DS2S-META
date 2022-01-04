@@ -45,6 +45,16 @@ namespace DS2S_META
                 };
                 warning.ShowDialog();
             }
+
+            Hook.OnHooked += Hook_OnHooked;
+        }
+
+        private void Hook_OnHooked(object sender, PHEventArgs e)
+        {
+            Dispatcher.Invoke(new Action(() =>
+            {
+                EnableTabs(Hook.Loaded);
+            }));
         }
 
         DS2SHook Hook => ViewModel.Hook;
@@ -110,6 +120,10 @@ namespace DS2S_META
         {
             if (Hook.EnableSpeedFactors)
                 Hook.EnableSpeedFactors = false;
+
+            Hook.DisableSpeedhack();
+            Hook.Free(Hook.SpeedhackDllPtr);
+
             UpdateTimer.Stop();
             SaveAllTabs();
 
