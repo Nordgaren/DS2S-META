@@ -28,6 +28,7 @@ A
 **[TKGP](https://github.com/JKAnderson/)** Author of [DS Gadget](https://github.com/JKAnderson/DS-Gadget) and [Property Hook](https://github.com/JKAnderson/PropertyHook)  
 **[Lord Radai](https://github.com/LordRadai)** Author of the CE table used for this tool and good mentor  
 **[pseudostripy](https://github.com/pseudostripy)** Tester and contributor   
+**[R3sus](https://github.com/r3sus)** Contributor and absolute wealth of knowledge  
 
 ## Libraries
 [Property Hook](https://github.com/JKAnderson/PropertyHook) by [TKGP](https://github.com/JKAnderson/)  
