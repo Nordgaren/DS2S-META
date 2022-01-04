@@ -298,5 +298,17 @@ namespace DS2S_META.Properties {
                 this["UpdateMaxLive"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public int FastQuit {
+            get {
+                return ((int)(this["FastQuit"]));
+            }
+            set {
+                this["FastQuit"] = value;
+            }
+        }
     }
 }

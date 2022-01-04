@@ -379,7 +379,13 @@ namespace DS2S_META
             return pointer.ReadIntPtr(0x0121D4D0 + DS2SOffsets.BasePtrOffset2);
         }
 
-
+        public byte FastQuit
+        {
+            set
+            {
+                BaseA.WriteByte((int)DS2SOffsets.ForceQuit.Quit, value);
+            }
+        }
 
         #region Player
         public int Health

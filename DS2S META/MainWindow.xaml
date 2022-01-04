@@ -234,6 +234,12 @@
                                                 <local:HotkeyControl x:Name="hkeySpeedFactor" HotkeyName="Speed Factors" Margin="0,5,0,0"/>
                                             </StackPanel>
                                         </Border>
+                                        <Label Content="Misc"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" >
+                                            <StackPanel Margin="5,0,5,5" >
+                                                <local:HotkeyControl x:Name="hkeyFastQuit" HotkeyName="Fast Quit" Margin="0,5,0,0"/>
+                                            </StackPanel>
+                                        </Border>
 
 
                                     </StackPanel>

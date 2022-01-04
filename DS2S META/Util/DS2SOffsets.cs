@@ -27,6 +27,11 @@ namespace DS2S_META
             Name = 0x114
         }
 
+        public enum ForceQuit
+        {
+            Quit = 0x24B1
+        }
+
         public const string ItemGiveFunc = "48 89 5C 24 18 56 57 41 56 48 83 EC 30 45 8B F1 41";
         public const int AvailableItemBagOffset = 0x10;
         public const int ItemGiveWindowPointer = 0x22E0;
