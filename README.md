@@ -39,6 +39,10 @@ A
 [GlobalHotkeys](https://github.com/mrousavy/Hotkeys) by [Marc Rousavy](https://github.com/mrousavy)  
 
 # Change Log  
+### Beta 0.3  
+
+* Modify Speed on the Player tab is now equivilent to Cheat Engine Speedhack. If you want to just modify your own speed, use the speeds in Internals tab.  
+
 ### Beta 0.2  
 
 * New Hotkey system using GlobalHotkeys library. Should fix issue with input delayin game
