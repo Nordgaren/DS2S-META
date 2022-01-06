@@ -31,7 +31,7 @@ A
 **[R3sus](https://github.com/r3sus)** Contributor and absolute wealth of knowledge  
 
 ## Libraries
-[Property Hook](https://github.com/JKAnderson/PropertyHook) by [TKGP](https://github.com/JKAnderson/)  
+My fork of [Property Hook](https://github.com/Nordgaren/PropertyHook) by [TKGP](https://github.com/JKAnderson/)  
 
 [Costura](https://github.com/Fody/Costura) by [Fody](https://github.com/Fody) team  
 
