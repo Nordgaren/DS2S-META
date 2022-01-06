@@ -15,7 +15,6 @@
  21040101 Leather Armor
  21040102 Leather Gloves
  21040103 Leather Boots
- 21041100 Hunter's Hat
  21050100 Knight Helm
  21050101 Knight Armor
  21050102 Knight Gauntlets

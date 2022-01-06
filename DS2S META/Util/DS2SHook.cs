@@ -182,7 +182,6 @@ namespace DS2S_META
         {
             Version = "Not Hooked";
             Setup = false;
-            
         }
         public void UpdateName()
         {

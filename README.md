@@ -42,6 +42,12 @@ A
 [SpeedhackWithExports](https://github.com/Nordgaren/SpeedhackWithExports) - My fork of [Speedhack](https://github.com/absoIute/Speedhack) by [absoIute](https://github.com/absoIute)   
 
 # Change Log  
+### Beta 0.4  
+
+* Fixed game crash when closing META  
+
+* Fixed crash related to bad Hunters Hat ID  
+
 ### Beta 0.3  
 
 * Modify Speed on the Player tab is now equivilent to Cheat Engine Speedhack. If you want to just modify your own speed, use the speeds in Internals tab.  
