@@ -1,4 +1,5 @@
 ﻿Future improvements:
- - stam regen?
- - item discovery?
- - quitout!
+ - item discovery?  
+ - cheat tab  
+ - fly script  
+ - damage scaling  
