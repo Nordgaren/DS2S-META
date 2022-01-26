@@ -1,0 +1,9 @@
+﻿0:  48 83 ec 28             sub    rsp,0x28 
+4:  48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000 ;PlayerParam Pointer
+b:  ff ff ff
+e:  48 c7 c2 f4 01 00 00    mov    rdx,0x1f4 ;number of souls
+15: 49 be 00 00 00 00 ff    movabs r14,0xffffffff00000000 ;Give Souls func
+1c: ff ff ff
+1f: 41 ff d6                call   r14
+22: 48 83 c4 28             add    rsp,0x28
+26: c3                      ret 

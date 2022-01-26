@@ -1,0 +1,79 @@
+﻿//Format: Area ID; Bonfire ID; Name [arbitrary]
+0 0 _None (Placeholder, Does not work)
+167903232 2650 Fire Keepers' Dwelling
+168034304 4650 The Far Fire
+168427520 10670 The Crestfallen's Retreat
+168427520 10655 Cardinal Tower
+168427520 10660 Soldiers' Rest
+168427520 10675 The Place Unbeknownst
+169803776 31655 Heide's Ruin
+169803776 31650 Tower of Flame
+169803776 31660 The Blue Cathedral
+168951808 18650 Unseen Path to Heide
+168820736 16655 Exile Holding Cells
+168820736 16670 McDuff's Workshop
+168820736 16675 Servants' Quarters
+168820736 16650 Straid's Cell
+168820736 16660 The Tower Apart
+168820736 16685 The Saltfort
+168820736 16665 Upper Ramparts
+169279488 23650 Undead Refuge
+169279488 23655 Bridge Approach
+169279488 23660 Undead Lockaway
+169279488 23665 Undead Purgatory
+168886272 17665 Poison Pool
+168886272 17650 The Mines
+168886272 17655 Lower Earthen Peak
+168886272 17670 Central Earthen Peak
+168886272 17675 Upper Earthen Peak
+169017344 19655 Threshold Bridge
+169017344 19650 Ironhearth Hall
+169017344 19660 Eygil's Idol
+169017344 19665 Belfry Sol Approach
+169672704 29650 Old Akelarre
+169869312 32655 Ruined Fork Road
+169869312 32660 Shaded Ruins
+169934848 33655 Gyrm's Respite
+169934848 33660 Ordeal's End
+168689664 14655 Royal Army Campsite
+168689664 14660 Chapel Threshold
+168689664 14650 Lower Brightstone Cove
+170000384 34655 Harval's Resting Place
+170000384 34650 Grave Entrance
+169410560 25665 Upper Gutter
+169410560 25655 Central Gutter
+169410560 25650 Black Gulch Mouth
+169410560 25660 Hidden Chamber
+336920576 21650 King's Gate
+336920576 21665 Under Castle Drangleic
+336920576 21655 Central Castle Drangleic
+336920576 21660 Forgotten Chamber
+336265216 11650 Tower of Prayer (Amana)
+336265216 11655 Crumbled Ruins
+336265216 11660 Rhoy's Resting Place
+336265216 11670 Rise of the Dead
+337117184 24655 Undead Crypt Entrance
+337117184 24650 Undead Ditch
+168755200 15650 Foregarden
+168755200 15655 Ritual Site
+169541632 27650 Dragon Aerie
+169541632 27655 Shrine Entrance
+841154560 35650 Sanctum Walk
+841154560 35685 Tower of Prayer (Shulva)
+841154560 35655 Priestess' Chamber
+841154560 35670 Hidden Sanctum Chamber
+841154560 35675 Lair of the Imperfect
+841154560 35680 Sanctum Interior
+841154560 35665 Sanctum Nadir
+841220096 36650 Throne Floor
+841220096 36660 Upper Floor
+841220096 36655 Foyer
+841220096 36670 Lowermost Floor
+841220096 36675 The Smelter Throne
+841220096 36665 Iron Hallway Entrance
+841285632 37650 Outer Wall
+841285632 37660 Abandoned Dwelling
+841285632 37675 Expulsion Chamber
+841285632 37685 Inner Wall
+841285632 37665 Lower Garrison
+841285632 37670 Grand Cathedral

@@ -1,0 +1,4 @@
+﻿0:  f3 0f 59 9f a8 02 00    mulss  xmm3,DWORD PTR [rdi+0x2a8]
+7:  00
+8:  f3 0f 10 16             movss  xmm2,DWORD PTR [rsi]
+c:  f3 0f 10 46 04          movss  xmm0,DWORD PTR [rsi+0x4] 

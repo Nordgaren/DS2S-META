@@ -1,0 +1,5 @@
+﻿Future improvements:
+ - item discovery?  
+ - cheat tab  
+ - fly script  
+ - damage scaling  

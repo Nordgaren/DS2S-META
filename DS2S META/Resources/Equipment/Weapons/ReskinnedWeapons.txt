@@ -1,8 +1,0 @@
-//Format: Item ID; Name [arbitrary]
- 5600000 Longsword
- 5610000 Murakumo
- 5620000 Blacksteel Katana
- 5630000 Rapier
- 5640000 Greataxe
- 5650000 Great Club
- 5660000 Caestus
