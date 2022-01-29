@@ -69,31 +69,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Area.cs" />
-    <Compile Include="Bonfires.cs" />
-    <Compile Include="CheatType.cs" />
-    <Compile Include="CovenantType.cs" />
-    <Compile Include="Internal\AssemblyHelper.cs" />
-    <Compile Include="Internal\BaseMemoryReaderWriter.cs" />
-    <Compile Include="BossType.cs" />
-    <Compile Include="DarkSouls.cs" />
-    <Compile Include="Internal\DarkSoulsPtde.cs" />
-    <Compile Include="Internal\DarkSoulsRemastered.cs" />
-    <Compile Include="Internal\Extensions.cs" />
-    <Compile Include="ForcedAnimation.cs" />
-    <Compile Include="Internal\IDarkSouls.cs" />
-    <Compile Include="Internal\ItemReader.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="ItemPrompt.cs" />
-    <Compile Include="Internal\Kernel32.cs" />
-    <Compile Include="MenuPrompt.cs" />
+    <Compile Include="DarkSouls1\Area.cs" />
+    <Compile Include="DarkSouls1\Bonfires.cs" />
+    <Compile Include="DarkSouls1\CheatType.cs" />
+    <Compile Include="DarkSouls1\CovenantType.cs" />
+    <Compile Include="DarkSouls1\Internal\AssemblyHelper.cs" />
+    <Compile Include="DarkSouls1\Internal\BaseMemoryReaderWriter.cs" />
+    <Compile Include="DarkSouls1\BossType.cs" />
+    <Compile Include="DarkSouls1\DarkSouls1.cs" />
+    <Compile Include="DarkSouls1\Internal\DarkSoulsPtde.cs" />
+    <Compile Include="DarkSouls1\Internal\DarkSoulsRemastered.cs" />
+    <Compile Include="DarkSouls1\Internal\Extensions.cs" />
+    <Compile Include="DarkSouls1\ForcedAnimation.cs" />
+    <Compile Include="DarkSouls1\Internal\IDarkSouls.cs" />
+    <Compile Include="DarkSouls1\Internal\ItemReader.cs" />
+    <Compile Include="DarkSouls1\Item.cs" />
+    <Compile Include="DarkSouls1\ItemPrompt.cs" />
+    <Compile Include="DarkSouls1\Internal\Kernel32.cs" />
+    <Compile Include="DarkSouls1\MenuPrompt.cs" />
+    <Compile Include="DarkSouls2\DarkSouls2.cs" />
+    <Compile Include="DarkSouls2\IDarkSouls2.cs" />
+    <Compile Include="DarkSouls2\Sotfs\DS2SAssembly.cs" />
+    <Compile Include="DarkSouls2\Sotfs\DS2SClass.cs" />
+    <Compile Include="DarkSouls2\Sotfs\DS2SCovenant.cs" />
+    <Compile Include="DarkSouls2\Sotfs\DS2SHook.cs" />
+    <Compile Include="DarkSouls2\Sotfs\DS2SInfusion.cs" />
+    <Compile Include="DarkSouls2\Sotfs\DS2SItem.cs" />
+    <Compile Include="DarkSouls2\Sotfs\DS2SOffsets.cs" />
+    <Compile Include="DarkSouls2\Sotfs\User32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vector3f.cs" />
-    <Compile Include="WarpType.cs" />
-    <Compile Include="ZoneType.cs" />
+    <Compile Include="DarkSouls1\WarpType.cs" />
+    <Compile Include="DarkSouls1\ZoneType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DarkSouls2\Vanilla\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PropertyHook\PropertyHook\PropertyHook.csproj">
+      <Project>{18eff8d2-c4d5-4e18-9a31-38e106ba1cf7}</Project>
+      <Name>PropertyHook</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\keystoneengine.csharp.0.9.1.1\build\keystoneengine.csharp.targets" Condition="Exists('..\..\packages\keystoneengine.csharp.0.9.1.1\build\keystoneengine.csharp.targets')" />
