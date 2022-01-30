@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{981F985C-BBDB-4FAF-AFF4-3DA66A065A2F}</ProjectGuid>
+    <ProjectGuid>{03480F4F-F423-4144-90C6-CBDA68269374}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DarkSoulsMemory</RootNamespace>

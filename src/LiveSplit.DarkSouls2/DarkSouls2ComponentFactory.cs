@@ -1,22 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LiveSplit.Model;
 using LiveSplit.UI.Components;
+using LiveSplit.DarkSouls2;
+
+
+[assembly: ComponentFactory(typeof(DarkSouls2ComponentFactory))]
 
 namespace LiveSplit.DarkSouls2
 {
-    public class ComponentFactory : IComponentFactory
+    public class DarkSouls2ComponentFactory : IComponentFactory
     {
-        public string ComponentName => AutoSplitterComponent.Name;
+        public string ComponentName => DarkSouls2Component.Name;
 
         public string Description => "Configurable autosplitter for Dark Souls 2 & Dark Souls 2 Scholar of the first sin";
 
         public ComponentCategory Category => ComponentCategory.Control;
 
-        public string UpdateName => AutoSplitterComponent.Name;
+        public string UpdateName => DarkSouls2Component.Name;
 
         public string XMLURL => $"{UpdateURL}/Components/Updates.xml";
 
@@ -26,7 +26,7 @@ namespace LiveSplit.DarkSouls2
 
         public IComponent Create(LiveSplitState state)
         {
-            return new AutoSplitterComponent(state);
+            return new DarkSouls2Component(state);
         }
     }
 }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using LiveSplit.DarkSouls2.UI;
 
 namespace cli
 {
@@ -16,7 +18,13 @@ namespace cli
         [STAThread]
         static void Main(string[] args)
         {
-            AutoSplitterRunner.Run();
+            Form f = new Form();
+            var c = new MainControlFormsWrapper();
+            f.Width = c.Width;
+            f.Height = c.Height;
+            f.Controls.Add(c);
+            f.ShowDialog();
+            
             return;
 
 

@@ -28,22 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.autoSplitterControl1 = new LiveSplit.DarkSouls2.AutoSplitterControl();
             this.SuspendLayout();
-            // 
-            // autoSplitterControl1
-            // 
-            this.autoSplitterControl1.Location = new System.Drawing.Point(27, 12);
-            this.autoSplitterControl1.Name = "autoSplitterControl1";
-            this.autoSplitterControl1.Size = new System.Drawing.Size(406, 616);
-            this.autoSplitterControl1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 758);
-            this.Controls.Add(this.autoSplitterControl1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -51,7 +42,5 @@
         }
 
         #endregion
-
-        private LiveSplit.DarkSouls2.AutoSplitterControl autoSplitterControl1;
     }
 }

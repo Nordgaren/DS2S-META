@@ -13,28 +13,74 @@ namespace LiveSplit.DarkSouls2.Splits
     public class BoxSplit : ISplit
     { 
         public SplitType SplitType => SplitType.Box;
+        
 
-        private Vector3f _lowerBound;
-        public Vector3f LowerBound
+        public float LowerX
         {
-            get => _lowerBound;
+            get => _lowerX;
             set
             {
-                _lowerBound = value;
+                _lowerX = value;
                 OnPropertyChanged();
             }
         }
-
-        private Vector3f _upperBound;
-        public Vector3f UpperBound
+        private float _lowerX;
+        public float LowerY
         {
-            get => _upperBound;
+            get => _lowerY;
             set
             {
-                _upperBound = value;
+                _lowerY = value;
                 OnPropertyChanged();
             }
         }
+        private float _lowerY;
+        public float LowerZ
+        {
+            get => _lowerZ;
+            set
+            {
+                _lowerZ = value;
+                OnPropertyChanged();
+            }
+        }
+        private float _lowerZ;
+
+        public float UpperX
+        {
+            get => _upperX;
+            set
+            {
+                _upperX = value;
+                OnPropertyChanged();
+            }
+        }
+        private float _upperX;
+        public float UpperY
+        {
+            get => _upperY;
+            set
+            {
+                _upperY = value;
+                OnPropertyChanged();
+            }
+        }
+        private float _upperY;
+        public float UpperZ
+        {
+            get => _upperZ;
+            set
+            {
+                _upperZ = value;
+                OnPropertyChanged();
+            }
+        }
+        private float _upperZ;
+
+
+
+
+
 
         private TimingType _timingType;
         public TimingType TimingType

@@ -1,4 +1,4 @@
-﻿using DarkSoulsMemory.DarkSouls1;
+﻿using DarkSoulsMemory.DarkSouls2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,23 +11,6 @@ namespace LiveSplit.DarkSouls2.Splits
 {
     public class BossSplit : ISplit
     {
-        public BossSplit()
-        {
-            Testy = "Hosterd";
-        }
-
-        private string _testy = "Hosterd";
-
-        public string Testy
-        {
-            get => _testy;
-            set
-            {
-                _testy = value;
-                OnPropertyChanged();
-            }
-        }
-
         public SplitType SplitType => SplitType.Boss;
 
         private BossType _bossType;

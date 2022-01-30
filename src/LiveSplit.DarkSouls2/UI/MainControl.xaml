@@ -7,7 +7,10 @@
              xmlns:Local="clr-namespace:LiveSplit.DarkSouls2.Splits"
              xmlns:ui="clr-namespace:LiveSplit.DarkSouls2.UI"
              mc:Ignorable="d" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Width="500"
+             Height="800"
+             >
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -31,40 +34,121 @@
                     <!-- Split templates -->
 
                     <DataTemplate x:Key="BossTemplate" DataType="ui:SplitViewModel">
-                        <StackPanel Orientation="Horizontal"  Background="BlueViolet">
+                        <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="5" Padding="5">
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox
+                                    Width="50"
+                                    ItemsSource="{Binding SplitTypesItemsSource}" 
+                                    SelectedItem="{Binding SplitType}"/>
 
-                            <ComboBox
-                                ItemsSource="{Binding SplitTypesItemsSource}" 
-                                SelectedItem="{Binding SplitType}"/>
+                                <ComboBox
+                                    Margin="10,0,0,0"
+                                    Width="100"
+                                    ItemsSource="{Binding BossTypeItemsSource}" 
+                                    SelectedItem="{Binding BossSplit.BossType}"/>
 
-                            <TextBlock Text="1"/>
-                            <TextBlock Text="{Binding BossSplit.Testy}" Background="Red"/>
-                            <TextBlock Text="{Binding Testyy}" Background="Red"/>
-                            <TextBlock Text="2"/>
-                        </StackPanel>
+                                <ComboBox
+                                    Margin="10,0,0,0"
+                                    Width="100"
+                                    ItemsSource="{Binding TimingTypeItemsSource}" 
+                                    SelectedItem="{Binding BossSplit.TimingType}"/>
+
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
 
-                    <DataTemplate x:Key="ItemTemplate" DataType="Local:ItemSplit">
-                        <StackPanel>
-                            <ComboBox
-                                ItemsSource="{Binding SplitTypesItemsSource}" 
-                                SelectedItem="{Binding SplitType}"/>
-                            <TextBlock Text="Not implemented"/>
-                        </StackPanel>
+
+
+                    <DataTemplate x:Key="ItemTemplate" DataType="ui:SplitViewModel">
+                        <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="5" Padding="5">
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox
+                                    Width="50"
+                                    ItemsSource="{Binding SplitTypesItemsSource}" 
+                                    SelectedItem="{Binding SplitType}"/>
+                                <TextBlock Text="Not implemented"/>
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
 
-                    <DataTemplate x:Key="BoxTemplate" DataType="Local:BoxSplit">
-                        <StackPanel>
-                            <ComboBox
+                    <DataTemplate x:Key="BoxTemplate" DataType="ui:SplitViewModel">
+                        <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="5" Padding="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <ComboBox
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Width="50"
                                 ItemsSource="{Binding SplitTypesItemsSource}" 
                                 SelectedItem="{Binding SplitType}"/>
+                            
+                            <Label
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Content="Lower bound:"/>
 
-                            <TextBlock Text="{Binding UpperBound.X}"/>
-                            <TextBlock Text="{Binding UpperBound.Y}"/>
-                            <TextBlock Text="{Binding UpperBound.Z}"/>
-                        </StackPanel>
+                            <TextBox
+                                Grid.Column="2"
+                                Grid.Row="0"
+                                Text="{Binding BoxSplit.LowerX}"
+                                materialDesign:HintAssist.Hint="x"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                            <TextBox 
+                                Grid.Column="3"
+                                Grid.Row="0"
+                                Text="{Binding BoxSplit.LowerY}"
+                                materialDesign:HintAssist.Hint="y"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                            <TextBox 
+                                Grid.Column="4"
+                                Grid.Row="0"
+                                Text="{Binding BoxSplit.LowerZ}"
+                                materialDesign:HintAssist.Hint="z"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+
+                            <Label 
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Content="Upper bound:"/>
+
+                            <TextBox 
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                Text="{Binding BoxSplit.UpperX}"
+                                materialDesign:HintAssist.Hint="x"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                            <TextBox
+                                Grid.Column="3"
+                                Grid.Row="1"
+                                Text="{Binding BoxSplit.UpperY}"
+                                materialDesign:HintAssist.Hint="y"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                            <TextBox 
+                                Grid.Column="4"
+                                Grid.Row="1"
+                                Text="{Binding BoxSplit.UpperZ}"
+                                materialDesign:HintAssist.Hint="z"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                            </Grid>
+                        </Border>
                     </DataTemplate>
-
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -77,44 +161,42 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="500"/>
-            <RowDefinition Height="500"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button
-            Grid.Row="0"
-            Grid.Column="0"
-            Content="Add"
-            Click="AddButton_OnClick"
-            HorizontalAlignment="Left"/>
 
-        <Button
-            Grid.Row="0"
-            Grid.Column="1"
-            Content="Remove"
-            Click="AddButton_OnClick"
-            HorizontalAlignment="Left"/>
+        <StackPanel Orientation="Horizontal">
+            <Button
+                Margin="5"
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                ToolTip="Add a split"
+                Click="AddButton_OnClick"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                <materialDesign:PackIcon
+                    Kind="PlaylistAdd"
+                    Height="30"
+                    Width="30" />
+            </Button>
 
+            <Button
+                Margin="5"
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                ToolTip="Add a split"
+                Click="AddButton_OnClick"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                <materialDesign:PackIcon
+                    Kind="PlaylistRemove"
+                    Height="30"
+                    Width="30" />
+            </Button>
+        </StackPanel>
 
-<!--
-
-        <ListBox 
-            Grid.Row="1" 
-            Grid.ColumnSpan="2" 
-            ItemsSource="{Binding  Path=Splits}" 
-            ItemContainerStyle="{StaticResource SplitsListBoxStyle}"/>
-        -->
-
-        <ItemsControl 
-            Background="Blue"
-            Grid.Row="1" 
-            Grid.Column="0" 
-            Grid.ColumnSpan="2" 
+        <ItemsControl
+            Grid.Row="1"
             ItemsSource="{Binding Splits}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
