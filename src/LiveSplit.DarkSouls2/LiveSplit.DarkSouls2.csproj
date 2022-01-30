@@ -92,7 +92,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components\" />
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +108,14 @@
       <Project>{981F985C-BBDB-4FAF-AFF4-3DA66A065A2F}</Project>
       <Name>DarkSoulsMemory</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\DarkSoulsMemory.dll" />
+    <Content Include="Components\LiveSplit.DarkSouls2.dll" />
+    <Content Include="Components\MaterialDesignColors.dll" />
+    <Content Include="Components\MaterialDesignThemes.Wpf.dll" />
+    <Content Include="Components\MaterialDesignThemes.Wpf.xml" />
+    <Content Include="Components\Updates.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets" Condition="Exists('..\..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets')" />

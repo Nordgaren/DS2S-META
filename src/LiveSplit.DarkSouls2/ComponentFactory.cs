@@ -18,9 +18,9 @@ namespace LiveSplit.DarkSouls2
 
         public string UpdateName => AutoSplitterComponent.Name;
 
-        public string XMLURL => "";
+        public string XMLURL => $"{UpdateURL}/Components/Updates.xml";
 
-        public string UpdateURL => "";
+        public string UpdateURL => "https://github.com/Nordgaren/DS2S-META/tree/wasted/src/LiveSplit.DarkSouls2";
 
         public Version Version => new Version(0, 0, 1);
 
