@@ -12,9 +12,15 @@ namespace cli
     {
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
-
+        
+        [STAThread]
         static void Main(string[] args)
         {
+            AutoSplitterRunner.Run();
+            return;
+
+
+
             var process = Process.GetProcessesByName("DarkSoulsII").FirstOrDefault();
             var start = 0x7FF45234A0E0;
             var end = 0x7FF45234C572;
