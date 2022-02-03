@@ -7,11 +7,16 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace LiveSplit.DarkSouls2.Splits
 {
     public class BoxSplit : ISplit
     { 
+        public BoxSplit(){}
+
         public SplitType SplitType => SplitType.Box;
         
 
@@ -24,7 +29,7 @@ namespace LiveSplit.DarkSouls2.Splits
                 OnPropertyChanged();
             }
         }
-        private float _lowerX;
+        private float _lowerX = 0.0f;
         public float LowerY
         {
             get => _lowerY;
@@ -34,7 +39,7 @@ namespace LiveSplit.DarkSouls2.Splits
                 OnPropertyChanged();
             }
         }
-        private float _lowerY;
+        private float _lowerY = 0.0f;
         public float LowerZ
         {
             get => _lowerZ;
@@ -44,7 +49,7 @@ namespace LiveSplit.DarkSouls2.Splits
                 OnPropertyChanged();
             }
         }
-        private float _lowerZ;
+        private float _lowerZ = 0.0f;
 
         public float UpperX
         {
@@ -55,7 +60,7 @@ namespace LiveSplit.DarkSouls2.Splits
                 OnPropertyChanged();
             }
         }
-        private float _upperX;
+        private float _upperX = 0.0f;
         public float UpperY
         {
             get => _upperY;
@@ -65,7 +70,7 @@ namespace LiveSplit.DarkSouls2.Splits
                 OnPropertyChanged();
             }
         }
-        private float _upperY;
+        private float _upperY = 0.0f;
         public float UpperZ
         {
             get => _upperZ;
@@ -75,14 +80,11 @@ namespace LiveSplit.DarkSouls2.Splits
                 OnPropertyChanged();
             }
         }
-        private float _upperZ;
+        private float _upperZ = 0.0f;
 
+        
 
-
-
-
-
-        private TimingType _timingType;
+        private TimingType _timingType = TimingType.Immediate;
         public TimingType TimingType
         {
             get => _timingType;

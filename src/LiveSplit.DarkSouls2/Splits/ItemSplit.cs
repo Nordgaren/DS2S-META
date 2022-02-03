@@ -6,11 +6,17 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace LiveSplit.DarkSouls2.Splits
 {
     public class ItemSplit : ISplit
     {
+        public ItemSplit(){}
+
+
         public SplitType SplitType => SplitType.Item;
         
 
@@ -18,7 +24,7 @@ namespace LiveSplit.DarkSouls2.Splits
 
 
 
-        private TimingType _timingType;
+        private TimingType _timingType = TimingType.Immediate;
         public TimingType TimingType
         {
             get => _timingType;

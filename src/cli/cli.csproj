@@ -67,6 +67,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DarkSoulsMemory\DarkSoulsMemory.csproj">
+      <Project>{03480f4f-f423-4144-90c6-cbda68269374}</Project>
+      <Name>DarkSoulsMemory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LiveSplit.DarkSouls2\LiveSplit.DarkSouls2.csproj">
       <Project>{a30986d1-6b5a-415d-a737-ae0d9ef4ce9c}</Project>
       <Name>LiveSplit.DarkSouls2</Name>

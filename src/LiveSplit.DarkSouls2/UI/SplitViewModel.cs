@@ -23,9 +23,13 @@ namespace LiveSplit.DarkSouls2.UI
             BossSplit = new BossSplit();
         }
 
-
-        public string Testyy { get; set; } = "Hosterd";
-
+        public SplitViewModel(ISplit split)
+        {
+            //Changing the splittype will default initialize the appropriate split type. Using the private field won't raise a property changed event.
+            _splitType = split.SplitType;
+            _split = split;
+        }
+        
 
         private ISplit _split;
         public BossSplit BossSplit
@@ -80,8 +84,7 @@ namespace LiveSplit.DarkSouls2.UI
         }
 
 
-
-
+        
         private SplitType _splitType;
         public SplitType SplitType
         {
@@ -114,6 +117,12 @@ namespace LiveSplit.DarkSouls2.UI
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        public override string ToString()
+        {
+            return _split?.ToString() ?? "No split";
         }
     }
 }

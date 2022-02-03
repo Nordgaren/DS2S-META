@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LiveSplit.DarkSouls2
 {
     public enum TimingType
     {
+        [Display(Name = "immediate")]
         Immediate,
+
+        [Display(Name = "on warp")]
         OnWarp,
-        OnQuitout,
+
+        [Display(Name = "on save/quit")]
+        OnSaveQuit,
     }
 }

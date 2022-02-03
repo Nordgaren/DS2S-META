@@ -8,8 +8,8 @@
              xmlns:ui="clr-namespace:LiveSplit.DarkSouls2.UI"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             Width="500"
-             Height="800"
+             Width="460"
+             Height="524" 
              >
 
     <UserControl.Resources>
@@ -19,80 +19,97 @@
                 <!-- Material design -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/materialdesigncolor.indigo.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.indigo.xaml" />
 
                 <ResourceDictionary>
 
-                    <!-- Gets all the different split types from the enum, to use as itemsource in combo boxes -->
-                    <ObjectDataProvider x:Key="SplitTypeItemsSource" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
-                        <ObjectDataProvider.MethodParameters>
-                            <x:Type TypeName="Local:SplitType"/>
-                        </ObjectDataProvider.MethodParameters>
-                    </ObjectDataProvider>
+                    <ui:EnumDisplayNameConverter x:Key="EnumDisplayNameConverter"/>
+
+                    <DataTemplate x:Key="TimingComboBox">
+                        <ComboBox>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource EnumDisplayNameConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </DataTemplate>
 
                     <!-- Split templates -->
-
                     <DataTemplate x:Key="BossTemplate" DataType="ui:SplitViewModel">
-                        <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="5" Padding="5">
-                            <StackPanel Orientation="Horizontal">
-                                <ComboBox
-                                    Width="50"
-                                    ItemsSource="{Binding SplitTypesItemsSource}" 
-                                    SelectedItem="{Binding SplitType}"/>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <ComboBox
+                                Width="50"
+                                ItemsSource="{Binding SplitTypesItemsSource}" 
+                                SelectedItem="{Binding SplitType}"/>
 
-                                <ComboBox
-                                    Margin="10,0,0,0"
-                                    Width="100"
-                                    ItemsSource="{Binding BossTypeItemsSource}" 
-                                    SelectedItem="{Binding BossSplit.BossType}"/>
+                            <ComboBox
+                                Margin="10,0,0,0"
+                                Width="100"
+                                ItemsSource="{Binding BossTypeItemsSource}" 
+                                SelectedItem="{Binding BossSplit.BossType}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayNameConverter}}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
 
-                                <ComboBox
-                                    Margin="10,0,0,0"
-                                    Width="100"
-                                    ItemsSource="{Binding TimingTypeItemsSource}" 
-                                    SelectedItem="{Binding BossSplit.TimingType}"/>
+                            <TextBox
+                                Margin="10,0,0,0"
+                                Width="15"
+                                materialDesign:HintAssist.Hint="Kill count"
+                                Text="{Binding BossSplit.KillCount}"/>
 
-                            </StackPanel>
-                        </Border>
+                            <ComboBox
+                                Margin="10,0,0,0"
+                                Width="100"
+                                ItemsSource="{Binding TimingTypeItemsSource}"
+                                SelectedItem="{Binding BossSplit.TimingType}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayNameConverter}}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
                     </DataTemplate>
 
 
 
                     <DataTemplate x:Key="ItemTemplate" DataType="ui:SplitViewModel">
-                        <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="5" Padding="5">
-                            <StackPanel Orientation="Horizontal">
-                                <ComboBox
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <ComboBox
                                     Width="50"
                                     ItemsSource="{Binding SplitTypesItemsSource}" 
                                     SelectedItem="{Binding SplitType}"/>
-                                <TextBlock Text="Not implemented"/>
-                            </StackPanel>
-                        </Border>
+                            <TextBlock Text="Not implemented"/>
+                        </StackPanel>
                     </DataTemplate>
 
                     <DataTemplate x:Key="BoxTemplate" DataType="ui:SplitViewModel">
-                        <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="5" Padding="5">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
+                        <Grid Margin="5" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                                <ComboBox
+                            <ComboBox
+                                HorizontalAlignment="Left"
                                 Grid.Column="0"
                                 Grid.Row="0"
                                 Width="50"
                                 ItemsSource="{Binding SplitTypesItemsSource}" 
                                 SelectedItem="{Binding SplitType}"/>
-                            
+
                             <Label
                                 Grid.Column="1"
                                 Grid.Row="0"
@@ -146,8 +163,7 @@
                                 materialDesign:HintAssist.Hint="z"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
-                            </Grid>
-                        </Border>
+                        </Grid>
                     </DataTemplate>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
@@ -174,8 +190,7 @@
                 Margin="5"
                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                 ToolTip="Add a split"
-                Click="AddButton_OnClick"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                Click="AddButton_OnClick">
                 <materialDesign:PackIcon
                     Kind="PlaylistAdd"
                     Height="30"
@@ -186,8 +201,7 @@
                 Margin="5"
                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                 ToolTip="Add a split"
-                Click="AddButton_OnClick"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                Click="AddButton_OnClick">
                 <materialDesign:PackIcon
                     Kind="PlaylistRemove"
                     Height="30"
@@ -195,21 +209,32 @@
             </Button>
         </StackPanel>
 
-        <ItemsControl
+        <ListView
+            x:Name="SplitsListView"
             Grid.Row="1"
-            ItemsSource="{Binding Splits}">
-            <ItemsControl.ItemsPanel>
+            ItemsSource="{Binding Splits}"
+            AllowDrop="True">
+            <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel/>
                 </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplateSelector>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplateSelector>
                 <ui:SplitsDataTemplateSelector 
                     BossTemplate="{StaticResource BossTemplate}"
                     ItemTemplate="{StaticResource ItemTemplate}"
                     BoxTemplate="{StaticResource BoxTemplate}"/>
-            </ItemsControl.ItemTemplateSelector>
-        </ItemsControl>
+            </ListView.ItemTemplateSelector>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown"/>
+                    <EventSetter Event="PreviewMouseLeftButtonUp" Handler="ListViewItem_PreviewMouseLeftButtonUp"/>
+                    <EventSetter Event="MouseMove" Handler="ListViewItem_MouseMove"/>
+                    <EventSetter Event="Drop" Handler="ListViewItem_Drop"/>
+                    <EventSetter Event="DragOver" Handler="ListViewItem_DragOver"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
     </Grid>
 </UserControl>

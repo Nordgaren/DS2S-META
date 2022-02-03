@@ -13,7 +13,7 @@ namespace Testing
     internal class DarkSouls2
     {
         private static DarkSouls2ToolAssistant _assistant;
-        private static DarkSoulsMemory.DarkSouls2.Sotfs.DS2SHook _darkSouls2;
+        private static DarkSouls2SotfsHook _darkSouls2; 
         private static string SaveFileLocation = @"C:\Users\Frank\AppData\Roaming\DarkSoulsII\0110000104593e46";
         private static string SaveFileName = @"DS2SOFS0000.sl2";
 
@@ -38,7 +38,7 @@ namespace Testing
 
 
             _assistant = new DarkSouls2ToolAssistant(GameType.DarkSouls2Sotfs);
-            _darkSouls2 = new DS2SHook(10, 5000);
+            _darkSouls2 = new DarkSouls2SotfsHook(10, 5000);
             _darkSouls2.Start();
 
             _darkSouls2.RightHand1DamageMultiplier = 9999;

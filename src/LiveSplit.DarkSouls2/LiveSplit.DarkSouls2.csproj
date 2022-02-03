@@ -17,7 +17,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
+    <OutputPath>..\..\..\LiveSplit\LiveSplit\bin\Debug\Components\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DarkSouls2Component.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Splits\BoxSplit.cs" />
     <Compile Include="Splits\ItemSplit.cs" />
     <Compile Include="Splits\BossSplit.cs" />
@@ -84,7 +85,8 @@
     <Compile Include="UI\MainViewModel.cs" />
     <Compile Include="UI\SplitsDataTemplateSelector.cs" />
     <Compile Include="UI\SplitViewModel.cs" />
-    <Compile Include="UI\TimingTypeToNameConverter.cs" />
+    <Compile Include="UI\EnumDisplayNameConverter.cs" />
+    <Compile Include="XmlSerializableWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />

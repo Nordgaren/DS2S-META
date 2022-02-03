@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using DarkSoulsMemory.Shared;
 
 namespace DarkSoulsMemory.DarkSouls1.Internal
 {
@@ -133,20 +134,6 @@ namespace DarkSoulsMemory.DarkSouls1.Internal
             _cachedRegions = memory;
             return memory;
         }
-
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct MemoryRegion
-        {
-            public IntPtr BaseAddress;
-            public IntPtr AllocationBase;
-
-            public uint AllocationProtect;
-            public ulong RegionSize;
-            public uint State;
-            public uint Protect;
-            public uint Type;
-        }
-
 
         internal bool ReadBoolean(IntPtr address)
         {

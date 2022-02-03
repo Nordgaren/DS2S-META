@@ -273,6 +273,11 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
             LowerGarrison = 0x6DA,
             GrandCathedral = 0x6F2
         }
+
+        public const int BossKillCountersOffset1 = 0x70;
+        public const int BossKillCountersOffset2 = 0x28;
+        public const int BossKillCountersOffset3 = 0x20;
+        public const int BossKillCountersOffset4 = 0x8;
         #endregion
 
         #region BaseB

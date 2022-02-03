@@ -10,10 +10,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DarkSoulsMemory.Shared;
+using Kernel32 = PropertyHook.Kernel32;
 
 namespace DarkSoulsMemory.DarkSouls2.Sotfs
 {
-    public class DS2SHook : PHook, INotifyPropertyChanged
+    public class DarkSouls2SotfsHook : PHook, INotifyPropertyChanged, IDarkSouls2
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -62,6 +64,7 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
         private PHPointer EventManager;
         private PHPointer BonfireLevels;
         private PHPointer NetSvrBloodstainManager;
+        private PHPointer BossKillCounters;
 
         private PHPointer LevelUpSoulsParam;
         private PHPointer WeaponParam;
@@ -94,8 +97,7 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
 
         public bool Focused => Hooked && User32.GetForegroundProcessID() == Process.Id;
 
-        public DS2SHook(int refreshInterval, int minLifetime) :
-            base(refreshInterval, minLifetime, p => p.MainWindowTitle == "DARK SOULS II")
+        public DarkSouls2SotfsHook(int refreshInterval, int minLifetime) : base(refreshInterval, minLifetime, p => p.MainWindowTitle == "DARK SOULS II")
         {
             Version = "Not Hooked";
             BaseASetup = RegisterAbsoluteAOB(DS2SOffsets.BaseAAob);
@@ -150,6 +152,7 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
             BonfireLevels = CreateChildPointer(EventManager, (int)DS2SOffsets.BonfireLevelsOffset1, (int)DS2SOffsets.BonfireLevelsOffset2);
             WarpManager = CreateChildPointer(EventManager, (int)DS2SOffsets.WarpManagerOffset);
             NetSvrBloodstainManager = CreateChildPointer(BaseA, (int)DS2SOffsets.NetSvrBloodstainManagerOffset1, (int)DS2SOffsets.NetSvrBloodstainManagerOffset2, (int)DS2SOffsets.NetSvrBloodstainManagerOffset3);
+            BossKillCounters = CreateChildPointer(BaseA, DS2SOffsets.BossKillCountersOffset1, DS2SOffsets.BossKillCountersOffset2, DS2SOffsets.BossKillCountersOffset3, DS2SOffsets.BossKillCountersOffset4);
 
             LevelUpSoulsParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.LevelUpSoulsParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             WeaponParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponParamOffset, (int)DS2SOffsets.ParamDataOffset2);
@@ -936,6 +939,15 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
                 paramID += nextParam;
                 paramOffset += nextParam;
             }
+        }
+
+        #endregion
+
+        #region Bosses
+
+        public int GetBossKillCount(BossType bossType)
+        {
+            return BossKillCounters.ReadInt32((int)bossType);
         }
 
         #endregion

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DarkSoulsMemory.DarkSouls1.Internal
+namespace DarkSoulsMemory.Shared
 {
     internal static class Kernel32
     {
@@ -16,7 +16,7 @@ namespace DarkSoulsMemory.DarkSouls1.Internal
         public static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint nSize, uint lpNumberOfBytesWritten);
 
         [DllImport("kernel32.dll")]
-        public static extern uint VirtualQueryEx(IntPtr hProcess, IntPtr lpAddress, out BaseMemoryReaderWriter.MemoryRegion lpBuffer, uint dwLength);
+        public static extern uint VirtualQueryEx(IntPtr hProcess, IntPtr lpAddress, out MemoryRegion lpBuffer, uint dwLength);
 
         [DllImport("kernel32.dll")]
         public static extern uint WaitForSingleObject(IntPtr hHandle, uint dwMilliseconds);

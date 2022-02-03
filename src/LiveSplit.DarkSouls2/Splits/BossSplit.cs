@@ -6,14 +6,19 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace LiveSplit.DarkSouls2.Splits
 {
     public class BossSplit : ISplit
     {
+        public BossSplit(){}
+
         public SplitType SplitType => SplitType.Boss;
 
-        private BossType _bossType;
+        private BossType _bossType = BossType.TheLastGiant;
         public BossType BossType
         {
             get => _bossType;
@@ -24,8 +29,18 @@ namespace LiveSplit.DarkSouls2.Splits
             }
         }
 
+        private int _killCount = 1;
+        public int KillCount
+        {
+            get => _killCount;
+            set
+            {
+                _killCount = value;
+                OnPropertyChanged();
+            }
+        }
 
-        private TimingType _timingType;
+        private TimingType _timingType = TimingType.Immediate;
         public TimingType TimingType
         {
             get => _timingType;
@@ -36,13 +51,16 @@ namespace LiveSplit.DarkSouls2.Splits
             }
         }
 
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public override string ToString()
+        {
+            return $"{BossType} {TimingType}";
         }
     }
 }
