@@ -48,7 +48,13 @@ namespace LiveSplit.DarkSouls2.UI
             _mainViewModel.Splits.Add(new SplitViewModel());
         }
 
-
+        private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (SplitsListView.SelectedItem != null && SplitsListView.SelectedItem is SplitViewModel s)
+            {
+                _mainViewModel.Splits.Remove(s);
+            }
+        }
 
 
         #region Drag and drop ==============================================================================================================

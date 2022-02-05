@@ -16,5 +16,16 @@ namespace DarkSoulsMemory.DarkSouls2
         /// <returns></returns>
         int GetBossKillCount(BossType bossType);
 
+
+
+        /// <summary>
+        /// Setting this to true will disable the AI globally
+        /// </summary>
+        bool DisableAllAi { get; set; }
+
+        /// <summary>
+        /// Gets/sets the damage multiplier for right weapon 1. Default value is 1
+        /// </summary>
+        float RightWeapon1DamageMultiplier { get; set; }
     }
 }

@@ -30,10 +30,6 @@ namespace LiveSplit.DarkSouls2
             _liveSplitState = state;
         }
 
-        
-
-
-
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
             HorizontalWidth = width;

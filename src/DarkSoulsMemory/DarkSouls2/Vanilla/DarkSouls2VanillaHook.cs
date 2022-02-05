@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DarkSoulsMemory.DarkSouls2.Sotfs;
 using DarkSoulsMemory.Shared;
 using Keystone;
 using Kernel32 = PropertyHook.Kernel32;
@@ -68,6 +69,8 @@ namespace DarkSoulsMemory.DarkSouls2.Vanilla
         private PHPointer BonfireLevels;
         private PHPointer NetSvrBloodstainManager;
         private PHPointer BossKillCounters;
+        private PHPointer AiManager;
+        private PHPointer EquipedWeapons;
 
         private PHPointer LevelUpSoulsParam;
         private PHPointer WeaponParam;
@@ -133,6 +136,8 @@ namespace DarkSoulsMemory.DarkSouls2.Vanilla
             BonfireLevels = CreateChildPointer(WarpManager, (int)DS2Offsets.BonfireLevelsOffset);
             //NetSvrBloodstainManager = CreateChildPointer(BaseA, (int)DS2Offsets.NetSvrBloodstainManagerOffset1, (int)DS2Offsets.NetSvrBloodstainManagerOffset2, (int)DS2Offsets.NetSvrBloodstainManagerOffset3);
             BossKillCounters = CreateChildPointer(BaseA, DS2Offsets.BossKillCountersOffset1, DS2Offsets.BossKillCountersOffset2, DS2Offsets.BossKillCountersOffset3, DS2Offsets.BossKillCountersOffset4);
+            AiManager = CreateChildPointer(BaseA, DS2Offsets.AiManagerOffset1);
+            EquipedWeapons = CreateChildPointer(BaseA, DS2SOffsets.EquipedWeaponsOffset1, DS2SOffsets.EquipedWeaponsOffset2, DS2SOffsets.EquipedWeaponsOffset3, DS2SOffsets.EquipedWeaponsOffset4);
 
             LevelUpSoulsParam = CreateChildPointer(BaseA, (int)DS2Offsets.ParamDataOffset1, (int)DS2Offsets.LevelUpSoulsParamOffset, (int)DS2Offsets.ParamDataOffset2);
             WeaponParam = CreateChildPointer(BaseA, (int)DS2Offsets.ParamDataOffset1, (int)DS2Offsets.WeaponParamOffset, (int)DS2Offsets.ParamDataOffset2);
@@ -956,14 +961,28 @@ ret";
 
         #endregion
 
-        #region Bosses
+        #region Wasted
 
         public int GetBossKillCount(BossType bossType)
         {
             return BossKillCounters.ReadInt32((int)bossType);
         }
 
+        public bool DisableAllAi
+        {
+            get => AiManager.ReadBoolean((int)DS2Offsets.AiManagerOffsets.DisableAllAi);
+            set => AiManager.WriteBoolean((int)DS2Offsets.AiManagerOffsets.DisableAllAi, value);
+        }
+
+        //GameManagerImp 0x74 -> PlayerCtrl 0x2d4 -> ChrAsmCtrl 0x14? -> 0x138? -> offset 0 = damage multiplier
+        public float RightWeapon1DamageMultiplier
+        {
+            get => EquipedWeapons.ReadSingle((int)DS2SOffsets.EquipWeaponOffsets.RightHand1);
+            set => EquipedWeapons.WriteSingle((int)DS2SOffsets.EquipWeaponOffsets.RightHand1, value);
+        }
         #endregion
+
+
 
         #region Items
         //TODO: properties

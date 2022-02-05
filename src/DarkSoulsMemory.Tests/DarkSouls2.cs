@@ -38,11 +38,15 @@ namespace Testing
 
 
             _assistant = new DarkSouls2ToolAssistant(GameType.DarkSouls2Sotfs);
-            _darkSouls2 = new DarkSouls2SotfsHook(10, 5000);
-            _darkSouls2.Start();
+            _darkSouls2 = new DarkSouls2SotfsHook(100, 5000);
 
-            _darkSouls2.RightHand1DamageMultiplier = 9999;
+            _darkSouls2.Refresh();//Force pointers to exist
+            _darkSouls2.Start();//Refresh on seperate thread
 
+
+            //Cheaty
+            _darkSouls2.DisableAllAi = true;
+            _darkSouls2.RightHand1DamageMultiplier = 9999.0f;
             _assistant.MainMenuContinue();
         }
 
@@ -64,6 +68,10 @@ namespace Testing
             Teleport(-144.2992f, 93.41512f, -40.57851f, 0.99f, 0.17f, 0.0f);
             EnterFogGate();
             _assistant.SkipCutscene();
+
+            Teleport(-127.565f, 98.29201f, -40.52358f, 0.55f, -0.83f, 0.0f);
+            _assistant.Punch();
+            Thread.Sleep(5000);
         }
 
         #endregion
@@ -75,7 +83,7 @@ namespace Testing
         private static void EnterFogGate()
         {
             _assistant.Interact();
-            Thread.Sleep(4000);
+            Thread.Sleep(5000);
         }
 
         private static void Teleport(float x, float y, float z, float angX = 0.0f, float angY = 0.0f, float angZ = 0.0f)
@@ -86,6 +94,7 @@ namespace Testing
             _darkSouls2.AngX = angX;
             _darkSouls2.AngY = angY;
             _darkSouls2.AngZ = angZ;
+            Thread.Sleep(500);
         }
 
         private static void Warp(string bonfireName)

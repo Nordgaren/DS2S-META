@@ -167,6 +167,7 @@ namespace Testing.Tas
         {
             Focus();
             Keypress(User32.KeyCode.ESC, User32.ScanCode.ESC);
+            Thread.Sleep(500);
         }
         
         public void MainMenuContinue()

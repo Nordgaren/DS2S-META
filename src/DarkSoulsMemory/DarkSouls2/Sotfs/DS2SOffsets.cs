@@ -278,6 +278,24 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
         public const int BossKillCountersOffset2 = 0x28;
         public const int BossKillCountersOffset3 = 0x20;
         public const int BossKillCountersOffset4 = 0x8;
+
+        public const int AiManagerOffset1 = 0x28;
+
+        public enum AiManagerOffsets
+        {
+            DisableAllAi = 0x18,
+        }
+
+        public const int EquipedWeaponsOffset1 = 0xd0;
+        public const int EquipedWeaponsOffset2 = 0x378;
+        public const int EquipedWeaponsOffset3 = 0x28;
+        public const int EquipedWeaponsOffset4 = 0x158;
+
+        public enum EquipWeaponOffsets
+        {
+            RightHand1 = 0x0,
+        }
+
         #endregion
 
         #region BaseB

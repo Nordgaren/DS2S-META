@@ -38,6 +38,43 @@ namespace DarkSoulsMemory.DarkSouls2
 
 
         /// <summary>
+        /// Setting this to true will disable the AI globally
+        /// </summary>
+        public bool DisableAllAi
+        {
+            get => _darkSouls2 != null && _darkSouls2.DisableAllAi;
+            set
+            {
+                if (_darkSouls2 != null)
+                {
+                    _darkSouls2.DisableAllAi = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets/sets the damage multiplier for right weapon 1. Default value is 1
+        /// </summary>
+        public float RightWeapon1DamageMultiplier
+        {
+            get
+            {
+                if (_darkSouls2 != null)
+                {
+                    return _darkSouls2.RightWeapon1DamageMultiplier;
+                }
+                return 0;
+            }
+            set
+            {
+                if (_darkSouls2 != null)
+                {
+                    _darkSouls2.RightWeapon1DamageMultiplier = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// Refreshes the process attachment, should be called every frame. Returns true if the game is attached
         /// </summary>
         /// <returns></returns>

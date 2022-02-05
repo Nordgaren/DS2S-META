@@ -200,8 +200,8 @@
             <Button
                 Margin="5"
                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                ToolTip="Add a split"
-                Click="AddButton_OnClick">
+                ToolTip="delete selected split"
+                Click="DeleteButton_OnClick">
                 <materialDesign:PackIcon
                     Kind="PlaylistRemove"
                     Height="30"
