@@ -10,7 +10,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using DarkSoulsMemory.DarkSouls2.Sotfs;
 using DarkSoulsMemory.Shared;
 using Keystone;
 using Kernel32 = PropertyHook.Kernel32;
@@ -137,7 +136,7 @@ namespace DarkSoulsMemory.DarkSouls2.Vanilla
             //NetSvrBloodstainManager = CreateChildPointer(BaseA, (int)DS2Offsets.NetSvrBloodstainManagerOffset1, (int)DS2Offsets.NetSvrBloodstainManagerOffset2, (int)DS2Offsets.NetSvrBloodstainManagerOffset3);
             BossKillCounters = CreateChildPointer(BaseA, DS2Offsets.BossKillCountersOffset1, DS2Offsets.BossKillCountersOffset2, DS2Offsets.BossKillCountersOffset3, DS2Offsets.BossKillCountersOffset4);
             AiManager = CreateChildPointer(BaseA, DS2Offsets.AiManagerOffset1);
-            EquipedWeapons = CreateChildPointer(BaseA, DS2SOffsets.EquipedWeaponsOffset1, DS2SOffsets.EquipedWeaponsOffset2, DS2SOffsets.EquipedWeaponsOffset3, DS2SOffsets.EquipedWeaponsOffset4);
+            EquipedWeapons = CreateChildPointer(BaseA, DS2Offsets.EquipedWeaponsOffset1, DS2Offsets.EquipedWeaponsOffset2, DS2Offsets.EquipedWeaponsOffset3, DS2Offsets.EquipedWeaponsOffset4);
 
             LevelUpSoulsParam = CreateChildPointer(BaseA, (int)DS2Offsets.ParamDataOffset1, (int)DS2Offsets.LevelUpSoulsParamOffset, (int)DS2Offsets.ParamDataOffset2);
             WeaponParam = CreateChildPointer(BaseA, (int)DS2Offsets.ParamDataOffset1, (int)DS2Offsets.WeaponParamOffset, (int)DS2Offsets.ParamDataOffset2);
@@ -260,7 +259,7 @@ namespace DarkSoulsMemory.DarkSouls2.Vanilla
             OnPropertyChanged(nameof(StableX));
             OnPropertyChanged(nameof(StableY));
             OnPropertyChanged(nameof(StableZ));
-            OnPropertyChanged(nameof(LastBonfireAreaID));
+            OnPropertyChanged(nameof(LastBonfireAreaId));
         }
 
         public void UpdateBonfireProperties()
@@ -599,12 +598,12 @@ namespace DarkSoulsMemory.DarkSouls2.Vanilla
                     NetworkPhantomID = 18;
             }
         }
-        public ushort LastBonfireID
+        public ushort LastBonfireId
         {
             get => Loaded ? EventManager.ReadUInt16((int)DS2Offsets.Bonfire.LastSetBonfire) : (ushort)0;
             set => EventManager.WriteUInt16((int)DS2Offsets.Bonfire.LastSetBonfire, value);
         }
-        public int LastBonfireAreaID
+        public int LastBonfireAreaId
         {
             get => Loaded ? EventManager.ReadInt32((int)DS2Offsets.Bonfire.LastSetBonfireAreaID) : 0;
             set => EventManager.WriteInt32((int)DS2Offsets.Bonfire.LastSetBonfireAreaID, value);
@@ -643,7 +642,7 @@ call   0x{3:X}           ;WarpFunc
 add    esp, 0xb8
 ret";
 
-        internal bool Warp(ushort id)
+        public bool Warp(ushort id)
         {
             var value = Allocate(sizeof(short));
             Kernel32.WriteBytes(Handle, value, BitConverter.GetBytes(id));
@@ -658,6 +657,14 @@ ret";
 
             Free(value);
             return warped;
+        }
+
+        public void Warp(WarpType warpType)
+        {
+            var bonfire = Data.Bonfires.First(i => i.WarpType == warpType);
+            LastBonfireId = bonfire.BonfireId;
+            LastBonfireAreaId = bonfire.AreaId;
+            Warp(bonfire.BonfireId);
         }
 
         //TODO: properties
@@ -977,8 +984,8 @@ ret";
         //GameManagerImp 0x74 -> PlayerCtrl 0x2d4 -> ChrAsmCtrl 0x14? -> 0x138? -> offset 0 = damage multiplier
         public float RightWeapon1DamageMultiplier
         {
-            get => EquipedWeapons.ReadSingle((int)DS2SOffsets.EquipWeaponOffsets.RightHand1);
-            set => EquipedWeapons.WriteSingle((int)DS2SOffsets.EquipWeaponOffsets.RightHand1, value);
+            get => EquipedWeapons.ReadSingle((int)DS2Offsets.EquipedWeaponsOffsets.RightHand1);
+            set => EquipedWeapons.WriteSingle((int)DS2Offsets.EquipedWeaponsOffsets.RightHand1, value);
         }
         #endregion
 

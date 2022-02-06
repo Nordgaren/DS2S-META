@@ -74,6 +74,74 @@ namespace DarkSoulsMemory.DarkSouls2
             }
         }
 
+        public bool Loaded => _darkSouls2 != null && _darkSouls2.Loaded;
+
+
+        public ushort LastBonfireId
+        {
+            get => _darkSouls2.LastBonfireId;
+            set => _darkSouls2.LastBonfireId = value;
+        }
+
+        public int LastBonfireAreaId
+        {
+            get => _darkSouls2.LastBonfireAreaId;
+            set => _darkSouls2.LastBonfireAreaId = value;
+        }
+
+        public bool Warp(ushort id)
+        {
+            if (_darkSouls2 != null)
+            {
+                return _darkSouls2.Warp(id);
+            }
+            return false;
+        }
+
+        public void Warp(WarpType warpType)
+        {
+            if (_darkSouls2 != null)
+            {
+                _darkSouls2.Warp(warpType);
+            }
+        }
+
+        public float StableX
+        {
+            get => _darkSouls2.StableX;
+            set => _darkSouls2.StableX = value;
+        }
+
+        public float StableY
+        {
+            get => _darkSouls2.StableY;
+            set => _darkSouls2.StableY = value;
+        }
+
+        public float StableZ
+        {
+            get => _darkSouls2.StableZ;
+            set => _darkSouls2.StableZ = value;
+        }
+
+        public float AngX
+        {
+            get => _darkSouls2.AngX;
+            set => _darkSouls2.AngX = value;
+        }
+
+        public float AngY
+        {
+            get => _darkSouls2.AngY;
+            set => _darkSouls2.AngY = value;
+        }
+
+        public float AngZ
+        {
+            get => _darkSouls2.AngZ;
+            set => _darkSouls2.AngZ = value;
+        }
+
         /// <summary>
         /// Refreshes the process attachment, should be called every frame. Returns true if the game is attached
         /// </summary>

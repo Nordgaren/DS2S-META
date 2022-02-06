@@ -121,7 +121,7 @@ namespace Testing.Tas
         public void Punch()
         {
             Focus();
-            Keypress(User32.KeyCode.KEY_P, User32.ScanCode.P);
+            Keypress(User32.KeyCode.KEY_H, User32.ScanCode.H);
         }
 
         public void LightAttack()
@@ -167,7 +167,7 @@ namespace Testing.Tas
         {
             Focus();
             Keypress(User32.KeyCode.ESC, User32.ScanCode.ESC);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
         }
         
         public void MainMenuContinue()

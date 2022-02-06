@@ -248,7 +248,7 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
             OnPropertyChanged(nameof(StableX));
             OnPropertyChanged(nameof(StableY));
             OnPropertyChanged(nameof(StableZ));
-            OnPropertyChanged(nameof(LastBonfireAreaID));
+            OnPropertyChanged(nameof(LastBonfireAreaId));
         }
 
         public void UpdateBonfireProperties()
@@ -586,12 +586,12 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
                     NetworkPhantomID = 18;
             }
         }
-        public ushort LastBonfireID
+        public ushort LastBonfireId
         {
             get => Loaded ? EventManager.ReadUInt16((int)DS2SOffsets.Bonfire.LastSetBonfire) : (ushort)0;
             set => EventManager.WriteUInt16((int)DS2SOffsets.Bonfire.LastSetBonfire, value);
         }
-        public int LastBonfireAreaID
+        public int LastBonfireAreaId
         {
             get => Loaded ? EventManager.ReadInt32((int)DS2SOffsets.Bonfire.LastSetBonfireAreaID) : 0;
             set => EventManager.WriteInt32((int)DS2SOffsets.Bonfire.LastSetBonfireAreaID, value);
@@ -623,6 +623,14 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
 
             Free(value);
             return warped;
+        }
+
+        public void Warp(WarpType warpType)
+        {
+            var bonfire = Data.Bonfires.First(i => i.WarpType == warpType);
+            LastBonfireId = bonfire.BonfireId;
+            LastBonfireAreaId = bonfire.AreaId;
+            Warp(bonfire.BonfireId);
         }
 
         internal void ApplySpecialEffect(int spEffect)
@@ -3495,106 +3503,7 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
         #endregion
 
         #endregion
-
-        #region lookup tables
-        public struct Bonfire
-        {
-            public Bonfire(int areaId, ushort bonfireId, string name)
-            {
-                AreaId = areaId;
-                BonfireId = bonfireId;
-                Name = name;
-            }
-
-            public int AreaId;
-            public ushort BonfireId;
-            public string Name;
-        }
-
-        public List<Bonfire> Bonfires = new List<Bonfire>()
-        {
-            new Bonfire(167903232, 2650, "Fire Keepers' Dwelling"),
-            new Bonfire(168034304, 4650, "The Far Fire"),
-            new Bonfire(168427520, 10670, "The Crestfallen's Retreat"),
-            new Bonfire(168427520, 10655, "Cardinal Tower"),
-            new Bonfire(168427520, 10660, "Soldiers' Rest"),
-            new Bonfire(168427520, 10675, "The Place Unbeknownst"),
-            new Bonfire(169803776, 31655, "Heide's Ruin"),
-            new Bonfire(169803776, 31650, "Tower of Flame"),
-            new Bonfire(169803776, 31660, "The Blue Cathedral"),
-            new Bonfire(168951808, 18650, "Unseen Path to Heide"),
-            new Bonfire(168820736, 16655, "Exile Holding Cells"),
-            new Bonfire(168820736, 16670, "McDuff's Workshop"),
-            new Bonfire(168820736, 16675, "Servants' Quarters"),
-            new Bonfire(168820736, 16650, "Straid's Cell"),
-            new Bonfire(168820736, 16660, "The Tower Apart"),
-            new Bonfire(168820736, 16685, "The Saltfort"),
-            new Bonfire(168820736, 16665, "Upper Ramparts"),
-            new Bonfire(169279488, 23650, "Undead Refuge"),
-            new Bonfire(169279488, 23655, "Bridge Approach"),
-            new Bonfire(169279488, 23660, "Undead Lockaway"),
-            new Bonfire(169279488, 23665, "Undead Purgatory"),
-            new Bonfire(168886272, 17665, "Poison Pool"),
-            new Bonfire(168886272, 17650, "The Mines"),
-            new Bonfire(168886272, 17655, "Lower Earthen Peak"),
-            new Bonfire(168886272, 17670, "Central Earthen Peak"),
-            new Bonfire(168886272, 17675, "Upper Earthen Peak"),
-            new Bonfire(169017344, 19655, "Threshold Bridge"),
-            new Bonfire(169017344, 19650, "Ironhearth Hall"),
-            new Bonfire(169017344, 19660, "Eygil's Idol"),
-            new Bonfire(169017344, 19665, "Belfry Sol Approach"),
-            new Bonfire(169672704, 29650, "Old Akelarre"),
-            new Bonfire(169869312, 32655, "Ruined Fork Road"),
-            new Bonfire(169869312, 32660, "Shaded Ruins"),
-            new Bonfire(169934848, 33655, "Gyrm's Respite"),
-            new Bonfire(169934848, 33660, "Ordeal's End"),
-            new Bonfire(168689664, 14655, "Royal Army Campsite"),
-            new Bonfire(168689664, 14660, "Chapel Threshold"),
-            new Bonfire(168689664, 14650, "Lower Brightstone Cove"),
-            new Bonfire(170000384, 34655, "Harval's Resting Place"),
-            new Bonfire(170000384, 34650, "Grave Entrance"),
-            new Bonfire(169410560, 25665, "Upper Gutter"),
-            new Bonfire(169410560, 25655, "Central Gutter"),
-            new Bonfire(169410560, 25650, "Black Gulch Mouth"),
-            new Bonfire(169410560, 25660, "Hidden Chamber"),
-            new Bonfire(336920576, 21650, "King's Gate"),
-            new Bonfire(336920576, 21665, "Under Castle Drangleic"),
-            new Bonfire(336920576, 21655, "Central Castle Drangleic"),
-            new Bonfire(336920576, 21660, "Forgotten Chamber"),
-            new Bonfire(336265216, 11650, "Tower of Prayer (Amana)"),
-            new Bonfire(336265216, 11655, "Crumbled Ruins"),
-            new Bonfire(336265216, 11660, "Rhoy's Resting Place"),
-            new Bonfire(336265216, 11670, "Rise of the Dead"),
-            new Bonfire(337117184, 24655, "Undead Crypt Entrance"),
-            new Bonfire(337117184, 24650, "Undead Ditch"),
-            new Bonfire(168755200, 15650, "Foregarden"),
-            new Bonfire(168755200, 15655, "Ritual Site"),
-            new Bonfire(169541632, 27650, "Dragon Aerie"),
-            new Bonfire(169541632, 27655, "Shrine Entrance"),
-            new Bonfire(841154560, 35650, "Sanctum Walk"),
-            new Bonfire(841154560, 35685, "Tower of Prayer (Shulva)"),
-            new Bonfire(841154560, 35655, "Priestess' Chamber"),
-            new Bonfire(841154560, 35670, "Hidden Sanctum Chamber"),
-            new Bonfire(841154560, 35675, "Lair of the Imperfect"),
-            new Bonfire(841154560, 35680, "Sanctum Interior"),
-            new Bonfire(841154560, 35665, "Sanctum Nadir"),
-            new Bonfire(841220096, 36650, "Throne Floor"),
-            new Bonfire(841220096, 36660, "Upper Floor"),
-            new Bonfire(841220096, 36655, "Foyer"),
-            new Bonfire(841220096, 36670, "Lowermost Floor"),
-            new Bonfire(841220096, 36675, "The Smelter Throne"),
-            new Bonfire(841220096, 36665, "Iron Hallway Entrance"),
-            new Bonfire(841285632, 37650, "Outer Wall"),
-            new Bonfire(841285632, 37660, "Abandoned Dwelling"),
-            new Bonfire(841285632, 37675, "Expulsion Chamber"),
-            new Bonfire(841285632, 37685, "Inner Wall"),
-            new Bonfire(841285632, 37665, "Lower Garrison"),
-            new Bonfire(841285632, 37670, "Grand Cathedral"),
-        };
-
-
-
-        #endregion
+        
 
     }
 }

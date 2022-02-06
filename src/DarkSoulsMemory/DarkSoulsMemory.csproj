@@ -67,10 +67,12 @@
     <Compile Include="DarkSouls1\Internal\ItemReader.cs" />
     <Compile Include="DarkSouls1\Item.cs" />
     <Compile Include="DarkSouls1\ItemPrompt.cs" />
+    <Compile Include="DarkSouls2\Data.cs" />
     <Compile Include="DarkSouls2\Vanilla\DS2Class.cs" />
     <Compile Include="DarkSouls2\Vanilla\DS2Covenant.cs" />
     <Compile Include="DarkSouls2\Vanilla\DS2Infusion.cs" />
     <Compile Include="DarkSouls2\Vanilla\DS2Item.cs" />
+    <Compile Include="DarkSouls2\WarpType.cs" />
     <Compile Include="Shared\Kernel32.cs" />
     <Compile Include="DarkSouls1\MenuPrompt.cs" />
     <Compile Include="DarkSouls2\BossType.cs" />
