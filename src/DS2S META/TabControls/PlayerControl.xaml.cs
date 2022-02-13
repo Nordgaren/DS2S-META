@@ -390,5 +390,11 @@ namespace DS2S_META
             txtSearch.Focus();
             e.Handled=true;
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            var formatted = $"{Hook.StableX}f, {Hook.StableY}f, {Hook.StableZ}f, {Hook.AngX}f, {Hook.AngY}f, {Hook.AngZ}f";
+            System.Windows.Clipboard.SetText(formatted);
+        }
     }
 }

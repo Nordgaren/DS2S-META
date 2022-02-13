@@ -105,6 +105,12 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
+                                <Button
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Content="Copy"
+                                    Click="ButtonBase_OnClick"
+                                    />
                                 <Label Content="X" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
                                 <Label Content="Y" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
                                 <Label Content="Z" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3"/>

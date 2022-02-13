@@ -74,7 +74,20 @@ namespace DarkSoulsMemory.DarkSouls2
             }
         }
 
+        public float LeftWeapon1DamageMultiplier
+        {
+            get => _darkSouls2.LeftWeapon1DamageMultiplier;
+            set => _darkSouls2.LeftWeapon1DamageMultiplier = value;
+        }
+
+
         public bool Loaded => _darkSouls2 != null && _darkSouls2.Loaded;
+
+        public bool Gravity
+        {
+            get => _darkSouls2.Gravity;
+            set => _darkSouls2.Gravity = value;
+        }
 
 
         public ushort LastBonfireId
@@ -89,20 +102,20 @@ namespace DarkSoulsMemory.DarkSouls2
             set => _darkSouls2.LastBonfireAreaId = value;
         }
 
-        public bool Warp(ushort id)
+        public bool Warp(ushort id, bool rest = false)
         {
             if (_darkSouls2 != null)
             {
-                return _darkSouls2.Warp(id);
+                return _darkSouls2.Warp(id, rest);
             }
             return false;
         }
 
-        public void Warp(WarpType warpType)
+        public void Warp(WarpType warpType, bool rest = false)
         {
             if (_darkSouls2 != null)
             {
-                _darkSouls2.Warp(warpType);
+                _darkSouls2.Warp(warpType, rest);
             }
         }
 

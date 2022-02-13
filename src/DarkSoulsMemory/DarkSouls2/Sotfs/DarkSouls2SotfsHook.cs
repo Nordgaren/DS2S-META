@@ -66,7 +66,6 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
         private PHPointer NetSvrBloodstainManager;
         private PHPointer BossKillCounters;
         private PHPointer AiManager;
-        private PHPointer EquipedWeapons;
 
         private PHPointer LevelUpSoulsParam;
         private PHPointer WeaponParam;
@@ -93,6 +92,7 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
 
         //Cheaty
         private PHPointer RightHand1DamageMultiplierPtr;
+        private PHPointer LeftHand1DamageMultiplierPtr;
 
         public bool Loaded => PlayerCtrl != null && PlayerCtrl.Resolve() != IntPtr.Zero;
         public bool Setup = false;
@@ -156,7 +156,9 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
             NetSvrBloodstainManager = CreateChildPointer(BaseA, (int)DS2SOffsets.NetSvrBloodstainManagerOffset1, (int)DS2SOffsets.NetSvrBloodstainManagerOffset2, (int)DS2SOffsets.NetSvrBloodstainManagerOffset3);
             BossKillCounters = CreateChildPointer(BaseA, DS2SOffsets.BossKillCountersOffset1, DS2SOffsets.BossKillCountersOffset2, DS2SOffsets.BossKillCountersOffset3, DS2SOffsets.BossKillCountersOffset4);
             AiManager = CreateChildPointer(BaseA, DS2SOffsets.AiManagerOffset1);
-            EquipedWeapons = CreateChildPointer(BaseA, DS2SOffsets.EquipedWeaponsOffset1, DS2SOffsets.EquipedWeaponsOffset2, DS2SOffsets.EquipedWeaponsOffset3, DS2SOffsets.EquipedWeaponsOffset4);
+            RightHand1DamageMultiplierPtr = CreateChildPointer(BaseA, DS2SOffsets.EquipedWeaponsOffset1, DS2SOffsets.EquipedWeaponsOffset2, DS2SOffsets.EquipedWeaponsOffset3, DS2SOffsets.EquipedWeaponsRightHand1Offset);
+            LeftHand1DamageMultiplierPtr  = CreateChildPointer(BaseA, DS2SOffsets.EquipedWeaponsOffset1, DS2SOffsets.EquipedWeaponsOffset2, DS2SOffsets.EquipedWeaponsOffset3, DS2SOffsets.EquipedWeaponsLeftHand1Offset);
+
 
             LevelUpSoulsParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.LevelUpSoulsParamOffset, (int)DS2SOffsets.ParamDataOffset2);
             WeaponParam = CreateChildPointer(BaseA, (int)DS2SOffsets.ParamDataOffset1, (int)DS2SOffsets.WeaponParamOffset, (int)DS2SOffsets.ParamDataOffset2);
@@ -175,7 +177,7 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
             Camera4 = CreateChildPointer(BaseA, (int)DS2SOffsets.CameraOffset2, (int)DS2SOffsets.CameraOffset3);
             Camera5 = CreateChildPointer(BaseA, (int)DS2SOffsets.CameraOffset2);
 
-            RightHand1DamageMultiplierPtr = CreateChildPointer(BaseA, 0xd0, 0x378, 0x28, 0x158);
+            
 
             GetLevelRequirements();
             WeaponParamOffsetDict = BuildOffsetDictionary(WeaponParam, "WEAPON_PARAM");
@@ -599,8 +601,13 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
         public bool Multiplayer => Loaded ? ConnectionType > 1 : true;
         public bool Online => Loaded ? ConnectionType > 0 : true;
         public int ConnectionType => Hooked && Connection != null ? Connection.ReadInt32((int)DS2SOffsets.Connection.Online) : 0;
-        public bool Warp(ushort id)
+        public bool Warp(ushort id, bool rest = false)
         {
+            if (rest)
+            {
+                ApplySpecialEffect(110000010);
+            }
+
             var value = Allocate(sizeof(short));
             Kernel32.WriteBytes(Handle, value, BitConverter.GetBytes(id));
 
@@ -625,12 +632,12 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
             return warped;
         }
 
-        public void Warp(WarpType warpType)
+        public void Warp(WarpType warpType, bool rest = false)
         {
             var bonfire = Data.Bonfires.First(i => i.WarpType == warpType);
             LastBonfireId = bonfire.BonfireId;
             LastBonfireAreaId = bonfire.AreaId;
-            Warp(bonfire.BonfireId);
+            Warp(bonfire.BonfireId, rest);
         }
 
         internal void ApplySpecialEffect(int spEffect)
@@ -968,11 +975,17 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
             set => AiManager.WriteBoolean((int)DS2SOffsets.AiManagerOffsets.DisableAllAi, value);
         }
         
-        //GameManagerImp 0xD0 -> PlayerCtrl 0x378 -> ChrAsmCtrl -> ? 0x28 -> ? 0x158 ? + weapon offset
+        //GameManagerImp 0xD0 -> PlayerCtrl 0x378 -> ChrAsmCtrl -> ? 0x28 -> ? 0x158/0x80 ? + weapon offset
         public float RightWeapon1DamageMultiplier
         {
-            get => EquipedWeapons.ReadSingle((int)DS2SOffsets.EquipWeaponOffsets.RightHand1);
-            set => EquipedWeapons.WriteSingle((int)DS2SOffsets.EquipWeaponOffsets.RightHand1, value);
+            get => RightHand1DamageMultiplierPtr.ReadSingle((int)DS2SOffsets.EquipWeaponOffsets.RightHand1);
+            set => RightHand1DamageMultiplierPtr.WriteSingle((int)DS2SOffsets.EquipWeaponOffsets.RightHand1, value);
+        }
+
+        public float LeftWeapon1DamageMultiplier
+        {
+            get => LeftHand1DamageMultiplierPtr.ReadSingle((int)DS2SOffsets.EquipWeaponOffsets.LeftHand1);
+            set => LeftHand1DamageMultiplierPtr.WriteSingle((int)DS2SOffsets.EquipWeaponOffsets.LeftHand1, value);
         }
 
         #endregion

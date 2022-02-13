@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<updates>
+	<update version="0.0.1">
+		<files>
+			<file path="Components/DarkSoulsMemory.dll"			 status="changed" />
+			<file path="Components/LiveSplit.DarkSouls2.dll" 	 status="changed" />
+			<file path="Components/MaterialDesignColors.dll" 	 status="changed" />
+			<file path="Components/MaterialDesignThemes.Wpf.dll" status="changed" />
+			<file path="Components/MaterialDesignThemes.Wpf.xml" status="changed" />
+		</files>
+		<changelog>
+			<change>Testy</change>
+		</changelog>
+	</update>
+</updates>

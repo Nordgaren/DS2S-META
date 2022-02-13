@@ -77,7 +77,7 @@ namespace DarkSoulsMemory.DarkSouls2
         UpperFloor,
         Foyer,
         LowermostFloor,
-        TheSmelterThrone,
+        SmelterThrone,
         IronHallwayEntrance,
         OuterWall,
         AbandonedDwelling,

@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkSoulsMemory.Tests", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cli", "src\cli\cli.csproj", "{93CF6900-8F5C-4364-9EAF-8992B883361B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.DarkSouls2", "src\LiveSplit.DarkSouls2\LiveSplit.DarkSouls2.csproj", "{A30986D1-6B5A-415D-A737-AE0D9EF4CE9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkSoulsAutoSplitter", "src\DarkSoulsAutoSplitter\DarkSoulsAutoSplitter.csproj", "{A30986D1-6B5A-415D-A737-AE0D9EF4CE9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +50,7 @@ Global
 		{A30986D1-6B5A-415D-A737-AE0D9EF4CE9C}.Debug|x64.ActiveCfg = Debug|x64
 		{A30986D1-6B5A-415D-A737-AE0D9EF4CE9C}.Debug|x64.Build.0 = Debug|x64
 		{A30986D1-6B5A-415D-A737-AE0D9EF4CE9C}.Release|x64.ActiveCfg = Release|x64
+		{A30986D1-6B5A-415D-A737-AE0D9EF4CE9C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

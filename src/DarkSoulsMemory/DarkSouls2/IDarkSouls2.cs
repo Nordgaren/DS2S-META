@@ -29,15 +29,25 @@ namespace DarkSoulsMemory.DarkSouls2
         float RightWeapon1DamageMultiplier { get; set; }
 
         /// <summary>
+        /// Gets/sets the damage multiplier for left weapon 1. Default value is 1
+        /// </summary>
+        float LeftWeapon1DamageMultiplier { get; set; }
+
+        /// <summary>
         /// Set to true when the game is loaded into a save file, false when loading or in main menu
         /// </summary>
         bool Loaded { get; }
 
+        /// <summary>
+        /// Get or set gravity
+        /// </summary>
+        bool Gravity { get; set; }
+
 
         ushort LastBonfireId { get; set; }
         int LastBonfireAreaId { get; set; }
-        bool Warp(ushort id);
-        void Warp(WarpType warpType);
+        bool Warp(ushort id, bool rest = false);
+        void Warp(WarpType warpType, bool rest = false);
 
         float StableX { get; set; }
         float StableY { get; set; }

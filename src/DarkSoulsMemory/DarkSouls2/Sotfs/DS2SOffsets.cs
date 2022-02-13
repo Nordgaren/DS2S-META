@@ -289,11 +289,14 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
         public const int EquipedWeaponsOffset1 = 0xd0;
         public const int EquipedWeaponsOffset2 = 0x378;
         public const int EquipedWeaponsOffset3 = 0x28;
-        public const int EquipedWeaponsOffset4 = 0x158;
+
+        public const int EquipedWeaponsRightHand1Offset = 0x158;
+        public const int EquipedWeaponsLeftHand1Offset = 0x80;
 
         public enum EquipWeaponOffsets
         {
             RightHand1 = 0x0,
+            LeftHand1 = 0x0,
         }
 
         #endregion

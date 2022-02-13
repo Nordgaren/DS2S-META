@@ -642,8 +642,12 @@ call   0x{3:X}           ;WarpFunc
 add    esp, 0xb8
 ret";
 
-        public bool Warp(ushort id)
+        public bool Warp(ushort id, bool rest = false)
         {
+            if (rest)
+            {
+            }
+
             var value = Allocate(sizeof(short));
             Kernel32.WriteBytes(Handle, value, BitConverter.GetBytes(id));
             var asm = string.Format(BonfireWarpAssembly, id.ToString("X2"), SetWarpTargetFunc.Resolve().ToString("X2"), BaseA.Resolve().ToString("X2"), WarpFunc.Resolve().ToString("X2"));
@@ -659,12 +663,12 @@ ret";
             return warped;
         }
 
-        public void Warp(WarpType warpType)
+        public void Warp(WarpType warpType, bool rest = false)
         {
             var bonfire = Data.Bonfires.First(i => i.WarpType == warpType);
             LastBonfireId = bonfire.BonfireId;
             LastBonfireAreaId = bonfire.AreaId;
-            Warp(bonfire.BonfireId);
+            Warp(bonfire.BonfireId, rest);
         }
 
         //TODO: properties
@@ -986,6 +990,13 @@ ret";
         {
             get => EquipedWeapons.ReadSingle((int)DS2Offsets.EquipedWeaponsOffsets.RightHand1);
             set => EquipedWeapons.WriteSingle((int)DS2Offsets.EquipedWeaponsOffsets.RightHand1, value);
+        }
+
+        //TODO: impl.
+        public float LeftWeapon1DamageMultiplier
+        {
+            get;
+            set;
         }
         #endregion
 

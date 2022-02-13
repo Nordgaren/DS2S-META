@@ -96,7 +96,7 @@ namespace DarkSoulsMemory.DarkSouls2
             new Bonfire(WarpType.UpperFloor             , 841220096, 36660, "Upper Floor"),
             new Bonfire(WarpType.Foyer                  , 841220096, 36655, "Foyer"),
             new Bonfire(WarpType.LowermostFloor         , 841220096, 36670, "Lowermost Floor"),
-            new Bonfire(WarpType.TheSmelterThrone       , 841220096, 36675, "The Smelter Throne"),
+            new Bonfire(WarpType.SmelterThrone       , 841220096, 36675, "The Smelter Throne"),
             new Bonfire(WarpType.IronHallwayEntrance    , 841220096, 36665, "Iron Hallway Entrance"),
             new Bonfire(WarpType.OuterWall              , 841285632, 37650, "Outer Wall"),
             new Bonfire(WarpType.AbandonedDwelling      , 841285632, 37660, "Abandoned Dwelling"),

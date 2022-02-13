@@ -57,9 +57,9 @@
     <Compile Include="GameType.cs" />
     <Compile Include="DarkSouls1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToolAssistent\DarkSouls2ToolAssistant.cs" />
-    <Compile Include="ToolAssistent\DarkSouls1ToolAssistant.cs" />
-    <Compile Include="ToolAssistent\User32.cs" />
+    <Compile Include="ToolAssistant\DarkSouls2ToolAssistant.cs" />
+    <Compile Include="ToolAssistant\DarkSouls1ToolAssistant.cs" />
+    <Compile Include="ToolAssistant\User32.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Saves\DarkSouls1\cracked\UndeadAsylum">
@@ -73,7 +73,13 @@
     <None Include="Saves\DarkSouls1\Remastered\UndeadAsylum">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Saves\DarkSouls2\Sotfs\AllBossesSetup">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Saves\DarkSouls2\Sotfs\ThingsBetwixt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Saves\DarkSouls2\Sotfs\ThingsBetwixtWrathOfTheGods">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

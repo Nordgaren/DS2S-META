@@ -27,6 +27,7 @@ namespace DarkSoulsMemory.DarkSouls2.Sotfs
             return bytes.ToArray();
         }
 
+        
         //TODO fix properties
         public static byte[] AddSouls           = new byte[0]; //LoadDefuseOutput(Properties.Resources.AddSouls);
         public static byte[] GetItem            = new byte[0]; //LoadDefuseOutput(Properties.Resources.GiveItemWithMenu);
@@ -52,6 +53,20 @@ e:  ff ff ff
 43: 41 ff d6                call   r14
 46: 48 81 c4 10 01 00 00    add    rsp,0x110
 4d: c3                      ret ");
-        public static byte[] ApplySpecialEffect = new byte[0];// LoadDefuseOutput(Properties.Resources.ApplySpecialEffect);
+
+        public static byte[] ApplySpecialEffect = LoadDefuseOutput(@"0:  48 83 ec 38             sub    rsp,0x38
+4:  48 ba 00 00 00 00 ff    movabs rdx,0xffffffff00000000
+b:  ff ff ff
+e:  48 b9 00 00 00 00 ff    movabs rcx,0xffffffff00000000
+15: ff ff ff
+18: 48 b8 00 00 00 00 ff    movabs rax,0xffffffff00000000
+1f: ff ff ff
+22: f3 0f 10 00             movss  xmm0,DWORD PTR [rax]
+26: f3 0f 11 44 24 28       movss  DWORD PTR [rsp+0x28],xmm0
+2c: 48 b8 00 00 00 00 ff    movabs rax,0xffffffff00000000
+33: ff ff ff
+36: ff d0                   call   rax
+38: 48 83 c4 38             add    rsp,0x38
+3c: c3                      ret ");
     }
 }

@@ -7,8 +7,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DarkSoulsAutoSplitter.UI;
 using DarkSoulsMemory.DarkSouls2;
-using LiveSplit.DarkSouls2.UI;
 
 namespace cli
 {
@@ -20,22 +20,19 @@ namespace cli
         [STAThread]
         static void Main(string[] args)
         {
-            TestUi();
-            return;
+            //TestUi();
+            //return;
 
             var ds2 = new DarkSouls2();
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine(ds2.GetBossKillCount(BossType.TheLastGiant) + " - " + ds2.GetBossKillCount(BossType.ThePursuer));
+                Console.WriteLine(ds2.LastBonfireAreaId + " " + ds2.LastBonfireId);
                 Thread.Sleep(500);
             }
 
-
             return;
-
-            
         }
 
         public static void TestUi()
