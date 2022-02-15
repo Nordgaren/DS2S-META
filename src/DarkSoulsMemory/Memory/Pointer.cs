@@ -9,13 +9,12 @@ namespace DarkSoulsMemory.Shared
 {
     public class Pointer
     {
-        public Pointer(bool is64Bit, Process process, long baseAddress, params long[] offsets)
+        public Pointer(Process process, bool is64Bit, long baseAddress, params long[] offsets)
         {
             Process     = process;
+            Is64Bit     = is64Bit;
             BaseAddress = baseAddress;
             Offsets     = offsets.ToList();
-            Is64Bit     = is64Bit;
-            //Kernel32.IsWow64Process(Process.Handle, out Is64Bit);
         }
 
         public Process Process;
@@ -23,14 +22,14 @@ namespace DarkSoulsMemory.Shared
         public List<long> Offsets;
         public bool Is64Bit;
 
-        private long ResolveOffsets(StringBuilder debugStringBuilder = null)
+        private long ResolveOffsets(List<long> offsets, StringBuilder debugStringBuilder = null)
         {
             debugStringBuilder?.Append($" 0x{BaseAddress:x}");
 
             long ptr = BaseAddress;
-            for (int i = 0; i < Offsets.Count; i++)
+            for (int i = 0; i < offsets.Count; i++)
             {
-                var offset = Offsets[i];
+                var offset = offsets[i];
 
                 //Create a copy for debug output
                 var debugCopy = ptr;
@@ -40,7 +39,7 @@ namespace DarkSoulsMemory.Shared
 
                 //Not the last offset = resolve as pointer
                 int unused = 0;
-                if (i + 1 < Offsets.Count)
+                if (i + 1 < offsets.Count)
                 {
                     if (Is64Bit)
                     {
@@ -54,7 +53,13 @@ namespace DarkSoulsMemory.Shared
                         Kernel32.ReadProcessMemory(Process.Handle, (IntPtr)address, buffer, buffer.Length, ref unused);
                         ptr = BitConverter.ToInt32(buffer, 0);
                     }
+
                     debugStringBuilder?.Append($"\r\n[0x{debugCopy:x} + 0x{offset:x}]: 0x{ptr:x}");
+
+                    if (ptr == 0)
+                    {
+                        return 0;
+                    }
                 }
                 //Last offset = resolve as simple increment
                 else
@@ -73,7 +78,7 @@ namespace DarkSoulsMemory.Shared
         public override string ToString()
         {
             var sb = new StringBuilder();
-            ResolveOffsets(sb);
+            ResolveOffsets(Offsets, sb);
             Path = sb.ToString();
             return Path;
         }
@@ -84,13 +89,20 @@ namespace DarkSoulsMemory.Shared
         {
             int bytesRead = 0;
             byte[] buffer = new byte[length];
-            Kernel32.ReadProcessMemory(Process.Handle, (IntPtr)(ResolveOffsets() + offset), buffer, length, ref bytesRead);
+
+            var offsetsCopy = Offsets.ToList();
+            offsetsCopy.Add(offset);
+            
+            Kernel32.ReadProcessMemory(Process.Handle, (IntPtr)ResolveOffsets(offsetsCopy), buffer, length, ref bytesRead);
             return buffer;
         }
 
         private void WriteMemory(long offset, byte[] bytes)
         {
-            Kernel32.WriteProcessMemory(Process.Handle, (IntPtr)(ResolveOffsets() + offset), bytes, (uint)bytes.Length, 0);
+            var offsetsCopy = Offsets.ToList();
+            offsetsCopy.Add(offset);
+
+            Kernel32.WriteProcessMemory(Process.Handle, (IntPtr)(ResolveOffsets(offsetsCopy)), bytes, (uint)bytes.Length, 0);
         }
 
         #region Read

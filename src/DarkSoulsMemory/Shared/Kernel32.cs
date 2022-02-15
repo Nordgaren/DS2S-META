@@ -31,9 +31,8 @@ namespace DarkSoulsMemory.Shared
         [DllImport("kernel32.dll")]
         public static extern bool CloseHandle(IntPtr hObject);
 
-        [DllImport("kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool IsWow64Process([In] IntPtr processHandle, [Out, MarshalAs(UnmanagedType.Bool)] out bool wow64Process);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool IsWow64Process(IntPtr processHandle, out bool wow64Process);
 
 
         public const uint PAGE_EXECUTE_READWRITE = 0x40;
