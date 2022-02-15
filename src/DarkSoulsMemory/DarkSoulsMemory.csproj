@@ -85,6 +85,7 @@
     <Compile Include="DarkSouls2\Sotfs\DS2SInfusion.cs" />
     <Compile Include="DarkSouls2\Sotfs\DS2SItem.cs" />
     <Compile Include="DarkSouls2\Sotfs\DS2SOffsets.cs" />
+    <Compile Include="Shared\Pointer.cs" />
     <Compile Include="Shared\User32.cs" />
     <Compile Include="DarkSouls2\Vanilla\DarkSouls2VanillaHook.cs" />
     <Compile Include="DarkSouls2\Vanilla\DS2Offsets.cs" />
