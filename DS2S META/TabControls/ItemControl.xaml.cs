@@ -139,13 +139,9 @@ namespace DS2S_META
 
         private void cbxQuantityRestrict_Checked(object sender, RoutedEventArgs e)
         {
-            if (lbxItems == null)
+            if (!TryGetSelectedItem(out DS2SItem item))
                 return;
-
-            DS2SItem item = lbxItems.SelectedItem as DS2SItem;
-            if (item == null)
-                return;
-
+            
             if (!cbxQuantityRestrict.IsChecked.Value)
             {
                 var max = Hook.GetMaxQuantity(item);
@@ -153,15 +149,36 @@ namespace DS2S_META
                 nudQuantity.IsEnabled = true;
                 nudQuantity.Maximum = 99;
                 txtMaxHeld.Visibility = max - held > 0 ? Visibility.Hidden : Visibility.Visible;
-            }
-            else if (lbxItems.SelectedIndex != -1)
+            } else
             {
-                var max = Hook.GetMaxQuantity(item);
-                var held = Hook.GetHeld(item);
-                nudQuantity.Maximum = max - held;
-                nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
-                txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible;
+                handleRestrictQuantity(item);
             }
+        }
+
+        private bool TryGetSelectedItem(out DS2SItem item)
+        {
+            item = null;
+            if (lbxItems == null)
+                return false;
+
+            if (lbxItems.SelectedIndex == -1)
+                return false;
+
+            item = lbxItems.SelectedItem as DS2SItem;
+            if (item == null)
+                return false;
+
+            return true;
+
+
+        }
+        private void handleRestrictQuantity(DS2SItem item)
+        {
+            var max = Hook.GetMaxQuantity(item);
+            var held = Hook.GetHeld(item);
+            nudQuantity.Maximum = max - held;
+            nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
+            txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible;
         }
 
         private void cmbInfusion_SelectedIndexChanged(object sender, EventArgs e)
@@ -344,7 +361,20 @@ namespace DS2S_META
             else
             {
                 nudUpgrade.Value = nudUpgrade.Minimum;
-                nudQuantity.Value = nudQuantity.Minimum;
+                
+                // change default quantity to 1 (unless you are restricted by max limit)
+                if (cbxQuantityRestrict.IsChecked.Value)
+                {
+                    // Handle restriction case
+                    TryGetSelectedItem(out DS2SItem item);
+                    handleRestrictQuantity(item);
+                    nudQuantity.Value = nudQuantity.Maximum == 0 ? 0 : 1;
+                } else
+                {
+                    // Unrestricted:
+                    nudQuantity.Value = 1; // new default
+                }
+                
             }
         }
 
