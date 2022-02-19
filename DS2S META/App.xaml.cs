@@ -69,7 +69,7 @@ namespace DS2S_META
                 }
 
                 //Log the error
-                var error = $"{exception.Message}\n\n\n{exception.StackTrace}";
+                var error = $"{exception.Message}\n\n\n{exception.StackTrace}\n";
                 File.AppendAllText(logFile, error);
             }
         }
