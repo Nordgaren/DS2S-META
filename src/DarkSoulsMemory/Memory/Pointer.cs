@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using DarkSoulsMemory.Native;
 using Microsoft.Win32;
 
 namespace DarkSoulsMemory.Shared
@@ -15,6 +16,25 @@ namespace DarkSoulsMemory.Shared
             Is64Bit     = is64Bit;
             BaseAddress = baseAddress;
             Offsets     = offsets.ToList();
+        }
+
+        public Pointer Copy()
+        {
+            return new Pointer(Process, Is64Bit, BaseAddress, Offsets.ToArray());
+        }
+
+        /// <summary>
+        /// Creates a new pointer with the address of the old pointer as base address
+        /// </summary>
+        /// <returns></returns>
+        public Pointer CreatePointerFromAddress(long offset = 0)
+        {
+            var copy = Copy();
+            var offsets = Offsets.ToList();
+            offsets.Add(offset);
+            copy.BaseAddress = ResolveOffsets(offsets);
+            copy.Offsets.Clear();
+            return copy;
         }
 
         public Process Process;
@@ -105,6 +125,16 @@ namespace DarkSoulsMemory.Shared
             Kernel32.WriteProcessMemory(Process.Handle, (IntPtr)(ResolveOffsets(offsetsCopy)), bytes, (uint)bytes.Length, 0);
         }
 
+        public bool IsNullPtr()
+        {
+            return GetAddress() == 0;
+        }
+
+        public long GetAddress()
+        {
+            return ResolveOffsets(Offsets);
+        }
+
         #region Read
         public int ReadInt32(long offset = 0)
         {
@@ -134,7 +164,6 @@ namespace DarkSoulsMemory.Shared
         {
             return BitConverter.ToSingle(ReadMemory(offset, 4), 0);
         }
-
         #endregion
 
         #region Write
@@ -198,6 +227,35 @@ namespace DarkSoulsMemory.Shared
         }
 
         #endregion
+
+        #endregion
+
+        #region Assembly
+
+        private IntPtr Allocate(uint size, uint flProtect = Kernel32.PAGE_READWRITE)
+        {
+            return Kernel32.VirtualAllocEx(Process.Handle, IntPtr.Zero, (IntPtr)size, Kernel32.MEM_COMMIT, flProtect);
+        }
+
+        private bool Free(IntPtr address)
+        {
+            return Kernel32.VirtualFreeEx(Process.Handle, address, IntPtr.Zero, Kernel32.MEM_RELEASE);
+        }
+        public uint Execute(IntPtr address, uint timeout = 0xFFFFFFFF)
+        {
+            IntPtr thread = Kernel32.CreateRemoteThread(Process.Handle, IntPtr.Zero, 0, address, IntPtr.Zero, 0, IntPtr.Zero);
+            uint result = Kernel32.WaitForSingleObject(thread, timeout);
+            Kernel32.CloseHandle(thread);
+            return result;
+        }
+        public uint Execute(byte[] bytes, uint timeout = 0xFFFFFFFF)
+        {
+            IntPtr address = Allocate((uint)bytes.Length, Kernel32.PAGE_EXECUTE_READWRITE);
+            Kernel32.WriteProcessMemory(Process.Handle, address, bytes, (uint)bytes.Length, 0);
+            uint result = Execute(address, timeout);
+            Free(address);
+            return result;
+        }
 
         #endregion
     }

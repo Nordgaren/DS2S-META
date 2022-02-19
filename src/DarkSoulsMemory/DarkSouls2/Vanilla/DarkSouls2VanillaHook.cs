@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DarkSoulsMemory.Native;
 using DarkSoulsMemory.Shared;
 using Keystone;
 using Kernel32 = PropertyHook.Kernel32;

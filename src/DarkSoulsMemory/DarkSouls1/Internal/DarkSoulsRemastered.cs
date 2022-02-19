@@ -1,25 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using DarkSoulsMemory.Memory;
+using DarkSoulsMemory.Shared;
 
 namespace DarkSoulsMemory.DarkSouls1.Internal
 {
     internal class DarkSoulsRemastered : BaseMemoryReaderWriter, IDarkSouls
     {
+        #region ptrs
+
+        private readonly Pointer _gameDataManIns;
+        private readonly Pointer _hostPlayerGameData;
+        private readonly Pointer _worldProgression;
+        private readonly Pointer _menuPrompt;
+        private readonly Pointer _bonfireState;
+
+        #endregion
+
         #region init/attaching =======================================================================================================================================
 
         public DarkSoulsRemastered()
         {
             Attach();
 
-            InitGameDataManPtr();
+            _process.ScanPatternRelative(new byte?[] { 0x48, 0x8d, 0x0d, null, null, null, null, 0x48, 0x89, 0x8a, 0x38, 0x0a, 0x00, 0x00 }, 3, 7)
+                .CreatePointer(out _menuPrompt);
+            
+            //GameDataMan
+            _process.ScanPatternRelative(new byte?[] { 0x48, 0x8B, 0x05, null, null, null, null, 0x45, 0x33, 0xED, 0x48, 0x8B, 0xF1, 0x48, 0x85, 0xC0 }, 3, 7)
+                .CreatePointer(out _gameDataManIns, 0)
+                //Path: GameDataMan->hostPlayerGameData->equipGameData
+                .CreatePointer(out _hostPlayerGameData, 0, 16)
+                ;
+            
+            //World progression
+            _process.ScanPatternRelative(new byte?[] { 0x48, 0x8B, 0x0D, null, null, null, null, 0x41, 0xB8, 0x01, 0x00, 0x00, 0x00, 0x44 }, 3, 7)
+                .CreatePointer(out _worldProgression, 0, 0);
+
+            //GameDataMan
+            _process.ScanPatternRelative(new byte?[] { 0x48, 0x8B, 0x05, null, null, null, null, 0x45, 0x33, 0xED, 0x48, 0x8B, 0xF1, 0x48, 0x85, 0xC0 }, 3, 7)
+                .CreatePointer(out _gameDataManIns, 0);
+
+            _process.ScanPatternRelative(new byte?[]{ 0x48, 0x8b, 0x05, null, null, null, null, 0x48, 0x05, 0x08, 0x0a, 0x00, 0x00, 0x48, 0x89, 0x44, 0x24, 0x50, 0xe8, 0x34, 0xfc, 0xfd, 0xff }, 3, 7)
+                .CreatePointer(out _bonfireState, 0, 2920, 0x28, 0)
+                ;
+            
+
             InitNetManImp();
-            InitWorldProgressionPtr();
-            InitMenuPrompt();
-            InitGameDataManPtr();
             InitFlags();
         }
-
+        
         public bool Attach()
         {
             if (AttachByName("DarkSoulsRemastered"))
@@ -35,21 +67,7 @@ namespace DarkSoulsMemory.DarkSouls1.Internal
         #endregion
 
         #region init base pointers =======================================================================================================================================
-
-        private IntPtr _gameDataMan;
-
-        private void InitGameDataManPtr()
-        {
-            if (TryScan(
-                    new byte?[]
-                    {
-                        0x48, 0x8B, 0x05, null, null, null, null, 0x45, 0x33, 0xED, 0x48, 0x8B, 0xF1, 0x48, 0x85, 0xC0
-                    }, out _gameDataMan))
-            {
-                _gameDataMan = _gameDataMan + ReadInt32(_gameDataMan + 3) + 7;
-            }
-        }
-
+        
         private IntPtr _netManImp;
 
         private void InitNetManImp()
@@ -65,30 +83,7 @@ namespace DarkSoulsMemory.DarkSouls1.Internal
             }
         }
 
-        private IntPtr _worldProgression;
-
-        private void InitWorldProgressionPtr()
-        {
-            //This pointer path doesn't change when quiting to main menu. Can just resolve the pointer and keep using it for as long as the game is running.
-            if (TryScan(
-                    new byte?[] { 0x48, 0x8B, 0x0D, null, null, null, null, 0x41, 0xB8, 0x01, 0x00, 0x00, 0x00, 0x44 },
-                    out _worldProgression))
-            {
-                _worldProgression = _worldProgression + ReadInt32(_worldProgression + 3) + 7;
-            }
-        }
-
-        private IntPtr _menuPrompt;
-
-        private void InitMenuPrompt()
-        {
-            if (TryScan(
-                    new byte?[] { 0x48, 0x8d, 0x0d, null, null, null, null, 0x48, 0x89, 0x8a, 0x38, 0x0a, 0x00, 0x00 },
-                    out _menuPrompt))
-            {
-                _menuPrompt = _menuPrompt + ReadInt32(_menuPrompt + 3) + 7;
-            }
-        }
+     
 
         private IntPtr _playerIns;
 
@@ -125,8 +120,7 @@ namespace DarkSoulsMemory.DarkSouls1.Internal
 
         public int GetGameTimeInMilliseconds()
         {
-            var gameDataManIns = (IntPtr)ReadInt32(_gameDataMan);
-            return ReadInt32(gameDataManIns + 0xA4);
+            return _gameDataManIns.ReadInt32(0xA4);
         }
 
         public bool IsPlayerLoaded()
@@ -139,23 +133,15 @@ namespace DarkSoulsMemory.DarkSouls1.Internal
 
         public bool IsBossDefeated(BossType bossType)
         {
-            var worldProgressionIns = (IntPtr)ReadInt32(_worldProgression);
-            worldProgressionIns = (IntPtr)ReadInt32(worldProgressionIns);
-
             var boss = _bosses.First(i => i.BossType == bossType);
-            var memVal = ReadByte(worldProgressionIns + boss.Offset);
-            var test1 = ReadInt32(worldProgressionIns + 0x1);
-            var test2 = ReadInt32(worldProgressionIns + 0x3F30);
-            var test3 = ReadInt32(worldProgressionIns + 0x3C30);
-            var test5 = ReadInt32(worldProgressionIns + 0x3C31);
-            var test4 = ReadInt32(worldProgressionIns + 0x3C76);
-
+            var memVal = _worldProgression.ReadByte(boss.Offset);
+            
             return memVal.IsBitSet(boss.Bit);
         }
 
         public MenuPrompt GetMenuPrompt()
         {
-            var menu = ReadByte(_menuPrompt);
+            var menu = _menuPrompt.ReadByte();
             if (((int)menu).TryParseEnum(out MenuPrompt menuPrompt))
             {
                 return menuPrompt;
@@ -214,67 +200,148 @@ namespace DarkSoulsMemory.DarkSouls1.Internal
 
         public List<Item> GetCurrentInventoryItems()
         {
-            //Path: GameDataMan->hostPlayerGameData->equipGameData->equipInventoryData->equipInventoryDataSub
-            var gameDataManIns = (IntPtr)ReadInt32(_gameDataMan);
-            var hostPlayerGameData = (IntPtr)ReadInt32(gameDataManIns + 16);
-            var equipGameData = hostPlayerGameData + 0x280; //640
-            var equipInventoryData = equipGameData + 288;
-            var equipInventoryDataSub = equipInventoryData + 16;
+            //Path: GameDataMan->hostPlayerGameData->equipGameData.equipInventoryData.equipInventoryDataSub
+            const long equipInventoryDataSubOffset = 0x3b0;
 
-            //Item count
-            var itemCount = ReadInt32(equipInventoryDataSub + 48);
-            var keyCount = ReadInt32(equipInventoryDataSub + 52);
+            var itemCount = _hostPlayerGameData.ReadInt32(equipInventoryDataSubOffset + 48);
+            var keyCount = _hostPlayerGameData.ReadInt32(equipInventoryDataSubOffset + 52);
 
             //Struct has 2 lists, list 1 seems to be a subset of list 2, the lists start at the same address..
             //I think the first list only contains keys. The "master" list contains both.
-            var itemList2Len = ReadInt32(equipInventoryDataSub);
-            //var itemList1Len = ReadInt32(equipInventoryDataSub + 16);
+            var itemList2Len = _hostPlayerGameData.ReadInt32(equipInventoryDataSubOffset);
+            var itemList2 = _hostPlayerGameData.ReadInt32(equipInventoryDataSubOffset + 40);
 
-            //var itemList1 = (IntPtr)ReadInt32(equipInventoryDataSub + 32);
-            var itemList2 = (IntPtr)ReadInt32(equipInventoryDataSub + 40);
-
-            var bytes = ReadBytes(itemList2, itemList2Len * 0x1c);
+            var bytes = ReadBytes((IntPtr)itemList2, itemList2Len * 0x1c);
             var items = ItemReader.GetCurrentInventoryItems(bytes, itemList2Len, itemCount, keyCount);
-
+            
             return items;
         }
-
-
+        
 
         public BonfireState GetBonfireState(Bonfire bonfire)
         {
+            const int BonfireLoopMax = 100;
+            //Looks like a linked list. Final element points back to the first.
+            var element = _bonfireState.CreatePointerFromAddress();
 
-            if (TryScan(new byte?[] { 0x48, 0x8b, 0x05, null, null, null, null, 0x48, 0x05, 0x08, 0x0a, 0x00, 0x00, 0x48, 0x89, 0x44, 0x24, 0x50, 0xe8, 0x34, 0xfc, 0xfd, 0xff }, out IntPtr netManImpIns))
+            var loopCount = 0;
+            while (element.GetAddress() != _bonfireState.GetAddress())
             {
-                netManImpIns = (IntPtr)ReadInt32(_netManImp);
-                var frpgNetBonfireDb = (IntPtr)ReadInt32(netManImpIns + 2920);
+                var test = element.Copy();
+                test.Offsets.Clear();
+                test.Offsets.Add(0x10);
+                test.Offsets.Add(0x0);
+                var addr = test.GetAddress();
 
-                var unknownStruct1 = (IntPtr)ReadInt32(frpgNetBonfireDb + 0x28);
-                var unknownStruct2 = (IntPtr)ReadInt32(unknownStruct1);
-                var frpgNetBonfireDbItem = (IntPtr)ReadInt32(unknownStruct2 + 0x10);
+                //Go to next element
+                element = element.CreatePointerFromAddress();
+                element.Offsets.Add(0x0);//Force pointer read
+                element.Offsets.Add(0x0);//Force pointer read
 
-                while (frpgNetBonfireDbItem != IntPtr.Zero)
+                //Emergency escape hatch
+                loopCount++;
+                if (loopCount > BonfireLoopMax)
                 {
-                    var bonfireId = ReadInt32(frpgNetBonfireDbItem + 0x8);
-                    var bonfireStatus = ReadInt32(frpgNetBonfireDbItem + 0xc);
-
-                    if (bonfireId.TryParseEnum(out Bonfire foundBonfire) && foundBonfire == bonfire)
-                    {
-                        if (!bonfireStatus.TryParseEnum(out BonfireState state))
-                        {
-                            state = BonfireState.Undiscovered;
-                        }
-
-                        return state;
-                    }
-
-                    //First pointer in this struct is a pointer to the next struct. Linked list?
-                    unknownStruct2 = (IntPtr)ReadInt32(unknownStruct2);
-                    //Also update the pointer to the next bonfire item
-                    frpgNetBonfireDbItem = (IntPtr)ReadInt32(unknownStruct2 + 0x10);
+                    return BonfireState.Undiscovered;
                 }
             }
 
+
+
+            var bonfireState = _bonfireState.Copy();
+            var bonfireItem = bonfireState.Copy();
+            
+            bonfireItem.Offsets.Add(0x10);
+            bonfireItem.Offsets.Add(0x0);
+
+            var testy = bonfireState.GetAddress();
+
+            var address = new List<long>();
+
+            while (bonfireItem.ReadInt32() != 0)
+            {
+                address.Add(bonfireItem.GetAddress());
+               
+                var bonfireId = bonfireItem.ReadInt32(0x8);
+                var bonfireStatus = bonfireItem.ReadInt32(0xc);
+
+                if (bonfireId.TryParseEnum(out Bonfire foundBonfire) && foundBonfire == bonfire)
+                {
+                    if (!bonfireStatus.TryParseEnum(out BonfireState state))
+                    {
+                        state = BonfireState.Undiscovered;
+                    }
+
+                    return state;
+                }
+                
+                var befpre = bonfireState.GetAddress().ToString("x8");
+
+                bonfireState = bonfireState.Copy();
+                bonfireState.Offsets.Add(0x0);
+                bonfireState = bonfireState.Copy();
+
+                var asd = bonfireState.GetAddress().ToString("x8");
+
+                bonfireItem = bonfireState.Copy();
+                bonfireItem.BaseAddress = bonfireState.GetAddress() + 0x10;
+                bonfireItem.Offsets.Clear();
+            }
+
+
+            var sba = new StringBuilder();
+            foreach (var p in address)
+            {
+                sba.Append($"0x{p:x}\n");
+            }
+
+            var st = sba.ToString();
+
+
+
+
+
+
+            var netManImpIns = (IntPtr)ReadInt32(_netManImp);
+            var frpgNetBonfireDb = (IntPtr)ReadInt32(netManImpIns + 2920);
+            var unknownStruct1 = (IntPtr)ReadInt32(frpgNetBonfireDb + 0x28);
+            var unknownStruct2 = (IntPtr)ReadInt32(unknownStruct1);
+            var frpgNetBonfireDbItem = (IntPtr)ReadInt32(unknownStruct2 + 0x10);
+
+            var addresses = new List<IntPtr>();
+            addresses.Add(unknownStruct2);
+            while (frpgNetBonfireDbItem != IntPtr.Zero)
+            {
+                
+
+                var bonfireId = ReadInt32(frpgNetBonfireDbItem + 0x8);
+                var bonfireStatus = ReadInt32(frpgNetBonfireDbItem + 0xc);
+            
+                if (bonfireId.TryParseEnum(out Bonfire foundBonfire) && foundBonfire == bonfire)
+                {
+                    if (!bonfireStatus.TryParseEnum(out BonfireState state))
+                    {
+                        state = BonfireState.Undiscovered;
+                    }
+            
+                    return state;
+                }
+            
+                //First pointer in this struct is a pointer to the next struct. Linked list?
+                unknownStruct2 = (IntPtr)ReadInt32(unknownStruct2);
+                addresses.Add(unknownStruct2);
+                //Also update the pointer to the next bonfire item
+                frpgNetBonfireDbItem = (IntPtr)ReadInt32(unknownStruct2 + 0x10);
+            }
+
+            var sb = new StringBuilder();
+            foreach (var p in addresses)
+            {
+                sb.Append($"0x{p.ToInt64():x}\n");
+            }
+
+            var str = sb.ToString();
+            
             return BonfireState.Undiscovered;
         }
 
@@ -325,19 +392,12 @@ namespace DarkSoulsMemory.DarkSouls1.Internal
 
         public int GetPlayerHealth()
         {
-            var gameDataManIns = (IntPtr)ReadInt32(_gameDataMan);
-            var hostPlayerGameData = (IntPtr)ReadInt32(gameDataManIns + 16);
-            var playerGameDataAttributeInfo = hostPlayerGameData + 16;
-            return ReadInt32(playerGameDataAttributeInfo + 4);
+            return _hostPlayerGameData.ReadInt32(20); ;
         }
 
         public CovenantType GetCovenant()
         {
-            var gameDataManIns = (IntPtr)ReadInt32(_gameDataMan);
-            var hostPlayerGameData = (IntPtr)ReadInt32(gameDataManIns + 16);
-            var playerGameDataAttributeInfo = hostPlayerGameData + 16;
-            var covenantId = ReadInt32(playerGameDataAttributeInfo + 259);
-
+            var covenantId = _hostPlayerGameData.ReadInt32(275);
             if (covenantId.TryParseEnum(out CovenantType covenant))
             {
                 return covenant;
@@ -348,13 +408,10 @@ namespace DarkSoulsMemory.DarkSouls1.Internal
 
         public int GetClearCount()
         {
-            var gameDataManIns = (IntPtr)ReadInt32(_gameDataMan);
-            return ReadInt32(gameDataManIns + 0x78);
+            return _gameDataManIns.ReadInt32(0x78);
         }
 
         #endregion
-
-
 
         #region Flags
 
@@ -590,7 +647,7 @@ d:  ba 01 00 00 00          mov    edx,0x1
             WriteInt32(chrClassWarpIns + 0xB34, (int)warpType);
             
             byte[] asm = AssemblyHelper.LoadDefuseOutput(BonfireWarpAssembly);
-            byte[] bytes = BitConverter.GetBytes(_gameDataMan.ToInt64());
+            byte[] bytes = BitConverter.GetBytes(_gameDataManIns.BaseAddress);
             Array.Copy(bytes, 0, asm, 0x2, 8);
             bytes = BitConverter.GetBytes(_bonfireWarp.ToInt64());
             Array.Copy(bytes, 0, asm, 0x18, 8);

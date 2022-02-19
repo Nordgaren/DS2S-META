@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DarkSoulsMemory.Native;
 using DarkSoulsMemory.Shared;
 using Kernel32 = PropertyHook.Kernel32;
 

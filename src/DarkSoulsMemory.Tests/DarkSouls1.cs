@@ -189,7 +189,7 @@ namespace Testing
             Thread.Sleep(2000);
             _assistant.Punch();
 
-            Thread.Sleep(9000);
+            Thread.Sleep(12000);
         }
 
         private static void KillGargoyles()

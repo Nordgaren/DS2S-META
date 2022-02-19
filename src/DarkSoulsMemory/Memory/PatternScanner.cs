@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DarkSoulsMemory.Memory;
+using DarkSoulsMemory.Native;
 
 namespace DarkSoulsMemory.Shared
 {
@@ -31,15 +33,25 @@ namespace DarkSoulsMemory.Shared
 
         public static long RelativeScan(Process p, string pattern, int addressOffset, int instructionSize)
         {
-            var mods = p.Modules;
+            return RelativeScan(p, pattern.ToPattern(), addressOffset, instructionSize);
+        }
+
+        public static long RelativeScan(Process p, byte?[] pattern, int addressOffset, int instructionSize)
+        {
+            //int Read(long address)
+            //{
+            //    int read = 0;
+            //    var buffer = new byte[4];
+            //    Kernel32.ReadProcessMemory(p.Handle, (IntPtr)address, buffer, buffer.Length, ref read);
+            //    return BitConverter.ToInt32(buffer, 0);
+            //}
 
             var scanResult = Scan(p, pattern);
             if (scanResult != 0)
             {
                 var codeBytes = GetCodeMemory(p);
-
                 var address = BitConverter.ToInt32(codeBytes, (int)scanResult + addressOffset);
-                var result =  BitConverter.ToInt64(codeBytes, (int)scanResult + address + instructionSize);
+                var result = p.MainModule.BaseAddress.ToInt64() + scanResult + address + instructionSize;
                 return result;
             }
 
@@ -49,7 +61,7 @@ namespace DarkSoulsMemory.Shared
 
         public static long Scan(Process p, string pattern)
         {
-            return Scan(p, ToPattern(pattern));
+            return Scan(p, pattern.ToPattern());
         }
 
 
@@ -82,24 +94,6 @@ namespace DarkSoulsMemory.Shared
         }
 
         
-        private static byte?[] ToPattern(string pattern)
-        {
-            var result = new List<byte?>();
-            pattern = pattern.Replace("\r", string.Empty).Replace("\n", string.Empty);
-            var split = pattern.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var s in split)
-            {
-                if (s != "?" && s != "??" && s != "x" && s != "xx")
-                {
-                    result.Add(Convert.ToByte(s, 16));
-                }
-                else
-                {
-                    result.Add(null);
-                }
-            }
-            return result.ToArray();
-        }
+        
     }
 }

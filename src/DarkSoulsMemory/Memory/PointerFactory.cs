@@ -5,6 +5,7 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DarkSoulsMemory.Native;
 using DarkSoulsMemory.Shared;
 
 namespace DarkSoulsMemory.Memory
@@ -25,6 +26,11 @@ namespace DarkSoulsMemory.Memory
     public static class PointerFactory
     {
         public static BasePointer ScanPatternRelative(this Process process, string pattern, int addressOffset, int instructionSize)
+        {
+            return ScanPatternRelative(process, pattern.ToPattern(), addressOffset, instructionSize);
+        }
+
+        public static BasePointer ScanPatternRelative(this Process process, byte?[] pattern, int addressOffset, int instructionSize)
         {
             var basePointer = new BasePointer();
             basePointer.Process = process;
