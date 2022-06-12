@@ -155,12 +155,13 @@ namespace DS2S_META
             var darkstoneid = 61090000;
             var rawstoneid = 61130000;
             var palestoneid = 61160000;
+            var lockstoneid = 60536000;
 
             var multi_items = new List<int>() { lifegemid, oldradid, mushroomid, blessingid, effigyid, mossid, wiltherbid,
                                                 oozeid, gprid, dprid, featherid, branchid, witchurnid, firebombid, blkfirebombid,
                                                 dungid, poisonknifeid, greatheroid, odosid, skullsid, torchid,
                                                 titshardid, ltsid, chunkid, slabid, twinklingid, ptbid, boltstoneid, darkstoneid,
-                                                rawstoneid, palestoneid};
+                                                rawstoneid, palestoneid, lockstoneid};
             foreach (int id in multi_items)
                 Hook.GiveItemSilently(id, 95, 0, 0);
 
@@ -227,8 +228,11 @@ namespace DS2S_META
             Hook.GiveItemSilently(rapierid, 1, 10, 4);  // dark rapier
             var ritbid = 5350000;
             Hook.GiveItemSilently(ritbid, 1, 10, 3);    // lightning RITB
+            var dbgsid = 1990000;
+            Hook.GiveItemSilently(dbgsid, 1, 5, 0);
             var decapitateid = 63017000; // :D
             Hook.GetItem(decapitateid, 1, 0, 0);        // show visibly
+            
 
 
             // Used to create a character with commonly useful things
