@@ -139,29 +139,56 @@ namespace DS2S_META
 
         private void cbxQuantityRestrict_Checked(object sender, RoutedEventArgs e)
         {
-            if (lbxItems == null)
+            UpdateQuantityAndTextVis();
+        }
+
+        private void UpdateQuantityAndTextVis()
+        {
+            if (!TryGetSelectedItem(out DS2SItem item))
                 return;
 
-            DS2SItem item = lbxItems.SelectedItem as DS2SItem;
-            if (item == null)
-                return;
+            // Update maximum based on cbx value
+            setQuantityMaximum(item);
 
-            if (!cbxQuantityRestrict.IsChecked.Value)
+            // Update UI
+            if (cbxQuantityRestrict.IsChecked.Value)
             {
-                var max = Hook.GetMaxQuantity(item);
-                var held = Hook.GetHeld(item);
-                nudQuantity.IsEnabled = true;
-                nudQuantity.Maximum = 99;
-                txtMaxHeld.Visibility = max - held > 0 ? Visibility.Hidden : Visibility.Visible;
-            }
-            else if (lbxItems.SelectedIndex != -1)
-            {
-                var max = Hook.GetMaxQuantity(item);
-                var held = Hook.GetHeld(item);
-                nudQuantity.Maximum = max - held;
+                // restricted
                 nudQuantity.IsEnabled = nudQuantity.Maximum > 1;
-                txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible;
             }
+            else
+            {
+                // unrestricted
+                nudQuantity.IsEnabled = true;
+            }
+            txtMaxHeld.Visibility = MaxMinusHeld(item) > 0 ? Visibility.Hidden : Visibility.Visible;
+        }
+        private bool TryGetSelectedItem(out DS2SItem item)
+        {
+            item = null;
+            if (lbxItems == null)
+                return false;
+
+            if (lbxItems.SelectedIndex == -1)
+                return false;
+
+            item = lbxItems.SelectedItem as DS2SItem;
+            if (item == null)
+                return false;
+
+            return true;
+        }
+
+        private void setQuantityMaximum(DS2SItem item)
+        {
+            nudQuantity.Maximum = cbxQuantityRestrict.IsChecked.Value ? MaxMinusHeld(item) : 99;
+        }
+
+        private int MaxMinusHeld(DS2SItem item)
+        {
+            var max = Hook.GetMaxQuantity(item);
+            var held = Hook.GetHeld(item);
+            return max - held;
         }
 
         private void cmbInfusion_SelectedIndexChanged(object sender, EventArgs e)
@@ -169,28 +196,19 @@ namespace DS2S_META
             var infusion = cmbInfusion.SelectedItem as DS2SInfusion;
             //Checks if cbxMaxUpgrade is checked and sets the value to max value
             HandleMaxItemCheckbox();
-
         }
 
         private void lbxItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!Hook.Hooked) return;
 
-            DS2SItem item = lbxItems.SelectedItem as DS2SItem;
-            if (item == null)
+            if (!TryGetSelectedItem(out DS2SItem item))
                 return;
 
-            if (!cbxQuantityRestrict.IsChecked.Value)
-            {
-                txtMaxHeld.Visibility = nudQuantity.Maximum > 0 ? Visibility.Hidden : Visibility.Visible;
+            // update quantities based on newly selected item
+            UpdateQuantityAndTextVis();
 
-                var max = Hook.GetMaxQuantity(item);
-                var held = Hook.GetHeld(item);
-                nudQuantity.Maximum = 99;
-                nudQuantity.IsEnabled = true;
-                txtMaxHeld.Visibility = max - held > 0 ? Visibility.Hidden : Visibility.Visible;
-            }
-
+            // Update infusion/upgrade ..?
             cmbInfusion.Items.Clear();
             if (item.Type == DS2SItem.ItemType.Weapon)
                 foreach (var infusion in Hook.GetWeaponInfusions(item.ID))
@@ -335,26 +353,27 @@ namespace DS2S_META
 
         private void cbxMaxUpgrade_Checked(object sender, RoutedEventArgs e)
         {
-            //HandleMaxItemCheckbox()
-            if (cbxMax.IsChecked.Value)
-            {
-                nudUpgrade.Value = nudUpgrade.Maximum;
-                nudQuantity.Value = nudQuantity.Maximum;
-            }
-            else
-            {
-                nudUpgrade.Value = nudUpgrade.Minimum;
-                nudQuantity.Value = nudQuantity.Minimum;
-            }
+            if (!TryGetSelectedItem(out DS2SItem item))
+                return;
+            
+            setQuantityMaximum(item);
+            HandleMaxItemCheckbox();
+            
         }
 
         private void HandleMaxItemCheckbox()
         {
-            //Set upgrade nud to max if max checkbox is ticked
+            // Set maximum values
+            // Assumes that setQuantityMaximum(item) has already been called!
             if (cbxMax.IsChecked.Value)
             {
-                nudUpgrade.Value = nudUpgrade.Maximum;
                 nudQuantity.Value = nudQuantity.Maximum;
+                nudUpgrade.Value = nudUpgrade.Maximum;
+            }
+            else
+            {
+                nudQuantity.Value = nudQuantity.Maximum == 0 ? 0 : 1;
+                nudUpgrade.Value = nudQuantity.Minimum;
             }
         }
 

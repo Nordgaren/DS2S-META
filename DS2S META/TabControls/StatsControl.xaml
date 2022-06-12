@@ -31,7 +31,7 @@
                 <ComboBox Name="Physique"/>-->
                 </StackPanel>
             </Border>
-            
+
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0" Margin="10,10,10,0" >
             <Label Content="Souls"/>
@@ -63,7 +63,7 @@
                 </StackPanel>
 
             </Border>
-        
+
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="1" Margin="10,10,10,0">
             <Label Content="Stats"/>
@@ -72,7 +72,7 @@
                 <Button Content="Max" Width="50" Click="Max_Click" x:Name="btnMax"/>
             </StackPanel>
             <Border BorderBrush="Gray" BorderThickness="1"  >
-                <Grid Margin="5,5,5,5" >
+                <Grid x:Name="gridStatLevels" Margin="5,5,5,5" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -90,7 +90,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Label Content="Soul Level" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="0,0,10,0" Grid.Column="0" Grid.Row="0" />
-                    <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.SoulLevel, Mode=TwoWay, UpdateSourceTrigger=Explicit}" MaxWidth="150" TextAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Margin="0,0,18,0" Grid.Column="1" Grid.Row="0" />
+                    <TextBox x:Name="nudSoulLevel" Text="{Binding ElementName=StatsCon, Path=Hook.SoulLevel, Mode=TwoWay, UpdateSourceTrigger=Explicit}" MaxWidth="150" TextAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Margin="0,0,18,0" Grid.Column="1" Grid.Row="0" />
                     <Label Content="Vigor" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="0,0,10,0" Grid.Column="0" Grid.Row="1" />
                     <wpfTool:IntegerUpDown x:Name="nudVig"  Value="{Binding ElementName=StatsCon, Path=Hook.Vigor}" Grid.Column="1" Grid.Row="1" TextAlignment="Center" Maximum="99" ClipValueToMinMax="True"/>
                     <Label Content="Endurance" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="0,0,10,0" Grid.Column="0" Grid.Row="2" />
@@ -114,7 +114,8 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
             <Label Content="Misc"/>
-                    <Button Content="Restore Humanity" Margin="10" Width="110" Click="RestoreHumanity_Click" x:Name="btnRestoreHumanity"/>
+            <Button Content="Restore Humanity" Margin="0" Width="110" Click="RestoreHumanity_Click" x:Name="btnRestoreHumanity"/>
+            <Button Content="New Test Character" Margin="10" Width="110" x:Name="btnNewTestCharacter" Click="NewTestCharacter_Click"/>
             <Border BorderBrush="Gray" BorderThickness="1"  >
                 <Grid Margin="15,15,15,15">
                     <Grid.ColumnDefinitions>
@@ -127,15 +128,15 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label Content="Hollow Level" Grid.Row="0" Grid.Column="0"/>
-                    <wpfTool:IntegerUpDown Value="{Binding ElementName=StatsCon, Path=Hook.HollowLevel}" x:Name="nudHollowLevel" Maximum="32" IsEnabled="False" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Width="85"/>
+                    <wpfTool:IntegerUpDown Value="{Binding Hook.HollowLevel, ElementName=StatsCon}" x:Name="nudHollowLevel" Maximum="32" IsEnabled="False" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Width="85"/>
                     <Label Content="Sinner Level" Grid.Row="1" Grid.Column="0" />
-                    <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.SinnerLevel}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" IsEnabled="False" Width="68" LostKeyboardFocus="Name_LostKeyboardFocus"/>
+                    <TextBox Text="{Binding Hook.SinnerLevel, ElementName=StatsCon}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" IsEnabled="False" Width="68" LostKeyboardFocus="Name_LostKeyboardFocus"/>
                     <Label Content="Sinner Points" Grid.Row="2" Grid.Column="0"/>
-                    <TextBox Text="{Binding ElementName=StatsCon, Path=Hook.SinnerPoints}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" IsEnabled="False" Width="68" LostKeyboardFocus="Name_LostKeyboardFocus"/>
+                    <TextBox Text="{Binding Hook.SinnerPoints, ElementName=StatsCon}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" IsEnabled="False" Width="68" LostKeyboardFocus="Name_LostKeyboardFocus"/>
                 </Grid>
 
             </Border>
-            </StackPanel>
+        </StackPanel>
         <DockPanel Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="100" LastChildFill="False" Margin="158,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
 
     </Grid>

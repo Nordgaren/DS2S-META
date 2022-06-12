@@ -13,7 +13,7 @@
     <Window.DataContext>
         <local:DS2SViewModel x:Name="ViewModel"/>
     </Window.DataContext>
-    
+
 
     <Grid>
         <StackPanel>
@@ -109,7 +109,12 @@
             <TabControl Background="LightGray">
                 <TabItem Header="Player">
                     <Grid Background="LightGray">
-                        <local:PlayerControl x:Name="metaPlayer" Hook="{Binding Hook}" GameLoaded="{Binding GameLoaded}"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="34*"/>
+                            <ColumnDefinition Width="385*"/>
+                        </Grid.ColumnDefinitions>
+                        <local:PlayerControl x:Name="metaPlayer" Hook="{Binding Hook}" GameLoaded="{Binding GameLoaded}" Grid.ColumnSpan="3"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Stats">
@@ -250,7 +255,7 @@
                 </TabItem>
             </TabControl>
         </StackPanel>
-       
+
 
     </Grid>
 </Window>

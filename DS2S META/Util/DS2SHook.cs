@@ -976,7 +976,7 @@ namespace DS2S_META
             Free(itemStruct);
         }
 
-        private void GiveItemSilently(int item, short amount, byte upgrade, byte infusion)
+        public void GiveItemSilently(int item, short amount, byte upgrade, byte infusion)
         {
             var itemStruct = Allocate(0x8A);
             Kernel32.WriteBytes(Handle, itemStruct + 0x4, BitConverter.GetBytes(item));
